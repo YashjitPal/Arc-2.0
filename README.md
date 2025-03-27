@@ -144,6 +144,7 @@ type to acrylic.
 * ### https://github.com/GuiMar10/Mindfulness
 * ### https://github.com/Tanay-Kar/Lacuna
 * ### https://github.com/greeeen-dev/natsumi-browser
+* ### https://github.com/lunar-os/ZenCss
 * ### https://sameerasw.notion.site/Zen-Transparency-1939c6099d4080468f02cf05ae50e827?pvs=4
 * ### https://discord.com/channels/1088172780480114748/1340837003448684605
 * ### https://discord.com/channels/1088172780480114748/1342214828487344209
