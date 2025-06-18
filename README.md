@@ -94,7 +94,7 @@ Press Ctrl+T and open the floating URL bar and type "about:config". Press the ti
 * ### ```browser.urlbar.openintab``` (*boolean > true*) - **When typed something by clicking on the URL bar, opens a new tab instead of modifying the current tab.**
 * ### ```zen.widget.windows.acrylic``` (*boolean > false*) - **For using Mica for Everyone in the toolbar.**
 * ### ```browser.urlbar.trimURLs``` (*boolean > true*) - **Shortens URL Bar to only show domain name.**
-* ### ```arc-compact-mode-no-sidebar-bg` (boolean > true) - **Disable this to remove Pseudo Background on Sidebar if you don't use Transparent Websites.**
+* ### ```arc-compact-mode-no-sidebar-bg``` (_boolean > true_) - **Disable this to remove Pseudo Background on Sidebar if you don't use Transparent Websites.**
 * ### ```arc-tab-loading-animation``` (_Number_) - **Animation while the website loads.**
   **0: No animation;**
   **1: Blur (*Added by default, not needed to be added in `about:config`*);**
