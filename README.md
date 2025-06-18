@@ -94,8 +94,7 @@ Press Ctrl+T and open the floating URL bar and type "about:config". Press the ti
 * ### ```browser.urlbar.openintab``` (*boolean > true*) - **When typed something by clicking on the URL bar, opens a new tab instead of modifying the current tab.**
 * ### ```zen.widget.windows.acrylic``` (*boolean > false*) - **For using Mica for Everyone in the toolbar.**
 * ### ```browser.urlbar.trimURLs``` (*boolean > true*) - **Shortens URL Bar to only show domain name.**
-
-## Other Essential Configs:
+* ### ```arc-compact-mode-no-sidebar-bg` (boolean > true) - **Disable this to remove Pseudo Background on Sidebar if you don't use Transparent Websites.**
 * ### ```arc-tab-loading-animation``` (_Number_) - **Animation while the website loads.**
   **0: No animation;**
   **1: Blur (*Added by default, not needed to be added in `about:config`*);**
@@ -120,6 +119,7 @@ Press Ctrl+T and open the floating URL bar and type "about:config". Press the ti
 * ### ```arc-disable-container-styling``` (_Boolean > True_) - **Disables Container styling.**
 * ### ```browser.ml.linkPreview.enabled``` (_Boolean > True_) - **Press `Shift + Alt` while hovering mouse over a link to generate AI based summarized preview of the content inside.**
 * ### ```browser.ml.linkPreview.outputSentences``` (_Number_) - **Set the number of sentences you want AI based summarized preview of a website in.**
+* ### ```browser.tabs.fadeOutUnloadedTabs``` (_Boolean > True_ - **Fades tab unloaded in the background.**
 * ### ```browser.low_commit_space_threshold_mb``` (_Number_) - **Set the amount of memory left free in your system to activate tab unloading. Recommended to set it 2/3rd of your total RAM.**
 * ### ```browser.tabs.min_inactive_duration_before_unload``` (_Number_) - **Under above config, set the duration (in milliseconds) in which tab unloading should be executed.**
 * ### ```dom.ipc.processPriorityManager.backgroundUsesEcoQoS``` (_Boolean > True_) - **Makes browser run on performance efficiency mode.**
