@@ -1,0 +1,108 @@
+@import "Arc 2.0/content.css";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*---------------------------------transparent zen windows lie setting about config etc--------------------------------------*/
+:root{
+  --zen-colors-tertiary: transparent !important;
+  --zen-settings-secondary-background: transparent !important;
+}
+
+groupbox{
+/*   background: var(--zen-colors-tertiary) !important; */
+  background: var(--zen-colors-border-contrast) !important;
+  border: none
+}
+
+@-moz-document url(about:home), url(about:newtab), url(about:privatebrowsing) {
+  body, .App{
+    background-color: #00000000 !important;
+  }
+
+  .top-sites-list, .personalizeButtonWrapper{
+    opacity: 0 !important;
+    transition: opacity 0.3s ease-in-out;
+
+    &:hover{
+      opacity: 1 !important;
+    }
+  }
+  
+  .App > div:nth-child(2), .wallpaper{
+    display: none !important;
+  }
+}
+
+@-moz-document url(addons.mozilla.org) {
+  /* transparency */
+html, body, nav, header{
+  background-color: transparent !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* darkreader */
+:root{
+  --darkreader-background-ffffff: transparent !important;
+}
+
+/* no footer */
+footer{
+  display: none !important;
+}
+}
+
+
+
+@-moz-document url(about:config){
+  tr, table{
+    background-color: transparent !important;
+    border: none !important;
+  }
+  tr{
+    outline: solid 1px #88888822 !important;
+  }
+}
+
+
+
+
+
+
+
+
+/*--------------------------------------------------second css----------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------------------3rd css-----------------------------------------------------------------------------*/
+
+@-moz-document url-prefix("about:") {
+  /* Exclude about:reader */
+  @-moz-document regexp("about:(?!reader).*") {
+    @font-face {
+      font-family: "SUSE";
+    }
+    * {
+      font-family: "SUSE", system-ui;
+    }
+  }
+}

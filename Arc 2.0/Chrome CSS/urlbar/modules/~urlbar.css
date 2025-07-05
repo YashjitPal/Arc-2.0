@@ -1,0 +1,412 @@
+/*-----------------------------------------------------------------------------------------------------------------------*/
+
+/*---------------------------------deta surf try to mimic url floating bar------------------------------------------*/
+
+
+
+
+ {
+  --urlbarView-item-inline-padding: 0px !important;
+  --urlbarView-item-block-padding: 0px !important;
+}
+
+#urlbar[breakout-extend] {
+  #identity-permission-box, #tracking-protection-icon-container, #page-action-buttons {
+    display: none !important;
+  }
+
+  #identity-icon-box {
+    margin-right: 9px !important;
+    padding-left: 8px !important;
+    padding-right: 25px !important;
+    margin-top: 13.2px !important;
+    margin-bottom: 15px !important;
+    scale: 1.5 !important;
+  }
+
+  #identity-box {
+    margin: 0 !important;
+  }}
+
+  
+
+
+.urlbarView-title {
+  padding: 5px !important;
+  font-size: 17px !important;
+  font-weight: 500 !important;
+  color: white !important;
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*importa--------------------nt helps in removing shit url thing */
+.urlbarView-url, .urlbarView-title-separator::before {
+  
+  scale: 1 !important;
+  height: 0 !important;
+}
+
+
+.urlbarView-favicon {
+  margin-left: px !important;
+
+}
+
+
+
+
+
+
+
+.urlbarView-row {
+  &[rich-suggestion][type="search"] {
+    :root:not([uidensity="compact"]) & {
+      min-height: 28px !important;
+      max-height: 40px !important;
+    }
+  }
+}
+/*------------------------------most important thing u see today------------------------------------*/
+.urlbarView-row {
+  &:not([type="tip"], [type="dynamic"]) {
+    :root[uidensity="touch"] & {
+      padding-block: 7px !important;
+    }
+  }
+}
+
+
+
+/* expanded urlbar */
+#urlbar {
+  top: auto !important;
+
+  &[open] {
+    min-width: var(--na-urlbar-width) !important;
+    max-width: var(--na-urlbar-width) !important;
+   
+    display: flex !important;
+    scale: 0.9 !important;
+    flex-direction: column !important;
+    bottom: 55.5px !important;
+    border-radius: 20px !important;
+  }
+
+  /* move urlbar input to bottom*/
+  &>.urlbar-input-container {
+    order: 1 !important;
+  }
+}
+
+#urlbar[open][zen-floating-urlbar='true'] {
+ 
+  left: 55.6% !important;
+  min-width: 500px !important;
+  border-radius: 25px !important;
+  
+  
+}
+
+
+/*------------for arc raycast lie toolbar url bar button idea-----------------*/
+ #page-action-buttons,
+#urlbar-go-button{
+  
+  order: 1 !important;
+}
+/*----------------------------------------------------------------------------*/
+
+  
+
+  /* Make borders more visible */
+
+  /*noinspection CssInvalidFunction*/
+  .urlbarView-body-inner, .search-one-offs {
+    border-top: 0px solid light-dark(rgba(20, 20, 20, 0.2), rgba(235, 235, 235, 0.2)) !important;
+  }
+
+
+
+
+
+
+
+
+
+ /* bottombar animation on expand and close */
+/*
+#urlbar {
+  &[open] {
+    animation: slideUpExpand var(--na-anim-duration) ease;
+  }
+
+  &:not([open]) {
+    animation: slideUpAdressBar var(--na-anim-duration) ease;
+    background-color: var(--na-color-zero) !important;
+  }
+}*/
+
+/* splitter for urlbar input */
+
+/*
+.urlbarView-body-inner {
+  border-top: none !important;
+  border-bottom: 1px solid var(--na-color-text) !important;
+}
+
+
+#urlbar:not([breakout-extend]) .urlbar-input-container>.urlbar-input-box>input {
+  opacity: 1 !important;
+  transition: opacity 0.6s;
+}
+
+#main-window:has(.tabbrowser-tab[selected][busy]) {
+  #urlbar:not([breakout-extend]) .urlbar-input-container>.urlbar-input-box>input {
+    transition: opacity 0s ease;
+    opacity: 0 !important;
+  }
+
+  #urlbar:not([breakout-extend]) .urlbar-input-container>.urlbar-input-box::before {
+    animation-play-state: running;
+    visibility: visible !important;
+    opacity: 1;
+  }
+}
+/*
+
+/*------------------------------*/
+/* expanded urlbar items padding */
+
+
+.urlbarView-row {
+  &[selected] {
+    background-color: black !important;
+  
+    padding-left: 5px !important;
+  scale: 0.99 !important;
+   filter: brightness(110.1%) contrast(105%) !important;
+    
+    
+  }
+}
+
+
+
+
+
+#urlbar-container:has(#urlbar[breakout-extend]) {
+  #urlbar {
+    border-radius: 20px !important;
+    border: 0px solid var(--na-color-border) !important;
+    font-size: 1.2rem !important;
+    height: fit-content !important;
+    padding-inline: 0px !important;
+    padding-block: 8px !important;
+    color: var(--na-color-text) !important;
+
+    .urlbar-input,
+    .urlbar-input-box {
+      margin: 0px !important;
+      padding: 0px !important;
+    
+      
+    }
+   
+   
+    .urlbar-input{
+      margin-bottom: 0px !important;
+      margin-left: -20px !important;
+      margin-top: -4px !important;
+      backdrop-filter: brightness(1) !important;
+    }
+
+    
+    .urlbar-input-container {
+      max-height: fit-content  !important;
+      filter: brightness(95%) !important;
+     
+    bottom: 0px !important;
+     width: 97% !important;
+     border-radius: 12px !important;
+      left: 10px !important;
+      padding-block: 5px !important;
+      padding-inline: 0px !important;
+       box-shadow: 0px 0px 92px -10px rgba(0, 0, 0, 8.6) !important;
+      
+    }}
+  
+/*
+ #page-action-buttons,
+ #urlbar-go-button,*/
+ 
+ 
+  #tracking-protection-icon-container,
+ 
+  #urlbar-anon-search-settings {
+    display: none !important;
+  }
+
+  #urlbar-results>.urlbarView-row>.urlbarView-row-inner>.urlbarView-url {
+    margin-inline: 0px !important;
+    margin-right: 20px !important;
+  }
+  
+  #identity-box{
+    margin-top: -12px !important;
+    margin-bottom: -12px !important;
+    margin-left: 12px !important;
+    
+  }
+   
+  #identity-icon{
+    margin-bottom: 0px !important;
+    filter: brightness(105%) contrast(85%)!important;
+    scale: 1.1 !important;
+    
+  }
+  
+ 
+/*
+ #urlbar-results {
+    font-size: 1em !important;
+
+    img {
+      display: none !important;*/
+    }
+  
+
+  .urlbarView-results div {
+    margin: -5px !important;
+    padding-block: 0px !important;
+    
+    padding-inline: 0px !important; /*6px*/
+  }
+}
+
+@media (-moz-bool-pref: "zen.view.use-single-toolbar") {
+  :root[zen-sidebar-expanded="true"] {
+    .urlbar-page-action,
+    #tracking-protection-icon-container {
+      
+      margin-left: 0px !important;
+    }
+  }
+}
+
+.tab-stack {
+  box-shadow: none !important;
+  box-sizing: none !important;
+  padding: 0px !important;
+  margin: 0px !important;
+  border: 0px !important;
+}
+
+/* urlbar action button */
+.urlbar-page-action,
+#tracking-protection-icon-container {
+  margin-left: 0px !important;
+}
+
+#page-action-buttons {
+  margin-right: 3.5px !important;
+}
+
+
+/* urlbar search result type icon (site that you bookmark will have star on the right side) */
+.urlbarView-row>.urlbarView-row-inner .urlbarView-type-icon {
+  margin: 0px !important;
+  position: absolute !important;
+  right: 15px !important;
+}
+
+
+/* urlbar search result */
+.urlbarView-body-inner {
+  display: none !important;
+
+
+  &:has(.urlbarView-row[selected]) {
+    display: list-item !important;
+    list-style: none !important;
+
+    & .urlbarView-url {
+      color: var(--na-color-text-second) !important;
+    }
+
+    & .urlbarView-row[selected] {
+    
+      background-color: var(--na-color-text) !important;
+    }
+
+    & .urlbarView-row:hover {
+     
+      background-color: var(--na-color-text-second) !important;
+    }
+
+    & .urlbarView-row[selected] .urlbarView-title {
+      animation: slideUpAdressBar var(--na-anim-duration) ease infinite;
+      color: var(--na-color-bg) !important;
+    }
+
+    & .urlbarView-row[selected] .urlbarView-url {
+      color: var(--na-color-bg-second) !important;
+    }
+
+    & .urlbarView-row:hover .urlbarView-title {
+      animation: slideUpAdressBar var(--na-anim-duration) ease infinite;
+  
+    }
+
+    & .urlbarView-row:hover .urlbarView-url {
+  
+    }
+
+    & .urlbarView-row[selected] .urlbarView-action {
+      padding-inline: 6px !important;
+    
+    
+    }
+
+    & .urlbarView-row:hover .urlbarView-action {
+      padding-inline: 6px !important;
+     
+    
+    }
+
+    & .urlbarView-row .urlbarView-action {
+      padding-inline: 6px !important;
+    
+    
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*---------------------------------------------------------------------------------------------------------------*/
+

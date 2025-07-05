@@ -1,0 +1,13 @@
+/* -------removes scrollbar in tab panel and also adds fade effect -------- */ 
+#zen-tabs-wrapper {
+    mask-image: linear-gradient(to bottom, transparent, black 20px, black calc(100% - 20px), transparent 100%) !important;
+}
+#zen-tabs-wrapper {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    overflow-y: auto !important;
+}
+
+#zen-tabs-wrapper::-webkit-scrollbar {
+    display: none !important;
+}

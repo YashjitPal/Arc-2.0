@@ -1,0 +1,55 @@
+/* URL BAR */
+
+:root[zen-single-toolbar='true'] {
+   .urlbar-addon-page-action {
+    display: inherit !important;
+  }
+}
+
+
+
+
+
+
+
+/* sets the linkly Extention to the arc copy link icon */
+#pageAction-urlbar-copy-frame-url_jeffersonscher_com {
+  list-style-image: url("https://raw.githubusercontent.com/neurokitti/Arc_Zen_Theme/6da4c1ca78cc521bea1026ff024fcc8528ae6a49/icons/copy_link.svg") !important;
+  scale: 1;
+  filter: brightness(var(--icon-brightness)) !important;
+}
+
+
+/* Shield Button To The Left */
+#tracking-protection-icon-container {
+  order: 0 !important;
+}
+#urlbar:not([zen-floating-urlbar="true"]) #identity-box {
+    order: 0 !important;
+    width: 28px;
+}
+
+#identity-icon-box {
+  opacity: 1 !important;
+  margin-left: 0 !important;
+  transform: none !important;
+}
+.urlbar-input-container {
+  padding-left: 4px !important; /* decrease this to move identity box more to left */
+}
+#identity-permission-box {
+  display: none !important;
+}
+
+
+
+
+
+/* ROUNDED URL BAR */
+
+#urlbar {
+  #urlbar-background { 
+     border-radius: 13px !important;   
+  }
+}
+

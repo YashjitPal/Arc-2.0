@@ -1,0 +1,137 @@
+/* NEW TAB ANIMATIONS */
+
+/* Animate new tab appear animation *//*Cool*/
+#vertical-pinned-tabs-container, #tabbrowser-arrowscrollbox {
+  .tabbrowser-tab {
+    animation: new-tab-appear 0.2s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+  }
+}
+
+
+@keyframes new-tab-appear { 
+  0% {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
+  60% {
+    opacity: 0.8  ;
+    transform: translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ANIMATIONS */
+
+
+
+/* Loading tab animation */
+tab[busy]{
+	scale: 0.95 !important;
+	.tab-background{
+		opacity: 0.3 !important;
+	}
+} 
+
+/* trackpad gestures*/
+.browserStack browser {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1) 0.1s !important;
+    border-radius: 0.75em !important;
+}
+
+/* Previous animation*/
+.browserStack:has(#historySwipeAnimationPreviousArrow:not([style="translate: none;"])) browser {
+    scale: 0.95 !important;
+    transform: translateX(3%) !important;    
+    border-radius: 2em !important;
+}
+
+/* Next animation*/
+.browserStack:has(#historySwipeAnimationNextArrow:not([style="translate: none;"])) browser {
+    scale: 0.95 !important;
+    transform: translateX(-3%) !important;  
+    border-radius: 2em !important;   
+}
+
+/* smoothen trackpad gestures */
+.browserStack browser[style*="transform: none"] {
+    border-radius: 0.75em !important;
+} 
+  
+/* ctrl tab visuals and animations */
+#ctrlTab-panel{
+	--panel-background: var(--lwt-accent-color) !important;
+    transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.1) 0.2s !important;
+	scale: 0.7;
+}
+
+#ctrlTab-panel:has(.ctrlTab-preview:not([hidden="true"])){
+	scale: 1 !important;
+}
+
+slot:nth-child(1){
+		border-radius: 1em !important;
+	padding: 0 !important; 
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Tab Loading Animations */
+
+/* - URL Bar Loading Animation - */
+/* Credit: https://github.com/wysh3/Zen-Mods */
+#urlbar:not([breakout-extend="true"]) { /* Unless urlbar is opened */
+    .urlbar-input-container::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(25deg, #4e4ac233, #4ecdc433, #4e4ac233);
+      background-size: 200% 100%;
+      animation: urlbar-loading-gradient 1s linear reverse infinite;
+      animation-play-state: paused;
+      opacity: 0;
+      transition: opacity 0.25s;
+      pointer-events: none;
+    }
+  }
+  
+  &:has(#reload-button[displaystop="true"]) { /* When 'Stop' button is shown isntead of 'Reload' */
+    .urlbar-input-container::before {
+      animation-play-state: running;
+      opacity: 1;
+    }
+  }  
+  
+  @keyframes urlbar-loading-gradient {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
+  }

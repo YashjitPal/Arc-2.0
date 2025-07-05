@@ -1,0 +1,435 @@
+/* ==== Better PiP ==== */
+
+@media not (-moz-bool-pref: "natsumi.pip.disabled") {
+  @-moz-document url("chrome://global/content/pictureinpicture/player.xhtml") {
+    /*noinspection CssInvalidFunction*/
+    * {
+      --natsumi-primary-color: #90c5d4; /* Default - #a0d490 */
+      --natsumi-colors-primary: color-mix(in srgb, var(--natsumi-primary-color) 50%, black 50%);
+      --natsumi-colors-secondary: color-mix(in srgb, var(--natsumi-colors-primary) 20%, white 80%);
+
+      @media (prefers-color-scheme: dark) {
+        --natsumi-colors-primary: color-mix(in srgb, var(--natsumi-primary-color) 20%, #1d1d1d 80%);
+        --natsumi-colors-secondary: color-mix(in srgb, var(--natsumi-primary-color) 30%, #1d1d1d 70%);
+      }
+
+      --natsumi-glass-background: color-mix(in srgb, var(--natsumi-colors-secondary) 75%, transparent);
+      --natsumi-glass-shadow-color: color-mix(in srgb, var(--natsumi-colors-secondary) 75%, light-dark(black, white));
+      --toolbarbutton-hover-background: color-mix(in srgb, light-dark(#1d1d1d, #ebebeb) 10%, transparent 90%);
+      --toolbarbutton-active-background: light-dark(rgba(0, 0, 0, 0.07), rgba(255, 255, 255, 0.11));
+
+      @media (-moz-bool-pref: "natsumi.theme.force-dark-shadows") {
+        --natsumi-glass-shadow-color: color-mix(in srgb, var(--natsumi-colors-secondary) 75%, black);
+      }
+    }
+
+    @keyframes pip-fadein-html {
+      0% {
+        background-color: transparent;
+        scale: 0.8;
+      }
+
+      99% {
+        background-color: transparent;
+        scale: 1;
+      }
+
+      100% {
+        background-color: black;
+      }
+    }
+
+    @keyframes pip-fadein-player {
+      0% {
+        filter: blur(30px);
+        opacity: 0;
+      }
+
+      70% {
+        filter: blur(5px);
+      }
+
+      100% {
+        filter: blur(0);
+        opacity: 1;
+      }
+    }
+
+    html {
+      animation: pip-fadein-html 0.5s ease !important;
+    }
+
+    .player-holder {
+      animation: pip-fadein-player 0.5s ease !important;
+    }
+
+    #controls {
+      opacity: 1 !important;
+
+      & > button {
+        opacity: 0 !important;
+        top: 0 !important;
+        filter: blur(5px);
+        border-radius: 6px !important;
+        transition: opacity 0.3s ease, top 0.3s ease, filter 0.3s ease, background-color 0.2s ease !important;
+        backdrop-filter: blur(15px);
+        background-image: none !important;
+        background-color: var(--natsumi-glass-background) !important;
+        box-shadow: 0 0 10px var(--natsumi-glass-shadow-color) !important;
+        border: 1px solid rgba(20, 20, 20, 0.2) !important;
+
+        @media (prefers-color-scheme: dark) {
+          border: 1px solid rgba(235, 235, 235, 0.3) !important;
+        }
+
+        &::before {
+          content: "";
+          width: 20px;
+          height: 20px;
+          padding: 2px;
+          display: flex;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          align-content: center;
+          justify-content: center;
+          fill: white !important;
+
+          @media (prefers-color-scheme: light) {
+            fill: black !important;
+          }
+        }
+
+        &#close::before {
+          content: url("chrome://browser/skin/zen-icons/close.svg") !important;
+        }
+
+        &#unpip::before {
+          content: url("chrome://browser/skin/zen-icons/open.svg") !important;
+        }
+
+        &:hover {
+          background-color: color-mix(in srgb, var(--natsumi-glass-background) 80%, white) !important;
+
+          @media (prefers-color-scheme: light) {
+            background-color: color-mix(in srgb, var(--natsumi-glass-background) 80%, black) !important;
+          }
+        }
+      }
+
+      #controls-bottom-gradient {
+        display: none !important;
+      }
+
+      /*noinspection CssInvalidFunction*/
+      #controls-bottom {
+        opacity: 0 !important;
+        bottom: -5px !important;
+        background-color: var(--natsumi-glass-background) !important;
+        border: 1px solid light-dark(rgba(20, 20, 20, 0.2), rgba(235, 235, 235, 0.3)) !important;
+        border-radius: 10px !important;
+        padding: 10px 15px !important;
+        margin: 0 5px !important;
+        width: calc(100% - 10px) !important;
+        box-sizing: border-box !important;
+        box-shadow: 0 0 10px var(--natsumi-glass-shadow-color) !important;
+        backdrop-filter: blur(0);
+        filter: blur(10px);
+        transition: opacity 0.3s ease, bottom 0.3s ease, backdrop-filter 0.3s ease, filter 0.3s ease !important;
+
+        .start-controls {
+          display: flex !important;
+
+          /*noinspection CssInvalidFunction*/
+          #timestamp {
+            font-size: 12px !important;
+            color: light-dark(black, white) !important;
+          }
+        }
+
+        .end-controls {
+          display: flex !important;
+        }
+
+        #scrubber, #audio-scrubber {
+          margin: 0 !important;
+
+          &::-moz-range-progress {
+            background: linear-gradient(to right, white, var(--natsumi-primary-color)) !important;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5) !important;
+          }
+
+          /*noinspection CssInvalidFunction*/
+          &::-moz-range-track {
+            background-color: light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1)) !important;
+          }
+
+          &::-moz-range-thumb {
+            background-color: var(--natsumi-primary-color) !important;
+            width: 12px !important;
+            height: 12px !important;
+            border: none !important;
+            opacity: 0;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) !important;
+          }
+
+          &:hover {
+            &::-moz-range-thumb {
+              opacity: 1;
+            }
+          }
+        }
+
+        #audio-scrubber {
+          &::-moz-range-thumb {
+            width: 8px !important;
+            height: 8px !important;
+            opacity: 1 !important;
+          }
+        }
+
+        /*noinspection CssInvalidFunction*/
+        button {
+          opacity: 1 !important;
+          position: relative;
+          padding: 6px !important;
+          background-size: 16px !important;
+          width: 28px !important;
+          height: 28px !important;
+          border-radius: 6px !important;
+          transition: background-color 0.2s ease !important;
+          -moz-context-properties: fill;
+          fill: light-dark(black, white) !important;
+
+          &[disabled] {
+            cursor: default !important;
+            fill-opacity: 0.4 !important;
+
+            &::after {
+              display: none !important;
+            }
+          }
+
+          &:not([disabled]) {
+            &:hover {
+              background-color: var(--toolbarbutton-hover-background) !important;
+            }
+
+            &:active {
+              background-color: var(--toolbarbutton-active-background) !important;
+            }
+          }
+
+          &#playpause {
+            background-image: url("chrome://browser/skin/zen-icons/media-play.svg") !important;
+          }
+
+          &#audio {
+            background-image: url("chrome://browser/skin/zen-icons/media-unmute.svg") !important;
+          }
+
+          &#seekBackward {
+            background-image: url("chrome://browser/skin/zen-icons/reload.svg") !important;
+            scale: -1 1;
+
+            &::before {
+              content: "5";
+              font-size: 8px;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(50%, -50%);
+              scale: -1 1;
+            }
+
+            &::after {
+              scale: -1 1;
+            }
+          }
+
+          &#seekForward {
+            background-image: url("chrome://browser/skin/zen-icons/reload.svg") !important;
+
+            &::before {
+              content: "5";
+              font-size: 8px;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
+          }
+
+          &#fullscreen {
+            background-image: url("chrome://browser/skin/zen-icons/fullscreen.svg") !important;
+          }
+        }
+
+        .controls-bottom-upper {
+          margin: 0 !important;
+          margin-bottom: 5px !important;
+          width: 100% !important;
+          height: fit-content !important;
+
+          .scrubber-no-drag {
+            margin: 0 !important;
+          }
+
+          &:has(#scrubber[hidden]) {
+            display: none !important;
+            margin: 0 !important;
+          }
+        }
+
+        .controls-bottom-lower {
+          margin: 0 !important;
+        }
+      }
+
+      #settings {
+        bottom: 80px !important;
+        right: 0 !important;
+        display: block !important;
+        transition: opacity 0.3s ease, bottom 0.3s ease !important;
+
+        .arrow {
+          display: none !important;
+        }
+
+        /*noinspection CssInvalidFunction*/
+        label, legend {
+          font-family: system-ui !important;
+          color: light-dark(black, white) !important;
+        }
+
+        /*noinspection CssInvalidFunction*/
+        .slider {
+          background-color: rgba(0, 0, 0, 0.07) !important;
+          outline: 1px solid light-dark(#8f8f9d, #bfbfc9) !important;
+
+          /*noinspection CssInvalidFunction*/
+          &::before {
+            background-color: light-dark(#8f8f9d, #bfbfc9) !important;
+          }
+        }
+
+        input {
+          /*noinspection CssInvalidFunction*/
+          &:checked {
+            border-color: light-dark(var(--natsumi-colors-primary), var(--natsumi-primary-color)) !important;
+          }
+
+          /*noinspection CssInvalidFunction*/
+          &:checked + .slider {
+            background-color: light-dark(var(--natsumi-colors-primary), var(--natsumi-primary-color)) !important;
+            outline-color: light-dark(var(--natsumi-colors-primary), var(--natsumi-primary-color)) !important;
+
+            &::before {
+              background-color: white !important;
+            }
+          }
+        }
+
+        /*noinspection CssInvalidFunction*/
+        & > .panel-fieldset {
+          background-color: var(--natsumi-glass-background) !important;
+          backdrop-filter: blur(15px);
+          filter: blur(0);
+          transition: backdrop-filter 0.3s ease, filter 0.3s ease;
+          border: 1px solid light-dark(rgba(20, 20, 20, 0.2), rgba(235, 235, 235, 0.3)) !important;
+          box-shadow: 0 0 10px var(--natsumi-glass-shadow-color) !important;
+          padding: 0 !important;
+        }
+
+        /*noinspection CssInvalidFunction*/
+        .grey-line {
+          width: calc(100% - 10px) !important;
+          margin: 0 auto !important;
+          background-color: light-dark(rgba(20, 20, 20, 0.2), rgba(235, 235, 235, 0.3)) !important;
+        }
+
+        &.hide {
+          bottom: 70px !important;
+          opacity: 0 !important;
+          pointer-events: none !important;
+
+          & > .panel-fieldset {
+            backdrop-filter: none !important;
+            filter: blur(5px);
+          }
+        }
+      }
+
+      &.muted {
+        #controls-bottom {
+          #audio {
+            background-image: url("chrome://browser/skin/zen-icons/media-mute.svg") !important;
+          }
+        }
+      }
+
+      &.playing {
+        #controls-bottom {
+          #playpause {
+            background-image: url("chrome://browser/skin/zen-icons/media-pause.svg") !important;
+          }
+        }
+      }
+
+      &:hover {
+        & > button {
+          opacity: 1 !important;
+          top: 10px !important;
+          filter: blur(0) !important;
+        }
+
+        #controls-bottom {
+          opacity: 1 !important;
+          bottom: 5px !important;
+          backdrop-filter: blur(15px);
+          filter: blur(0);
+
+          @media (-moz-bool-pref: "natsumi.pip.native-border-radius") {
+            bottom: 0 !important;
+          }
+        }
+      }
+    }
+
+    body:fullscreen {
+      #controls {
+        #controls-bottom {
+          #fullscreen {
+            background-image: url("chrome://browser/skin/zen-icons/fullscreen-exit.svg") !important;
+          }
+        }
+      }
+    }
+  }
+}
+/* Rounded PiP */
+@media (-moz-bool-pref: "natsumi.experiments.rounded-pip") {
+  @-moz-document url("chrome://global/content/pictureinpicture/player.xhtml") {
+    window, html, body {
+      /* Share same radius as macOS for the sake of simplicity later */
+      border-radius: 9px !important;
+    }
+  }
+}
+
+
+
+
+
+/* PIP Rounded */
+
+ :root {
+        border-radius: 60px !important;
+       overflow: hidden !important;
+    }
+
+    video {
+        border-radius: 60px !important;
+    }
+}

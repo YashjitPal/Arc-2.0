@@ -1,0 +1,173 @@
+/* ------------------------- PINNED EXTENSIONs ------------------------- */
+/* Pinned extensions */
+#TabsToolbar-customization-target {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  gap: calc(var(--zen-toolbox-padding) - 3px) !important;
+ 
+  #tabbrowser-tabs {
+    min-width: 100% !important;
+    height: calc(100% - 41px) !important;
+  }
+  
+  #Zen-tabs-wrapper {
+    max-height: 700px !important;
+  }
+  
+  .unified-extensions-item-action-button {
+    padding: 0px !important;
+  }
+  
+  /* Pinned Extensions */
+  .unified-extensions-item {
+    margin-inline: 2px !important;
+    border-bottom: 0px !important;
+    padding: 0px !important;
+    height: 32px !important;
+    width: 32px !important;
+    flex-grow: 1 !important;
+    order: -1 !important;
+    background-color: rgba(255,255,255,0.1) !important;
+    box-shadow: 0 0px 3px light-dark(rgba(255, 255, 255, 0),rgba(0, 0, 0, 0)) !important;
+    border-radius: calc(12px - 1.5px) !important;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease !important;
+  }
+
+  .unified-extensions-item:hover {
+    background-color: rgba(255,255,255,0.2) !important;
+  }
+
+  toolbarbutton:not([id="tabs-newtab-button"]) {
+    height: 32px !important;
+    width: 32px !important;
+    flex-grow: 1 !important;
+    padding: 0px !important;
+
+    toolbarbutton,
+    stack {
+      --toolbarbutton-active-background: transparent !important;
+      --toolbarbutton-hover-background: transparent !important;
+    }
+
+    .toolbarbutton-badge {
+      display: none !important;
+    }
+
+    .toolbarbutton-text {
+      display: none !important;
+    }
+  }
+
+  >toolbarbutton:not([id="tabs-newtab-button"]),
+  >toolbaritem {
+    background-color: var(--nebula-color) !important;
+
+    border-radius: calc(var(--nebula-border-radius) + 1px) !important;
+    margin: 0px !important;
+    order: -1 !important;
+    flex-grow: 1 !important;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease !important;
+  }
+
+  >toolbarbutton:not([id="tabs-newtab-button"]):hover,
+  >toolbaritem:hover {
+    background-color: var(--nebula-color-hover) !important;
+
+  }
+}
+#nav-bar {
+  margin-bottom: 9px !important; /* Adjust gap size as needed */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*------------------------------------
+ * compact extensions
+ */
+
+#unified-extensions-view{
+  
+  --uei-icon-size: 20px !important;
+  --extensions-in-row: 4;
+
+  width: 100% !important;
+  
+  /* hide not needed */
+  #unified-extensions-description,
+  toolbarseparator,
+  .unified-extensions-item-menu-button.subviewbutton,
+  .unified-extensions-item-action-button .unified-extensions-item-contents
+  {display: none !important;}
+  
+  /* spacing */
+
+  .panel-header {margin-top: 4px !important;}
+
+  [data-l10n-id="unified-extensions-header-title"]::before
+  {margin-inline-end: 14px !important;}
+
+  #unified-extensions-manage-extensions
+  {padding-left: 10px !important;}
+
+  #unified-extensions-messages-container::empty
+  {margin: 0px !important;}
+  
+  #overflowed-extensions-list
+  {padding-bottom: 5px !important;}
+  
+  #unified-extensions-area
+  {padding-block: 5px !important;}
+  
+  .unified-extensions-list
+  {padding-top: 5px !important;}
+  
+  /* grid layout */
+  #overflowed-extensions-list,
+  #unified-extensions-area,
+  .unified-extensions-list {
+    display: grid !important;
+    grid-template-columns: repeat( var(--extensions-in-row), calc(var(--uei-icon-size) + 32px) );
+    justify-items: center !important;
+    align-items: center !important;
+  }
+  
+  /* buttons */
+  .unified-extensions-item{
+    padding: 4px !important;
+    border-radius: var(--zen-border-radius) !important;
+    
+    .unified-extensions-item-icon,
+    .toolbarbutton-badge-stack
+    {margin: 0px !important;}
+    
+    .unified-extensions-item-action-button 
+    {padding-inline: 5px !important;}
+    
+  }
+  
+  /* top & bottom borders */
+  #unified-extensions-area {
+    border-top: 1px solid var(--panel-separator-color);
+    border-bottom: 1px solid var(--panel-separator-color);
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+  }
+  
+}
+

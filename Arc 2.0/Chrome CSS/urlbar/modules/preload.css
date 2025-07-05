@@ -1,0 +1,113 @@
+/*
+
+Natsumi Browser - A userchrome for Zen Browser that makes things flow.
+
+Copyright (c) 2024-present Green (@greeeen-dev)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Natsumi Browser uses code from others. The link to the original projects or
+their author(s) have been provided above the used code.
+
+*/
+
+/* ==== Apply config ==== */
+
+/*
+NOTE: DO NOT USE THIS AS YOUR CONFIG FILE.
+
+The below code applies your config (or default values if needed) and they should never be modified.
+Edit the natsumi-config.css file instead.
+ */
+
+* {
+  /* Colors */
+  --natsumi-primary-color: var(--natsumi-accent-color, var(--zen-primary-color));
+  --natsumi-colors-primary: color-mix(in srgb, var(--natsumi-primary-color) 50%, black 50%);
+  --natsumi-colors-secondary: color-mix(in srgb, var(--natsumi-colors-primary) 20%, white 80%);
+  --natsumi-colors-tertiary: color-mix(in srgb, var(--natsumi-primary-color) 2%, white 98%);
+  --natsumi-colors-primary-foreground: color-mix(in srgb, var(--natsumi-primary-color) 80%, white 20%);
+
+  @media (prefers-color-scheme: dark) {
+    --natsumi-colors-primary: color-mix(in srgb, var(--natsumi-primary-color) 20%, var(--zen-dark-color-mix-base) 80%);
+    --natsumi-colors-secondary: color-mix(in srgb, var(--natsumi-primary-color) 30%, var(--zen-dark-color-mix-base) 70%);
+    --natsumi-colors-tertiary: color-mix(in srgb, var(--natsumi-primary-color) 1%, var(--zen-dark-color-mix-base) 99%);
+    --natsumi-colors-primary-foreground: color-mix(in srgb, var(--natsumi-primary-color) 80%, white 20%);
+
+    @media (-moz-bool-pref: 'zen.theme.color-prefs.colorful') {
+      --natsumi-colors-primary: color-mix(in srgb, var(--natsumi-primary-color) 50%, black 50%);
+      --natsumi-colors-secondary: color-mix(in srgb, var(--natsumi-primary-color) 40%, black 60%);
+      --natsumi-colors-tertiary: color-mix(in srgb, var(--natsumi-primary-color) 15%, black 85%);
+      --natsumi-colors-primary-foreground: color-mix(in srgb, var(--natsumi-primary-color) 80%, white 20%);
+    }
+  }
+
+  /* Glass effect */
+  --natsumi-glass-background: color-mix(in srgb, var(--natsumi-colors-secondary) 75%, transparent);
+  --natsumi-glass-blur-radius: var(--glass-blur-radius, 10px);
+  --natsumi-glass-shadow-size: var(--glass-shadow-size, 10px);
+  --natsumi-glass-shadow-opacity: var(--glass-shadow-opacity, 75%);
+
+  /* Fonts */
+  --natsumi-custom-font: var(--custom-font, system-ui);
+}
+
+/* URL bar appear animation */
+#urlbar {
+  --animation-duration: var(--urlbar-appear-animation-duration, 0.25s);
+}
+
+/* Results appear animation */
+#urlbar-results {
+  --animation-duration: var(--urlbar-results-animation-duration, 0.5s);
+}
+
+/* Individual result appear animation */
+.urlbarView-row {
+  --animation-duration: var(--urlbar-individual-result-animation-duration, 1.0s);
+  --animation-duration-subtle: 0.5s; /* WIP, this won't change anything for now */
+  --animation-delay: var(--urlbar-individual-result-animation-delay, 0.1s);
+  --animation-delay-offset: var(--urlbar-individual-result-animation-delay-offset, 0.3s);
+  --expand-width: var(--urlbar-individual-result-expand-size, 1.1);
+}
+
+/* Reload border animation */
+browser, .browserSidebarContainer.deck-selected {
+  --animation-duration: var(--reload-border-animation-duration, 0.2s);
+  --animation-rotation-duration: var(--reload-border-animation-rotation-duration, 2.0s);
+  --animation-exit-duration: var(--reload-border-animation-exit-duration, 1.0s);
+  --browser-margin: var(--reload-border-margin, 4px);
+}
+
+/* Reload URLbar animation */
+#urlbar-background {
+  --fadein-duration: var(--reload-urlbar-animation-duration, 0.5s);
+  --animation-duration: var(--reload-urlbar-animation-fadein-duration, 1s);
+}
+
+/* Container tabs gradient */
+.tabbrowser-tab {
+  --container-gradient-width: var(--container-tabs-normal-gradient-width, 25%);
+  --container-gradient-width-expanded: var(--container-tabs-expanded-gradient-width, 50%);
+}
+
+#sidebar-box {
+  --natsumi-sidebar-x-offset: var(--ff-sidebar-x-offset, 20px);
+  --natsumi-sidebar-y-offset: var(--ff-sidebar-y-offset, 20px);
+}

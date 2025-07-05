@@ -1,0 +1,54 @@
+/* MISCELLANEOUS */
+
+
+/* GLANCE BUTTONS TO RIGHT */
+
+#zen-glance-sidebar-container {
+  left: unset !important;
+  right: 2% !important;
+}
+
+
+
+
+
+
+
+
+
+
+/* hide sidebar scrollbar */
+
+#zen-browser-tabs-wrapper {
+    scrollbar-width: none !important;
+}
+
+
+
+
+
+
+
+/* TAB PREVIEW TEXT DISABLED */
+
+#tab-preview-panel{
+  display: none !important;
+}
+
+
+
+
+
+/* === NORMAL TAB CUSTOMIZATION === 
+dots after the tabs '...' */
+
+.tab-text{
+  width: 98% !important;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  opacity: 1 !important;
+  filter:  brightness(96%) invert(0) !important;
+  
+}

@@ -1,0 +1,24 @@
+/*AlexCookie */
+
+
+
+#urlbar-background {
+    border: 0px solid #ffffff10 !important;
+    box-shadow: none !important;
+}
+.urlbar-input {
+    font-size: 16.1px !important;
+   /* color: #FFFFFF !important;*/
+  
+  /*  padding-right: 12px !important;*/
+   font-weight: 510 !important;
+/* padding-top: 0px !important;*/
+  filter: brightness(75%) !important;
+  margin-top: -3px !important;
+ 
+}
+
+.urlbar-input-container{
+  text-align: left !important;
+ 
+}

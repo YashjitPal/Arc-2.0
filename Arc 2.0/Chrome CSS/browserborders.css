@@ -1,0 +1,70 @@
+/* BROWSER BORDERS */
+
+
+
+
+
+
+
+
+
+#browser{
+  
+  
+ margin-top: 1px !important;
+  margin-left: -1px !important;
+  margin-right: -1px !important;
+ margin-bottom: -1px !important;
+  border-radius: 11px !important;
+  
+
+  border: 2px solid rgba(184, 187, 180, 0.35);
+ 
+  
+     box-shadow: 
+    3px 5px 15px rgba(0, 0, 0, 0.8),
+   inset 1px 2px 2px rgba(124, 107, 105, 0.1) !important;*/
+  
+  
+
+}
+
+
+#zen-main-app-wrapper{
+ 
+  background: transparent !important;
+}
+
+ 
+#zen-appcontent-wrapper{
+  filter: brightness(102%) opacity(1) blur(0px) !important; 
+  background: transparent !important;
+}
+
+
+
+.tab-label-container {
+  overflow: hidden;
+
+  #tabbrowser-tabs:not([secondarytext-unsupported], [orient=vertical]) & {
+    height: 2.7em;
+  }
+
+  &[pinned] {
+    width: 0;
+  }
+
+  &[textoverflow] {
+    &[labeldirection=ltr],
+    &:not([labeldirection]):-moz-locale-dir(ltr) {
+      direction: ltr;
+      mask-image: none !important;
+    }
+
+    &[labeldirection=rtl],
+    &:not([labeldirection]):-moz-locale-dir(rtl) {
+      direction: rtl;
+      mask-image: none !important;
+  }
+}
+

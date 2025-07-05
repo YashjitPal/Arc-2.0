@@ -1,0 +1,452 @@
+
+
+
+/* Compact alerts */
+
+/*noinspection CssInvalidFunction*/
+#fullscreen-warning, #pointerlock-warning {
+  border-radius: 50px !important;
+  padding: 8px 10px !important;
+  background-color: var(--natsumi-mat-ga-background) !important;
+  border: 1px solid light-dark(rgba(20, 20, 20, 0.2), rgba(235, 235, 235, 0.3)) !important;
+  box-shadow: 0 0 var(--natsumi-mat-ga-shadow-size) var(--natsumi-mat-ga-shadow-color) !important;
+  transition: opacity 0.2s ease, top 0.2s ease !important;
+  backdrop-filter: blur(10px) !important;
+  opacity: 0;
+  margin: 0 !important;
+  left: 50% !important;
+  translate: -50% 0 !important;
+
+  &:not([hidden]) {
+    display: flex !important;
+  }
+
+  &:not([onscreen]), &:is([hidden]) {
+    top: 20px !important;
+    opacity: 0;
+  }
+
+  /*noinspection CssInvalidFunction*/
+  .pointerlockfswarning-domain-text, .pointerlockfswarning-generic-text {
+    color: light-dark(black, white);
+    font-size: 14px !important;
+    margin-left: 10px !important;
+    margin-right: 0 !important;
+    padding-right: 5px !important;
+  }
+
+  &[onscreen] {
+    top: 30px !important;
+    opacity: 1;
+  }
+}
+
+/* Fullscreen alert */
+
+#fullscreen-warning {
+  &::before {
+    display: none !important;
+  }
+
+  #fullscreen-exit-button {
+    order: -1;
+    border: none !important;
+    background: transparent !important;
+    appearance: none !important;
+    border-radius: 6px !important;
+    color: transparent !important;
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    transition: background 0.3s ease !important;
+    position: relative !important;
+
+    /*noinspection CssInvalidFunction*/
+    &::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      position: absolute !important;
+      background-image: url('chrome://browser/skin/zen-icons/fullscreen.svg') !important;
+      -moz-context-properties: fill;
+      fill: light-dark(black, white) !important;
+      left: 50% !important;
+      top: 50% !important;
+      background-repeat: no-repeat;
+      background-position: center;
+      transform: translate(-50%, -50%) !important;
+    }
+
+    &:hover {
+      background: var(--toolbarbutton-hover-background) !important;
+    }
+
+    &:active {
+      background: var(--toolbarbutton-active-background) !important;
+    }
+
+    &:hover, &:active {
+      &::before {
+        background-image: url('chrome://browser/skin/zen-icons/fullscreen-exit.svg') !important;
+        transform: translate(-50%, -50%) scale(-100%, 100%) !important;
+        left: 50% !important;
+        top: 50% !important;
+      }
+    }
+  }
+
+  /*noinspection CssInvalidFunction*/
+  .pointerlockfswarning-domain-text, .pointerlockfswarning-generic-text {
+    color: light-dark(black, white);
+    font-size: 14px !important;
+    margin-left: 10px !important;
+    margin-right: 0 !important;
+  }
+}
+
+/* Pointer lock alert */
+
+#pointerlock-warning {
+  &::before {
+    content: "";
+    width: 24px;
+    height: 24px;
+    background-size: 16px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('chrome://browser/skin/zen-icons/security.svg') !important;
+  }
+
+  .pointerlockfswarning-domain-text, .pointerlockfswarning-generic-text {
+    margin-left: 2px !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+
+/*---------------------------------------------------------------------------------------------------------------*/
+
+
+
+
+
+
+
+
+/* macOS Dock-like Magnification for URL Bar Search Results */
+
+#urlbar-results .urlbarView-row {
+    /* Base transition for smooth dock-like effect */
+  margin: 0px !important;
+   
+    transition: all 0.44s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+    transform-origin: center bottom !important;
+    
+    /* Initial glass morphism styling */
+  
+    backdrop-filter: blur(2px) !important;
+    border-radius: 10px !important;
+   
+}
+
+/* macOS Dock-like Magnification Effect */
+#urlbar-results .urlbarView-row:hover {
+     transition: 
+        property-name delay-duration transition-duration transition-timing-function;
+    
+    /* Example */
+    transition: transform 0.4s 0.4s ease-in-out;
+    /* 0.2s delay, then 0.3s transition */
+    /* Advanced magnification with dock-like curve */
+    transform: 
+        scale(1.12) 
+        translateY(-11.5px) !important; /* Lift effect */
+   
+    /* Enhanced z-index for proper layering */
+    z-index: 100 !important;
+    
+    /* Advanced glass effect on hover */
+ 
+    backdrop-filter: blur(var(--natsumi-glass-blur-radius)) brightness(100%) contrast(75%) saturate(110%)  !important;
+    box-shadow: 
+        0 10px 20px rgba(0, 0, 0, 0.1), 
+        0 6px 10px rgba(0, 0, 0, 0.05) !important;
+    
+    /* Width expansion */
+    width: 98.97% !important;
+    
+}
+
+
+
+
+/ Optional: Refined scrollbar for glass effect */
+#urlbar-results::-webkit-scrollbar {
+    width: 5px !important;
+}
+
+#urlbar-results::-webkit-scrollbar-thumb {
+    background: transparent !important;
+    border-radius: 25px !important;
+    backdrop-filter: blur(10px) !important;
+  border-top: 1px solid light-dark(rgba(20, 20, 20, 0.1), rgba(235, 235, 235, 0.1)) !important;
+}
+/ Smooth text rendering /
+#urlbar-results .urlbarView-row-inner {
+    transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+}
+
+
+
+
+/*---------------------------------------------------------------------------------------------------------------------------------*/
+
+
+/* to change selected tab box color opacity lolololololool >.><>><><> */
+/*
+#TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon, .tab-background:is([selected], [multiselected]) {
+
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+
+border-radius: 12px !important;
+	border-bottom: 0px solid #0000002d   !important;
+  border-left: 0px  #0000002d   !important;
+
+  background-color: rgba(255, 255, 255, 0.09) !important;
+  
+}
+  @media (prefers-color-scheme: light) {
+    border-top: 1px solid #8888882d !important;
+    background-color: var(--tab-selected-bgcolor) !important;
+  }
+}
+
+.tabbrowser-tab[pinned] .tab-background:is([selected], [multiselected]) {
+	border-top: 1px solid #ffffff1f !important;
+	border-bottom: 1px solid #0000001f !important;
+}
+
+.tabbrowser-tab .tab-background{
+  transition: background-color 0.2s ease;
+}
+
+
+  @media (prefers-color-scheme: light) {
+    border-top: 0.1px solid #8888882d !important;
+    background-color: var(--tab-selected-bgcolor) !important;
+  }
+} */
+
+
+
+/*----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+
+
+#zen-media-controls-toolbar {
+  & toolbaritem {
+    flex-grow: 1;
+    padding: 0;
+    transition: padding 0.3s ease-out ;
+    position: absolute;
+    left: .5px !important;
+    width: 99% !important;
+ 
+    bottom: 0px !important;
+    padding: 4px !important;
+    border-radius: 12px !important;
+    
+   
+  
+    
+   
+   /* box-shadow: 0 0 18px rgba(255, 205, 212, 0.1) !important;*/
+  }
+}
+
+
+
+
+/* ==== "Miniplayer" ==== */
+/*----------------------------------animation shit ---------------------------------*/
+@keyframes appear-animation {
+  0% {
+    gap: 0;
+  }
+
+  40% {
+    gap: 9px;
+  }
+
+  100% {
+    gap: 6px;
+  }
+}
+
+#zen-media-current-time, #zen-media-duration {
+  font-variant-numeric: tabular-nums;
+}
+
+
+    toolbarbutton {
+      z-index: 999 !important;
+    }
+  }
+
+  &:hover {
+    @media (-moz-bool-pref: "natsumi.experiments.miniplayer-bounce") {
+      /* Hidden under a pref in case Cheff steals this */
+      & #zen-media-main-vbox {
+        animation: appear-animation 0.3s ease-in-out !important;
+      }
+    }
+  }
+
+  &:not(:hover) {
+    {
+      & #zen-media-main-vbox {
+        transition: gap 0.15s ease-in-out !important;
+      }
+    }
+
+    /*-----------------------------------------------*/
+    #zen-media-service-hbox {
+      padding-top: 0 !important;
+    }
+
+    & > toolbaritem {
+      &::after {
+        opacity: 0;
+      }
+    }
+  }
+
+
+
+  #zen-media-title {
+    font-size: 17px !important;
+    margin-top: -5px !important;
+    height: auto !important;
+     margin-bottom: 2px !important;
+  }
+
+  #zen-media-artist {
+    font-size: 10px !important;
+   
+  }
+}
+.tab-text.tab-label {
+      font-size: 8px !important;
+    }
+
+#theme-Tab-Text-Size {
+    .tab-text.tab-label {
+      font-size: 22px !important;
+    }
+  }
+}
+
+#zen-media-info-vbox {
+  #zen-media-controls-toolbar:not([media-position-hidden='true']) & {
+    transition-delay: 0.01s !important;
+    transform: translateY(-0.4rem);
+  }
+  overflow-x: hidden;
+  overflow-x: visible;
+  white-space: nowrap;
+  /* Overflow inner box shadow from the left to simulate overflow */
+  mask-image: none !important;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 0.6em;
+    background: none !important;
+    pointer-events: none;
+    top: 6px;
+    left: -2px;
+    height: calc(100% - 6px);
+    z-index: 1;
+  }
+
+  & label {
+    min-height: 16px;
+    margin-left: 0;
+    font-weight: 500;
+    animation: zen-marquee-h 10s ease-in-out infinite;
+  }
+}
+
+
+#zen-media-info-vbox {
+  mask-image: linear-gradient(to left, transparent, var(--zen-media-control-bg) 0.6em, var(--zen-media-control-bg) calc(100% - 0.6em), transparent) !important;
+
+  &::before {
+    display: none !important;
+  }
+}
+
+
+#zen-media-main-vbox {
+  margin-bottom: 1px !important;
+  margin-top: 1px !important;
+}
+
+
+#zen-media-progress-bar {
+    appearance: none;
+    width: 100%;
+    height: var(--progress-height);
+    margin: 0 8px;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: height 0.15s ease-out;
+
+    &::-moz-range-track {
+      background: rgba(255, 255, 255, 0.2) !important;
+      border-radius: 999px;
+      height: 3px !important;
+    }
+
+    &::-moz-range-progress {
+      background:  rgba(76, 218, 218, 1.8) !important;
+      border-radius: 999px;
+      height: 3px !important;
+    }
+
+    &::-moz-range-thumb {
+      background: rgba(0, 55, 55, 1) !important;
+      border: none;
+      width: calc(var(--progress-height) * 2);
+      height: calc(var(--progress-height) * 2);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+}
+
+
+
+
+

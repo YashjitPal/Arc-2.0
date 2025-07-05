@@ -1,0 +1,54 @@
+/* === BETTER CUSTOMIZE TOOLBAR === */
+/* Based on code by https://github.com/Tanay-Kar */
+
+#customization-container {
+  position: absolute;
+  z-index: 1;
+  bottom: 10px;
+  right: 10px;
+  height: 80%;
+  width: 70%;
+  border-radius: 12px;
+ 
+  padding: 10px;
+  background: light-dark(rgba(255,255,255,0.32),rgba(0,0,0,0.3)) !important;
+}
+
+@media (-moz-bool-pref: "zen.tabs.vertical.right-side") {
+  #customization-container {
+    left: 10px;
+  }
+ 
+  #customization-container #customization-content-container {
+    flex-direction: row-reverse;
+  }
+}
+
+#customization-container #customization-panel-container {
+  padding: 10px !important;
+}
+
+
+#customization-container #customization-panelWrapper {
+  --panel-arrow-offset: 0px;
+}
+
+#customization-container .panel-arrowbox {
+  display: none !important;
+}
+
+#customization-container .panel-arrowcontent {
+  height: 100% !important;
+  background: light-dark(rgba(255,255,255,0.8),rgba(0,0,0,0.4)) !important;
+  border: none !important;
+  margin: 0px !important;
+  border-radius: 8px;
+}
+
+
+/* Check when the width is low */
+@media (max-width: 700px) { /* Adjust the threshold as needed */
+  #customization-container {
+    border: 2px solid red; /* Temporary visual indicator */
+  }
+}
