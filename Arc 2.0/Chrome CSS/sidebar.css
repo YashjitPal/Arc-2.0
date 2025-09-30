@@ -90,7 +90,7 @@ html,
     /* Create a new stacking context */
   }
 
-  body:has([zen-compact-mode="true"]) #zen-toolbar-background {
+  body:has([zen-compact-mode="true"]) .zen-toolbar-background {
     opacity: 0.2;
   }
 
