@@ -40,43 +40,35 @@
           --nebula-mat-ga-shadow-color: color-mix(in srgb, var(--nebula-colors-secondary) 75%, black);
         }
       }
-  
       @keyframes pip-fadein-html {
         0% {
           background-color: transparent;
           scale: 0.8;
         }
-  
         99% {
           background-color: transparent;
           scale: 1;
         }
-  
         100% {
           background-color: black;
         }
       }
-  
       @keyframes pip-fadein-player {
         0% {
           filter: blur(30px);
           opacity: 0;
         }
-  
         70% {
           filter: blur(5px);
         }
-  
         100% {
           filter: blur(0);
           opacity: 1;
         }
       }
-  
       @media -moz-pref("nebula.pip.rounded") {
         /* This won't work on Linux (sadly), might be just a Gnome thing. */
         /* If you're seeing this, create an issue if it does indeed work */
-  
         @media (-moz-platform: windows) {
           window, html, body {
             /* Share same radius as macOS for the sake of simplicity later */
@@ -183,7 +175,6 @@
             margin: 0 !important;
             left: calc(50%) !important;
             bottom: -10px !important;
-  
             /*
             For now this config is available on macOS only, this'll be added to Windows and Linux
             once curved PiP for those platforms moves out of experiment status
@@ -197,7 +188,6 @@
             @media (width > 300px) {
               display: flex !important;
             }
-  
             /*noinspection CssInvalidFunction*/
             #timestamp {
               font-size: 12px !important;
