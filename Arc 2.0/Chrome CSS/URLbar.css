@@ -18,7 +18,6 @@
   position: relative;
 }
 
-
 /* New Animations */
 
 /* Basic performance optimization */
@@ -113,7 +112,6 @@
     backdrop-filter: 0px;
     transition: box-shadow 0.3s ease;
 } */
-
 
 @media not -moz-pref("arcline.url.bar", 1) {
   :root[zen-single-toolbar="true"] #urlbar:not([open]) {
@@ -320,8 +318,6 @@
     --natsumi-tabs-blade-position-offset: 2px;
   }
 
-
-
   /*---------------------------------------------------------------------------------------------------------------*/
   .urlbarView-row {
     &:not([type="tip"], [type="dynamic"]) {
@@ -340,19 +336,15 @@
   }
 
   @media not -moz-pref("arcline.url.bar.scale", 1) {
-
     /* Target the urlbar view rows */
     #urlbar-results .urlbarView-row {
       /* Remove default background hihlight */
-
-
     }
 
     /* Neutralize hover state */
     #urlbar-results .urlbarView-row:hover {
       /* Completely remove white/default highlight */
       background-color: rgba(0, 0, 0, 0) !important;
-
       /* Optional: Add a subtle hover effect if desired */
       border-radius: 8px;
       transition: background 0.55s ease;
@@ -360,12 +352,8 @@
 
     /* Ensure text remains visible */
     #urlbar-results .urlbarView-row-inner {
-
       background-color: transparent !important;
     }
-
-
-
 
     /* macOS Dock-like Magnification for URL Bar Search Results */
 
@@ -377,7 +365,6 @@
       transform-origin: center bottom !important;
       border: none !important;
       /* Initial glass morphism styling */
-
       backdrop-filter: blur(2px) !important;
       border-radius: 10px !important;
 
@@ -386,84 +373,59 @@
   }
 
   @media (-moz-pref("arcline.url.bar.scale", 1)) {
-
-
     /* Remove White Highlight on Hovered Search Results */
-
     /* Target the urlbar view rows */
     #urlbar-results .urlbarView-row {
       /* Remove default background hihlight */
-
-
     }
 
     /* Neutralize hover state */
     #urlbar-results .urlbarView-row:hover {
       /* Completely remove white/default highlight */
       background-color: rgba(0, 0, 0, 0) !important;
-
       /* Optional: Add a subtle hover effect if desired */
       border-radius: 8px;
       transition: background 0.55s ease;
     }
-
     /* Ensure text remains visible */
     #urlbar-results .urlbarView-row-inner {
-
       background-color: transparent !important;
     }
 
-
-
-
     /* macOS Dock-like Magnification for URL Bar Search Results */
-
     #urlbar-results .urlbarView-row {
       /* Base transition for smooth dock-like effect */
       margin: 0px !important;
-
       transition: all 0.44s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
       transform-origin: center bottom !important;
       border: none !important;
       /* Initial glass morphism styling */
-
       backdrop-filter: blur(2px) !important;
       border-radius: 10px !important;
-
     }
 
     /* macOS Dock-like Magnification Effect */
     #urlbar-results .urlbarView-row:hover {
-      transition:
-        property-name delay-duration transition-duration transition-timing-function;
-
+      transition: property-name delay-duration transition-duration transition-timing-function;
       /* Example */
       transition: transform 0.4s 0.4s ease-in-out;
       /* 0.2s delay, then 0.3s transition */
       /* Advanced magnification with dock-like curve */
-      transform:
-        scale(1.12) translateY(-11.5px) !important;
+      transform: scale(1.12) translateY(-11.5px) !important;
       /* Lift effect */
-
       /* Enhanced z-index for proper layering */
       z-index: 100 !important;
       transform-origin: center !important;
       /* Advanced glass effect on hover */
       border: none !important;
-
       backdrop-filter: blur(25px) contrast(95%) saturate(115%) !important;
       box-shadow:
         0 10px 20px rgba(0, 0, 0, 0.1),
         0 6px 10px rgba(0, 0, 0, 0.08) !important;
-
       /* Width expansion */
       width: 98.97% !important;
-
     }
-
-
-
-
+    
     /* Optional: Refined scrollbar for glass effect */
     #urlbar-results::-webkit-scrollbar {
       width: 5px !important;
@@ -480,24 +442,10 @@
     #urlbar-results .urlbarView-row-inner {
       transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
     }
-
-
-
   }
 
   /*---------------------------------------------------------------------------------------------------------------------------------*/
-
-
-
-
-
-
-
-
-
-
-
-
+  
   /* expanded urlbar */
   #urlbar {
     top: auto !important;
@@ -505,7 +453,6 @@
     &[open] {
       min-width: var(--na-urlbar-width) !important;
       max-width: var(--na-urlbar-width) !important;
-
       display: flex !important;
       scale: 1 !important;
       flex-direction: column !important;
@@ -520,53 +467,36 @@
   }
 
   #urlbar[open][zen-floating-urlbar='true'] {
-
     left: 50% !important;
     max-width: 650px !important;
     border-radius: 25px !important;
-
-
   }
-
 
   /*------------for arc raycast lie toolbar url bar button idea-----------------*/
+  
   #page-action-buttons,
   #urlbar-go-button {
-
     order: 1 !important;
   }
-
-  /*----------------------------------------------------------------------------*/
-
-
-
   /* Make borders more visible */
-
   /*noinspection CssInvalidFunction*/
   .urlbarView-body-inner,
   .search-one-offs {
     border-top: 0px solid light-dark(rgba(20, 20, 20, 0.2), rgba(235, 235, 235, 0.2)) !important;
   }
 
-
-
-
   .urlbarView-row {
     &[selected] {
       background-color: black !important;
-
       padding-left: 5px !important;
       scale: 0.99 !important;
       filter: brightness(110.1%) !important;
-
-
     }
   }
 
   .verifiedDomain {
     image {
       /*           list-style-image: url("https://raw.githubusercontent.com/neurokitti/Arc_Zen_Theme/6da4c1ca78cc521bea1026ff024fcc8528ae6a49/icons/arc-logo.svg") !important; */
-
     }
   }
 
@@ -578,9 +508,7 @@
         }
       }
     }
-
-
-
+    
     #urlbar-container:has(#urlbar[breakout-extend]) {
       #urlbar {
         border-radius: 22px !important;
@@ -597,25 +525,19 @@
         .urlbar-input-box {
           margin: 0px !important;
           padding: 0px !important;
-
-
         }
-
+        
         #urlbar-input {
           margin-top: 2px !important;
           font-size: 17px !important;
           margin-left: 1.5px !important;
           margin-right: 6% !important;
           border-radius: 0 !important;
-
         }
-
-
-
+        
         .urlbar-input-container {
           max-height: fit-content !important;
           filter: brightness(95%) !important;
-
           bottom: 0px !important;
           width: 97% !important;
           border-radius: 12px !important;
@@ -623,82 +545,51 @@
           padding-block: 3px !important;
           padding-inline: 0px !important;
           box-shadow: 0px 0px 92px -10px rgba(0, 0, 0, 0.6) !important;
-
         }
 
         .verifiedDomain {
           scale: 1.3 !important;
           margin-bottom: 3px !important;
           margin-left: 5px !important;
-
           image {
             /*           list-style-image: url("https://raw.githubusercontent.com/neurokitti/Arc_Zen_Theme/6da4c1ca78cc521bea1026ff024fcc8528ae6a49/icons/arc-logo.svg") !important; */
-
           }
         }
 
         &:not([zen-newtab]) {
           #identity-box {
-
-
             &:is([pageproxystate="invalid"]).verifiedDomain {
-
               image {
                 list-style-image: url('chrome://global/skin/icons/search-glass.svg') !important;
               }
-
               scale: 1.3 !important;
               margin-bottom: 2px !important;
               margin-left: 5px !important;
             }
           }
-
-
-
-
-
-
-
         }
       }
 
       .urlbar-background {
         background: rgba(105, 100, 110, 0.000000000000000000000000023) !important;
         /* Transparency fine-tuned */
-
         box-shadow: 8px 5px 125px 0 rgba(0, 0, 0, 0.5), 0px 30px 50px #00000069 !important;
         backdrop-filter: blur(5rem) saturate(190%) contrast(95%) brightness(69%) !important;
-
-
         padding: 0.5em 0em !important;
         border-radius: 18px !important;
-
-
-
         transition: backdrop-filter 0.5s ease, background 0.5s ease;
         border: 0px solid light-dark(rgba(255, 255, 255, 0.9), rgba(235, 235, 235, 0.25)) !important;
-
       }
-
-
-
-
-
     }
 
     @media (-moz-pref: "zen.view.use-single-toolbar") {
       :root[zen-sidebar-expanded="true"] {
-
         .urlbar-page-action,
         #tracking-protection-icon-container {
-
           margin-left: 0px !important;
         }
       }
     }
-
-
-
     /* urlbar action button */
     .urlbar-page-action,
     #tracking-protection-icon-container {
@@ -708,8 +599,7 @@
     #page-action-buttons {
       margin-right: 3.5px !important;
     }
-
-
+    
     /* urlbar search result type icon (site that you bookmark will have star on the right side) */
     .urlbarView-row>.urlbarView-row-inner .urlbarView-type-icon {
       margin: 0px !important;
@@ -722,10 +612,8 @@
     }
 
     .urlbarView-row[selected] {
-
       background-color: var(--na-color-text) !important;
     }
-
 
     .urlbarView-url {
       color: var(--na-color-text-second) !important;
@@ -736,28 +624,18 @@
       filter: brightness(2) !important;
     }
 
-
-
-
     /*-----------------------------------------------------------*/
-
-
-
-
 
     * {
       --urlbarView-item-block-padding: 4px !important;
       --urlbarView-item-inline-padding: 4px !important;
     }
 
-
     #urlbar {
       .urlbarView {
         overflow: initial !important;
       }
     }
-
-
 
     .urlbarView-row[has-action][type="clipboard"] {
       .urlbarView-title-separator::before {
@@ -778,8 +656,6 @@
     }
   }
 
-
-
   &[zen-newtab] {
     scale: 1.5 !important;
     margin-bottom: 2px !important;
@@ -790,22 +666,13 @@
     }
   }
 
-
-
-
-
   /* Border tweaks */
-
-
   /* ==== Natsumi URLbar ==== */
-
   /* Animations */
-
   @keyframes urlbar-appear {
     0% {
       margin-top: -25vh;
     }
-
     100% {
       margin-top: 0;
     }
@@ -815,7 +682,6 @@
     0% {
       margin-bottom: calc(-50% + calc(min(90%, 60rem) / 2));
     }
-
     100% {
       margin-bottom: 0;
     }
@@ -829,18 +695,15 @@
       background: var(--natsumi-colors-tertiary);
       filter: blur(20px);
     }
-
     50% {
       opacity: 1;
     }
-
     60% {
       opacity: 1;
       scale: var(--expand-width);
       background: light-dark(var(--natsumi-primary-color), var(--natsumi-colors-primary));
       filter: blur(0);
     }
-
     100% {
       opacity: 1;
       scale: 1;
@@ -855,12 +718,10 @@
       scale: 1;
       background: transparent;
     }
-
     60% {
       scale: 1.05;
       background: light-dark(var(--natsumi-primary-color), var(--natsumi-colors-primary));
     }
-
     100% {
       opacity: 1;
       scale: 1;
@@ -873,34 +734,26 @@
       opacity: 0;
       scale: 0.5
     }
-
     50% {
       opacity: 1;
     }
-
     60% {
       opacity: 1;
       scale: 1.1;
     }
-
     100% {
       opacity: 1;
       scale: 1;
     }
   }
 
-
-
   #urlbar {
-
-
     &[breakout-extend] {
       @media not -moz-pref("natsumi.urlbar.light") {
         /* URLbar animations, toggleable to make things lighter. */
-
         animation-name: urlbar-appear;
         animation-duration: var(--animation-duration);
-
+        
         @media -moz-pref("zen.view.use-single-toolbar") {
           animation-name: urlbar-appear-sideways;
         }
@@ -911,7 +764,7 @@
             animation-duration: var(--animation-duration);
             animation-fill-mode: forwards;
             opacity: 0;
-
+            
             .urlbarView-type-icon {
               animation-name: pinned-icon-appear;
               animation-duration: 0.5s;
@@ -1009,29 +862,17 @@
           }
         }
       }
-
-
-
-
-
-
-
-
       /* Force icon size */
-
     }
 
     &:is([pageproxystate='invalid']):is([usertyping]) {
-
       .urlbarView-row,
       .urlbarView-row .urlbarView-type-icon {
         animation: none !important;
         opacity: 1 !important;
       }
-
       /*
       this is still in the oven
-
       .urlbarView-row {
         animation-name: individual-result-appear-subtle !important;
         animation-duration: var(--animation-duration-subtle) !important;
@@ -1039,10 +880,5 @@
       }
       */
     }
-
-
-
   }
-
-
 }
