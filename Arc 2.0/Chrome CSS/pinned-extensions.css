@@ -67,7 +67,6 @@
       --toolbarbutton-active-background: transparent !important;
       --toolbarbutton-hover-background: transparent !important;
     }
-    
   }
 
   >toolbarbutton:not([id="tabs-newtab-button"]),
@@ -104,5 +103,4 @@ html:not([zen-sidebar-expanded="true"]):not([zen-single-toolbar="true"])
       display: none !important;
     }
   }
-
 }
