@@ -91,7 +91,7 @@ html,
   }
 
   body:has([zen-compact-mode="true"]) .zen-toolbar-background {
-    opacity: 0.2;
+    opacity: var(--arc-compact-sidebar-opacity);
   }
 
   /* Pseudo background overlay */
