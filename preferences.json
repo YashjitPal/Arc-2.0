@@ -72,6 +72,12 @@
         "label": "Disable blur for background zoom blur when URL bar popup. (Only ENABLE it if you don't use Transparent background at all)"
     },
     {
+        "type": "string",
+        "property": "arc.compact.sidebar-opacity",
+        "default": "0.2",
+        "label": "Change the theme color density in compact sidebar. (Use 1 for solid color, so that you can't see the translucent look of the sidebar.)"
+    },
+    {
         "type": "dropdown",
         "value": "number",
         "property": "arc-tab-loading-animation",
@@ -354,6 +360,7 @@
         ]
     }
 ]
+
 
 
 
