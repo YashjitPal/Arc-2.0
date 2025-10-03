@@ -140,7 +140,7 @@
   /* When URL bar is open - smooth visual effect */
   #urlbar[open] .urlbar-background {
     border-radius: 15px !important;
-    background: light-dark(rgba(255, 255, 255, 0.6), rgba(36, 36, 36, 0.3)) !important;
+    background: light-dark(rgba(255, 255, 255, var(--arc-urlbar-opacity)), rgba(36, 36, 36, var(--arc-urlbar-opacity))) !important;
     opacity: 1 !important;
     outline: none !important;
   }
