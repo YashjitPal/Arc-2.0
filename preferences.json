@@ -78,6 +78,12 @@
         "label": "Change the theme color density in compact sidebar. (Use 1 for solid color, so that you can't see the translucent look of the sidebar.)"
     },
     {
+        "type": "string",
+        "property": "arc.urlbar.opacity",
+        "default": 0.3,
+        "label": "Change the transparency of the urlbar. (Use 1 for solid color, so that you can't see the translucent look of the sidebar.)"
+    },
+    {
         "type": "dropdown",
         "value": "number",
         "property": "arc-tab-loading-animation",
@@ -360,6 +366,7 @@
         ]
     }
 ]
+
 
 
 
