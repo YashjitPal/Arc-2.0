@@ -570,7 +570,8 @@
       }
 
       .urlbar-background {
-        background: rgba(105, 100, 110, 0.000000000000000000000000023) !important;
+        /* background: rgba(105, 100, 110, 0.000000000000000000000000023) !important; */
+        background: light-dark(rgba(255, 255, 255, var(--arc-urlbar-opacity)), rgba(36, 36, 36, var(--arc-urlbar-opacity))) !important;
         /* Transparency fine-tuned */
         box-shadow: 8px 5px 125px 0 rgba(0, 0, 0, 0.5), 0px 30px 50px #00000069 !important;
         backdrop-filter: blur(5rem) saturate(190%) contrast(95%) brightness(69%) !important;
