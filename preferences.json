@@ -150,6 +150,24 @@
         ]
     },
     {
+        "type": "dropdown",
+        "value": "string",
+        "property": "arc-urlbar-animation",
+        "label": "Animation for URL bar when focused.",
+        "default": 1,
+        "options": [
+            {
+                "label": "Stretch (default)",
+                "value": "stretch"
+            },
+            {
+                "label": "Fade in",
+                "value": "fadeIn"
+            }
+        ]
+
+    },
+    {
         "type":"dropdown",
         "value":"number",
         "property":"arc-marginless-mod",
