@@ -9,6 +9,11 @@
   background-color: transparent !important;
 }
 
+.sticky-container{
+  width: calc(var(--page-main-content-width) + var(--main-margin-start) + var(--main-margin-start)) !important;
+  border-radius: 0 0 1em 1em !important;
+}
+
 html:has([data-l10n-id]){
   background-color: transparent !important;
 }
@@ -99,10 +104,9 @@ footer{
 
 
  /* transparency */
-.pdfViewer, body:has(.pdfViewer){
+/* .pdfViewer, body:has(.pdfViewer){
   background-color: transparent !important;
   background: none !important;
   border: none !important;
   box-shadow: none !important;
-} 
-
+} */
