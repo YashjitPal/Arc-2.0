@@ -74,7 +74,7 @@
     {
         "type": "string",
         "property": "arc.compact.sidebar-opacity",
-        "default": "0.2",
+        "default": "0.3",
         "label": "Change the theme color density in compact sidebar. (Use 1 for solid color, so that you can't see the translucent look of the sidebar.)"
     },
     {
@@ -82,6 +82,24 @@
         "property": "arc.urlbar.opacity",
         "default": 0.3,
         "label": "Change the transparency of the urlbar. (Use 1 for solid color, so that you can't see the translucent look of the sidebar.)"
+    },
+    {
+        "type": "dropdown",
+        "value": "string",
+        "property": "arc-urlbar-animation",
+        "label": "Animation for URL bar when focused.",
+        "default": 1,
+        "options": [
+            {
+                "label": "Stretch",
+                "value": "stretch"
+            },
+            {
+                "label": "Fade in",
+                "value": "fadeIn"
+            }
+        ]
+
     },
     {
         "type": "dropdown",
@@ -149,24 +167,7 @@
             }
         ]
     },
-    {
-        "type": "dropdown",
-        "value": "string",
-        "property": "arc-urlbar-animation",
-        "label": "Animation for URL bar when focused.",
-        "default": 1,
-        "options": [
-            {
-                "label": "Stretch (default)",
-                "value": "stretch"
-            },
-            {
-                "label": "Fade in",
-                "value": "fadeIn"
-            }
-        ]
-
-    },
+    
     {
         "type":"dropdown",
         "value":"number",
@@ -384,6 +385,7 @@
         ]
     }
 ]
+
 
 
 
