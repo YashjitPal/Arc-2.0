@@ -559,6 +559,8 @@ menupopup *, menuitem *,
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1) 0.1s !important;
   }
 
+@media (-moz-pref("arc-page-animations")) {
+
   /* Previous animation*/
   .browserStack:has(#historySwipeAnimationPreviousArrow:not([style="translate: none;"])) browser{
     scale: 0.95 !important;
@@ -570,6 +572,7 @@ menupopup *, menuitem *,
     scale: 0.95 !important;
     transform: translateX(-3%) !important;
   }
+}
   
   /* smoothen trackpad gestures */
   .browserStack browser[style*="transform: none"] {

@@ -167,7 +167,12 @@
             }
         ]
     },
-    
+    {
+        "type": "checkbox",
+        "label": "Enable Previous/Next page animations",
+        "property": "arc-page-animations",
+        "default": true
+    },
     {
         "type":"dropdown",
         "value":"number",
@@ -385,30 +390,4 @@
         ]
     }
 ]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
