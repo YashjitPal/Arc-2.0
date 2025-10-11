@@ -68,7 +68,7 @@
 @media -moz-pref("arc-enable-container-styling", 1) {
   #userContext-icons {
     width: 5px !important;
-    height: 14px !important;
+    height: 10px !important;
     margin: 0 6px 0 2px !important;
     border-radius: 3px !important;
     background-color: var(--identity-tab-color) !important;
@@ -87,17 +87,17 @@
     content: "";
     position: absolute !important;
     top: 0; left: 0;
-    width: 20% !important;
+    width: 50% !important;
     height: 100% !important;
     z-index: -1 !important;
-    opacity: 1 !important;
-    filter: blur(12px) contrast(120%) brightness(150%);
-    background: linear-gradient(to right, var(--identity-tab-color, rgba(0, 0, 255, 0.5)), transparent 40%) !important;
-    transition: opacity 0.3s ease, width 0.3s ease, background 0.3s ease, clip-path 0.3s ease !important;
+    opacity: 0.5 !important;
+    filter: blur(10px) contrast(100%) brightness(100%);
+    background: linear-gradient(to right, var(--identity-tab-color, rgba(0, 0, 255, 0.5)), transparent 50%) !important;
+    transition: opacity 0.3s ease, width 0.3s ease, background 0.3s ease !important;
   }
 
   .tabbrowser-tab[usercontextid]:not([selected]):not([visuallyselected]) .tab-background::after {
-    width: 50% !important;
+    width: 25% !important;
     opacity: 0.5 !important;
   }
  }
@@ -111,10 +111,10 @@ tab {
       display: flex !important;
       box-sizing: border-box !important;
 
-      width: 22px !important;
-      height: 22px !important;
-      margin: auto 6px !important;
-      border-radius: 0.7rem !important;
+      width: 22.2px !important;
+      height: 23px !important;
+      margin: auto 3px !important;
+      border-radius: 1rem !important;
       /*   background-color: color-mix(in srgb, var(--identity-tab-color) 20%, white), !important; */
       background: color-mix(
         in srgb,
@@ -128,7 +128,7 @@ tab {
   }
   &:hover .tab-context-line, & .tab-background[selected] .tab-context-line{
     filter: blur(10px) !important;
-    border: 12px var(--identity-tab-color) solid !important;
+    border: 10px var(--identity-tab-color) solid !important;
   }
 }
 
@@ -145,7 +145,6 @@ tab[discarded=""]:hover,
 tab[pending="true"]:hover {
   filter: grayscale(0) !important;
 }
-   }
    
  /* ------------------- Close and Reset Button Styling ------------------- */
   
