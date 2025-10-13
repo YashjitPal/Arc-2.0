@@ -540,6 +540,11 @@ findbar {
   width: 71.5%;
 }
 
+:has(.browserSidebarContainer.deck-selected > .browserContainer > findbar[hidden=""]) #zen-tabbox-wrapper::before {
+  opacity: 0 !important;
+  width: 71.5%;
+}
+
 findbar:not[hidden="true"] {
   visibility: visible !important;
   animation: findbar-show-animation 0.3s ease-out forwards !important;
