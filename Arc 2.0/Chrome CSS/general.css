@@ -25,7 +25,7 @@
   }
   
   /* Config for blur rendering */
-  @media (-moz-pref("arc.force-blur-rendering", true)) {
+  @media -moz-pref("arc.force-blur-rendering") {
     browser {
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     }
