@@ -4,6 +4,11 @@
     "label": "Enable transparent browser windows (browser restart maybe required to take effect).",
     "property": "browser.tabs.allow_transparent_browser"
   },
+   {
+    "type": "checkbox",
+    "label": "Force transparency using clip-path (use this only if the ways mentioned to get transparency in `readme.md` doesn't work).",
+    "property": "arc.force-blur-rendering"
+  },
   {
     "type": "checkbox",
     "label": "Enable transparent background for Glance/Peek mode",
@@ -20,11 +25,7 @@
     "label": "When typed something by clicking on the URL bar, opens a new tab instead of modifying the current tab.",
     "property": "browser.urlbar.openintab"
   },
-  {
-    "type": "checkbox",
-    "label": "For using Mica for Everyone in the toolbar.",
-    "property": "zen.widget.windows.arcylic"
-  },
+ 
   {
     "type": "checkbox",
     "label": "Shorten URL Bar to only show domain name.",
@@ -400,3 +401,4 @@
     ]
   }
 ]
+
