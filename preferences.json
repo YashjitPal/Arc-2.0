@@ -381,10 +381,19 @@
             {   
                 "label": "SF Symbols",
                 "value": "SF-Symbols"
+            },
+            {
+                "label": "SUSE",
+                "value": "SUSE"
+            },
+            {
+                "label": "SUSE Italic",
+                "value": "SUSE-Italic"
             }
         ]
     }
 ]
+
 
 
 
