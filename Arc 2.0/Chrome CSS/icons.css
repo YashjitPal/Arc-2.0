@@ -34,7 +34,7 @@
 }*/
 
 
-#new-tab-button image{
+#new-tab-button image {
   list-style-image: url('data:image/svg+xml,<%3Fxml version="1.0" encoding="UTF-8"%3F><svg version="1.1" xmlns="http://www.w3.org/2000/svg" fill="context-fill" fill-rule="evenodd" clip-rule="evenodd" width="96" height="96"><path d="M0 0 C2.64 0 5.28 0 8 0 C8 7.92 8 15.84 8 24 C15.92 24 23.84 24 32 24 C32 26.64 32 29.28 32 32 C24.08 32 16.16 32 8 32 C8 39.92 8 47.84 8 56 C5.36 56 2.72 56 0 56 C0 48.08 0 40.16 0 32 C-7.92 32 -15.84 32 -24 32 C-24 29.36 -24 26.72 -24 24 C-16.08 24 -8.16 24 0 24 C0 16.08 0 8.16 0 0 Z " fill="context-fill" fill-rule="evenodd" clip-rule="evenodd" stroke="context-fill" stroke-opacity="context-fill-opacity" transform="translate(44,20)"/></svg>') !important;
   filter: invert(0) brightness(80%) contrast(75%);
   scale: 1.4;
@@ -65,40 +65,67 @@
 }
 
 @font-face {
-    font-family: "Nunito";
-    src: url("https://github.com/YashjitPal/Arc-2.0/raw/refs/heads/main/Arc%202.0/Chrome%20CSS/fonts/Nunito-VariableFont_wght.ttf");
-    font-weight: 600;
-    font-style: normal;
+  font-family: "Nunito";
+  src: url("https://github.com/YashjitPal/Arc-2.0/raw/refs/heads/main/Arc%202.0/Chrome%20CSS/fonts/Nunito-VariableFont_wght.ttf");
+  font-weight: 600;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: "Nunito-Italic";
-    src: url("https://github.com/YashjitPal/Arc-2.0/raw/refs/heads/main/Arc%202.0/Chrome%20CSS/fonts/Nunito-Italic-VariableFont_wght.ttf");
-    font-weight: 600;
-    font-style: normal;
+  font-family: "Nunito-Italic";
+  src: url("https://github.com/YashjitPal/Arc-2.0/raw/refs/heads/main/Arc%202.0/Chrome%20CSS/fonts/Nunito-Italic-VariableFont_wght.ttf");
+  font-weight: 600;
+  font-style: normal;
 }
+
+@font-face {
+  font-family: "SUSE";
+  src: url("https://github.com/YashjitPal/Arc-2.0/raw/refs/heads/main/Arc%202.0/Chrome%20CSS/fonts/SUSE-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: "SUSE-Italic";
+  src: url("https://github.com/YashjitPal/Arc-2.0/raw/refs/heads/main/Arc%202.0/Chrome%20CSS/fonts/SUSE-Italic-VariableFont_wght.ttf");
+}
+
 @media (-moz-pref("arc-font", "Nunito")) {
-  :root{
+  :root {
     --arc-font: "Nunito";
   }
 }
+
 @media (-moz-pref("arc-font", "Nunito-Italic")) {
-  :root{
+  :root {
     --arc-font: "Nunito-Italic";
   }
 }
+
 @media (-moz-pref("arc-font", "SF-Symbols")) {
-  :root{
+  :root {
     --arc-font: "SF-Symbols";
   }
 }
+
 @media (-moz-pref("arc-font", "SF-Pro")) {
-  :root{
+  :root {
     --arc-font: "SF-Pro";
   }
 }
+
+@media (-moz-pref("arc-font", "SUSE")) {
+  :root {
+    --arc-font: "SUSE";
+  }
+}
+
+@media (-moz-pref("arc-font", "SUSE-Italic")) {
+  :root {
+    --arc-font: "SUSE-Italic";
+  }
+}
+
 * {
-  font-family: var(--arc-font), sans-serif; 
+  font-family: var(--arc-font), sans-serif;
 }
 
 #zen-current-workspace-indicator #zen-current-workspace-indicator-icon {
@@ -107,24 +134,24 @@
 
 /*back*/
 #back-button {
-/*   width: 25px !important;  Increased by 25px (was likely 25px default) */
-/*   height: 25px !important; */
+  /*   width: 25px !important;  Increased by 25px (was likely 25px default) */
+  /*   height: 25px !important; */
   transition: transform 0.1s, opacity 0.1s;
   background-size: 25px 25px !important;
 }
 
 /*forward*/
 #forward-button {
-/*   width: 25px !important; */
-/*   height: 25px !important; */
+  /*   width: 25px !important; */
+  /*   height: 25px !important; */
   transition: transform 0.1s, opacity 0.1s;
   background-size: 25px 25px !important;
 }
 
 /*reload*/
 #reload-button {
-/*   width: 25px !important; */
-/*   height: 25px !important; */
+  /*   width: 25px !important; */
+  /*   height: 25px !important; */
   transition: transform 0.1s, opacity 0.1s;
   background-size: 25px 25px !important;
 }
@@ -156,46 +183,120 @@
 /* ------------------------------ ANIMATIONS ------------------------------ */
 
 /* Keyframes */
-@keyframes spin-once { to   { transform: rotate(180deg); } }
+@keyframes spin-once {
+  to {
+    transform: rotate(180deg);
+  }
+}
+
 @keyframes rotate-bounce-right {
-  0%   { transform: rotate(0deg); }
-  40%  { transform: rotate(25deg); }
-  60%  { transform: rotate(-10deg); }
-  100% { transform: rotate(0deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  40% {
+    transform: rotate(25deg);
+  }
+
+  60% {
+    transform: rotate(-10deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
 }
+
 @keyframes rotate-bounce-left {
-  0%   { transform: rotate(0deg); }
-  40%  { transform: rotate(-25deg); }
-  60%  { transform: rotate(10deg); }
-  100% { transform: rotate(0deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  40% {
+    transform: rotate(-25deg);
+  }
+
+  60% {
+    transform: rotate(10deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
 }
+
 @keyframes wiggle-left {
-  0%   { transform: translateX(0); }
-  30%  { transform: translateX(-2px); }
-  60%  { transform: translateX(1px); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+
+  30% {
+    transform: translateX(-2px);
+  }
+
+  60% {
+    transform: translateX(1px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }
+
 @keyframes wiggle-right {
-  0%   { transform: translateX(0); }
-  30%  { transform: translateX(2px); }
-  60%  { transform: translateX(-1px); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+
+  30% {
+    transform: translateX(2px);
+  }
+
+  60% {
+    transform: translateX(-1px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }
+
 @keyframes bounce-down {
-  0%   { transform: translateY(0); }
-  30%  { transform: translateY(2px); }
-  60%  { transform: translateY(-1px); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+
+  30% {
+    transform: translateY(2px);
+  }
+
+  60% {
+    transform: translateY(-1px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
+
 @keyframes scale-pop {
-  0%   { transform: scale(1); }
-  45%  { transform: scale(1.15); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+
+  45% {
+    transform: scale(1.15);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* ------------------ BUTTONS IN SINGLE TOOLBAR MODE ------------------ */
 
 html[zen-single-toolbar="true"] {
+
   /* Base styling */
   #preferences-button,
   #downloads-button,
@@ -226,8 +327,7 @@ html[zen-single-toolbar="true"] {
   }
 
   /* Clear background on icon hover */
-  :is(
-    #preferences-button,
+  :is(#preferences-button,
     #reload-button,
     #back-button,
     #forward-button,
@@ -235,8 +335,7 @@ html[zen-single-toolbar="true"] {
     #panic-button,
     #new-tab-button,
     #zen-create-new-button,
-    #bookmarks-menu-button
-  ):hover .toolbarbutton-icon,
+    #bookmarks-menu-button):hover .toolbarbutton-icon,
   #downloads-button:hover .toolbarbutton-badge-stack {
     background-color: transparent !important;
   }
@@ -282,11 +381,11 @@ html[zen-single-toolbar="true"] {
   }
 
   /* Button border radius */
-  #zen-sidebar-bottom-buttons .toolbarbutton-1 > :is(.toolbarbutton-icon, .toolbarbutton-text, .toolbarbutton-badge-stack) {
+  #zen-sidebar-bottom-buttons .toolbarbutton-1> :is(.toolbarbutton-icon, .toolbarbutton-text, .toolbarbutton-badge-stack) {
     border-radius: 11px !important;
   }
 
-  #zen-sidebar-top-buttons-customization-target .toolbarbutton-1 > :is(.toolbarbutton-icon, .toolbarbutton-text, .toolbarbutton-badge-stack) {
+  #zen-sidebar-top-buttons-customization-target .toolbarbutton-1> :is(.toolbarbutton-icon, .toolbarbutton-text, .toolbarbutton-badge-stack) {
     border-radius: 9.5px !important;
   }
 }
@@ -296,6 +395,7 @@ html[zen-single-toolbar="true"] {
 .titlebar-close {
   transition: background-color 0.3s ease-out, transform 0.2s ease-in-out;
 }
+
 .titlebar-close:hover {
   background-color: rgba(255, 0, 0, 0.8);
   transform: scale(1);
@@ -305,10 +405,9 @@ html[zen-single-toolbar="true"] {
 .titlebar-max {
   transition: background-color 0.3s ease-out, transform 0.2s ease-out;
 }
+
 .titlebar-min:hover,
 .titlebar-max:hover {
   background-color: rgba(200, 200, 200, 0.2);
   transform: scale(1);
 }
-
-
