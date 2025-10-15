@@ -41,8 +41,46 @@
   /* ---------------------- NOGAPS MOD ------------------------ */
   
   @media  -moz-pref("arc-marginless-mod", 2)  {
-    :root{
-/*       --zen-webview-border-radius:0; */
+    :root[zen-single-toolbar="true"] {
+        #zen-appcontent-wrapper #zen-tabbox-wrapper {
+          margin: 0px !important; /* To remove the extra border gaps */
+          position: absolute !important; /* To remove the top navbar border gap */
+          height: 100% !important;
+          width: 100% !important;
+        }
+    
+        #zen-appcontent-navbar-wrapper,
+        #zen-appcontent-wrapper {
+          position: relative; /* To have every absolute position element to be inside this wrapper */
+        }
+    
+        #zen-appcontent-navbar-wrapper {
+          backdrop-filter: blur(30px) !important;
+        }
+    
+        /* Remove gap between the split tabs */
+        .browserSidebarContainer[zen-split="true"] {
+          margin: 0px !important;
+        }
+    
+        #tabbrowser-tabbox[zen-split-view="true"] #tabbrowser-tabpanels {
+          margin: 0px !important;
+        }
+    
+        /* To have a background color */
+        #zen-appcontent-navbar-container::after {
+          content: "";
+          position: absolute;
+          background: rgba(0, 0, 0, 1);
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          z-index: -10;
+        }
+      }
+    /* :root{
+      --zen-webview-border-radius:0;
     }
     [zen-single-toolbar="true"] {
       #zen-appcontent-wrapper {
@@ -52,7 +90,7 @@
       #zen-appcontent-navbar-wrapper {
         position: absolute;
         width: 100% !important;
-        height: 50px; /* Optional: thicker navbar */
+        height: 50px; Optional: thicker navbar 
         backdrop-filter: blur(30px) saturate(110%) contrast(110%);
         background: var(--zen-main-browser-background) !important;
         border-bottom: 1.7px solid light-dark(rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.1));
@@ -63,17 +101,56 @@
       }
   
       .browserSidebarContainer {
-/*         border-radius: 0px !important; */
+        border-radius: 0px !important;
         box-shadow: none !important;
       }
-    }
+    } */
   }
   
   /* ----------------- NOGAPS COMPACT MOD ----------------- */
   
   @media -moz-pref("arc-marginless-mod", 1) {
-    :root[zen-compact-mode="true"]:not([customizing]) {
-/*       --zen-webview-border-radius:0; */
+    :root[zen-compact-mode="true"][zen-single-toolbar="true"]:not([customizing]) {
+        #zen-appcontent-wrapper #zen-tabbox-wrapper {
+          margin: 0px !important;/* To remove the extra border gaps */
+          position: absolute !important;/* To remove the top navbar border gap */
+          height: 100% !important;
+          width: 100% !important;
+        }
+    
+        #zen-appcontent-navbar-wrapper,
+        #zen-appcontent-wrapper {
+          position: relative;
+          /* To have every absolute position element to be inside this wrapper */
+        }
+    
+        /* To have a background color */
+        #zen-appcontent-navbar-container::after {
+          content: "";
+          position: absolute;
+          background: rgba(0, 0, 0, 1);
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          z-index: -10;
+        }
+    
+        #tabbrowser-tabpanels .browserSidebarContainer .browserSidebarContainer {
+          border-radius: 0px;
+        }
+    
+        /* Remove gap between the split tabs */
+        .browserSidebarContainer[zen-split="true"] {
+          margin: 0px !important;
+        }
+    
+        #tabbrowser-tabbox[zen-split-view="true"] #tabbrowser-tabpanels {
+          margin: 0px !important;
+        }
+    }
+    /* :root[zen-compact-mode="true"]:not([customizing]) {
+      --zen-webview-border-radius:0;
         #zen-appcontent-wrapper:not(:has(#tabbrowser-tabpanels[zen-split-view]), :has(#zen-sidebar-web-panel:not([hidden]):not([pinned]))) {
             margin: 0 !important;
   
@@ -89,14 +166,14 @@
           #zen-appcontent-navbar-wrapper {
             position: absolute;
             width: 100% !important;
-            height: 50px; /* Optional: thicker navbar */
+            height: 50px; Optional: thicker navbar
             backdrop-filter: blur(30px) saturate(110%) contrast(110%);
             background: var(--zen-main-browser-background) !important;
             border-bottom: 1.7px solid light-dark(rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.1));
           }
         }
       }
-    }
+    } */
   }
   
   /* ------------------- FLOATING STATUSBAR ------------------- */
