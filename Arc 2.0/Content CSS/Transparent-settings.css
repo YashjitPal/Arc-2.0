@@ -9,6 +9,11 @@
   background-color: transparent !important;
 }
 
+/* Removes the white or dark layer on top */
+browser{
+  background-color: transparent !important;;
+}
+
 .sticky-container{
   width: calc(var(--page-main-content-width) + var(--main-margin-start) + var(--main-margin-start)) !important;
   border-radius: 0 0 1em 1em !important;
@@ -110,3 +115,4 @@ footer{
   border: none !important;
   box-shadow: none !important;
 } */
+
