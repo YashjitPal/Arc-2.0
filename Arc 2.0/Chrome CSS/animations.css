@@ -559,14 +559,16 @@ menupopup *, menuitem *,
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1) 0.1s !important;
   }
 
-@media (-moz-pref("arc-page-animations")) {
+@media (-moz-pref("arc-previous-page-animation")) {
 
   /* Previous animation*/
   .browserStack:has(#historySwipeAnimationPreviousArrow:not([style="translate: none;"])) browser{
     scale: 0.95 !important;
     transform: translateX(3%) !important;
   }
+}
   
+@media (-moz-pref("arc-next-page-animation")) {
   /* Next animation*/
   .browserStack:has(#historySwipeAnimationNextArrow:not([style="translate: none;"])) browser{
     scale: 0.95 !important;

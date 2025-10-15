@@ -167,8 +167,14 @@
   },
   {
     "type": "checkbox",
-    "label": "Enable Previous/Next page animations",
-    "property": "arc-page-animations",
+    "label": "Enable Previous page animations",
+    "property": "arc-previous-page-animation",
+    "default": true
+  },
+  {
+    "type": "checkbox",
+    "label": "Enable Next page animations",
+    "property": "arc-next-page-animation",
     "default": true
   },
   {
