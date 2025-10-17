@@ -9,7 +9,7 @@
 
 /* === TAB ANIMATIONS === */
 /* Tab hover and active animation with enhanced shadows */
-@media -moz-pref("arc-tab-hover-animations") {
+@media not -moz-pref("arc-disable-tab-hover-animations") {
 .tabbrowser-tab {
   transition: box-shadow 0.2s cubic-bezier(0.4,0,0.2,1), 
               transform 0.24s cubic-bezier(0.22,1.5,0.36,1),
