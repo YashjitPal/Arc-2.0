@@ -9,6 +9,7 @@
 
 /* === TAB ANIMATIONS === */
 /* Tab hover and active animation with enhanced shadows */
+@media -moz-pref("arc-tab-hover-animations") {
 .tabbrowser-tab {
   transition: box-shadow 0.2s cubic-bezier(0.4,0,0.2,1), 
               transform 0.24s cubic-bezier(0.22,1.5,0.36,1),
@@ -96,7 +97,7 @@
 @keyframes ripple {
   100% { width: 30px; height: 30px; opacity: 0; }
 }
-
+}
 /* NAVIGATION BUTTON ANIMATIONS */
 
 #back-button {
