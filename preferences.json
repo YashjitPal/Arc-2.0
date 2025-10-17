@@ -167,18 +167,6 @@
     ]
   },
   {
-    "type": "checkbox",
-    "label": "Enable Previous page animations",
-    "property": "arc-previous-page-animation",
-    "default": true
-  },
-  {
-    "type": "checkbox",
-    "label": "Enable Next page animations",
-    "property": "arc-next-page-animation",
-    "default": true
-  },
-  {
     "type": "dropdown",
     "value": "number",
     "property": "arc-marginless-mod",
@@ -198,6 +186,11 @@
         "value": 2
       }
     ]
+  },
+  {
+    "type": "checkbox",
+    "property": "arc-tab-hover-animations"
+    "label": "Disable all animations for hover and click on tabs."
   },
   {
     "type": "checkbox",
@@ -401,4 +394,5 @@
     ]
   }
 ]
+
 
