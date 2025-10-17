@@ -189,7 +189,7 @@
   },
   {
     "type": "checkbox",
-    "property": "arc-tab-hover-animations"
+    "property": "arc-tab-hover-animations",
     "label": "Enable animations for hover and click on tabs."
   },
   {
@@ -394,6 +394,7 @@
     ]
   }
 ]
+
 
 
 
