@@ -562,21 +562,21 @@ menupopup *, menuitem *,
 
 @media (-moz-pref("arc-previous-page-animation")) {
 
-  /* Previous animation 
+  /* Previous animation */
   .browserStack:has(#historySwipeAnimationPreviousArrow:not([style="translate: none;"])) browser{
     scale: 0.95 !important;
     transform: translateX(3%) !important;
   }
 }
   
-@media (-moz-pref("arc-next-page-animation")) {*/
-  /* Next animation 
+@media (-moz-pref("arc-next-page-animation")) {
+  /* Next animation  */
   .browserStack:has(#historySwipeAnimationNextArrow:not([style="translate: none;"])) browser{
     scale: 0.95 !important;
     transform: translateX(-3%) !important;
   }
 }
-  */
+ 
   /* smoothen trackpad gestures 
   .browserStack browser[style*="transform: none"] {
   }
