@@ -188,13 +188,13 @@ tab[pending="true"]:hover {
       opacity: 1 !important;
   }
   
-  html:not([zen-single-toolbar="true"]):not([zen-sidebar-expanded="true"]) 
+  :root:not([zen-single-toolbar="true"]):not([zen-sidebar-expanded="true"]) 
     .tab-close-button {
     transform: translateY(2px) scale(1.2) !important;
   }
   
  #tabbrowser-tabpanels[zen-split-view="true"] .browserSidebarContainer {
-    outline: none !important;  Remove default outline 
+    outline: none !important; /* Remove default outline */ 
     box-shadow: 0 0 0 2px light-dark(rgba(0, 0, 0, 0), rgba(69, 69, 69, 0)), 
                 0 4px 10px light-dark(rgba(0, 0, 0, 0.3), rgba(69, 69, 69, 0.3)) !important;
     transition: box-shadow 0.35s ease !important; 
