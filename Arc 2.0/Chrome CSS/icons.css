@@ -295,7 +295,7 @@
 
 /* ------------------ BUTTONS IN SINGLE TOOLBAR MODE ------------------ */
 
-html[zen-single-toolbar="true"] {
+:root[zen-single-toolbar="true"] {
 
   /* Base styling */
   #preferences-button,
@@ -411,3 +411,4 @@ html[zen-single-toolbar="true"] {
   background-color: rgba(200, 200, 200, 0.2);
   transform: scale(1);
 }
+
