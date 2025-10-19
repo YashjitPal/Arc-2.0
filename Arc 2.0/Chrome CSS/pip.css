@@ -70,14 +70,14 @@
         /* This won't work on Linux (sadly), might be just a Gnome thing. */
         /* If you're seeing this, create an issue if it does indeed work */
         @media (-moz-platform: windows) {
-          window, html, body {
+          window, :root, body {
             /* Share same radius as macOS for the sake of simplicity later */
             border-radius: 9px !important;
           }
         }
       }
   
-      html {
+      :root {
         animation: pip-fadein-html 0.5s ease !important;
       }
   
@@ -452,3 +452,4 @@
     }
   }
 }
+
