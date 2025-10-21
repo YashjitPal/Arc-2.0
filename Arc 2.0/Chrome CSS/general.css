@@ -41,81 +41,34 @@
   /* ---------------------- NOGAPS MOD ------------------------ */
   
   @media  -moz-pref("arc-marginless-mod", 2)  {
-    :root[zen-single-toolbar="true"] {
-        #zen-appcontent-wrapper #zen-tabbox-wrapper {
-          margin: 0px !important; /* To remove the extra border gaps */
-          position: absolute !important; /* To remove the top navbar border gap */
-          height: 100% !important;
-          width: 100% !important;
-        }
-    
-        #zen-appcontent-navbar-wrapper,
-        #zen-appcontent-wrapper {
-          position: relative; /* To have every absolute position element to be inside this wrapper */
-        }
-    
-        #zen-appcontent-navbar-wrapper {
-          backdrop-filter: blur(30px) !important;
-        }
-    
-        /* Remove gap between the split tabs */
-        .browserSidebarContainer[zen-split="true"] {
-          margin: 0px !important;
-        }
-    
-        #tabbrowser-tabbox[zen-split-view="true"] #tabbrowser-tabpanels {
-          margin: 0px !important;
-        }
-    
-        /* To have a background color */
-        #zen-appcontent-navbar-container::after {
-          content: "";
-          position: absolute;
-          background: rgba(0, 0, 0, 1);
-          width: 100%;
-          height: 100%;
-          top: 0;
-          left: 0;
-          z-index: -10;
-        }
-      }
+    :root{
+		--zen-element-separation: 0px !important;
+		.browserSidebarContainer[zen-split="true"]{
+			margin:0px !important;
+		}
+		#tabbrowser-tabbox[zen-split-view="true"] #tabbrowser-tabpanels{
+     		margin:0px !important;
+    	}
+		.browserSidebarContainer{
+			border-radius:0.1px !important;
+		}
+	}
   }
   
   /* ----------------- NOGAPS COMPACT MOD ----------------- */
   
   @media -moz-pref("arc-marginless-mod", 1) {
     :root[zen-compact-mode="true"][zen-single-toolbar="true"]:not([customizing]) {
-        #zen-appcontent-wrapper #zen-tabbox-wrapper {
-          margin: 0px !important;/* To remove the extra border gaps */
-          position: absolute !important;/* To remove the top navbar border gap */
-          height: 100% !important;
-          width: 100% !important;
-        }
-    
-        /* To have a background color */
-        #zen-appcontent-navbar-container::after {
-          content: "";
-          position: absolute;
-          background: rgba(0, 0, 0, 1);
-          width: 100%;
-          height: 100%;
-          top: 0;
-          left: 0;
-          z-index: -10;
-        }
-    
-        #tabbrowser-tabpanels .browserSidebarContainer .browserSidebarContainer {
-          border-radius: 0px;
-        }
-    
-        /* Remove gap between the split tabs */
-        .browserSidebarContainer[zen-split="true"] {
-          margin: 0px !important;
-        }
-    
-        #tabbrowser-tabbox[zen-split-view="true"] #tabbrowser-tabpanels {
-          margin: 0px !important;
-        }
+      --zen-element-separation: 0px !important;
+		  .browserSidebarContainer{
+			  border-radius:0.1px !important;
+		  }
+		  .browserSidebarContainer[zen-split="true"]{
+			  margin:0px !important;
+		  }
+		  #tabbrowser-tabbox[zen-split-view="true"] #tabbrowser-tabpanels{
+      	margin:0px !important;
+    	}
     }
   }
   
