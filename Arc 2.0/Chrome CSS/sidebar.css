@@ -518,6 +518,7 @@
     border-radius: 13px !important;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6) !important;
     will-change: transform, opacity;
+    border-top: 0px !important
   }
 
   #zen-tabbox-wrapper::before {
