@@ -518,6 +518,7 @@
     border-radius: 13px !important;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6) !important;
     will-change: transform, opacity;
+    border-top: 0px !important
   }
 
   #zen-tabbox-wrapper::before {
@@ -537,23 +538,23 @@
     transition: opacity 0.2s ease, width 0.5s ease !important;
   }
 
-  :has(.browserSidebarContainer.deck-selected > .browserContainer > findbar:not([hidden="true"])) #zen-tabbox-wrapper::before {
+  :has(.browserSidebarContainer.deck-selected > .browserContainer > findbar:not([hidden])) #zen-tabbox-wrapper::before {
     opacity: 1 !important;
     width: 71.5%;
   }
 
-  :has(.browserSidebarContainer.deck-selected > .browserContainer > findbar[hidden=""]) #zen-tabbox-wrapper::before {
+  :has(.browserSidebarContainer.deck-selected > .browserContainer > findbar[hidden]) #zen-tabbox-wrapper::before {
     opacity: 0 !important;
     width: 71.5%;
   }
 
-  findbar:not[hidden="true"] {
+  findbar:not[hidden] {
     visibility: visible !important;
     animation: findbar-show-animation 0.3s ease-out forwards !important;
   }
 
 
-  findbar[hidden="true"] {
+  findbar[hidden] {
     opacity: 0 !important;
     transform: scale(0.95) !important;
     pointer-events: none !important;
