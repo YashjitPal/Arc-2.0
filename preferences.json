@@ -211,6 +211,11 @@
   },
   {
     "type": "checkbox",
+    "property": "arc-macos-style-buttons",
+    "label": "Enable macOS-style window buttons."
+  },
+  {
+    "type": "checkbox",
     "property": "arc-pinned-extensions-mod",
     "label": "Enable Pinned Extensions to look like Arc on sidebar (Disable if you have no pinned extensions)."
   },
