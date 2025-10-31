@@ -59,13 +59,20 @@
     mix-blend-mode: overlay;
   }
 
+  :root[zen-compact-mode="true"] #navigator-toolbox:not([zen-right-side="true"]) #titlebar {
+    left: 2px !important;
+  }
+
+  :root[zen-compact-mode="true"] #navigator-toolbox[zen-right-side="true"] #titlebar {
+    right: 8px !important;
+  }
+
   /* -------------------------- COMPACT SIDEBAR PSEUDO BACKGROUND -------------------------- */
 
   /* --- Base styling for all types --- */
 
   /* Sidebar container styling */
   :root[zen-compact-mode="true"] #titlebar {
-    padding: 8px !important;
     border-radius: 5px !important;
     /* scale: 1 !important; */
     background: light-dark(rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.4)) !important;
