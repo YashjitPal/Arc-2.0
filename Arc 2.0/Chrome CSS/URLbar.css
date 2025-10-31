@@ -868,14 +868,6 @@
         animation: none !important;
         opacity: 1 !important;
       }
-      /*
-      this is still in the oven
-      .urlbarView-row {
-        animation-name: individual-result-appear-subtle !important;
-        animation-duration: var(--animation-duration-subtle) !important;
-        animation-delay: 0s !important;
-      }
-      */
     }
   }
 }
