@@ -576,11 +576,7 @@ menupopup *, menuitem *,
     transform: translateX(-3%) !important;
   }
 }
- 
-  /* smoothen trackpad gestures 
-  .browserStack browser[style*="transform: none"] {
-  }
-*/
+
   /* ctrl tab visuals and animations */
   #ctrlTab-panel {
     --panel-background: rgba(0,0,0,0.9) !important;
