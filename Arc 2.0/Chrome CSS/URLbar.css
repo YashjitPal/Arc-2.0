@@ -104,15 +104,6 @@
   /* pulls the content below up by 4px */
 }
 
-/* URL bar background - default state 
-#urlbar-background {
-    background: var(--nebula-color) !important;
-    box-shadow: 0 0px 3px light-dark(rgba(69, 69, 69, 0), rgba(0, 0, 0, 0)) !important;
-    border-radius: var(--nebula-border-radius) !important;
-    backdrop-filter: 0px;
-    transition: box-shadow 0.3s ease;
-} */
-
 @media not -moz-pref("arcline.url.bar", 1) {
   :root[zen-single-toolbar="true"] #urlbar:not([open]) {
     height: 40px !important;
@@ -160,12 +151,6 @@
       animation: fadeIn 0.15s ease-in !important;
     }
   }
-
-  /* Limit to 5 visible results, prevent "dancing" */
-  /* #urlbar[open] #urlbar-results > :nth-child(n+6),
-#urlbar[open] #reader-mode-button {
-    display: none !important;
-} */
 
 @keyframes stretch {
   from { transform: scaleX(0); }
