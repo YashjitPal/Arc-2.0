@@ -13,7 +13,6 @@
 /*Credit: JustAdumbPrsn*/
 @-moz-document url-prefix("chrome:") {
   /* -------------------------- COLLAPSED FIX -------------------------- 
-
   :root:not([zen-sidebar-expanded="true"]) {
     #titlebar #TabsToolbar {
       padding-left: 2px !important;
@@ -35,9 +34,7 @@
   }
 */
   /* -------------------------- COMPACT SIDEBAR -------------------------- */
-
-
-
+  
   /* Fix for twilight acrylic */
   #navigator-toolbox:not([animate='true']) #titlebar {
     position: relative;
@@ -436,41 +433,17 @@
 
     :root[zen-compact-mode="true"]:not([zen-single-toolbar="true"]) #PersonalToolbar {
       Add comment More actions transform: translateX(10px) translateY(-12px) !important;
-
-
       position: relative !important;
-
-
       z-index: 3 !important;
-
-
     }
-
-
-
-
-
+  
     :root[zen-compact-mode="true"]:not([zen-single-toolbar="true"]) #PersonalToolbar toolbarbutton {
-
-
       background-color: var(--nebula-color) !important;
-
-
       border-radius: 10px !important;*/
       /* Optional: for better shape 
-
-
       transition: background-color 0.3s ease, box-shadow 0.2s ease-out !important;
-
-
     }
-
-
   }
-
-
-
-
 
   #PersonalToolbar {
     padding-bottom: 3px !important;*/
@@ -485,8 +458,6 @@
   }
 }
 */
-
-
 
 /* -------------------------- FINDBAR -------------------------- */
 @media not -moz-pref("arc-findbar-disable") {
