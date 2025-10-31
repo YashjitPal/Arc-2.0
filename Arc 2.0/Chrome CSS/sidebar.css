@@ -66,7 +66,7 @@
   /* Sidebar container styling */
   :root[zen-compact-mode="true"] #titlebar {
     padding: 8px !important;
-    border-radius: 8px !important;
+    border-radius: 5px !important;
     /* scale: 1 !important; */
     background: light-dark(rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.4)) !important;
     /* backdrop-filter: blur(32px) saturate(140%) !important; */
