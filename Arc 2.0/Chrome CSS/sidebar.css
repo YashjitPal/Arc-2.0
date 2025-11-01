@@ -139,6 +139,16 @@
       width: calc(var(--nebula-sidebar-width)) !important;
       height: calc(100% - (var(--zen-element-separation) * 2.9)) !important;
     }
+
+    :root[zen-single-toolbar="true"][zen-compact-mode="true"][zen-right-side="true"] #titlebar {
+      left: auto !important;
+      right: calc(var(--zen-element-separation) / 0.9) !important;
+    }
+
+    :root[zen-single-toolbar="true"][zen-compact-mode="true"][zen-right-side="true"] #browser::after {
+      left: auto !important;
+      right: calc(var(--zen-element-separation) / 0.65) !important;
+    }
   }
 
   @media (-moz-pref("zen.view.compact.hide-toolbar")) {
@@ -154,6 +164,16 @@
       left: calc(var(--zen-element-separation) / 0.65) !important;
       width: calc(var(--nebula-sidebar-width)) !important;
       height: calc(100% - (var(--zen-element-separation) * 2.9)) !important;
+    }
+    
+    :root[zen-single-toolbar="true"][zen-compact-mode="true"][zen-right-side="true"] #titlebar {
+      left: auto !important;
+      right: calc(var(--zen-element-separation) / 0.9) !important;
+    }
+
+    :root[zen-single-toolbar="true"][zen-compact-mode="true"][zen-right-side="true"] #browser::after {
+      left: auto !important;
+      right: calc(var(--zen-element-separation) / 0.65) !important;
     }
   }
 
