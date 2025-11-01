@@ -432,27 +432,27 @@ menupopup *, menuitem *,
   
  /* --------------------- Tab Switch Animation --------------------- */
 
-#tabbrowser-tabpanels > hbox:not(:has(.zen-glance-background)):not([zen-split="true"]) {
+#tabbrowser-tabpanels > hbox:not(.zen-glance-background):not([zen-split="true"]) {
   transition: all 0.2s ease !important;
   scale: 0.975 !important;
   opacity: 1;
 }
 
-#tabbrowser-tabpanels > hbox.deck-selected:not(:has(.zen-glance-background)):not([zen-split="true"]) {
+#tabbrowser-tabpanels > hbox.deck-selected:not(.zen-glance-background):not([zen-split="true"]) {
     scale: 1 !important;
     opacity: 1 !important;
     filter: none !important;  
 }
 
 @media (-moz-pref("arc-tab-switch-animation", 2)) {
-  #tabbrowser-tabpanels > hbox:not(:has(.zen-glance-background)):not([zen-split="true"]) {
+  #tabbrowser-tabpanels > hbox:not(.zen-glance-background):not([zen-split="true"]) {
     transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.2s ease-out !important;
     scale: 0.95 !important;
     opacity: 1;
     filter: blur(0px) !important;
   }
 
-  #tabbrowser-tabpanels > hbox.deck-selected:not(:has(.zen-glance-background)):not([zen-split="true"]) {
+  #tabbrowser-tabpanels > hbox.deck-selected:not(.zen-glance-background):not([zen-split="true"]) {
     scale: 1 !important;
     opacity: 1 !important;
     filter: none !important;
@@ -460,14 +460,14 @@ menupopup *, menuitem *,
 }
 
 @media (-moz-pref("arc-tab-switch-animation", 3)) {
-  #tabbrowser-tabpanels > hbox:not(:has(.zen-glance-background)):not([zen-split="true"]) {
+  #tabbrowser-tabpanels > hbox:not(.zen-glance-background):not([zen-split="true"]) {
     transition: all 0.24s cubic-bezier(0.3, 0.6, 0.3, 1.2) !important;
     scale: 0.98 !important;
     transform: translateY(10px);
     opacity: 1;
   }
 
-  #tabbrowser-tabpanels > hbox.deck-selected:not(:has(.zen-glance-background)):not([zen-split="true"]) {
+  #tabbrowser-tabpanels > hbox.deck-selected:not(.zen-glance-background):not([zen-split="true"]) {
     scale: 1 !important;
     transform: none;
     opacity: 1 !important;
@@ -476,7 +476,7 @@ menupopup *, menuitem *,
 }
 
 @media (-moz-pref("arc-tab-switch-animation", 4)) {
-  #tabbrowser-tabpanels > hbox:not(:has(.zen-glance-background)):not([zen-split="true"]) {
+  #tabbrowser-tabpanels > hbox:not(.zen-glance-background):not([zen-split="true"]) {
     transition: all 0.2s ease;
     opacity: 0 !important;
     scale: 0.975 !important;
@@ -484,7 +484,7 @@ menupopup *, menuitem *,
     inset: 0;
   }
 
-  #tabbrowser-tabpanels > hbox.deck-selected:not(:has(.zen-glance-background)):not([zen-split="true"]) {
+  #tabbrowser-tabpanels > hbox.deck-selected:not(.zen-glance-background):not([zen-split="true"]) {
     opacity: 1 !important;
     pointer-events: auto !important;
     position: relative !important;
@@ -493,7 +493,7 @@ menupopup *, menuitem *,
 }
 
 @media (-moz-pref("arc-tab-switch-animation", 5)) {
-  #tabbrowser-tabpanels > hbox:not(:has(.zen-glance-background)):not([zen-split]) {
+  #tabbrowser-tabpanels > hbox:not(.zen-glance-background):not([zen-split]) {
     transform: scale(1.05);
     filter: blur(15px);
     opacity: 1;
@@ -501,7 +501,7 @@ menupopup *, menuitem *,
     will-change: transform, filter, opacity;
   }
 
-  #tabbrowser-tabpanels > hbox.deck-selected:not(:has(.zen-glance-background)):not([zen-split]) {
+  #tabbrowser-tabpanels > hbox.deck-selected:not(.zen-glance-background):not([zen-split]) {
     transform: scale(1);
     opacity: 1 !important;
     filter: none !important;
@@ -509,14 +509,14 @@ menupopup *, menuitem *,
 }
 
 @media (-moz-pref("arc-tab-switch-animation", 0)) {
-  #tabbrowser-tabpanels > hbox:not(:has(.zen-glance-background)):not([zen-split="true"]) {
+  #tabbrowser-tabpanels > hbox:not(.zen-glance-background):not([zen-split="true"]) {
     transition: none !important;
     scale: 1 !important;
     opacity: 1 !important;
     filter: none !important;
   }
 
-  #tabbrowser-tabpanels > hbox.deck-selected:not(:has(.zen-glance-background)):not([zen-split="true"]) {
+  #tabbrowser-tabpanels > hbox.deck-selected:not(.zen-glance-background):not([zen-split="true"]) {
     scale: 1 !important;
     opacity: 1 !important;
     filter: none !important;
