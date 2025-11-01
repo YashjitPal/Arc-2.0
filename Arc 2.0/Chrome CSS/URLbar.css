@@ -98,7 +98,7 @@
 }
 
 /* ------------------ URLBAR Styling ------------------ */
-#urlbar {
+:root[zen-single-toolbar="true"] #urlbar {
   /* your existing styles */
   margin-bottom: -4px;
   /* pulls the content below up by 4px */
