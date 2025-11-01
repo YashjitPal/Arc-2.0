@@ -226,7 +226,9 @@
       background: none !important;
       padding: 0 !important;
       border-radius: 0 !important;
-      backdrop-filter: none !important;
+      &::before{
+        backdrop-filter: none !important;
+      }
     }
 
     :root[zen-sidebar-expanded="true"]:not([zen-single-toolbar="true"])[zen-right-side="true"][zen-compact-mode="true"] #titlebar {
@@ -305,7 +307,9 @@
       background: none !important;
       padding: 0 !important;
       border-radius: 0 !important;
-      backdrop-filter: none !important;
+      &::before {
+         backdrop-filter: none !important;
+      }
     }
 
     :root:not([zen-sidebar-expanded="true"]):not([zen-single-toolbar="true"])[zen-right-side="true"][zen-compact-mode="true"] #titlebar {
