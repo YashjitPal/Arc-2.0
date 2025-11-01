@@ -118,26 +118,10 @@
     }
 
     /* Show pseudo background when active/hovered */
-    body:has([zen-compact-mode="true"] [zen-user-show=""],
-      [zen-compact-mode="true"] #navigator-toolbox[zen-has-hover="true"]) #browser::after {
+    :root[zen-compact-mode="true"] #browser:has(>#navigator-toolbox:is([zen-has-hover="true"],[zen-user-show=""],[has-popup-menu=""]))::after{
       opacity: 1 !important;
     }
 
-    :root[zen-right-side="true"][zen-compact-mode="true"] [zen-user-show=""],
-      [zen-compact-mode="true"] #navigator-toolbox[zen-has-hover="true"]) #browser::after {
-      opacity: 1 !important;
-    }
-
-    body:has([zen-compact-mode="true"] [zen-user-show=""],
-      [zen-compact-mode="true"] #navigator-toolbox[has-popup-menu=""]) #browser::after {
-      opacity: 1 !important;
-    }
-
-    :root[zen-right-side="true"][zen-compact-mode="true"] [zen-user-show=""],
-      [zen-compact-mode="true"] #navigator-toolbox[has-popup-menu=""]) #browser::after {
-      opacity: 1 !important;
-    }
-  }
 
   /* -------------------- SINGLE TOOLBAR -------------------- */
 
