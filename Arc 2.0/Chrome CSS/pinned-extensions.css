@@ -1,7 +1,7 @@
 /* ------------------------- PINNED EXTENSIONS ------------------------- */
 
 @media (-moz-pref("arc-pinned-extensions-mod")) {
-/* Zen 1.12.6b Fix */
+/* Zen >1.12.6b Fix */
 :root[customizing] #TabsToolbar-customization-target {
   visibility: visible !important;
 }
@@ -44,15 +44,15 @@
     width: 32px !important;
     flex-grow: 1 !important;
     order: -1 !important;
-    background-color: rgba(225,225,225,0.1) !important;
-    box-shadow: 0 0px 3px light-dark(rgba(255, 255, 255, 0.2),rgba(0, 0, 0, 0)) !important;
+    background-color: light-dark(rgba(0,0,0,0.1), rgba(225,225,225,0.15)) !important;
+    box-shadow: 0 0px 3px light-dark(rgba(0,0,0,0.15),rgba(255,255,255,0.1)) !important;
     border-radius: calc(var(--nebula-border-radius) - 0.5px) !important;
     transition: background-color 0.3s ease, box-shadow 0.3s ease !important;
   }
 
   .unified-extensions-item:hover {
-    background-color: rgba(225,225,225,0.3) !important;
-    box-shadow: 0 0px 3px light-dark(rgba(255, 255, 255, 0.5),rgba(0, 0, 0, 0.95)) !important;
+    background-color: light-dark(rgba(0,0,0,0.1), rgba(225,225,225,0.1)) !important;
+    box-shadow: 0 0px 3px light-dark(rgba(0,0,0,0.5),rgba(255,255,255,0.5)) !important;
   }
 
  > toolbarbutton:not([id="tabs-newtab-button"]):not(#sort-button):not(#clear-button),
@@ -71,8 +71,8 @@
 
   >toolbarbutton:not([id="tabs-newtab-button"]),
   >toolbaritem {
-    background-color: rgba(225,225,225,0.1) !important;
-    box-shadow: 0 0px 3px light-dark(rgba(255, 255, 255, 0.12),rgba(0, 0, 0, 0.12)) !important;
+    background-color: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.15)) !important;
+    box-shadow: 0 0px 3px light-dark(rgba(0,0,0,0.15),rgba(255,255,255,0.1)) !important;
     border-radius: calc(var(--nebula-border-radius) + 1px) !important;
     margin: 0px !important;
     order: -1 !important;
@@ -82,8 +82,8 @@
 
   >toolbarbutton:not([id="tabs-newtab-button"]):hover,
   >toolbaritem:hover {
-    background-color: rgba(225,225,225,0.3) !important;
-    box-shadow: 0 0px 3px light-dark(rgba(255, 255, 255, 0.95),rgba(0, 0, 0, 0.95)) !important; 
+    background-color: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.1)) !important;
+    box-shadow: 0 0px 3px light-dark(rgba(0,0,0,0.5), rgba(255,255,255,0.5)) !important; 
   }
 }
 

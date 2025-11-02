@@ -33,14 +33,14 @@ min-width: 26px !important; }
     width: auto !important;
     padding: 3px !important;
     border-radius: calc(var(--nebula-border-radius) - 2px) !important;
-    background-color: light-dark(rgba(25,25,25,0.3), rgba(255,255,255,0.08)) !important;
+    background-color: light-dark(rgba(25,25,25,0.15), rgba(255,255,255,0.08)) !important;
       box-shadow: 0 2px 12px rgba(255,255,255,0.08) !important;
       transition: box-shadow 0.35s ease-out, background-color 0.35s ease-out;
     }
   
     #zen-workspaces-button:hover {
       box-shadow: 0 2px 12px rgba(255,255,255,0.16) !important;
-      background-color: light-dark(rgba(25,25,25,0.5), rgba(255,255,255,0.08)) !important;
+      background-color: light-dark(rgba(25,25,25,0.2), rgba(255,255,255,0.15)) !important;
     }
   
   /* Default subview button styling */
@@ -83,7 +83,7 @@ min-width: 26px !important; }
   }
   
   #zen-workspaces-button .subviewbutton[active] {
-    background-color: light-dark(rgba(255,255,255,0.12), rgba(255,255,255,0.07)) !important;
+    background-color: light-dark(rgba(255,255,255,0.15), rgba(255,255,255,0.07)) !important;
     box-shadow: 0 0 4px rgba(255,255,255,0.2) !important;
     overflow: hidden !important;
     position: relative;
@@ -194,7 +194,7 @@ min-width: 26px !important; }
       left: 50%;
       transform: translate(-50%, -56.5%);
       font-size: 2em;
-      color: light-dark(white, rgba(255,255,255,0.35));
+      color: light-dark(rgba(255,255,255,0.5), rgba(255,255,255,0.35));
       opacity: 1;
       pointer-events: none;
       transition: opacity 0.3s ease;
@@ -217,14 +217,14 @@ min-width: 26px !important; }
       overflow: visible !important;
       z-index: 1;
       border-radius: calc(var(--nebula-border-radius) - 2px) !important;
-      background-color: light-dark(rgba(25,25,25,0.3), rgba(255,255,255,0.08)) !important;
+      background-color: light-dark(rgba(255,255,255,0.05), rgba(255,255,255,0.08)) !important;
       box-shadow: 0 2px 12px rgba(255,255,255,0.08) !important;
       transition: box-shadow 0.35s ease-out, background-color 0.35s ease-out;
     }
   
     #zen-workspaces-button:hover {
       box-shadow: 0 2px 12px rgba(255,255,255,0.16) !important;
-      background-color: light-dark(rgba(25,25,25,0.5), rgba(255,255,255,0.08)) !important;
+      background-color: light-dark(rgba(255,255,255,0.1), rgba(255,255,255,0.08)) !important;
     }
   
     /* Style 2 button styling - resets and custom styles */
@@ -309,7 +309,7 @@ min-width: 26px !important; }
       left: 50%;
       transform: translate(-50%, -56.5%);
       font-size: 2em;
-      color: light-dark(white, rgba(255,255,255,0.35));
+      color: light-dark(rgba(255,255,255,0.5), rgba(255,255,255,0.5));
       opacity: 1;
       pointer-events: none;
       transition: opacity 0.3s ease;
