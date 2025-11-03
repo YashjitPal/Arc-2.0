@@ -65,11 +65,11 @@
 
   /* Sidebar container styling */
   :root[zen-compact-mode="true"] #titlebar {
-    padding: 8px !important;
-    border-radius: 5px !important;
+    border-radius: 11px !important;
     /* scale: 1 !important; */
     background: light-dark(rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.4)) !important;
     /* backdrop-filter: blur(32px) saturate(140%) !important; */
+    margin-bottom: 2px;
   }
 
   :root[zen-compact-mode="true"] #titlebar::before {
@@ -88,21 +88,34 @@
   }
 
   :root[zen-compact-mode="true"] .zen-toolbar-background {
-    opacity: var(--arc-compact-sidebar-opacity);
+    opacity: 0;
+  }
+
+  :root[zen-compact-mode="true"] #navigator-toolbox:not([zen-right-side="true"]) #titlebar {
+    left: 2px !important;
+  }
+
+  :root[zen-compact-mode="true"] #navigator-toolbox[zen-right-side="true"] #titlebar {
+    right: 8px !important;
   }
 
   /* Pseudo background overlay */
   @media not (-moz-pref("arc-compact-mode-no-sidebar-bg")) {
-
+    /* Create pseudo background behind sidebar */
     :root[zen-compact-mode="true"] #browser::after {
-      content: "" !important;
+      content: "";
       position: absolute !important;
-      z-index: -1000;
+      margin-top: var(--zen-toolbar-height-with-bookmarks) !important;
+      bottom: calc(var(--zen-element-separation) / 1);
+      left: var(--zen-element-separation, 0);
+      width: var(--zen-sidebar-width, 60px);
+      height: calc(99% - var(--zen-toolbar-height-with-bookmarks));
       border-radius: 11px !important;
-      filter: blur(0.1px) !important;
-      background-color: light-dark(rgba(200, 200, 200, 1), rgba(40, 40, 40, 1)) !important;
+      background-color: light-dark(rgba(200, 200, 200, 0.6), rgba(40, 40, 40, 0.6)) !important;
+      backdrop-filter: blur(var(--arc-compact-sidebar-blur)) !important;
       opacity: 0 !important;
       transition: opacity 0.2s ease;
+      pointer-events: none;
     }
 
     /* Right-side pseudo background alignment */

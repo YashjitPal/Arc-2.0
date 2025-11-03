@@ -1,8 +1,14 @@
 /*New Animations*/
 /* Hardware acceleration & will-change for best performance */
-#tabbrowser-tabs, .tabbrowser-tab, 
-#nav-bar toolbarbutton, #PersonalToolbar toolbarbutton,
-#urlbar, #searchbar, menupopup, panel, tooltip {
+#tabbrowser-tabs,
+.tabbrowser-tab,
+#nav-bar toolbarbutton,
+#PersonalToolbar toolbarbutton,
+#urlbar,
+#searchbar,
+menupopup,
+panel,
+tooltip {
   transform: translateZ(0);
   will-change: auto;
 }
@@ -10,106 +16,151 @@
 /* === TAB ANIMATIONS === */
 /* Tab hover and active animation with enhanced shadows */
 @media not -moz-pref("arc-disable-tab-hover-animations") {
-.tabbrowser-tab {
-  transition: box-shadow 0.2s cubic-bezier(0.4,0,0.2,1), 
-              transform 0.24s cubic-bezier(0.22,1.5,0.36,1),
-              opacity 0.15s cubic-bezier(0.4,0,0.2,1),
-              filter 0.2s ease !important;
-  box-shadow: none !important;
+  .tabbrowser-tab {
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.24s cubic-bezier(0.22, 1.5, 0.36, 1),
+      opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+      filter 0.2s ease !important;
+    box-shadow: none !important;
+  }
+
+  .tabbrowser-tab:hover {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 4px 12px -4px rgba(30, 40, 80, 0.09);
+    z-index: 2;
+  }
+
+  /* Fade inactive tabs with breathing effect */
+  .tabbrowser-tab:not([selected]) {
+    opacity: 0.82;
+    filter: blur(0.2px);
+    animation: tabBreathe 4s ease-in-out infinite;
+  }
+
+  @keyframes tabBreathe {
+
+    0%,
+    100% {
+      opacity: 0.82;
+    }
+
+    50% {
+      opacity: 0.75;
+    }
+  }
+
+  /* Enhanced tab opening animation */
+  .tabbrowser-tab[fadein] {
+    animation: tabBounceIn 0.34s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  }
+
+  @keyframes tabBounceIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.86) translateY(4px) rotateX(15deg);
+    }
+
+    60% {
+      opacity: 1;
+      transform: scale(1.09) translateY(-3px) rotateX(-5deg);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1.0) translateY(0) rotateX(0);
+    }
+  }
+
+  /* Enhanced tab closing animation */
+  .tabbrowser-tab[closing] {
+    animation: tabShrinkOut 0.19s cubic-bezier(0.68, -0.6, 0.32, 1.6) forwards;
+  }
+
+  @keyframes tabShrinkOut {
+    0% {
+      opacity: 1;
+      transform: scale(1.0) rotateY(0deg);
+      max-width: 100%;
+    }
+
+    50% {
+      opacity: 0.3;
+      transform: scale(0.9) rotateY(15deg);
+    }
+
+    100% {
+      opacity: 0;
+      transform: scale(0.7) rotateY(30deg);
+      max-width: 0;
+    }
+  }
+
+  /* Pinned tab special pulse animation */
+  .tabbrowser-tab[pinned="true"] {
+    animation: pinnedPulse 3s ease-in-out infinite;
+  }
+
+  @keyframes pinnedPulse {
+
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgba(68, 138, 255, 0.4);
+    }
+
+    50% {
+      box-shadow: 0 0 0 4px rgba(68, 138, 255, 0.1);
+    }
+  }
+
+  /* Tab close button with ripple effect */
+  .tab-close-button {
+    transition: transform 0.16s cubic-bezier(0.49, 1.7, 0.36, 1),
+      opacity 0.12s ease,
+      box-shadow 0.2s ease !important;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tab-close-button:hover {
+    transform: scale(1.20);
+    opacity: 1;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
+  }
+
+  .tab-close-button:active::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: ripple 0.3s ease-out;
+  }
+
+  @keyframes ripple {
+    100% {
+      width: 30px;
+      height: 30px;
+      opacity: 0;
+    }
+  }
 }
 
-.tabbrowser-tab:hover {
-  transform: translateY(-2px) scale(1.04);
-  box-shadow: 0 4px 12px -4px rgba(30,40,80,0.09);
-  z-index: 2;
-}
-
-/* Fade inactive tabs with breathing effect */
-.tabbrowser-tab:not([selected]) {
-  opacity: 0.82;
-  filter: blur(0.2px);
-  animation: tabBreathe 4s ease-in-out infinite;
-}
-
-@keyframes tabBreathe {
-  0%, 100% { opacity: 0.82; }
-  50% { opacity: 0.75; }
-}
-
-/* Enhanced tab opening animation */
-.tabbrowser-tab[fadein] {
-  animation: tabBounceIn 0.34s cubic-bezier(0.68,-0.6, 0.32,1.6);
-}
-
-@keyframes tabBounceIn {
-  0% { opacity: 0; transform: scale(0.86) translateY(4px) rotateX(15deg); }
-  60% { opacity: 1; transform: scale(1.09) translateY(-3px) rotateX(-5deg); }
-  100% { opacity: 1; transform: scale(1.0) translateY(0) rotateX(0); }
-}
-
-/* Enhanced tab closing animation */
-.tabbrowser-tab[closing] {
-  animation: tabShrinkOut 0.19s cubic-bezier(0.68,-0.6, 0.32,1.6) forwards;
-}
-
-@keyframes tabShrinkOut {
-  0% { opacity: 1; transform: scale(1.0) rotateY(0deg); max-width: 100%; }
-  50% { opacity: 0.3; transform: scale(0.9) rotateY(15deg); }
-  100% { opacity: 0; transform: scale(0.7) rotateY(30deg); max-width: 0; }
-}
-
-/* Pinned tab special pulse animation */
-.tabbrowser-tab[pinned="true"] {
-  animation: pinnedPulse 3s ease-in-out infinite;
-}
-
-@keyframes pinnedPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(68, 138, 255, 0.4); }
-  50% { box-shadow: 0 0 0 4px rgba(68, 138, 255, 0.1); }
-}
-
-/* Tab close button with ripple effect */
-.tab-close-button {
-  transition: transform 0.16s cubic-bezier(0.49,1.7,0.36,1), 
-              opacity 0.12s ease,
-              box-shadow 0.2s ease !important;
-  position: relative;
-  overflow: hidden;
-}
-
-.tab-close-button:hover {
-  transform: scale(1.20);
-  opacity: 1;
-  box-shadow: 0 0 8px rgba(255,0,0,0.3);
-}
-
-.tab-close-button:active::before {
-  content: "";
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 0; height: 0;
-  background: rgba(255,255,255,0.5);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  animation: ripple 0.3s ease-out;
-}
-
-@keyframes ripple {
-  100% { width: 30px; height: 30px; opacity: 0; }
-}
-}
 /* NAVIGATION BUTTON ANIMATIONS */
 
 #back-button {
-  transition: transform 0.22s cubic-bezier(0.68,-0.6, 0.32,1.6),
-              box-shadow 0.18s cubic-bezier(0.4,0,0.2,1),
-              opacity 0.15s ease !important;
+  transition: transform 0.22s cubic-bezier(0.68, -0.6, 0.32, 1.6),
+    box-shadow 0.18s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.15s ease !important;
   border-radius: 6px;
 }
 
 #back-button:hover {
   transform: translateX(-2px) translateY(-1px) scale(1.08);
-  box-shadow: 0 4px 12px -3px rgba(30,40,80,0.15);
+  box-shadow: 0 4px 12px -3px rgba(30, 40, 80, 0.15);
 }
 
 #back-button:active {
@@ -119,15 +170,15 @@
 
 /* Forward button without trail effect */
 #forward-button {
-  transition: transform 0.22s cubic-bezier(0.68,-0.6, 0.32,1.6),
-              box-shadow 0.18s cubic-bezier(0.4,0,0.2,1),
-              opacity 0.15s ease !important;
+  transition: transform 0.22s cubic-bezier(0.68, -0.6, 0.32, 1.6),
+    box-shadow 0.18s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.15s ease !important;
   border-radius: 6px;
 }
 
 #forward-button:hover {
   transform: translateX(2px) translateY(-1px) scale(1.08);
-  box-shadow: 0 4px 12px -3px rgba(30,40,80,0.15);
+  box-shadow: 0 4px 12px -3px rgba(30, 40, 80, 0.15);
 }
 
 #forward-button:active {
@@ -137,22 +188,29 @@
 
 /* Reload button with enhanced spin and pulse */
 #reload-button {
-  transition: transform 0.25s cubic-bezier(0.68,-0.6, 0.32,1.6),
-              box-shadow 0.18s cubic-bezier(0.4,0,0.2,1),
-              opacity 0.15s ease !important;
+  transition: transform 0.25s cubic-bezier(0.68, -0.6, 0.32, 1.6),
+    box-shadow 0.18s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.15s ease !important;
   border-radius: 6px;
   position: relative;
 }
 
 #reload-button:hover {
   transform: translateY(-2px) scale(1.1) rotate(15deg);
-  box-shadow: 0 5px 14px -4px rgba(30,40,80,0.18);
+  box-shadow: 0 5px 14px -4px rgba(30, 40, 80, 0.18);
   animation: reloadPulse 1s ease-in-out infinite;
 }
 
 @keyframes reloadPulse {
-  0%, 100% { box-shadow: 0 5px 14px -4px rgba(30,40,80,0.18); }
-  50% { box-shadow: 0 5px 14px -4px rgba(68,138,255,0.25); }
+
+  0%,
+  100% {
+    box-shadow: 0 5px 14px -4px rgba(30, 40, 80, 0.18);
+  }
+
+  50% {
+    box-shadow: 0 5px 14px -4px rgba(68, 138, 255, 0.25);
+  }
 }
 
 #reload-button[loading="true"] {
@@ -160,32 +218,71 @@
 }
 
 @keyframes reloadSpin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Menu button animation */
 @keyframes menuButtonAnimation {
-  0%   { transform: rotate(0deg) scale(1); }
-  30%  { transform: rotate(12deg) scale(1.05); }
-  50%  { transform: rotate(-12deg) scale(1.08); }
-  70%  { transform: rotate(6deg) scale(1.12); }
-  85%  { transform: rotate(-4deg) scale(1.18); }
-  95%  { transform: rotate(2deg) scale(1.22); }
-  100% { transform: rotate(0deg) scale(1.2); }
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  30% {
+    transform: rotate(12deg) scale(1.05);
+  }
+
+  50% {
+    transform: rotate(-12deg) scale(1.08);
+  }
+
+  70% {
+    transform: rotate(6deg) scale(1.12);
+  }
+
+  85% {
+    transform: rotate(-4deg) scale(1.18);
+  }
+
+  95% {
+    transform: rotate(2deg) scale(1.22);
+  }
+
+  100% {
+    transform: rotate(0deg) scale(1.2);
+  }
 }
 
 #PanelUI-menu-button:hover {
-  animation: menuButtonAnimation 0.6s cubic-bezier(.2,.49,.78,1.01) forwards;
+  animation: menuButtonAnimation 0.6s cubic-bezier(.2, .49, .78, 1.01) forwards;
 }
 
 /* Extension button animation */
 @keyframes BounceExtensionButton {
-  0%   { transform: scale(1); }
-  40%  { transform: scale(1.25); }
-  60%  { transform: scale(1.15); }
-  80%  { transform: scale(1.2); }
-  100% { transform: scale(1.1); }
+  0% {
+    transform: scale(1);
+  }
+
+  40% {
+    transform: scale(1.25);
+  }
+
+  60% {
+    transform: scale(1.15);
+  }
+
+  80% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1.1);
+  }
 }
 
 #unified-extensions-button:hover {
@@ -194,21 +291,21 @@
 
 /* === URL BAR & SEARCH BAR ENHANCEMENTS === */
 #urlbar {
-  transition: transform 0.2s cubic-bezier(0.22,1.5,0.36,1),
-              box-shadow 0.25s cubic-bezier(0.4,0,0.2,1),
-              border-color 0.2s ease !important;
+  transition: transform 0.2s cubic-bezier(0.22, 1.5, 0.36, 1),
+    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.2s ease !important;
   position: relative;
 }
 
 #urlbar:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px -4px rgba(30,40,80,0.1);
+  box-shadow: 0 4px 12px -4px rgba(30, 40, 80, 0.1);
 }
 
 #urlbar:focus-within,
 #urlbar[focused="true"] {
   transform: translateY(-2px) scale(1.01);
-  box-shadow: 0 6px 16px -6px rgba(50,70,160,0.15);
+  box-shadow: 0 6px 16px -6px rgba(50, 70, 160, 0.15);
   transition-duration: 0.15s;
 }
 
@@ -216,7 +313,8 @@
 #urlbar[focused="true"]::after {
   content: "";
   position: absolute;
-  bottom: 0; left: 0;
+  bottom: 0;
+  left: 0;
   height: 2px;
   background: linear-gradient(90deg, #448aff, #64b5f6, #448aff);
   background-size: 200% 100%;
@@ -224,9 +322,20 @@
 }
 
 @keyframes typingFlow {
-  0% { width: 0%; background-position: 0% 50%; }
-  50% { width: 100%; background-position: 100% 50%; }
-  100% { width: 100%; background-position: 200% 50%; }
+  0% {
+    width: 0%;
+    background-position: 0% 50%;
+  }
+
+  50% {
+    width: 100%;
+    background-position: 100% 50%;
+  }
+
+  100% {
+    width: 100%;
+    background-position: 200% 50%;
+  }
 }
 
 /* === CONTEXT MENU ENHANCEMENTS === */
@@ -241,6 +350,7 @@ menupopup {
     opacity: 0;
     transform: scale(0.92) translateY(-4px);
   }
+
   100% {
     opacity: 1;
     transform: scale(1) translateY(0);
@@ -250,23 +360,41 @@ menupopup {
 /* Context menu items with stagger delay */
 menuitem {
   transition: background-color 0.12s ease,
-              transform 0.15s cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 0.12s ease !important;
+    transform 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.12s ease !important;
   animation: menuItemSlideIn 0.2s ease-out backwards;
 }
 
-menuitem:nth-child(1) { animation-delay: 0.02s; }
-menuitem:nth-child(2) { animation-delay: 0.04s; }
-menuitem:nth-child(3) { animation-delay: 0.06s; }
-menuitem:nth-child(4) { animation-delay: 0.08s; }
-menuitem:nth-child(5) { animation-delay: 0.10s; }
-menuitem:nth-child(n+6) { animation-delay: 0.12s; }
+menuitem:nth-child(1) {
+  animation-delay: 0.02s;
+}
+
+menuitem:nth-child(2) {
+  animation-delay: 0.04s;
+}
+
+menuitem:nth-child(3) {
+  animation-delay: 0.06s;
+}
+
+menuitem:nth-child(4) {
+  animation-delay: 0.08s;
+}
+
+menuitem:nth-child(5) {
+  animation-delay: 0.10s;
+}
+
+menuitem:nth-child(n+6) {
+  animation-delay: 0.12s;
+}
 
 @keyframes menuItemSlideIn {
   0% {
     opacity: 0;
     transform: translateX(-10px);
   }
+
   100% {
     opacity: 1;
     transform: translateX(0);
@@ -276,17 +404,29 @@ menuitem:nth-child(n+6) { animation-delay: 0.12s; }
 /* === NOTIFICATION ANIMATIONS === */
 /* Download notification */
 #downloads-notification-anchor {
-  transition: transform 0.3s cubic-bezier(0.68,-0.6, 0.32,1.6);
+  transition: transform 0.3s cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
 
 #downloads-notification-anchor[notification] {
-  animation: downloadBounce 0.6s cubic-bezier(0.68,-0.6, 0.32,1.6);
+  animation: downloadBounce 0.6s cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
+
 @keyframes downloadBounce {
-  0% { transform: scale(1); }
-  30% { transform: scale(1.2) rotate(-5deg); }
-  60% { transform: scale(0.9) rotate(3deg); }
-  100% { transform: scale(1) rotate(0deg); }
+  0% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scale(1.2) rotate(-5deg);
+  }
+
+  60% {
+    transform: scale(0.9) rotate(3deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
 }
 
 #sidebar-box[hidden="true"] {
@@ -296,7 +436,10 @@ menuitem:nth-child(n+6) { animation-delay: 0.12s; }
 
 /* === PERFORMANCE OPTIMIZATIONS === */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -304,13 +447,16 @@ menuitem:nth-child(n+6) { animation-delay: 0.12s; }
 }
 
 /* Hardware acceleration for all animated elements */
-.tabbrowser-tab *, 
+.tabbrowser-tab *,
 #nav-bar toolbarbutton *,
 #PersonalToolbar toolbarbutton *,
-#urlbar *, #searchbar *,
-menupopup *, menuitem *,
-#sidebar-box *, #downloads-notification-anchor * { 
-  backface-visibility: hidden; 
+#urlbar *,
+#searchbar *,
+menupopup *,
+menuitem *,
+#sidebar-box *,
+#downloads-notification-anchor * {
+  backface-visibility: hidden;
 }
 
 /* ACCESSIBILITY & FUNCTIONALITY PRESERVATION */
@@ -327,101 +473,115 @@ menupopup *, menuitem *,
   outline-offset: 2px;
   animation: focusPulse 1s ease-in-out infinite;
 }
+
 @keyframes focusPulse {
-  0%, 100% { outline-color: #448aff; }
-  50% { outline-color: #64b5f6; }
+
+  0%,
+  100% {
+    outline-color: #448aff;
+  }
+
+  50% {
+    outline-color: #64b5f6;
+  }
 }
 
 /* Floating elements with smooth animations */
 .zen-floating-urlbar,
 .zen-floating-status-bar {
-    /* Hardware acceleration */
-    transform: translateZ(0);
-    will-change: transform, opacity;
-    /* Smooth appearance */
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-                opacity 0.2s ease-out; 
-    /* Glass effect */
-    backdrop-filter: blur(20px) saturate(180%);
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px; 
-    /* Optimize rendering */
-    contain: layout style paint;
+  /* Hardware acceleration */
+  transform: translateZ(0);
+  will-change: transform, opacity;
+  /* Smooth appearance */
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.2s ease-out;
+  /* Glass effect */
+  backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  /* Optimize rendering */
+  contain: layout style paint;
 }
 
 @-moz-document url-prefix("chrome:") {
+
   /* ------------------------ Glance Animation ----------------------- */
   .browserSidebarContainer.zen-glance-background.deck-selected {
     filter: blur(5px) brightness(50%);
     transition: filter 0.1s ease-in-out;
   }
-  
+
   /* ---------------------- Tab Loading Animation ---------------------- */
   .browserSidebarContainer:not([zen-split="true"]) {
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.35) !important,
-    filter: 0.18s cubic-bezier(0.2, 0.8, 0.4, 1) !important;
+      filter: 0.18s cubic-bezier(0.2, 0.8, 0.4, 1) !important;
   }
-  
+
   #main-window:has(.tabbrowser-tab[selected][busy]) .browserSidebarContainer:not([zen-split="true"]) {
     filter: blur(10px) brightness(60%) !important;
     transform: scale(0.975) !important;
     transition-delay: 0.5s !important;
     border-radius: 8px !important;
   }
-  
+
   @media (-moz-pref("arc-tab-loading-animation", 2)) {
     .browserSidebarContainer:not([zen-split="true"]) {
       transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35) !important,
-      filter: 0.3s cubic-bezier(0.2, 0.8, 0.4, 1) !important;
+        filter: 0.3s cubic-bezier(0.2, 0.8, 0.4, 1) !important;
     }
+
     #main-window:has(.tabbrowser-tab[selected][busy]) .browserSidebarContainer:not([zen-split="true"]) {
       filter: blur(20px) brightness(60%) !important;
       transform: scale(0.95) !important;
       transition-delay: 0.5s !important;
     }
   }
-  
+
   @media (-moz-pref("arc-tab-loading-animation", 3)) {
     .browserSidebarContainer:not([zen-split="true"]) {
       transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.935) !important,
-      filter: 0.2s cubic-bezier(0.2, 0.8, 0.4, 1.5) !important;
+        filter: 0.2s cubic-bezier(0.2, 0.8, 0.4, 1.5) !important;
     }
+
     #main-window:has(.tabbrowser-tab[selected][busy]) .browserSidebarContainer:not([zen-split="true"]) {
       filter: blur(10px) brightness(60%) !important;
       transform: scale(0.977) !important;
       transition-delay: 0.5s !important;
     }
   }
-  
+
   @media (-moz-pref("arc-tab-loading-animation", 4)) {
     .browserSidebarContainer:not([zen-split="true"]) {
       transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.35) !important,
-      filter: all 0.2s cubic-bezier(0.2, 0.8, 0.4, 1) !important;
+        filter: all 0.2s cubic-bezier(0.2, 0.8, 0.4, 1) !important;
     }
+
     #main-window:has(.tabbrowser-tab[selected][busy]) .browserSidebarContainer:not([zen-split="true"]) {
       filter: saturate(0%) brightness(60%) !important;
       transform: scale(0.975) !important;
       transition-delay: 0.5s !important;
     }
   }
-  
+
   @media (-moz-pref("arc-tab-loading-animation", 5)) {
     .browserSidebarContainer:not([zen-split="true"]) {
       transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.35) !important,
-      filter: all 0.2s cubic-bezier(0.2, 0.8, 0.4, 1) !important;
+        filter: all 0.2s cubic-bezier(0.2, 0.8, 0.4, 1) !important;
     }
+
     #main-window:has(.tabbrowser-tab[selected][busy]) .browserSidebarContainer:not([zen-split="true"]) {
       filter: saturate(0%) brightness(60%) blur(6px) !important;
       transform: scale(0.99) !important;
       transition-delay: 0.5s !important;
     }
   }
-  
+
   @media (-moz-pref("arc-tab-loading-animation", 0)) {
     .browserSidebarContainer:not([zen-split="true"]) {
       transition: none !important;
     }
+
     #main-window:has(.tabbrowser-tab[selected][busy]) .browserSidebarContainer:not([zen-split="true"]),
     #main-window:has(.tabbrowser-tab[selected]:not([busy])) .browserSidebarContainer:not([zen-split="true"]) {
       filter: none !important;
@@ -429,206 +589,212 @@ menupopup *, menuitem *,
       transition-delay: 0s !important;
     }
   }
-  
- /* --------------------- Tab Switch Animation --------------------- */
 
-#tabbrowser-tabpanels > hbox:not(.zen-glance-background):not([zen-split="true"]) {
-  transition: all 0.2s ease !important;
-  scale: 0.975 !important;
-  opacity: 1;
-}
+  /* --------------------- Tab Switch Animation --------------------- */
 
-#tabbrowser-tabpanels > hbox.deck-selected:not(.zen-glance-background):not([zen-split="true"]) {
-    scale: 1 !important;
-    opacity: 1 !important;
-    filter: none !important;  
-}
-
-@media (-moz-pref("arc-tab-switch-animation", 2)) {
-  #tabbrowser-tabpanels > hbox:not(.zen-glance-background):not([zen-split="true"]) {
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.2s ease-out !important;
-    scale: 0.95 !important;
-    opacity: 1;
-    filter: blur(0px) !important;
-  }
-
-  #tabbrowser-tabpanels > hbox.deck-selected:not(.zen-glance-background):not([zen-split="true"]) {
-    scale: 1 !important;
-    opacity: 1 !important;
-    filter: none !important;
-  }
-}
-
-@media (-moz-pref("arc-tab-switch-animation", 3)) {
-  #tabbrowser-tabpanels > hbox:not(.zen-glance-background):not([zen-split="true"]) {
-    transition: all 0.24s cubic-bezier(0.3, 0.6, 0.3, 1.2) !important;
-    scale: 0.98 !important;
-    transform: translateY(10px);
-    opacity: 1;
-  }
-
-  #tabbrowser-tabpanels > hbox.deck-selected:not(.zen-glance-background):not([zen-split="true"]) {
-    scale: 1 !important;
-    transform: none;
-    opacity: 1 !important;
-    filter: none !important;
-  }
-}
-
-@media (-moz-pref("arc-tab-switch-animation", 4)) {
-  #tabbrowser-tabpanels > hbox:not(.zen-glance-background):not([zen-split="true"]) {
-    transition: all 0.2s ease;
-    opacity: 0 !important;
+  #tabbrowser-tabpanels>hbox:not(.zen-glance-background):not([zen-split="true"]) {
+    transition: all 0.2s ease !important;
     scale: 0.975 !important;
-    position: absolute !important;
-    inset: 0;
-  }
-
-  #tabbrowser-tabpanels > hbox.deck-selected:not(.zen-glance-background):not([zen-split="true"]) {
-    opacity: 1 !important;
-    pointer-events: auto !important;
-    position: relative !important;
-    z-index: 1;
-  }
-}
-
-@media (-moz-pref("arc-tab-switch-animation", 5)) {
-  #tabbrowser-tabpanels > hbox:not(.zen-glance-background):not([zen-split]) {
-    transform: scale(1.05);
-    filter: blur(15px);
     opacity: 1;
-    transition: transform 0.2s ease, filter 0.2s ease, opacity 0.2s;
-    will-change: transform, filter, opacity;
   }
 
-  #tabbrowser-tabpanels > hbox.deck-selected:not(.zen-glance-background):not([zen-split]) {
-    transform: scale(1);
+  #tabbrowser-tabpanels>hbox.deck-selected:not(.zen-glance-background):not([zen-split="true"]) {
+    scale: 1 !important;
     opacity: 1 !important;
     filter: none !important;
   }
-}
 
-@media (-moz-pref("arc-tab-switch-animation", 0)) {
-  #tabbrowser-tabpanels > hbox:not(.zen-glance-background):not([zen-split="true"]) {
+  @media (-moz-pref("arc-tab-switch-animation", 2)) {
+    #tabbrowser-tabpanels>hbox:not(.zen-glance-background):not([zen-split="true"]) {
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.2s ease-out !important;
+      scale: 0.95 !important;
+      opacity: 1;
+      filter: blur(0px) !important;
+    }
+
+    #tabbrowser-tabpanels>hbox.deck-selected:not(.zen-glance-background):not([zen-split="true"]) {
+      scale: 1 !important;
+      opacity: 1 !important;
+      filter: none !important;
+    }
+  }
+
+  @media (-moz-pref("arc-tab-switch-animation", 3)) {
+    #tabbrowser-tabpanels>hbox:not(.zen-glance-background):not([zen-split="true"]) {
+      transition: all 0.24s cubic-bezier(0.3, 0.6, 0.3, 1.2) !important;
+      scale: 0.98 !important;
+      transform: translateY(10px);
+      opacity: 1;
+    }
+
+    #tabbrowser-tabpanels>hbox.deck-selected:not(.zen-glance-background):not([zen-split="true"]) {
+      scale: 1 !important;
+      transform: none;
+      opacity: 1 !important;
+      filter: none !important;
+    }
+  }
+
+  @media (-moz-pref("arc-tab-switch-animation", 4)) {
+    #tabbrowser-tabpanels>hbox:not(.zen-glance-background):not([zen-split="true"]) {
+      transition: all 0.2s ease;
+      opacity: 0 !important;
+      scale: 0.975 !important;
+      position: absolute !important;
+      inset: 0;
+    }
+
+    #tabbrowser-tabpanels>hbox.deck-selected:not(.zen-glance-background):not([zen-split="true"]) {
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      position: relative !important;
+      z-index: 1;
+    }
+  }
+
+  @media (-moz-pref("arc-tab-switch-animation", 5)) {
+    #tabbrowser-tabpanels>hbox:not(.zen-glance-background):not([zen-split]) {
+      transform: scale(1.05);
+      filter: blur(15px);
+      opacity: 1;
+      transition: transform 0.2s ease, filter 0.2s ease, opacity 0.2s;
+      will-change: transform, filter, opacity;
+    }
+
+    #tabbrowser-tabpanels>hbox.deck-selected:not(.zen-glance-background):not([zen-split]) {
+      transform: scale(1);
+      opacity: 1 !important;
+      filter: none !important;
+    }
+  }
+
+  @media (-moz-pref("arc-tab-switch-animation", 0)) {
+    #tabbrowser-tabpanels>hbox:not(.zen-glance-background):not([zen-split="true"]) {
+      transition: none !important;
+      scale: 1 !important;
+      opacity: 1 !important;
+      filter: none !important;
+    }
+
+    #tabbrowser-tabpanels>hbox.deck-selected:not(.zen-glance-background):not([zen-split="true"]) {
+      scale: 1 !important;
+      opacity: 1 !important;
+      filter: none !important;
+    }
+  }
+
+  /* ----------------- Other animations ------------------ */
+  /* ------------------ Custom Split View Animation ------------------- */
+
+  @keyframes scaleAndBrighten {
+    0% {
+      transform: scale(0.95);
+      opacity: 0;
+      filter: brightness(0);
+    }
+
+    50% {
+      filter: brightness(0);
+    }
+
+    100% {
+      transform: scale(1);
+      opacity: 1;
+      filter: brightness(1);
+    }
+  }
+
+  #tabbrowser-tabpanels[zen-split-view="true"] {
     transition: none !important;
-    scale: 1 !important;
-    opacity: 1 !important;
-    filter: none !important;
   }
 
-  #tabbrowser-tabpanels > hbox.deck-selected:not(.zen-glance-background):not([zen-split="true"]) {
-    scale: 1 !important;
-    opacity: 1 !important;
-    filter: none !important;
-  }
-}
-  
-/* ----------------- Other animations ------------------ */
-/* ------------------ Custom Split View Animation ------------------- */
+  #tabbrowser-tabpanels[zen-split-view="true"] .browserSidebarContainer {
 
-@keyframes scaleAndBrighten {
-  0% {
-    transform: scale(0.95);
-    opacity: 0;
-    filter: brightness(0);
+    animation: scaleAndBrighten 0.6s cubic-bezier(0.33, 1, 0.68, 1) forwards;
   }
-  50% {
-    filter: brightness(0);
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-    filter: brightness(1);
-  }
-}
 
-#tabbrowser-tabpanels[zen-split-view="true"] {
-  transition: none !important;
-}
-
-#tabbrowser-tabpanels[zen-split-view="true"] .browserSidebarContainer {
-
-  animation: scaleAndBrighten 0.6s cubic-bezier(0.33, 1, 0.68, 1) forwards;
-}
   /* website view animations [works for split tabs] */
   #browser:not(:has(.zen-glance-background)) #tabbrowser-tabpanels {
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.35) !important;
   }
-  
+
   /* trackpad gestures*/
   tabpanels .browserStack browser {
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1) 0.1s !important;
   }
 
-@media (-moz-pref("arc.previous-page-animation")) {
+  @media (-moz-pref("arc.previous-page-animation")) {
 
-  /* Previous animation */
-  .browserStack:has(#historySwipeAnimationPreviousArrow:not([style="translate: none;"])) browser{
-    scale: 0.95 !important;
-    transform: translateX(3%) !important;
+    /* Previous animation */
+    .browserStack: has(#historySwipeAnimationPreviousArrow:not([style="translate: none;"])) browser {
+      scale: 0.95 !important;
+      transform: translateX(3%) !important;
+    }
   }
-}
-  
-@media (-moz-pref("arc.next-page-animation")) {
-  /* Next animation  */
-  .browserStack:has(#historySwipeAnimationNextArrow:not([style="translate: none;"])) browser{
-    scale: 0.95 !important;
-    transform: translateX(-3%) !important;
+
+  @media (-moz-pref("arc.next-page-animation")) {
+
+    /* Next animation  */
+    .browserStack: has(#historySwipeAnimationNextArrow:not([style="translate: none;"])) browser {
+      scale: 0.95 !important;
+      transform: translateX(-3%) !important;
+    }
   }
-}
 
   /* ctrl tab visuals and animations */
   #ctrlTab-panel {
-    --panel-background: rgba(0,0,0,0.9) !important;
+    --panel-background: rgba(0, 0, 0, 0.9) !important;
     transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.1) 0.2s !important;
     border-radius: 13px;
     scale: 0.7;
   }
-  
+
   #ctrlTab-panel:has(.ctrlTab-preview:not([hidden="true"])) {
     scale: 0.7 !important;
     border-radius: 13px;
   }
-  
+
   slot:nth-child(1) {
     padding: 0 !important;
   }
-  
+
   .ctrlTab-preview-inner {
     /* 	padding: 0 !important; */
     margin: 0 !important;
     transition: all 0.2s ease-in-out;
-  
+
     .ctrlTab-canvas {
       border-radius: 1em !important;
       overflow: hidden;
+
       img {
         background-color: #000000 !important;
       }
     }
-  
+
     .ctrlTab-favicon-container {
       justify-content: center !important;
       transition: all 0.5s ease-in-out;
+
       image {
         border-radius: 50% !important;
         transition: all 0.5s ease-in-out !important;
         /* 			scale: 1.25 !important; */
       }
     }
-  
+
     .ctrlTab-label {
       margin-top: 1.5em !important;
     }
   }
-  
-  .ctrlTab-preview:focus > .ctrlTab-preview-inner {
+
+  .ctrlTab-preview:focus>.ctrlTab-preview-inner {
     outline: none !important;
     /* border: none !important;   */
     background-color: var(--sidebar-background-color) !important;
     border-radius: 1.5em !important;
     scale: 1.03 !important;
-  
+
     .ctrlTab-favicon-container {
       image {
         padding: 2px !important;
@@ -636,97 +802,104 @@ menupopup *, menuitem *,
     }
   }
 
-/*Menu Animations*/
-@media not (-moz-pref("arc-menu-animations")) {
-menuitem {
-  transition: all 0.25s ease-in-out !important;
-}
-
-[hasbeenopened="true"] {
-  menuitem,
-  menu,
-  toolbarbutton.subviewbutton{
-    .menu-text, .toolbarbutton-text {
-      font-size: 0.93em !important;
-      padding: 2px 5px !important;
-      opacity: 1 !important;
+  /*Menu Animations*/
+  @media not (-moz-pref("arc-menu-animations")) {
+    menuitem {
       transition: all 0.25s ease-in-out !important;
     }
 
-    &:hover > .menu-text, &:hover > .toolbarbutton-text {
-      padding-left: 8px !important;
-      padding-right: 2px !important;
+    [hasbeenopened="true"] {
+
+      menuitem,
+      menu,
+      toolbarbutton.subviewbutton {
+
+        .menu-text,
+        .toolbarbutton-text {
+          font-size: 0.93em !important;
+          padding: 2px 5px !important;
+          opacity: 1 !important;
+          transition: all 0.25s ease-in-out !important;
+        }
+
+        &:hover>.menu-text,
+        &:hover>.toolbarbutton-text {
+          padding-left: 8px !important;
+          padding-right: 2px !important;
+        }
+      }
+
+      &:has(menu[open="true"]) {
+
+        &>menuitem,
+        menu:not([open="true"]) {
+          opacity: 0.3 !important;
+        }
+      }
     }
   }
 
-  &:has(menu[open="true"]) {
-    & > menuitem,
-    menu:not([open="true"]) {
-      opacity: 0.3 !important;
+  /*Transparent Glance*/
+  @media (-moz-pref("arc-transparent-glance")) {
+
+    /* Transparent glance styling */
+    .zen-glance-background>vbox {
+      mask-image: linear-gradient(to right,
+          black 0%,
+          black 4%,
+          transparent 7%,
+          transparent 93.5%,
+          black 96%,
+          black 100%);
+      mask-repeat: no-repeat;
+      mask-size: 100% 100%;
     }
-  }
-}
-}
-  
-/*Transparent Glance*/
-@media (-moz-pref("arc-transparent-glance")) {
-  /* Transparent glance styling */
-  .zen-glance-background > vbox {
-    mask-image: linear-gradient(
-      to right,
-      black 0%,
-      black 4%,
-      transparent 7%,
-      transparent 93.5%,
-      black 96%,
-      black 100%
-    );
-    mask-repeat: no-repeat;
-    mask-size: 100% 100%;
-  }
-  
-  .zen-glance-overlay > vbox {
-    background-color: light-dark(#fff7, #0007) !important;
-    margin-top: 0.5% !important;
-    margin-bottom: 0.5% !important;
-    height: 98% !important;
-    border-radius: 1.5em !important;
-  }
-}
-  
- /*Media Player*/
-@-moz-document url-prefix("chrome:") {
-  @media (-moz-pref("arc.media-controls-toolbar-bottom")){
-    #zen-media-controls-toolbar{
-      order:1 !important;
-    }
-    #zen-media-controls-toolbar:hover + #zen-sidebar-foot-buttons {
-      transform: translateY(-35px);
-      transition: transform 0.2s ease-in-out !important;
+
+    .zen-glance-overlay>vbox {
+      background-color: light-dark(#fff7, #0007) !important;
+      margin-top: 0.5% !important;
+      margin-bottom: 0.5% !important;
+      height: 98% !important;
+      border-radius: 1.5em !important;
     }
   }
 
-  /* Media player expanded layout */
-  #zen-media-controls-toolbar {
-    & .show-on-hover {
-      max-height: unset !important;
-      opacity: 1 !important;
-      transform: translateY(0) !important;
-      padding-right: 6px;
-      pointer-events: none;
-      transition: max-height 0.2s ease, opacity 0.2s ease, transform 0.2s ease,padding 0.2s ease;
+  /*Media Player*/
+  @-moz-document url-prefix("chrome:") {
+    @media (-moz-pref("arc.media-controls-toolbar-bottom")) {
+      #zen-media-controls-toolbar {
+        order: 1 !important;
+      }
+
+      #zen-media-controls-toolbar:hover+#zen-sidebar-foot-buttons {
+        transform: translateY(-35px);
+        transition: transform 0.2s ease-in-out !important;
+      }
+    }
+
+    /* Media player expanded layout */
+    #zen-media-controls-toolbar {
+      & .show-on-hover {
+        max-height: unset !important;
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        padding-right: 6px;
+        pointer-events: none;
+        transition: max-height 0.2s ease, opacity 0.2s ease, transform 0.2s ease, padding 0.2s ease;
+      }
+    }
+
+    /* Media buttons hover effect */
+    #zen-media-buttons-hbox>toolbarbutton {
+      opacity: 0 !important;
+      transition: opacity 0.4s ease-in-out !important;
+
+      &:hover {
+        opacity: 1 !important;
+      }
     }
   }
-  
-  /* Media buttons hover effect */
-  #zen-media-buttons-hbox > toolbarbutton {
-    opacity: 0 !important;
-    transition: opacity 0.4s ease-in-out !important;
-    &:hover {
-      opacity: 1 !important;
-    }
-  }
-}
+
   /* Media controls hover expansion */
   #zen-media-controls-toolbar {
     #zen-media-controls-hbox {
@@ -734,7 +907,7 @@ menuitem {
       height: 0 !important;
       overflow: hidden !important;
     }
-  
+
     &:hover {
       #zen-media-controls-hbox {
         height: fit-content !important;
@@ -742,184 +915,186 @@ menuitem {
       }
     }
   }
-  
-  #zen-media-main-vbox > vbox {
+
+  #zen-media-main-vbox>vbox {
     order: 1 !important;
   }
 
-/* Media controls glow effect */
-#zen-media-controls-toolbar::after {
-  position: absolute;
-  content: "";
-  bottom: 0px;
-  left: 0;
-  right: 0;
-  z-index: -1;
-  height: 100%;
-  width: 100%;
-  transform: scale(0.9) translateZ(0);
-  filter: blur(15px);
-  opacity: 0 !important;
-  transition: all 0.3s ease-in-out !important;
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--zen-primary-color) 10%, black),
-    var(--zen-primary-color),
-    color-mix(in srgb, var(--zen-primary-color) 25%, white),
-    var(--zen-primary-color),
-    light-dark(#fffd, #000d),
-    light-dark(#fffd, #000d),
-    var(--zen-primary-color),
-    color-mix(in srgb, var(--zen-primary-color) 50%, white),
-    color-mix(in srgb, var(--zen-primary-color) 25%, white),
-    var(--zen-primary-color),
-    color-mix(in srgb, var(--zen-primary-color) 25%, black),
-    light-dark(#fffd, #000d),
-    color-mix(in srgb, var(--zen-primary-color) 10%, black),
-    light-dark(#fffd, #000d),
-    color-mix(in srgb, var(--zen-primary-color) 75%, black),
-    color-mix(in srgb, var(--zen-primary-color) 50%, black),
-    color-mix(in srgb, var(--zen-primary-color) 25%, black),
-    color-mix(in srgb, var(--zen-primary-color) 10%, black),
-    light-dark(#fffd, #000d)
-  );
-  background-size: 200% 200%;
-}
-
-/* Playing media styling */
-#zen-media-controls-toolbar.playing {
-  toolbaritem {
-    background-color: light-dark(#fffd, #000d) !important;
-  }
-  padding: 16px 24px;
-  position: relative;
-  border-radius: 8px;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.01);
-
-  &::after {
-    opacity: 1 !important;
-    animation: animateGlow 5s cubic-bezier(0.1, 0.7, 0.5, 0.1) infinite;
+  /* Media controls glow effect */
+  #zen-media-controls-toolbar::after {
+    position: absolute;
+    content: "";
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    transform: scale(0.9) translateZ(0);
+    filter: blur(15px);
+    opacity: 0 !important;
+    transition: all 0.3s ease-in-out !important;
+    background: linear-gradient(135deg,
+        color-mix(in srgb, var(--zen-primary-color) 10%, black),
+        var(--zen-primary-color),
+        color-mix(in srgb, var(--zen-primary-color) 25%, white),
+        var(--zen-primary-color),
+        light-dark(#fffd, #000d),
+        light-dark(#fffd, #000d),
+        var(--zen-primary-color),
+        color-mix(in srgb, var(--zen-primary-color) 50%, white),
+        color-mix(in srgb, var(--zen-primary-color) 25%, white),
+        var(--zen-primary-color),
+        color-mix(in srgb, var(--zen-primary-color) 25%, black),
+        light-dark(#fffd, #000d),
+        color-mix(in srgb, var(--zen-primary-color) 10%, black),
+        light-dark(#fffd, #000d),
+        color-mix(in srgb, var(--zen-primary-color) 75%, black),
+        color-mix(in srgb, var(--zen-primary-color) 50%, black),
+        color-mix(in srgb, var(--zen-primary-color) 25%, black),
+        color-mix(in srgb, var(--zen-primary-color) 10%, black),
+        light-dark(#fffd, #000d));
+    background-size: 200% 200%;
   }
 
-  &:hover::after {
-    height: 150%;
-  }
-}
-
-/* Glow animation keyframes */
-@keyframes animateGlow {
-  0% {
-    background-position: 0% 20%;
-  }
-  100% {
-    background-position: 200% 20%;
-  }
-}
-
-#zen-sidebar-foot-buttons{
-  margin-bottom: 5px !important; 
-}  
-  
-/*Window Control styling*/
-@media not (-moz-pref("arc-style-window-buttons-disabled")) {
-  .titlebar-button {
-    font-size: 0 !important;
-}
-    @media not (-moz-pref("zen.view.experimental-no-window-controls")) {
-        .titlebar-button {
-            min-height: 13px !important;
-            min-width: 13px !important;
-            padding: 0px !important;
-            height: 13px !important;
-            width: 13px !important;
-            align-self: center;
-            border-radius: 50px;
-            margin: 0px 3px !important;
-            background-color: rgba(200, 200, 200, 0.3) !important;
-            transition: all 200ms ease-in-out;
-        }
-
-        .titlebar-button>image {
-            visibility: hidden !important;
-        }
-
-        .titlebar-buttonbox {
-            align-content: center !important;
-            justify-content: center !important;
-            margin-right: 6px !important;
-            margin-left: 3px !important;
-        }
-
-        .titlebar-buttonbox-container {
-            align-self: center !important;
-            justify-self: center !important;
-            justify-content: center !important;
-            align-content: center !important;
-            margin-top: 10px !important;
-            margin-bottom: 10px !important;
-        }
-
-        .titlebar-button:hover {
-            min-height: 20px !important;
-
-            &.titlebar-min:hover {
-                background-color: color-mix(in srgb, var(--zen-primary-color) 90%, white) !important;
-                box-shadow: 0 0px 8px color-mix(in srgb, var(--zen-primary-color) 90%, white) !important;
-            }
-
-            &.titlebar-restore:hover {
-                background-color: color-mix(in srgb, var(--zen-primary-color) 60%, white) !important;
-                box-shadow: 0 0px 8px color-mix(in srgb, var(--zen-primary-color) 60%, white) !important;
-            }
-
-            &.titlebar-max:hover {
-                background-color: color-mix(in srgb, var(--zen-primary-color) 60%, white) !important;
-                box-shadow: 0 0px 8px color-mix(in srgb, var(--zen-primary-color) 60%, white) !important;
-            }
-
-            &.titlebar-close:hover {
-                background-color: color-mix(in srgb, var(--zen-primary-color) 20%, rgb(255, 90, 100)) !important;
-                box-shadow: 0 0px 8px color-mix(in srgb, var(--zen-primary-color) 20%, rgb(255, 90, 100)) !important;
-            }
-        }
-
-        @media (-moz-pref("neo-style-window-buttons-colorful-enabled")) {
-            .titlebar-min {
-                background-color: color-mix(in srgb, var(--zen-primary-color) 90%, white) !important;
-                box-shadow: 0 0px 4px color-mix(in srgb, var(--zen-primary-color) 90%, white) !important;
-            }
-
-            .titlebar-restore {
-                background-color: color-mix(in srgb, var(--zen-primary-color) 60%, white) !important;
-                box-shadow: 0 0px 4px color-mix(in srgb, var(--zen-primary-color) 60%, white) !important;
-            }
-
-            .titlebar-max {
-                background-color: color-mix(in srgb, var(--zen-primary-color) 60%, white) !important;
-                box-shadow: 0 0px 4px color-mix(in srgb, var(--zen-primary-color) 60%, white) !important;
-            }
-
-            .titlebar-close {
-                background-color: color-mix(in srgb, var(--zen-primary-color) 20%, rgb(255, 90, 100)) !important;
-                box-shadow: 0 0px 4px color-mix(in srgb, var(--zen-primary-color) 20%, rgb(255, 90, 100)) !important;
-            }
-        }
+  /* Playing media styling */
+  #zen-media-controls-toolbar.playing {
+    toolbaritem {
+      background-color: light-dark(#fffd, #000d) !important;
     }
-}
 
-@media not (-moz-pref("arc-style-window-buttons-disabled")) {
-  @media not (-moz-pref("zen.view.experimental-no-window-controls")) {
-    @media (-moz-pref("zen.view.experimental-force-window-controls-left")) {
+    padding: 16px 24px;
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.01);
+
+    &::after {
+      opacity: 1 !important;
+      animation: animateGlow 5s cubic-bezier(0.1, 0.7, 0.5, 0.1) infinite;
+    }
+
+    &:hover::after {
+      height: 150%;
+    }
+  }
+
+  /* Glow animation keyframes */
+  @keyframes animateGlow {
+    0% {
+      background-position: 0% 20%;
+    }
+
+    100% {
+      background-position: 200% 20%;
+    }
+  }
+
+  #zen-sidebar-foot-buttons {
+    margin-bottom: 5px !important;
+  }
+
+  /*Window Control styling*/
+  @media not (-moz-pref("arc-style-window-buttons-disabled")) {
+    .titlebar-button {
+      font-size: 0 !important;
+    }
+
+    @media (not -moz-pref("zen.view.experimental-no-window-controls")) and (not -moz-pref("arc-macos-style-buttons")) {
+      .titlebar-button {
+        min-height: 13px !important;
+        min-width: 13px !important;
+        padding: 0px !important;
+        height: 13px !important;
+        width: 13px !important;
+        align-self: center;
+        border-radius: 50px;
+        margin: 0px 3px !important;
+        background-color: rgba(200, 200, 200, 0.3) !important;
+        transition: all 200ms ease-in-out;
+      }
+
+      .titlebar-button>image {
+        visibility: hidden !important;
+      }
+
+      .titlebar-buttonbox {
+        align-content: center !important;
+        justify-content: center !important;
+        margin-right: 6px !important;
+        margin-left: 3px !important;
+      }
+
       .titlebar-buttonbox-container {
-        order: 0 !important;
+        align-self: center !important;
+        justify-self: center !important;
+        justify-content: center !important;
+        align-content: center !important;
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+      }
+
+      .titlebar-button:hover {
+        min-height: 20px !important;
+
+        &.titlebar-min:hover {
+          background-color: color-mix(in srgb, var(--zen-primary-color) 90%, white) !important;
+          box-shadow: 0 0px 8px color-mix(in srgb, var(--zen-primary-color) 90%, white) !important;
+        }
+
+        &.titlebar-restore:hover {
+          background-color: color-mix(in srgb, var(--zen-primary-color) 60%, white) !important;
+          box-shadow: 0 0px 8px color-mix(in srgb, var(--zen-primary-color) 60%, white) !important;
+        }
+
+        &.titlebar-max:hover {
+          background-color: color-mix(in srgb, var(--zen-primary-color) 60%, white) !important;
+          box-shadow: 0 0px 8px color-mix(in srgb, var(--zen-primary-color) 60%, white) !important;
+        }
+
+        &.titlebar-close:hover {
+          background-color: color-mix(in srgb, var(--zen-primary-color) 20%, rgb(255, 90, 100)) !important;
+          box-shadow: 0 0px 8px color-mix(in srgb, var(--zen-primary-color) 20%, rgb(255, 90, 100)) !important;
+        }
+      }
+
+      @media (-moz-pref("neo-style-window-buttons-colorful-enabled")) {
+        .titlebar-min {
+          background-color: color-mix(in srgb, var(--zen-primary-color) 90%, white) !important;
+          box-shadow: 0 0px 4px color-mix(in srgb, var(--zen-primary-color) 90%, white) !important;
+        }
+
+        .titlebar-restore {
+          background-color: color-mix(in srgb, var(--zen-primary-color) 60%, white) !important;
+          box-shadow: 0 0px 4px color-mix(in srgb, var(--zen-primary-color) 60%, white) !important;
+        }
+
+        .titlebar-max {
+          background-color: color-mix(in srgb, var(--zen-primary-color) 60%, white) !important;
+          box-shadow: 0 0px 4px color-mix(in srgb, var(--zen-primary-color) 60%, white) !important;
+        }
+
+        .titlebar-close {
+          background-color: color-mix(in srgb, var(--zen-primary-color) 20%, rgb(255, 90, 100)) !important;
+          box-shadow: 0 0px 4px color-mix(in srgb, var(--zen-primary-color) 20%, rgb(255, 90, 100)) !important;
+        }
       }
     }
+  }
 
-    @media -moz-pref("zen.tabs.vertical") {
-      :root:not([zen-single-toolbar="true"]):not([zen-right-side="true"])[zen-window-buttons-reversed="true"]:not([zen-sidebar-expanded="true"]):not([zen-compact-mode="true"]) {
-        .titlebar-buttonbox {
-          left: auto !important;
-          right: 18px !important;
+  @media not (-moz-pref("arc-style-window-buttons-disabled")) {
+    @media not (-moz-pref("zen.view.experimental-no-window-controls")) {
+      @media (-moz-pref("zen.view.experimental-force-window-controls-left")) {
+        .titlebar-buttonbox-container {
+          order: 0 !important;
+        }
+      }
+
+      @media -moz-pref("zen.tabs.vertical") {
+        :root:not([zen-single-toolbar="true"]):not([zen-right-side="true"])[zen-window-buttons-reversed="true"]:not([zen-sidebar-expanded="true"]):not([zen-compact-mode="true"]) {
+          .titlebar-buttonbox {
+            left: auto !important;
+            right: 18px !important;
+          }
         }
       }
     }
