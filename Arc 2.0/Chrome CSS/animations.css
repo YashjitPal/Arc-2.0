@@ -15,135 +15,137 @@ tooltip {
 
 /* === TAB ANIMATIONS === */
 /* Tab hover and active animation with enhanced shadows */
-.tabbrowser-tab {
-  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 0.24s cubic-bezier(0.22, 1.5, 0.36, 1),
-    opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1),
-    filter 0.2s ease !important;
-  box-shadow: none !important;
-}
+@media not -moz-pref("arc-disable-tab-hover-animations") {
+  .tabbrowser-tab {
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.24s cubic-bezier(0.22, 1.5, 0.36, 1),
+      opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+      filter 0.2s ease !important;
+    box-shadow: none !important;
+  }
 
-.tabbrowser-tab:hover {
-  transform: translateY(-2px) scale(1.04);
-  box-shadow: 0 4px 12px -4px rgba(30, 40, 80, 0.09);
-  z-index: 2;
-}
+  .tabbrowser-tab:hover {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 4px 12px -4px rgba(30, 40, 80, 0.09);
+    z-index: 2;
+  }
 
-/* Fade inactive tabs with breathing effect */
-.tabbrowser-tab:not([selected]) {
-  opacity: 0.82;
-  filter: blur(0.2px);
-  animation: tabBreathe 4s ease-in-out infinite;
-}
-
-@keyframes tabBreathe {
-
-  0%,
-  100% {
+  /* Fade inactive tabs with breathing effect */
+  .tabbrowser-tab:not([selected]) {
     opacity: 0.82;
+    filter: blur(0.2px);
+    animation: tabBreathe 4s ease-in-out infinite;
   }
 
-  50% {
-    opacity: 0.75;
-  }
-}
+  @keyframes tabBreathe {
 
-/* Enhanced tab opening animation */
-.tabbrowser-tab[fadein] {
-  animation: tabBounceIn 0.34s cubic-bezier(0.68, -0.6, 0.32, 1.6);
-}
+    0%,
+    100% {
+      opacity: 0.82;
+    }
 
-@keyframes tabBounceIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.86) translateY(4px) rotateX(15deg);
+    50% {
+      opacity: 0.75;
+    }
   }
 
-  60% {
+  /* Enhanced tab opening animation */
+  .tabbrowser-tab[fadein] {
+    animation: tabBounceIn 0.34s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  }
+
+  @keyframes tabBounceIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.86) translateY(4px) rotateX(15deg);
+    }
+
+    60% {
+      opacity: 1;
+      transform: scale(1.09) translateY(-3px) rotateX(-5deg);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1.0) translateY(0) rotateX(0);
+    }
+  }
+
+  /* Enhanced tab closing animation */
+  .tabbrowser-tab[closing] {
+    animation: tabShrinkOut 0.19s cubic-bezier(0.68, -0.6, 0.32, 1.6) forwards;
+  }
+
+  @keyframes tabShrinkOut {
+    0% {
+      opacity: 1;
+      transform: scale(1.0) rotateY(0deg);
+      max-width: 100%;
+    }
+
+    50% {
+      opacity: 0.3;
+      transform: scale(0.9) rotateY(15deg);
+    }
+
+    100% {
+      opacity: 0;
+      transform: scale(0.7) rotateY(30deg);
+      max-width: 0;
+    }
+  }
+
+  /* Pinned tab special pulse animation */
+  .tabbrowser-tab[pinned="true"] {
+    animation: pinnedPulse 3s ease-in-out infinite;
+  }
+
+  @keyframes pinnedPulse {
+
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgba(68, 138, 255, 0.4);
+    }
+
+    50% {
+      box-shadow: 0 0 0 4px rgba(68, 138, 255, 0.1);
+    }
+  }
+
+  /* Tab close button with ripple effect */
+  .tab-close-button {
+    transition: transform 0.16s cubic-bezier(0.49, 1.7, 0.36, 1),
+      opacity 0.12s ease,
+      box-shadow 0.2s ease !important;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tab-close-button:hover {
+    transform: scale(1.20);
     opacity: 1;
-    transform: scale(1.09) translateY(-3px) rotateX(-5deg);
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
   }
 
-  100% {
-    opacity: 1;
-    transform: scale(1.0) translateY(0) rotateX(0);
-  }
-}
-
-/* Enhanced tab closing animation */
-.tabbrowser-tab[closing] {
-  animation: tabShrinkOut 0.19s cubic-bezier(0.68, -0.6, 0.32, 1.6) forwards;
-}
-
-@keyframes tabShrinkOut {
-  0% {
-    opacity: 1;
-    transform: scale(1.0) rotateY(0deg);
-    max-width: 100%;
+  .tab-close-button:active::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: ripple 0.3s ease-out;
   }
 
-  50% {
-    opacity: 0.3;
-    transform: scale(0.9) rotateY(15deg);
-  }
-
-  100% {
-    opacity: 0;
-    transform: scale(0.7) rotateY(30deg);
-    max-width: 0;
-  }
-}
-
-/* Pinned tab special pulse animation */
-.tabbrowser-tab[pinned="true"] {
-  animation: pinnedPulse 3s ease-in-out infinite;
-}
-
-@keyframes pinnedPulse {
-
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(68, 138, 255, 0.4);
-  }
-
-  50% {
-    box-shadow: 0 0 0 4px rgba(68, 138, 255, 0.1);
-  }
-}
-
-/* Tab close button with ripple effect */
-.tab-close-button {
-  transition: transform 0.16s cubic-bezier(0.49, 1.7, 0.36, 1),
-    opacity 0.12s ease,
-    box-shadow 0.2s ease !important;
-  position: relative;
-  overflow: hidden;
-}
-
-.tab-close-button:hover {
-  transform: scale(1.20);
-  opacity: 1;
-  box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
-}
-
-.tab-close-button:active::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  animation: ripple 0.3s ease-out;
-}
-
-@keyframes ripple {
-  100% {
-    width: 30px;
-    height: 30px;
-    opacity: 0;
+  @keyframes ripple {
+    100% {
+      width: 30px;
+      height: 30px;
+      opacity: 0;
+    }
   }
 }
 
@@ -283,13 +285,11 @@ tooltip {
   }
 }
 
-
 #unified-extensions-button:hover {
   animation: BounceExtensionButton 0.6s cubic-bezier(0.25, 1.3, 0.5, 1) forwards;
 }
 
 /* === URL BAR & SEARCH BAR ENHANCEMENTS === */
-
 #urlbar {
   transition: transform 0.2s cubic-bezier(0.22, 1.5, 0.36, 1),
     box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
@@ -515,7 +515,7 @@ menuitem *,
   /* ---------------------- Tab Loading Animation ---------------------- */
   .browserSidebarContainer:not([zen-split="true"]) {
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.35) !important,
-      filter 0.18s cubic-bezier(0.2, 0.8, 0.4, 1) !important;
+      filter: 0.18s cubic-bezier(0.2, 0.8, 0.4, 1) !important;
   }
 
   #main-window:has(.tabbrowser-tab[selected][busy]) .browserSidebarContainer:not([zen-split="true"]) {
@@ -523,13 +523,12 @@ menuitem *,
     transform: scale(0.975) !important;
     transition-delay: 0.5s !important;
     border-radius: 8px !important;
-
   }
 
   @media (-moz-pref("arc-tab-loading-animation", 2)) {
     .browserSidebarContainer:not([zen-split="true"]) {
       transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35) !important,
-        filter 0.3s cubic-bezier(0.2, 0.8, 0.4, 1) !important;
+        filter: 0.3s cubic-bezier(0.2, 0.8, 0.4, 1) !important;
     }
 
     #main-window:has(.tabbrowser-tab[selected][busy]) .browserSidebarContainer:not([zen-split="true"]) {
@@ -542,7 +541,7 @@ menuitem *,
   @media (-moz-pref("arc-tab-loading-animation", 3)) {
     .browserSidebarContainer:not([zen-split="true"]) {
       transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.935) !important,
-        filter 0.2s cubic-bezier(0.2, 0.8, 0.4, 1.5) !important;
+        filter: 0.2s cubic-bezier(0.2, 0.8, 0.4, 1.5) !important;
     }
 
     #main-window:has(.tabbrowser-tab[selected][busy]) .browserSidebarContainer:not([zen-split="true"]) {
@@ -555,7 +554,7 @@ menuitem *,
   @media (-moz-pref("arc-tab-loading-animation", 4)) {
     .browserSidebarContainer:not([zen-split="true"]) {
       transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.35) !important,
-        filter all 0.2s cubic-bezier(0.2, 0.8, 0.4, 1) !important;
+        filter: all 0.2s cubic-bezier(0.2, 0.8, 0.4, 1) !important;
     }
 
     #main-window:has(.tabbrowser-tab[selected][busy]) .browserSidebarContainer:not([zen-split="true"]) {
@@ -568,7 +567,7 @@ menuitem *,
   @media (-moz-pref("arc-tab-loading-animation", 5)) {
     .browserSidebarContainer:not([zen-split="true"]) {
       transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.35) !important,
-        filter all 0.2s cubic-bezier(0.2, 0.8, 0.4, 1) !important;
+        filter: all 0.2s cubic-bezier(0.2, 0.8, 0.4, 1) !important;
     }
 
     #main-window:has(.tabbrowser-tab[selected][busy]) .browserSidebarContainer:not([zen-split="true"]) {
@@ -586,104 +585,133 @@ menuitem *,
     #main-window:has(.tabbrowser-tab[selected][busy]) .browserSidebarContainer:not([zen-split="true"]),
     #main-window:has(.tabbrowser-tab[selected]:not([busy])) .browserSidebarContainer:not([zen-split="true"]) {
       filter: none !important;
-
       transform: none !important;
-
       transition-delay: 0s !important;
     }
   }
 
-#tabbrowser-tabpanels > hbox:not(.zen-glance-background):not([zen-split="true"]) {
-  transition: all 0.2s ease !important;
-  scale: 0.975 !important;
-  opacity: 1;
-}
+  /* --------------------- Tab Switch Animation --------------------- */
 
-#tabbrowser-tabpanels > hbox.deck-selected:not(.zen-glance-background):not([zen-split="true"]) {
-    scale: 1 !important;
-    opacity: 1 !important;
-    filter: none !important;  
-}
-
-@media (-moz-pref("arc-tab-switch-animation", 2)) {
-  #tabbrowser-tabpanels > hbox:not(.zen-glance-background):not([zen-split="true"]) {
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.2s ease-out !important;
-    scale: 0.95 !important;
-    opacity: 1;
-  }
-
-  #tabbrowser-tabpanels > hbox.deck-selected:not(.zen-glance-background):not([zen-split="true"]) {
-    scale: 1 !important;
-    opacity: 1 !important;
-    filter: none !important;
-
-  }
-
-@media (-moz-pref("arc-tab-switch-animation", 3)) {
-  #tabbrowser-tabpanels > hbox:not(.zen-glance-background):not([zen-split="true"]) {
-    transition: all 0.24s cubic-bezier(0.3, 0.6, 0.3, 1.2) !important;
-    scale: 0.98 !important;
-    transform: translateY(10px);
-    opacity: 1;
-  }
-
-  #tabbrowser-tabpanels > hbox.deck-selected:not(.zen-glance-background):not([zen-split="true"]) {
-    scale: 1 !important;
-    transform: none;
-    opacity: 1 !important;
-    filter: none !important;
-  }
-
-@media (-moz-pref("arc-tab-switch-animation", 4)) {
-  #tabbrowser-tabpanels > hbox:not(.zen-glance-background):not([zen-split="true"]) {
-    transition: all 0.2s ease;
-    opacity: 0 !important;
+  #tabbrowser-tabpanels>hbox:not(.zen-glance-background):not([zen-split="true"]) {
+    transition: all 0.2s ease !important;
     scale: 0.975 !important;
-    position: absolute !important;
-    inset: 0;
-  }
-
-  #tabbrowser-tabpanels > hbox.deck-selected:not(.zen-glance-background):not([zen-split="true"]) {
-    opacity: 1 !important;
-    pointer-events: auto !important;
-    position: relative !important;
-    z-index: 1;
-  }
-
-@media (-moz-pref("arc-tab-switch-animation", 5)) {
-  #tabbrowser-tabpanels > hbox:not(.zen-glance-background):not([zen-split]) {
-    transform: scale(1.05);
-    filter: blur(15px);
     opacity: 1;
-    transition: transform 0.2s ease, filter 0.2s ease, opacity 0.2s;
-    will-change: transform, filter, opacity;
   }
 
-  #tabbrowser-tabpanels > hbox.deck-selected:not(.zen-glance-background):not([zen-split]) {
-    transform: scale(1);
+  #tabbrowser-tabpanels>hbox.deck-selected:not(.zen-glance-background):not([zen-split="true"]) {
+    scale: 1 !important;
     opacity: 1 !important;
     filter: none !important;
   }
 
-@media (-moz-pref("arc-tab-switch-animation", 0)) {
-  #tabbrowser-tabpanels > hbox:not(.zen-glance-background):not([zen-split="true"]) {
+  @media (-moz-pref("arc-tab-switch-animation", 2)) {
+    #tabbrowser-tabpanels>hbox:not(.zen-glance-background):not([zen-split="true"]) {
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.2s ease-out !important;
+      scale: 0.95 !important;
+      opacity: 1;
+      filter: blur(0px) !important;
+    }
+
+    #tabbrowser-tabpanels>hbox.deck-selected:not(.zen-glance-background):not([zen-split="true"]) {
+      scale: 1 !important;
+      opacity: 1 !important;
+      filter: none !important;
+    }
+  }
+
+  @media (-moz-pref("arc-tab-switch-animation", 3)) {
+    #tabbrowser-tabpanels>hbox:not(.zen-glance-background):not([zen-split="true"]) {
+      transition: all 0.24s cubic-bezier(0.3, 0.6, 0.3, 1.2) !important;
+      scale: 0.98 !important;
+      transform: translateY(10px);
+      opacity: 1;
+    }
+
+    #tabbrowser-tabpanels>hbox.deck-selected:not(.zen-glance-background):not([zen-split="true"]) {
+      scale: 1 !important;
+      transform: none;
+      opacity: 1 !important;
+      filter: none !important;
+    }
+  }
+
+  @media (-moz-pref("arc-tab-switch-animation", 4)) {
+    #tabbrowser-tabpanels>hbox:not(.zen-glance-background):not([zen-split="true"]) {
+      transition: all 0.2s ease;
+      opacity: 0 !important;
+      scale: 0.975 !important;
+      position: absolute !important;
+      inset: 0;
+    }
+
+    #tabbrowser-tabpanels>hbox.deck-selected:not(.zen-glance-background):not([zen-split="true"]) {
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      position: relative !important;
+      z-index: 1;
+    }
+  }
+
+  @media (-moz-pref("arc-tab-switch-animation", 5)) {
+    #tabbrowser-tabpanels>hbox:not(.zen-glance-background):not([zen-split]) {
+      transform: scale(1.05);
+      filter: blur(15px);
+      opacity: 1;
+      transition: transform 0.2s ease, filter 0.2s ease, opacity 0.2s;
+      will-change: transform, filter, opacity;
+    }
+
+    #tabbrowser-tabpanels>hbox.deck-selected:not(.zen-glance-background):not([zen-split]) {
+      transform: scale(1);
+      opacity: 1 !important;
+      filter: none !important;
+    }
+  }
+
+  @media (-moz-pref("arc-tab-switch-animation", 0)) {
+    #tabbrowser-tabpanels>hbox:not(.zen-glance-background):not([zen-split="true"]) {
+      transition: none !important;
+      scale: 1 !important;
+      opacity: 1 !important;
+      filter: none !important;
+    }
+
+    #tabbrowser-tabpanels>hbox.deck-selected:not(.zen-glance-background):not([zen-split="true"]) {
+      scale: 1 !important;
+      opacity: 1 !important;
+      filter: none !important;
+    }
+  }
+
+  /* ----------------- Other animations ------------------ */
+  /* ------------------ Custom Split View Animation ------------------- */
+
+  @keyframes scaleAndBrighten {
+    0% {
+      transform: scale(0.95);
+      opacity: 0;
+      filter: brightness(0);
+    }
+
+    50% {
+      filter: brightness(0);
+    }
+
+    100% {
+      transform: scale(1);
+      opacity: 1;
+      filter: brightness(1);
+    }
+  }
+
+  #tabbrowser-tabpanels[zen-split-view="true"] {
     transition: none !important;
   }
 
-  #tabbrowser-tabpanels > hbox.deck-selected:not(.zen-glance-background):not([zen-split="true"]) {
-    scale: 1 !important;
-    opacity: 1 !important;
-    filter: none !important;
-  }
-}
-  
-/* ----------------- Other animations ------------------ */
-/* ------------------ Custom Split View Animation ------------------- */
+  #tabbrowser-tabpanels[zen-split-view="true"] .browserSidebarContainer {
 
     animation: scaleAndBrighten 0.6s cubic-bezier(0.33, 1, 0.68, 1) forwards;
   }
-
-
 
   /* website view animations [works for split tabs] */
   #browser:not(:has(.zen-glance-background)) #tabbrowser-tabpanels {
@@ -693,25 +721,25 @@ menuitem *,
   /* trackpad gestures*/
   tabpanels .browserStack browser {
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1) 0.1s !important;
-
   }
 
+  @media (-moz-pref("arc.previous-page-animation")) {
 
-  /* Previous animation*/
-  .browserStack:has(#historySwipeAnimationPreviousArrow:not([style="translate: none;"])) browser {
-    scale: 0.95 !important;
-    transform: translateX(3%) !important;
+    /* Previous animation */
+    .browserStack: has(#historySwipeAnimationPreviousArrow:not([style="translate: none;"])) browser {
+      scale: 0.95 !important;
+      transform: translateX(3%) !important;
+    }
   }
 
-  /* Next animation*/
-  .browserStack:has(#historySwipeAnimationNextArrow:not([style="translate: none;"])) browser {
-    scale: 0.95 !important;
-    transform: translateX(-3%) !important;
+  @media (-moz-pref("arc.next-page-animation")) {
 
+    /* Next animation  */
+    .browserStack: has(#historySwipeAnimationNextArrow:not([style="translate: none;"])) browser {
+      scale: 0.95 !important;
+      transform: translateX(-3%) !important;
+    }
   }
-
-  /* smoothen trackpad gestures */
-  .browserStack browser[style*="transform: none"] {}
 
   /* ctrl tab visuals and animations */
   #ctrlTab-panel {
@@ -727,7 +755,6 @@ menuitem *,
   }
 
   slot:nth-child(1) {
-
     padding: 0 !important;
   }
 
@@ -839,7 +866,6 @@ menuitem *,
 
   /*Media Player*/
   @-moz-document url-prefix("chrome:") {
-
     @media (-moz-pref("arc.media-controls-toolbar-bottom")) {
       #zen-media-controls-toolbar {
         order: 1 !important;
@@ -851,7 +877,6 @@ menuitem *,
       }
     }
 
-
     /* Media player expanded layout */
     #zen-media-controls-toolbar {
       & .show-on-hover {
@@ -860,8 +885,7 @@ menuitem *,
         transform: translateY(0) !important;
         padding-right: 6px;
         pointer-events: none;
-        transition: max-height 0.2s ease, opacity 0.2s ease, transform 0.2s ease,
-          padding 0.2s ease;
+        transition: max-height 0.2s ease, opacity 0.2s ease, transform 0.2s ease, padding 0.2s ease;
       }
     }
 
@@ -930,7 +954,6 @@ menuitem *,
         color-mix(in srgb, var(--zen-primary-color) 25%, black),
         color-mix(in srgb, var(--zen-primary-color) 10%, black),
         light-dark(#fffd, #000d));
-
     background-size: 200% 200%;
   }
 
@@ -983,9 +1006,7 @@ menuitem *,
         padding: 0px !important;
         height: 13px !important;
         width: 13px !important;
-
         align-self: center;
-
         border-radius: 50px;
         margin: 0px 3px !important;
         background-color: rgba(200, 200, 200, 0.3) !important;
@@ -1059,7 +1080,6 @@ menuitem *,
       }
     }
   }
-
 
   @media not (-moz-pref("arc-style-window-buttons-disabled")) {
     @media not (-moz-pref("zen.view.experimental-no-window-controls")) {
