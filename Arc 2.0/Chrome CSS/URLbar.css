@@ -90,12 +90,12 @@
 }
 
 /* Accessibility - disable for reduced motion */
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;
     transition: none !important;
   }
-}
+} */
 
 /* ------------------ URLBAR Styling ------------------ */
 :root[zen-single-toolbar="true"] #urlbar {
