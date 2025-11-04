@@ -268,6 +268,7 @@ Descriptions are provided in the original instructions above.
 * [JustAdumbPrsn / Nebula Theme](https://github.com/JustAdumbPrsn/Nebula-A-Minimal-Theme-for-Zen-Browser)
 * [sameerasw / ZenZero](https://github.com/sameerasw/ZenZero)
 * [rrthrr](https://github.com/rrthrr)
+* [Comp-Tech-Guy / No-Gaps](https://github.com/Comp-Tech-Guy/No-Gaps)
 
 ---
 
