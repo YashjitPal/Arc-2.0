@@ -435,7 +435,7 @@ menuitem:nth-child(n+6) {
 }
 
 /* === PERFORMANCE OPTIMIZATIONS === */
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
 
   *,
   *::before,
@@ -444,7 +444,7 @@ menuitem:nth-child(n+6) {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-}
+} */
 
 /* Hardware acceleration for all animated elements */
 .tabbrowser-tab *,
