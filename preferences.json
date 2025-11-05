@@ -11,11 +11,6 @@
   },
   {
     "type": "checkbox",
-    "label": "Enable transparent background for Glance/Peek mode",
-    "property": "arc-transparent-glance"
-  },
-  {
-    "type": "checkbox",
     "label": "Enable Arc Menu Icon",
     "property": "arc-menu-icon",
     "default": true
@@ -416,6 +411,7 @@
     ]
   }
 ]
+
 
 
 
