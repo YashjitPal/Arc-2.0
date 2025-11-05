@@ -59,6 +59,11 @@
     ]
   },
   {
+    "type": "checkbox",
+    "property": "natsumi.pdfjs.compact",
+    "label": "Enable Compact mode for PDF viewer (hides PDF toolbar until hover on middle-top area so that entire PDF content is visible)."
+  },
+  {
     "type": "separator"
   },
   {
@@ -411,6 +416,7 @@
     ]
   }
 ]
+
 
 
 
