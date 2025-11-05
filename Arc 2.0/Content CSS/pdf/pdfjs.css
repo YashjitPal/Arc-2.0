@@ -367,8 +367,7 @@ their author(s) have been provided above the used code.
             }
           }
         }
-
-        @media (-moz-bool-pref: "natsumi.pdfjs.compact-dynamic") {
+        
           .toolbar:has(#sidebarToggleButton[aria-expanded="true"]) {
             height: 52px;
 
@@ -386,14 +385,6 @@ their author(s) have been provided above the used code.
               margin-top: 0 !important;
             }
           }
-        }
-
-        @media not (-moz-bool-pref: "natsumi.pdfjs.compact-dynamic") {
-          #viewer > .page:first-of-type,
-          #viewer .spread:first-of-type .page {
-            margin-top: 0 !important;
-          }
-        }
       }
 
       /* Topbar buttons */
