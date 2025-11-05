@@ -839,30 +839,47 @@ menuitem *,
     }
   }
 
-  /*Transparent Glance*/
-  @media (-moz-pref("arc-transparent-glance")) {
+ /* Transparent glance */
+.zen-glance-background > vbox {
+    mask-image: linear-gradient(
+    to right,
+    black 0%,
+    black 3.7%,
+    transparent 6.7%,
+    transparent 93.3%,
+    black 96.3%,
+    black 100%
+  );
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
 
-    /* Transparent glance styling */
-    .zen-glance-background>vbox {
-      mask-image: linear-gradient(to right,
-          black 0%,
-          black 4%,
-          transparent 7%,
-          transparent 93.5%,
-          black 96%,
-          black 100%);
-      mask-repeat: no-repeat;
-      mask-size: 100% 100%;
-    }
+  transition: all var(--zen-hidden-toolbar-transition), mask-image 0.3s ease-in-out 1s !important;
+  
+}
 
-    .zen-glance-overlay>vbox {
-      background-color: light-dark(#fff7, #0007) !important;
-      margin-top: 0.5% !important;
-      margin-bottom: 0.5% !important;
-      height: 98% !important;
-      border-radius: 1.5em !important;
+.zen-glance-overlay > vbox {
+    background-color: light-dark(#fff7, #0007) !important;
+  border-radius: 1.5em !important;
+  border: 1px solid light-dark(#ffff, #fff3);
+  box-shadow:   4px 2px 60px light-dark(#0005, #0001), inset 0 2px 4px light-dark(#ffff, #fff3);
+  
+}
+
+.zen-glance-sidebar-container{
+    background-color: light-dark(#fff7, #0007) !important;
+    border-radius: 10em !important;
+    margin: 0.5em;
+    padding: 0 !important;
+    border: 1px solid light-dark(#ffff, #fff5);
+    box-shadow:   4px 2px 60px light-dark(#0005, #0001), inset 0 2px 4px light-dark(#ffff, #fff3);
+    gap: 6px !important;
+    height: fit-content !important;
+    backdrop-filter: blur(10px) !important;
+
+    toolbarbutton{
+      margin: 0.5em !important;
     }
-  }
+}
 
   /*Media Player*/
   @-moz-document url-prefix("chrome:") {
