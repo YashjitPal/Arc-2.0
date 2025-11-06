@@ -839,47 +839,45 @@ menuitem *,
     }
   }
 
-/* Transparent glance */
-.zen-glance-background > vbox {
-    mask-image: linear-gradient(
-    to right,
-    black 0%,
-    black 3.7%,
-    transparent 6.7%,
-    transparent 93.3%,
-    black 96.3%,
-    black 100%
-  );
-  mask-repeat: no-repeat;
-  mask-size: 100% 100%;
+  /* Transparent glance */
+  .zen-glance-background>vbox {
+    mask-image: linear-gradient(to right,
+        black 0%,
+        black 3.7%,
+        transparent 6.7%,
+        transparent 93.3%,
+        black 96.3%,
+        black 100%);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
 
-  transition: all var(--zen-hidden-toolbar-transition), mask-image 0.3s ease-in-out 1s !important;
-  
-}
+    transition: all var(--zen-hidden-toolbar-transition), mask-image 0.3s ease-in-out 1s !important;
 
-.zen-glance-overlay > vbox {
+  }
+
+  .zen-glance-overlay>vbox {
     background-color: light-dark(#fff7, #0007) !important;
-  border-radius: 1.5em !important;
-  border: 1px solid light-dark(#ffff, #fff3);
-  box-shadow:   4px 2px 60px light-dark(#0005, #0001), inset 0 2px 4px light-dark(#ffff, #fff3);
-  
-}
+    border-radius: 1.5em !important;
+    border: 1px solid light-dark(#ffff, #fff3);
+    box-shadow: 4px 2px 60px light-dark(#0005, #0001), inset 0 2px 4px light-dark(#ffff, #fff3);
 
-.zen-glance-sidebar-container{
+  }
+
+  .zen-glance-sidebar-container {
     background-color: light-dark(#fff7, #0007) !important;
     border-radius: 10em !important;
     margin: 0.5em;
     padding: 0 !important;
     border: 1px solid light-dark(#ffff, #fff5);
-    box-shadow:   4px 2px 60px light-dark(#0005, #0001), inset 0 2px 4px light-dark(#ffff, #fff3);
+    box-shadow: 4px 2px 60px light-dark(#0005, #0001), inset 0 2px 4px light-dark(#ffff, #fff3);
     gap: 6px !important;
     height: fit-content !important;
     backdrop-filter: blur(10px) !important;
 
-    toolbarbutton{
+    toolbarbutton {
       margin: 0.5em !important;
     }
-}
+  }
 
   /*Media Player*/
   @-moz-document url-prefix("chrome:") {
@@ -952,34 +950,47 @@ menuitem *,
     opacity: 0 !important;
     transition: all 0.3s ease-in-out !important;
     background: linear-gradient(135deg,
-        color-mix(in srgb, var(--zen-primary-color) 10%, black),
+        color-mix(in srgb, var(--zen-primary-color) 10%, rgb(0, 0, 0, 0.2)),
         var(--zen-primary-color),
         color-mix(in srgb, var(--zen-primary-color) 25%, white),
         var(--zen-primary-color),
-        light-dark(#fffd, #000d),
-        light-dark(#fffd, #000d),
+        light-dark(#fffd, rgba(0, 0, 0, 0.5)),
+        light-dark(#fffd, rgba(0, 0, 0, 0.5)),
         var(--zen-primary-color),
         color-mix(in srgb, var(--zen-primary-color) 50%, white),
         color-mix(in srgb, var(--zen-primary-color) 25%, white),
         var(--zen-primary-color),
-        color-mix(in srgb, var(--zen-primary-color) 25%, black),
-        light-dark(#fffd, #000d),
-        color-mix(in srgb, var(--zen-primary-color) 10%, black),
-        light-dark(#fffd, #000d),
-        color-mix(in srgb, var(--zen-primary-color) 75%, black),
-        color-mix(in srgb, var(--zen-primary-color) 50%, black),
-        color-mix(in srgb, var(--zen-primary-color) 25%, black),
-        color-mix(in srgb, var(--zen-primary-color) 10%, black),
-        light-dark(#fffd, #000d));
+        color-mix(in srgb, var(--zen-primary-color) 25%, rgb(0, 0, 0, 0.2)),
+        light-dark(#fffd, rgba(0, 0, 0, 0.5)),
+        color-mix(in srgb, var(--zen-primary-color) 10%, rgb(0, 0, 0, 0.2)),
+        light-dark(#fffd, rgba(0, 0, 0, 0.5)),
+        color-mix(in srgb, var(--zen-primary-color) 75%, rgb(0, 0, 0, 0.2)),
+        color-mix(in srgb, var(--zen-primary-color) 50%, rgb(0, 0, 0, 0.2)),
+        color-mix(in srgb, var(--zen-primary-color) 25%, rgb(0, 0, 0, 0.2)),
+        color-mix(in srgb, var(--zen-primary-color) 10%, rgb(0, 0, 0, 0.2)),
+        light-dark(#fffd, rgba(0, 0, 0, 0.5)));
     background-size: 200% 200%;
+  }
+
+  @media -moz-pref("arc.transparency-media") {
+    :root {
+      --arc-media-color: light-dark(#fffd, #000d);
+    }
+  }
+
+  @media not (-moz-pref("arc.transparency-media")) {
+    :root {
+      --arc-media-color: light-dark(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.2)) !important;
+    }
+  }
+
+
+  #zen-media-controls-toolbar toolbaritem {
+    background-color: var(--arc-media-color) !important;
   }
 
   /* Playing media styling */
   #zen-media-controls-toolbar.playing {
-    toolbaritem {
-      background-color: light-dark(#fffd, #000d) !important;
-    }
-
     padding: 16px 24px;
     position: relative;
     border-radius: 8px;
@@ -1016,7 +1027,7 @@ menuitem *,
       font-size: 0 !important;
     }
 
-    @media (not -moz-pref("zen.view.experimental-no-window-controls")) and (not -moz-pref("arc-macos-style-buttons")) {
+    @media not (-moz-pref("zen.view.experimental-no-window-controls")) and (not -moz-pref("arc-macos-style-buttons")) {
       .titlebar-button {
         min-height: 13px !important;
         min-width: 13px !important;
