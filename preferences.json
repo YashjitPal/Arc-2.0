@@ -242,6 +242,11 @@
   },
   {
     "type": "checkbox",
+    "property": "arc.transparency-media",
+    "label": "Disable glassy look from media player"
+  },
+  {
+    "type": "checkbox",
     "property": "arc.tab.default-audio-indicator",
     "label": "Disable audio playing indicator in tab playing media."
   },
@@ -411,14 +416,3 @@
     ]
   }
 ]
-
-
-
-
-
-
-
-
-
-
-
