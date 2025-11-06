@@ -14,6 +14,10 @@ browser{
   background-color: transparent !important;;
 }
 
+.dialogFrame{
+  background-color: var(--sidebar-background-color) !important;
+}
+
 .sticky-container{
   width: calc(var(--page-main-content-width) + var(--main-margin-start) + var(--main-margin-start)) !important;
   border-radius: 0 0 1em 1em !important;
@@ -115,4 +119,5 @@ footer{
   border: none !important;
   box-shadow: none !important;
 } */
+
 
