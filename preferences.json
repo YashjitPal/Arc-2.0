@@ -201,11 +201,6 @@
   },
   {
     "type": "checkbox",
-    "property": "arc-style-window-buttons-disabled",
-    "label": "Disable stylings for window controls."
-  },
-  {
-    "type": "checkbox",
     "property": "arc-macos-style-buttons",
     "label": "Enable macOS-style window buttons."
   },
@@ -415,4 +410,5 @@
       }
     ]
   }
+
 ]
