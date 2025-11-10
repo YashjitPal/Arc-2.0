@@ -111,9 +111,9 @@ tab {
       display: flex !important;
       box-sizing: border-box !important;
 
-      width: 23.25px !important;
-      height: 23.25px !important;
-      margin: auto 4.5px !important;
+      width: 22.2px !important;
+      height: 23px !important;
+      margin: auto 5.5px !important;
       border-radius: 1rem !important;
       /*   background-color: color-mix(in srgb, var(--identity-tab-color) 20%, white), !important; */
       background: color-mix(
