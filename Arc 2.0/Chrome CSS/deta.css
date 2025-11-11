@@ -1,0 +1,151 @@
+/* CREDITS TO rasyidrafi who has a zen-deta-loading-bar repo which is been copied chrome.css to here*/
+
+/*
+ * =================================================================
+ *  Top Loading Bar for Zen Browser - CSS-Only Method
+ * =================================================================
+ *  This targets the browserStack browser content wrapper
+ *  and is triggered ONLY on page load via the [waiting] attribute.
+ */
+:root {
+  --mod-detaloadingbar-thickness: var(--mod-detaloadingbar-thickness, 6px);
+  --mod-detaloadingbar-minwidth: var(--mod-detaloadingbar-minwidth, 20px);
+  --mod-detaloadingbar-maxwidth: var(--mod-detaloadingbar-maxwidth, 120px);
+  --mod-detaloadingbar-blur-intensity: var(--mod-detaloadingbar-blur-intensity, 1.8px);
+  --mod-detaloadingbar-boxshadow: var(--mod-detaloadingbar-boxshadow, 0 2px 12px 0 rgba(0,0,0,0.25), 0 1.5px 4px 0 rgba(0,0,0,0.15));
+}
+
+@media (-moz-bool-pref: "mod.detaloadingbar.usefromzen") {
+  :root {
+    --mod-detaloadingbar-primarycolor-final: var(--zen-primary-color, rgba(243,202,176,255)) !important;
+    --mod-detaloadingbar-secondarycolor-final: var(--zen-colors-primary-foreground, rgba(255,255,255,255)) !important;
+  }
+}
+
+@media not (-moz-bool-pref: "mod.detaloadingbar.usefromzen") {
+  :root {
+    --mod-detaloadingbar-primarycolor-final: var(--mod-detaloadingbar-maincolor, rgba(243,202,176,255)) !important;
+    --mod-detaloadingbar-secondarycolor-final: var(--mod-detaloadingbar-middlecolor, rgba(255,255,255,255)) !important;
+  }
+}
+
+/* First, ensure the browserStack can act as a positioning container */
+.browserStack {
+  position: relative !important;
+  transform: translateZ(0);
+  will-change: auto;
+}
+
+/* Now, create the loading bar inside it when the window is loading */
+@media (-moz-bool-pref: "mod.detaloadingbar.enabled") {
+  #main-window .browserStack::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 8px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    height: var(--mod-detaloadingbar-thickness) !important;
+    border-radius: calc(var(--mod-detaloadingbar-thickness) / 2) !important;
+    z-index: 9999 !important;
+    pointer-events: none !important;
+    /* Hidden by default */
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: opacity 0.2s ease, visibility 0.2s ease !important;
+  }
+
+  @media (-moz-bool-pref: "mod.detaloadingbar.boxshadow.enabled") {
+    #main-window .browserStack::before {
+      box-shadow: var(--mod-detaloadingbar-boxshadow) !important;
+    }
+  }
+
+  @media (-moz-bool-pref: "mod.detaloadingbar.singlecolor") {
+    #main-window .browserStack::before {
+      background: var(--mod-detaloadingbar-primarycolor-final) !important;
+    }
+  }
+
+  @media not (-moz-bool-pref: "mod.detaloadingbar.singlecolor") {
+    #main-window .browserStack::before {
+      background: linear-gradient(
+        to right,
+        var(--mod-detaloadingbar-primarycolor-final),
+        var(--mod-detaloadingbar-secondarycolor-final),
+        var(--mod-detaloadingbar-primarycolor-final)
+      ) !important;
+    }
+  }
+
+  /* Show loading bar ONLY when the current active tab is busy */
+  #main-window:has(.tabbrowser-tab[selected][busy]) .browserStack:has(> #statuspanel[previoustype="status"])::before {
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: zen-loading-pulse 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate !important;
+  }
+
+  /* Fallback for some browser structures */
+  .tabbrowser-tab[selected][busy] .browserStack::before {
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: zen-loading-pulse 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate !important;
+  }
+}
+
+/* Pulse animation with conditional blur */
+@media (-moz-bool-pref: "mod.detaloadingbar.blur.enabled") {
+  @keyframes zen-loading-pulse {
+    0% {
+      width: var(--mod-detaloadingbar-minwidth, 20px);
+      filter: blur(var(--mod-detaloadingbar-blur-intensity));
+      opacity: 0.3;
+      transform: translateX(-50%) scale(0.9);
+    }
+    25% {
+      opacity: 0.5;
+      filter: blur(var(--mod-detaloadingbar-blur-intensity));
+    }
+    50% {
+      opacity: 0.7;
+      filter: blur(var(--mod-detaloadingbar-blur-intensity));
+      transform: translateX(-50%) scale(0.95);
+    }
+    75% {
+      opacity: 0.9;
+      filter: blur(var(--mod-detaloadingbar-blur-intensity));
+      transform: translateX(-50%) scale(1);
+    }
+    100% {
+      width: var(--mod-detaloadingbar-maxwidth, 120px);
+      filter: blur(var(--mod-detaloadingbar-blur-intensity));
+      opacity: 1;
+      transform: translateX(-50%) scale(1.02);
+    }
+  }
+}
+
+@media not (-moz-bool-pref: "mod.detaloadingbar.blur.enabled") {
+  @keyframes zen-loading-pulse {
+    0% {
+      width: var(--mod-detaloadingbar-minwidth, 20px);
+      opacity: 0.3;
+      transform: translateX(-50%) scale(0.9);
+    }
+    25% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 0.7;
+      transform: translateX(-50%) scale(0.95);
+    }
+    75% {
+      opacity: 0.9;
+      transform: translateX(-50%) scale(1);
+    }
+    100% {
+      width: var(--mod-detaloadingbar-maxwidth, 120px);
+      opacity: 1;
+      transform: translateX(-50%) scale(1.02);
+    }
+  }
+}
