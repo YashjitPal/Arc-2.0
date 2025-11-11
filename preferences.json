@@ -409,6 +409,80 @@
         "value": "SUSE-Italic"
       }
     ]
-  }
-
+  },
+  {
+    "type": "separator"
+  },
+  {
+      "property": "arc.detaloadingbar.enabled",
+      "label": "Enable/Disable Deta Loading Bar",
+      "type": "checkbox",
+      "defaultValue": true
+    },
+    {
+      "property": "arc.detaloadingbar.usefromzen",
+      "label": "Use color from Zen browser theme (will override custom colors)",
+      "type": "checkbox",
+      "defaultValue": true
+    },
+    {
+      "property": "arc.detaloadingbar.singlecolor",
+      "label": "Use only main color for the loading bar (Disable gradient)",
+      "type": "checkbox",
+      "defaultValue": false
+    },
+    {
+        "property": "arc.detaloadingbar.maincolor",
+        "label": "Main color",
+        "type": "string",
+        "defaultValue": "rgba(243,202,176,255)"
+    },
+    {
+        "property": "arc.detaloadingbar.middlecolor",
+        "label": "Middle color",
+        "type": "string",
+        "defaultValue": "rgba(255,255,255,255)"
+    },
+    {
+        "property": "arc.detaloadingbar.thickness",
+        "label": "Thickness",
+        "type": "string",
+        "defaultValue": "6px"
+    },
+    {
+        "property": "arc.detaloadingbar.minwidth",
+        "label": "Custom Minimum Width",
+        "type": "string",
+        "defaultValue": "20px"
+    },
+    {
+        "property": "arc.detaloadingbar.maxwidth",
+        "label": "Custom Maximum Width",
+        "type": "string",
+        "defaultValue": "120px"
+    },
+    {
+      "property": "arc.detaloadingbar.boxshadow.enabled",
+      "label": "Enable/Disable Box Shadow",
+      "type": "checkbox",
+      "defaultValue": true
+    },
+    {
+        "property": "arc.detaloadingbar.boxshadow",
+        "label": "Custom Box shadow",
+        "type": "string",
+        "defaultValue": "0 2px 12px 0 rgba(0,0,0,0.25), 0 1.5px 4px 0 rgba(0,0,0,0.15)"
+    },
+    {
+      "property": "arc.detaloadingbar.blur.enabled",
+      "label": "Enable/Disable Blur Effect",
+      "type": "checkbox",
+      "defaultValue": true
+    },
+    {
+        "property": "arc.detaloadingbar.blur.intensity",
+        "label": "Blur Intensity",
+        "type": "string",
+        "defaultValue": "1.8px"
+    }
 ]
