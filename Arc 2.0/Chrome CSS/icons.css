@@ -385,29 +385,8 @@ html[zen-single-toolbar="true"] {
 
 /* ------------------------- WINDOWS BUTTONS ------------------------- */
 
-@media not (-moz-pref("arc-style-window-buttons-disabled")) {
-  .titlebar-close {
-    transition: background-color 0.3s ease-out, transform 0.2s ease-in-out;
-  }
 
-  .titlebar-close:hover {
-    background-color: rgba(255, 0, 0, 0.8);
-    transform: scale(1);
-  }
-
-  .titlebar-min,
-  .titlebar-max {
-    transition: background-color 0.3s ease-out, transform 0.2s ease-out;
-  }
-
-  .titlebar-min:hover,
-  .titlebar-max:hover {
-    background-color: rgba(200, 200, 200, 0.2);
-    transform: scale(1);
-  }
-}
-
-@media (-moz-pref("arc-macos-style-buttons")) and (not -moz-pref("arc-style-window-buttons-disabled")) {
+@media (-moz-pref("arc-macos-style-buttons")) {
   .titlebar-buttonbox {
     margin: -2px -2px 0px -4px !important;
     scale: 0.85 !important;
@@ -494,7 +473,7 @@ html[zen-single-toolbar="true"] {
   }
 }
 
-@media (-moz-pref("arc-macos-style-buttons")) and (not -moz-pref("arc-style-window-buttons-disabled")) and (-moz-pref("zen.view.experimental-force-window-controls-left")) {
+@media (-moz-pref("arc-macos-style-buttons")) and (-moz-pref("zen.view.experimental-force-window-controls-left")) {
   .titlebar-buttonbox-container {
     order: -1 !important;
     margin-left: 8px !important;
@@ -506,7 +485,7 @@ html[zen-single-toolbar="true"] {
   }
 }
 
-@media (-moz-pref("arc-macos-style-buttons")) and (not -moz-pref("arc-style-window-buttons-disabled")) {
+@media (-moz-pref("arc-macos-style-buttons")) {
   @media not all and (-moz-pref("zen.view.experimental-force-window-controls-left")) {
 
     html[nebula-compact-mode] .titlebar-buttonbox-container {
