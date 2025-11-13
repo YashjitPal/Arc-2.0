@@ -21,7 +21,6 @@
     "label": "When typed something by clicking on the URL bar, opens a new tab instead of modifying the current tab.",
     "property": "browser.urlbar.openintab"
   },
- 
   {
     "type": "checkbox",
     "label": "Shorten URL Bar to only show domain name.",
@@ -185,14 +184,8 @@
   },
   {
     "type": "checkbox",
-    "label": "Enable Previous page animations",
-    "property": "arc.previous-page-animation",
-    "default": true
-  },
-  {
-    "type": "checkbox",
-    "label": "Enable Next page animations",
-    "property": "arc.next-page-animation",
+    "label": "Enable Previous and next page touchpad animations",
+    "property": "arc.previous-next-page-animation",
     "default": true
   },
   {
