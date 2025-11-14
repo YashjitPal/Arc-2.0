@@ -1,20 +1,36 @@
 [
   {
+    "type": "separator",
+    "label": "🪟 Window & Transparency 🪟",
+    "margin":"30px 0 30px 0",
+    "size": "17px"
+  },
+  {
     "type": "checkbox",
     "label": "Enable transparent browser windows (browser restart maybe required to take effect).",
     "property": "browser.tabs.allow_transparent_browser",
     "restart": true
   },
-   {
+  {
     "type": "checkbox",
     "label": "Force transparency using clip-path (use this only if the ways mentioned to get transparency in `readme.md` doesn't work).",
     "property": "arc.force-blur-rendering"
   },
   {
     "type": "checkbox",
-    "label": "Enable Arc Menu Icon",
-    "property": "arc-menu-icon",
-    "default": true
+    "property": "arc.transparency-media",
+    "label": "Disable glassy look from media player"
+  },
+  {
+    "type": "checkbox",
+    "property": "arc.urlbar.background",
+    "label": "Disable blur for background zoom blur when URL bar popup."
+  },
+  {
+    "type": "separator",
+    "label": "🔎 Url Bar Options 🔎",
+    "margin":"30px 0 30px 0",
+    "size": "17px"
   },
   {
     "type": "checkbox",
@@ -27,9 +43,75 @@
     "property": "browser.urlbar.trimURLs"
   },
   {
+    "type": "dropdown",
+    "value": "string",
+    "property": "arc-urlbar-animation",
+    "label": "Animation for URL bar when focused.",
+    "default": 1,
+    "options": [
+      { "label": "Stretch", "value": "stretch" },
+      { "label": "Fade in", "value": "fadeIn" }
+    ]
+  },
+  {
+    "type": "string",
+    "property": "arc.urlbar.opacity",
+    "default": 0.3,
+    "label": "Change the transparency of the urlbar."
+  },
+  {
     "type": "checkbox",
-    "label": "Enable Background for Folders (NOTE: Works only till three nested-folders)",
-    "property": "arc-folder-border"
+    "property": "arc-urlbar-fade-in",
+    "label": "Remove fade-in which is below the urlbar.",
+    "default": false
+  },
+  {
+    "type": "dropdown",
+    "value": "number",
+    "property": "arcline.url.bar",
+    "label": "Enables Arcline-like URL Bar.",
+    "default": 0,
+    "options": [
+      { "label": "Disable", "value": 0 },
+      { "label": "Enable", "value": 1 }
+    ]
+  },
+  {
+    "type": "separator",
+    "label": "📚 Sidebar / Compact mode 📚",
+    "margin":"30px 0 30px 0",
+    "size": "17px"
+  },
+  {
+    "type": "string",
+    "property": "arc.compact.sidebar-opacity",
+    "default": "0.3",
+    "label": "Change the theme color density in compact sidebar."
+  },
+  {
+    "type": "string",
+    "label": "Blur for compact mode sidebar",
+    "property": "arc.compact.sidebar-blur",
+    "defaultValue": "30px",
+    "placeholder": "30px"
+  },
+  {
+    "type": "checkbox",
+    "property": "arc-compact-mode-no-sidebar-bg",
+    "label": "Remove pseudo background on compact sidebar."
+  },
+  {
+    "type": "string",
+    "property": "arc-compact-sidebar-size",
+    "default": "25em",
+    "placeholder": "25em",
+    "label": "Custom sidebar size for compact mode."
+  },
+  {
+    "type": "separator",
+    "label": "🗂️ Tabs and Tab Animation 🗂️",
+    "margin":"30px 0 30px 0",
+    "size": "17px"
   },
   {
     "type": "checkbox",
@@ -43,56 +125,8 @@
     "label": "Arc Tab Groups",
     "default": 0,
     "options": [
-      {
-        "label": "Enabled",
-        "value": 0
-      },
-      {
-        "label": "Disabled",
-        "value": 1
-      }
-    ]
-  },
-  {
-    "type": "checkbox",
-    "property": "natsumi.pdfjs.compact",
-    "label": "Enable Compact mode for PDF viewer (hides PDF toolbar until hover on middle-top area so that entire PDF content is visible)."
-  },
-  {
-    "type": "separator"
-  },
-  {
-    "type": "checkbox",
-    "property": "arc.urlbar.background",
-    "label": "Disable blur for background zoom blur when URL bar popup. (Only ENABLE it if you don't use Transparent background at all)"
-  },
-  {
-    "type": "string",
-    "property": "arc.compact.sidebar-opacity",
-    "default": "0.3",
-    "label": "Change the theme color density in compact sidebar. (Use 1 for solid color, so that you can't see the translucent look of the sidebar.)"
-  },
-  {
-    "type": "string",
-    "property": "arc.urlbar.opacity",
-    "default": 0.3,
-    "label": "Change the transparency of the urlbar. (Use 1 for solid color, so that you can't see the translucent look of the sidebar.)"
-  },
-  {
-    "type": "dropdown",
-    "value": "string",
-    "property": "arc-urlbar-animation",
-    "label": "Animation for URL bar when focused.",
-    "default": 1,
-    "options": [
-      {
-        "label": "Stretch",
-        "value": "stretch"
-      },
-      {
-        "label": "Fade in",
-        "value": "fadeIn"
-      }
+      { "label": "Enabled", "value": 0 },
+      { "label": "Disabled", "value": 1 }
     ]
   },
   {
@@ -102,30 +136,12 @@
     "label": "Animation while the website loads.",
     "default": 1,
     "options": [
-      {
-        "label": "No animation",
-        "value": 0
-      },
-      {
-        "label": "Blur (default)",
-        "value": 1
-      },
-      {
-        "label": "More prominent blur",
-        "value": 2
-      },
-      {
-        "label": "Less prominent blur",
-        "value": 3
-      },
-      {
-        "label": "Grayscale with no blur",
-        "value": 4
-      },
-      {
-        "label": "Grayscale with blur",
-        "value": 5
-      }
+      { "label": "No animation", "value": 0 },
+      { "label": "Blur (default)", "value": 1 },
+      { "label": "More prominent blur", "value": 2 },
+      { "label": "Less prominent blur", "value": 3 },
+      { "label": "Grayscale with no blur", "value": 4 },
+      { "label": "Grayscale with blur", "value": 5 }
     ]
   },
   {
@@ -135,58 +151,13 @@
     "label": "Animation while switching tabs.",
     "default": 1,
     "options": [
-      {
-        "label": "No animation",
-        "value": 0
-      },
-      {
-        "label": "Bounce (default)",
-        "value": 1
-      },
-      {
-        "label": "Bouncier",
-        "value": 2
-      },
-      {
-        "label": "More bounce than the default, but less than option 3",
-        "value": 3
-      },
-      {
-        "label": "Smooth crossfade",
-        "value": 4
-      },
-      {
-        "label": "Zoom out effect",
-        "value": 5
-      }
+      { "label": "No animation", "value": 0 },
+      { "label": "Bounce (default)", "value": 1 },
+      { "label": "Bouncier", "value": 2 },
+      { "label": "More bounce", "value": 3 },
+      { "label": "Smooth crossfade", "value": 4 },
+      { "label": "Zoom out effect", "value": 5 }
     ]
-  },
-  {
-    "type": "dropdown",
-    "value": "number",
-    "property": "arc-marginless-mod",
-    "label": "Marginless browser",
-    "default": 0,
-    "options": [
-      {
-        "label": "None",
-        "value": 0
-      },
-      {
-        "label": "Only for compact mode.",
-        "value": 1
-      },
-      {
-        "label": "Both non-compact and compact mode",
-        "value": 2
-      }
-    ]
-  },
-  {
-    "type": "checkbox",
-    "label": "Enable Previous and next page touchpad animations",
-    "property": "arc.previous-next-page-animation",
-    "default": true
   },
   {
     "type": "checkbox",
@@ -195,8 +166,86 @@
   },
   {
     "type": "checkbox",
-    "property": "arc-macos-style-buttons",
-    "label": "Enable macOS-style window buttons."
+    "property": "arc.tab.default-audio-indicator",
+    "label": "Disable audio playing indicator in tab playing media."
+  },
+  {
+    "type": "checkbox",
+    "property": "browser.tabs.fadeOutUnloadedTabs",
+    "label": "Fade unloaded tabs in the background."
+  },
+  {
+    "type": "string",
+    "value": "number",
+    "property": "browser.tabs.min_inactive_duration_before_unload",
+    "label": "The duration (in ms) after which tab unloading occurs."
+  },
+  {
+    "type": "separator",
+    "label": "📦 Containers / Pinned Extensions / Workspaces 📦",
+    "margin":"30px 0 30px 0",
+    "size": "17px"
+  },
+  {
+    "type": "dropdown",
+    "value": "number",
+    "property": "arc-workspace-style",
+    "label": "Workspace icon animation style.",
+    "default": 0,
+    "options": [
+      { "label": "No background", "value": 0 },
+      { "label": "No animation", "value": 1 },
+      { "label": "Capsule background", "value": 2 }
+    ]
+  },
+  {
+    "type": "dropdown",
+    "value": "number",
+    "property": "arc-enable-container-styling",
+    "label": "Edit container styling.",
+    "default": 1,
+    "options": [
+      { "label": "Disabled", "value": 0 },
+      { "label": "Style-1", "value": 1 },
+      { "label": "Style-2", "value": 2 }
+    ]
+  },
+  {
+    "type": "checkbox",
+    "property": "arc-pinned-extensions-mod",
+    "label": "Enable Pinned Extensions UI."
+  },
+  {
+    "type": "checkbox",
+    "property": "arc-pinned-extensions-badge",
+    "label": "Enable badge/text on pinned extensions."
+  },
+  {
+    "type": "checkbox",
+    "property": "arc-remove-workspace-indicator",
+    "label": "Remove the workspace indicator."
+  },
+  {
+    "type": "separator",
+    "label": "🎨 Arc UI Mods / Interface 🎨",
+    "margin":"30px 0 30px 0",
+    "size": "17px"
+  },
+  {
+    "type": "checkbox",
+    "label": "Enable Arc Menu Icon",
+    "property": "arc-menu-icon",
+    "default": true
+  },
+  {
+    "type": "checkbox",
+    "property": "arc-menu-animations",
+    "label": "Disable Menu Animations."
+  },
+  {
+    "type": "checkbox",
+    "property": "arc-marginless-mod",
+    "label": "Marginless browser"
   },
   {
     "type": "checkbox",
@@ -206,39 +255,19 @@
   },
   {
     "type": "checkbox",
-    "property": "arc-pinned-extensions-mod",
-    "label": "Enable Pinned Extensions to look like Arc on sidebar (Disable if you have no pinned extensions)."
+    "property": "arc-macos-style-buttons",
+    "label": "Enable macOS-style window buttons."
+  },
+  {
+    "type": "separator",
+    "label": "🎥 Media Player / PDF / View Experience 🎥",
+    "margin":"30px 0 30px 0",
+    "size": "17px"
   },
   {
     "type": "checkbox",
-    "property": "arc-pinned-extensions-badge",
-    "label": "Enable badge/text on pinned extensions for related info, if any."
-  },
-  {
-    "type": "checkbox",
-    "property": "arc-menu-animations",
-    "label": "Disable Menu Animations."
-  },
-  {
-    "type": "checkbox",
-    "property": "arc-remove-workspace-indicator",
-    "label": "Remove the workspace indicator."
-  },
-  {
-    "type": "checkbox",
-    "property": "arc-urlbar-fade-in",
-    "label": "Remove fade-in which is below the urlbar.",
-    "default": false
-  },
-  {
-    "type": "checkbox",
-    "property": "arc.transparency-media",
-    "label": "Disable glassy look from media player"
-  },
-  {
-    "type": "checkbox",
-    "property": "arc.tab.default-audio-indicator",
-    "label": "Disable audio playing indicator in tab playing media."
+    "property": "natsumi.pdfjs.compact",
+    "label": "Enable Compact mode for PDF viewer."
   },
   {
     "type": "checkbox",
@@ -249,114 +278,19 @@
   {
     "type": "checkbox",
     "property": "arc-findbar-disable",
-    "label": "Disable Arc styling for FindBar (Must use this if you have installed Browse Bot Mod)."
+    "label": "Disable Arc styling for FindBar."
   },
   {
-    "type": "dropdown",
-    "value": "number",
-    "property": "arcline.url.bar",
-    "label": "Enables Arcline-like URL Bar.",
-    "default": 0,
-    "options": [
-      {
-        "label": "Disable",
-        "value": 0
-      },
-      {
-        "label": "Enable",
-        "value": 1
-      }
-    ]
-  },
-  {
-    "type": "dropdown",
-    "value": "number",
-    "property": "arc-workspace-style",
-    "label": "Introduce MacOS dock like animations to workspace icons.",
-    "default": 0,
-    "options": [
-      {
-        "label": "No background",
-        "value": 0
-      },
-      {
-        "label": "No animation",
-        "value": 1
-      },
-      {
-        "label": "Capsule background",
-        "value": 2
-      }
-    ]
-  },
-  {
-    "type": "dropdown",
-    "value": "number",
-    "property": "arc-enable-container-styling",
-    "label": "Edit container styling.",
-    "default": 1,
-    "options": [
-      {
-        "label": "Disabled",
-        "value": 0
-      },
-      {
-        "label": "Style-1 [SuperPins compatible]",
-        "value": 1
-      },
-      {
-        "label": "Style-2",
-        "value": 2
-      }
-    ]
-  },
-  {
-    "type": "string",
-    "label": "Blur for compact mode sidebar (e.g., 30px, 10px, etc.)",
-    "property": "arc.compact.sidebar-blur",
-    "defaultValue": "30px",
-    "placeholder": "30px"
-  },
-  {
-    "type": "checkbox",
-    "property": "arc-compact-mode-no-sidebar-bg",
-    "label": "Remove pseudo background on compact sidebar. Enable if you don't use transparent sites."
-  },
-  {
-    "type": "checkbox",
-    "property": "arc-tabs-no-shadow",
-    "label": "Remove shadow emitted from sidebar (not in compact mode)."
-  },
-  {
-    "type": "separator"
-  },
-  {
-    "type": "checkbox",
-    "property": "browser.ml.linkPreview.enabled",
-    "label": "Enable the ability to use Shift + Alt while hovering over a URL to generate an AI preview of the site content."
-  },
-  {
-    "type": "string",
-    "value": "number",
-    "property": "browser.ml.linkPreview.outputSentences",
-    "label": "The number of sentences for AI to generate with the link preview feature."
-  },
-  {
-    "type": "checkbox",
-    "property": "browser.tabs.fadeOutUnloadedTabs",
-    "label": "Fade unloaded tabs in the background."
+    "type": "separator",
+    "label": "⚡ Performance & Memory ⚡",
+    "margin":"30px 0 30px 0",
+    "size": "17px"
   },
   {
     "type": "string",
     "value": "number",
     "property": "browser.low_commit_space_threshold_mb",
-    "label": "The amount of memory free to activate tab unloading (recommended: 2/3 of your RAM.)"
-  },
-  {
-    "type": "string",
-    "value": "number",
-    "property": "browser.tabs.min_inactive_duration_before_unload",
-    "label": "The duration (in milliseconds) after which tab unloading should occur."
+    "label": "Memory threshold to activate tab unloading."
   },
   {
     "type": "checkbox",
@@ -364,14 +298,21 @@
     "label": "Makes browser run on performance efficient mode."
   },
   {
-    "type": "separator"
+    "type": "checkbox",
+    "property": "browser.ml.linkPreview.enabled",
+    "label": "Enable Shift+Alt AI link preview."
   },
   {
     "type": "string",
-    "property": "arc-compact-sidebar-size",
-    "default": "25em",
-    "placeholder": "25em",
-    "label": "Custom sidebar size for compact mode (default: 25em)."
+    "value": "number",
+    "property": "browser.ml.linkPreview.outputSentences",
+    "label": "Number of sentences for AI preview."
+  },
+  {
+    "type": "separator",
+    "label": "✨ Fonts & Misc ✨",
+    "margin":"30px 0 30px 0",
+    "size": "17px"
   },
   {
     "type": "dropdown",
@@ -379,108 +320,90 @@
     "label": "Select the font for Arc.",
     "defaultValue": "Nunito",
     "options": [
-      {
-        "label": "Nunito (default)",
-        "value": "Nunito"
-      },
-      {
-        "label": "Nunito Italic",
-        "value": "Nunito-Italic"
-      },
-      {
-        "label": "SF Pro",
-        "value": "SF-Pro"
-      },
-      {
-        "label": "SF Symbols",
-        "value": "SF-Symbols"
-      },
-      {
-        "label": "SUSE",
-        "value": "SUSE"
-      },
-      {
-        "label": "SUSE Italic",
-        "value": "SUSE-Italic"
-      }
+      { "label": "Nunito (default)", "value": "Nunito" },
+      { "label": "Nunito Italic", "value": "Nunito-Italic" },
+      { "label": "SF Pro", "value": "SF-Pro" },
+      { "label": "SF Symbols", "value": "SF-Symbols" },
+      { "label": "SUSE", "value": "SUSE" },
+      { "label": "SUSE Italic", "value": "SUSE-Italic" }
     ]
   },
   {
-    "type": "text",
+    "type": "separator",
     "label": "🌀 Deta Loading animation 🌀",
     "margin": "30px 0 30px 0",
-    "size": "20px"
+    "size": "17px"
   },
   {
-      "property": "arc.detaloadingbar.enabled",
-      "label": "Enable/Disable Deta Loading Bar",
-      "type": "checkbox",
-      "defaultValue": true
-    },
-    {
-      "property": "arc.detaloadingbar.usefromzen",
-      "label": "Use color from Zen browser theme (will override custom colors)",
-      "type": "checkbox",
-      "defaultValue": true
-    },
-    {
-      "property": "arc.detaloadingbar.singlecolor",
-      "label": "Use only main color for the loading bar (Disable gradient)",
-      "type": "checkbox",
-      "defaultValue": false
-    },
-    {
-        "property": "arc.detaloadingbar.maincolor",
-        "label": "Main color",
-        "type": "string",
-        "defaultValue": "rgba(243,202,176,255)"
-    },
-    {
-        "property": "arc.detaloadingbar.middlecolor",
-        "label": "Middle color",
-        "type": "string",
-        "defaultValue": "rgba(255,255,255,255)"
-    },
-    {
-        "property": "arc.detaloadingbar.thickness",
-        "label": "Thickness",
-        "type": "string",
-        "defaultValue": "6px"
-    },
-    {
-        "property": "arc.detaloadingbar.minwidth",
-        "label": "Custom Minimum Width",
-        "type": "string",
-        "defaultValue": "20px"
-    },
-    {
-        "property": "arc.detaloadingbar.maxwidth",
-        "label": "Custom Maximum Width",
-        "type": "string",
-        "defaultValue": "120px"
-    },
-    {
-      "property": "arc.detaloadingbar.boxshadow.enabled",
-      "label": "Enable/Disable Box Shadow",
-      "type": "checkbox",
-      "defaultValue": true
-    },
-    {
-        "property": "arc.detaloadingbar.boxshadow",
-        "label": "Custom Box shadow",
-        "type": "string",
-        "defaultValue": "0 2px 12px 0 rgba(0,0,0,0.25), 0 1.5px 4px 0 rgba(0,0,0,0.15)"
-    },
-    {
-      "property": "arc.detaloadingbar.blur.enabled",
-      "label": "Enable/Disable Blur Effect",
-      "type": "checkbox",
-      "defaultValue": true
-    },
-    {
-        "property": "arc.detaloadingbar.blur.intensity",
-        "label": "Blur Intensity",
-        "type": "string",
-        "defaultValue": "1.8px"
-    }
+    "property": "arc.detaloadingbar.enabled",
+    "label": "Enable/Disable Deta Loading Bar",
+    "type": "checkbox",
+    "defaultValue": true
+  },
+  {
+    "property": "arc.detaloadingbar.usefromzen",
+    "label": "Use color from Zen browser theme",
+    "type": "checkbox",
+    "defaultValue": true
+  },
+  {
+    "property": "arc.detaloadingbar.singlecolor",
+    "label": "Use only main color",
+    "type": "checkbox",
+    "defaultValue": false
+  },
+  {
+    "property": "arc.detaloadingbar.maincolor",
+    "label": "Main color",
+    "type": "string",
+    "defaultValue": "rgba(243,202,176,255)"
+  },
+  {
+    "property": "arc.detaloadingbar.middlecolor",
+    "label": "Middle color",
+    "type": "string",
+    "defaultValue": "rgba(255,255,255,255)"
+  },
+  {
+    "property": "arc.detaloadingbar.thickness",
+    "label": "Thickness",
+    "type": "string",
+    "defaultValue": "6px"
+  },
+  {
+    "property": "arc.detaloadingbar.minwidth",
+    "label": "Custom Minimum Width",
+    "type": "string",
+    "defaultValue": "17px"
+  },
+  {
+    "property": "arc.detaloadingbar.maxwidth",
+    "label": "Custom Maximum Width",
+    "type": "string",
+    "defaultValue": "120px"
+  },
+  {
+    "property": "arc.detaloadingbar.boxshadow.enabled",
+    "label": "Enable/Disable Box Shadow",
+    "type": "checkbox",
+    "defaultValue": true
+  },
+  {
+    "property": "arc.detaloadingbar.boxshadow",
+    "label": "Custom Box shadow",
+    "type": "string",
+    "defaultValue": "0 2px 12px 0 rgba(0,0,0,0.25), 0 1.5px 4px 0 rgba(0,0,0,0.15)"
+  },
+  {
+    "property": "arc.detaloadingbar.blur.enabled",
+    "label": "Enable/Disable Blur Effect",
+    "type": "checkbox",
+    "defaultValue": true
+  },
+  {
+    "property": "arc.detaloadingbar.blur.intensity",
+    "label": "Blur Intensity",
+    "type": "string",
+    "defaultValue": "1.8px"
+  }
 ]
