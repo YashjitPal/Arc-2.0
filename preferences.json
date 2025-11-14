@@ -43,6 +43,12 @@
     "property": "browser.urlbar.trimURLs"
   },
   {
+    "type": "checkbox",
+    "property": "arc-urlbar-fade-in",
+    "label": "Remove fade-in which is below the urlbar.",
+    "default": false
+  },
+  {
     "type": "dropdown",
     "value": "string",
     "property": "arc-urlbar-animation",
@@ -52,18 +58,6 @@
       { "label": "Stretch", "value": "stretch" },
       { "label": "Fade in", "value": "fadeIn" }
     ]
-  },
-  {
-    "type": "string",
-    "property": "arc.urlbar.opacity",
-    "default": 0.3,
-    "label": "Change the transparency of the urlbar."
-  },
-  {
-    "type": "checkbox",
-    "property": "arc-urlbar-fade-in",
-    "label": "Remove fade-in which is below the urlbar.",
-    "default": false
   },
   {
     "type": "dropdown",
@@ -77,10 +71,21 @@
     ]
   },
   {
+    "type": "string",
+    "property": "arc.urlbar.opacity",
+    "default": 0.3,
+    "label": "Change the transparency of the urlbar."
+  },
+  {
     "type": "separator",
     "label": "📚 Sidebar / Compact mode 📚",
     "margin":"30px 0 30px 0",
     "size": "17px"
+  },
+  {
+    "type": "checkbox",
+    "property": "arc-compact-mode-no-sidebar-bg",
+    "label": "Remove pseudo background on compact sidebar."
   },
   {
     "type": "string",
@@ -94,11 +99,6 @@
     "property": "arc.compact.sidebar-blur",
     "defaultValue": "30px",
     "placeholder": "30px"
-  },
-  {
-    "type": "checkbox",
-    "property": "arc-compact-mode-no-sidebar-bg",
-    "label": "Remove pseudo background on compact sidebar."
   },
   {
     "type": "string",
@@ -117,6 +117,21 @@
     "type": "checkbox",
     "label": "Enable Tab Groups",
     "property": "browser.tabs.groups.enabled"
+  },
+  {
+    "type": "checkbox",
+    "property": "arc-disable-tab-hover-animations",
+    "label": "Disable animations for hover and click on tabs."
+  },
+  {
+    "type": "checkbox",
+    "property": "arc.tab.default-audio-indicator",
+    "label": "Disable audio playing indicator in tab playing media."
+  },
+  {
+    "type": "checkbox",
+    "property": "browser.tabs.fadeOutUnloadedTabs",
+    "label": "Fade unloaded tabs in the background."
   },
   {
     "type": "dropdown",
@@ -160,21 +175,6 @@
     ]
   },
   {
-    "type": "checkbox",
-    "property": "arc-disable-tab-hover-animations",
-    "label": "Disable animations for hover and click on tabs."
-  },
-  {
-    "type": "checkbox",
-    "property": "arc.tab.default-audio-indicator",
-    "label": "Disable audio playing indicator in tab playing media."
-  },
-  {
-    "type": "checkbox",
-    "property": "browser.tabs.fadeOutUnloadedTabs",
-    "label": "Fade unloaded tabs in the background."
-  },
-  {
     "type": "string",
     "value": "number",
     "property": "browser.tabs.min_inactive_duration_before_unload",
@@ -185,30 +185,6 @@
     "label": "📦 Containers / Pinned Extensions / Workspaces 📦",
     "margin":"30px 0 30px 0",
     "size": "17px"
-  },
-  {
-    "type": "dropdown",
-    "value": "number",
-    "property": "arc-workspace-style",
-    "label": "Workspace icon animation style.",
-    "default": 0,
-    "options": [
-      { "label": "No background", "value": 0 },
-      { "label": "No animation", "value": 1 },
-      { "label": "Capsule background", "value": 2 }
-    ]
-  },
-  {
-    "type": "dropdown",
-    "value": "number",
-    "property": "arc-enable-container-styling",
-    "label": "Edit container styling.",
-    "default": 1,
-    "options": [
-      { "label": "Disabled", "value": 0 },
-      { "label": "Style-1", "value": 1 },
-      { "label": "Style-2", "value": 2 }
-    ]
   },
   {
     "type": "checkbox",
@@ -224,6 +200,30 @@
     "type": "checkbox",
     "property": "arc-remove-workspace-indicator",
     "label": "Remove the workspace indicator."
+  },
+  {
+    "type": "dropdown",
+    "value": "number",
+    "property": "arc-enable-container-styling",
+    "label": "Edit container styling.",
+    "default": 1,
+    "options": [
+      { "label": "Disabled", "value": 0 },
+      { "label": "Style-1", "value": 1 },
+      { "label": "Style-2", "value": 2 }
+    ]
+  },
+  {
+    "type": "dropdown",
+    "value": "number",
+    "property": "arc-workspace-style",
+    "label": "Workspace icon animation style.",
+    "default": 0,
+    "options": [
+      { "label": "No background", "value": 0 },
+      { "label": "No animation", "value": 1 },
+      { "label": "Capsule background", "value": 2 }
+    ]
   },
   {
     "type": "separator",
@@ -287,12 +287,6 @@
     "size": "17px"
   },
   {
-    "type": "string",
-    "value": "number",
-    "property": "browser.low_commit_space_threshold_mb",
-    "label": "Memory threshold to activate tab unloading."
-  },
-  {
     "type": "checkbox",
     "property": "dom.ipc.processPriorityManager.backgroundUsesEcoQoS",
     "label": "Makes browser run on performance efficient mode."
@@ -301,6 +295,12 @@
     "type": "checkbox",
     "property": "browser.ml.linkPreview.enabled",
     "label": "Enable Shift+Alt AI link preview."
+  },
+  {
+    "type": "string",
+    "value": "number",
+    "property": "browser.low_commit_space_threshold_mb",
+    "label": "Memory threshold to activate tab unloading."
   },
   {
     "type": "string",
