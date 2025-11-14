@@ -1,7 +1,7 @@
 [
   {
     "type": "separator",
-    "label": "🪟 Window & Transparency 🪟",
+    "label": "🪟 Window &  Transparency 🪟",
     "margin":"30px 0 30px 0",
     "size": "17px"
   },
@@ -407,3 +407,4 @@
     "defaultValue": "1.8px"
   }
 ]
+
