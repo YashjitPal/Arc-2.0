@@ -283,4 +283,4 @@ Thank you for using Arc 2.0!
 
 ## 🆘 Support
 
-Ping **`Equinox`**, **`perplectly fine`**, or **`CompTechGuy`** on the Zen Browser Discord for assistance.
+Ping **`Equinox`**, **`CompTechGuy`**, or **`perplectly fine`** on the Zen Browser Discord for assistance.
