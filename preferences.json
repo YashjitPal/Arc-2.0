@@ -310,7 +310,7 @@
   },
   {
     "type": "separator",
-    "label": "✨ Fonts & Misc ✨",
+    "label": "✨ Fonts &  Misc ✨",
     "margin":"30px 0 30px 0",
     "size": "17px"
   },
@@ -407,4 +407,5 @@
     "defaultValue": "1.8px"
   }
 ]
+
 
