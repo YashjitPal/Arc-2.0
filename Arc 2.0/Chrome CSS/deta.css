@@ -8,24 +8,35 @@
  *  and is triggered ONLY on page load via the [waiting] attribute.
  */
 :root {
-  --arc-detaloadingbar-thickness: var(--arc-detaloadingbar-thickness, 6px);
-  --arc-detaloadingbar-minwidth: var(--arc-detaloadingbar-minwidth, 20px);
-  --arc-detaloadingbar-maxwidth: var(--arc-detaloadingbar-maxwidth, 120px);
-  --arc-detaloadingbar-blur-intensity: var(--arc-detaloadingbar-blur-intensity, 1.8px);
-  --arc-detaloadingbar-boxshadow: var(--arc-detaloadingbar-boxshadow, 0 2px 12px 0 rgba(0,0,0,0.25), 0 1.5px 4px 0 rgba(0,0,0,0.15));
+  --arc-detaloadingbar-blur-intensity-final: var(
+    --arc-detaloadingbar-blur-intensity,
+    1.8px
+  );
 }
 
 @media (-moz-bool-pref: "arc.detaloadingbar.usefromzen") {
   :root {
-    --arc-detaloadingbar-primarycolor-final: var(--zen-primary-color, rgba(243,202,176,255)) !important;
-    --arc-detaloadingbar-secondarycolor-final: var(--zen-colors-primary-foreground, rgba(255,255,255,255)) !important;
+    --arc-detaloadingbar-primarycolor-final: var(
+      --zen-primary-color,
+      rgba(243, 202, 176, 255)
+    ) !important;
   }
 }
 
 @media not (-moz-bool-pref: "arc.detaloadingbar.usefromzen") {
   :root {
-    --arc-detaloadingbar-primarycolor-final: var(--arc-detaloadingbar-maincolor, rgba(243,202,176,255)) !important;
-    --arc-detaloadingbar-secondarycolor-final: var(--arc-detaloadingbar-middlecolor, rgba(255,255,255,255)) !important;
+    --arc-detaloadingbar-primarycolor-final: var(
+      --arc-detaloadingbar-maincolor,
+      rgba(243, 202, 176, 255)
+    ) !important;
+    --arc-detaloadingbar-secondarycolor-final: var(
+      --arc-detaloadingbar-middlecolor,
+      rgba(255, 255, 255, 255)
+    ) !important;
+    --arc-detaloadingbar-tertiarycolor-final: var(
+      --arc-detaloadingbar-rightcolor,
+      rgba(255, 255, 255, 255)
+    ) !important;
   }
 }
 
@@ -41,10 +52,9 @@
   #main-window .browserStack::before {
     content: "" !important;
     position: absolute !important;
-    top: 8px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
-    height: var(--arc-detaloadingbar-thickness) !important;
+    height: var(--arc-detaloadingbar-thickness, 6px) !important;
     border-radius: calc(var(--arc-detaloadingbar-thickness) / 2) !important;
     z-index: 9999 !important;
     pointer-events: none !important;
@@ -54,9 +64,26 @@
     transition: opacity 0.2s ease, visibility 0.2s ease !important;
   }
 
+  /* Position at top when checked (default) */
+  @media (-moz-bool-pref: "arc.detaloadingbar.position.top") {
+    #main-window .browserStack::before {
+      top: var(--arc-detaloadingbar-spacerwidth, 8px) !important;
+      bottom: auto !important;
+    }
+  }
+
+  /* Position at bottom when unchecked */
+  @media not (-moz-bool-pref: "arc.detaloadingbar.position.top") {
+    #main-window .browserStack::before {
+      bottom: var(--arc-detaloadingbar-spacerwidth, 8px) !important;
+      top: auto !important;
+    }
+  }
+
   @media (-moz-bool-pref: "arc.detaloadingbar.boxshadow.enabled") {
     #main-window .browserStack::before {
-      box-shadow: var(--arc-detaloadingbar-boxshadow) !important;
+      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.25),
+        0 1.5px 4px 0 rgba(0, 0, 0, 0.15) !important;
     }
   }
 
@@ -71,24 +98,25 @@
       background: linear-gradient(
         to right,
         var(--arc-detaloadingbar-primarycolor-final),
-        var(--arc-detaloadingbar-secondarycolor-final),
-        var(--arc-detaloadingbar-primarycolor-final)
+        var(
+          --arc-detaloadingbar-secondarycolor-final,
+          var(--arc-detaloadingbar-primarycolor-final)
+        ),
+        var(
+          --arc-detaloadingbar-tertiarycolor-final,
+          var(--arc-detaloadingbar-primarycolor-final)
+        )
       ) !important;
     }
   }
 
-  /* Show loading bar ONLY when the current active tab is busy */
-  #main-window:has(.tabbrowser-tab[selected][busy]) .browserStack:has(> #statuspanel[previoustype="status"])::before {
+  /* Show loading bar */
+  #main-window:has(.tabbrowser-tab[selected="true"][busy="true"])
+    .browserStack:has(#statuspanel:not([hidden]))::before {
     opacity: 1 !important;
     visibility: visible !important;
-    animation: zen-loading-pulse 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate !important;
-  }
-
-  /* Fallback for some browser structures */
-  .tabbrowser-tab[selected][busy] .browserStack::before {
-    opacity: 1 !important;
-    visibility: visible !important;
-    animation: zen-loading-pulse 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate !important;
+    animation: zen-loading-pulse 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite
+      alternate !important;
   }
 }
 
@@ -97,27 +125,27 @@
   @keyframes zen-loading-pulse {
     0% {
       width: var(--arc-detaloadingbar-minwidth, 20px);
-      filter: blur(var(--arc-detaloadingbar-blur-intensity));
+      filter: blur(var(--arc-detaloadingbar-blur-intensity-final));
       opacity: 0.3;
       transform: translateX(-50%) scale(0.9);
     }
     25% {
       opacity: 0.5;
-      filter: blur(var(--arc-detaloadingbar-blur-intensity));
+      filter: blur(var(--arc-detaloadingbar-blur-intensity-final));
     }
     50% {
       opacity: 0.7;
-      filter: blur(var(--arc-detaloadingbar-blur-intensity));
+      filter: blur(var(--arc-detaloadingbar-blur-intensity-final));
       transform: translateX(-50%) scale(0.95);
     }
     75% {
       opacity: 0.9;
-      filter: blur(var(--arc-detaloadingbar-blur-intensity));
+      filter: blur(var(--arc-detaloadingbar-blur-intensity-final));
       transform: translateX(-50%) scale(1);
     }
     100% {
       width: var(--arc-detaloadingbar-maxwidth, 120px);
-      filter: blur(var(--arc-detaloadingbar-blur-intensity));
+      filter: blur(var(--arc-detaloadingbar-blur-intensity-final));
       opacity: 1;
       transform: translateX(-50%) scale(1.02);
     }
