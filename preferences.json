@@ -170,7 +170,7 @@
       { "label": "Bounce (default)", "value": 1 },
       { "label": "Bouncier", "value": 2 },
       { "label": "More bounce", "value": 3 },
-      { "label": "Smooth crossfade", "value": 4 },
+      { "label": "Smooth crossfade (scroll in split-mode might not work)", "value": 4 },
       { "label": "Zoom out effect", "value": 5 }
     ]
   },
@@ -419,3 +419,4 @@
         "defaultValue": "1.8px"
     }
 ]
+
