@@ -635,6 +635,7 @@ menuitem *,
     }
   }
 
+/*
   @media (-moz-pref("arc-tab-switch-animation", 4)) {
     #tabbrowser-tabpanels>hbox:not(.zen-glance-background):not([zen-split="true"]) {
       transition: all 0.2s ease;
@@ -651,7 +652,7 @@ menuitem *,
       z-index: 1;
     }
   }
-
+*/
   @media (-moz-pref("arc-tab-switch-animation", 5)) {
     #tabbrowser-tabpanels>hbox:not(.zen-glance-background):not([zen-split]) {
       transform: scale(1.05);
