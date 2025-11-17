@@ -43,7 +43,7 @@
 	
   /* ---------------------- NOGAPS MOD ------------------------ */
   
-  @media  -moz-pref("arc-marginless-mod", 2)  {
+  @media  -moz-pref("arc-marginless-mod")  {
     /* No-Gap Remove code */
 	:root[zen-single-toolbar="true"] .browserSidebarContainer {
 		border-top-left-radius: 0.1px !important;
