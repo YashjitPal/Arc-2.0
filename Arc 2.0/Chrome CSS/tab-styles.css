@@ -126,6 +126,10 @@ tab {
       transition: all 0.3s ease-in-out !important;
     }
   }
+  &:hover .tab-context-line, .tab-context-line{
+    filter: blur(10px) !important;
+    border: 10px var(--identity-tab-color) solid !important;
+  }
   &:hover .tab-context-line, & .tab-background[selected] .tab-context-line{
     filter: blur(10px) !important;
     border: 10px var(--identity-tab-color) solid !important;
