@@ -1,309 +1,306 @@
-
 @-moz-document url-prefix("chrome:") {
   /* ------------------- PDF Tab Custom Icon ------------------- */
-  
+
   tab[label$='.pdf'] img.tab-icon-image {
-      background: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='none' viewBox='0 0 16 16' xmlns:bx='https://boxy-svg.com'%3E%3Cdefs%3E%3Cbx:export%3E%3Cbx:file format='svg' path='doc icon.svg'/%3E%3C/bx:export%3E%3C/defs%3E%3Cpath fill='%23181c1f' d='M 18.4 0.164 L 34.4 0.164 L 34.4 16.164 L 18.4 16.164 L 18.4 0.164 Z'/%3E%3Cpath fill='%23fff' fill-rule='evenodd' d='M4.75 2.5c-.69 0-1.25.56-1.25 1.25v8.5c0 .69.56 1.25 1.25 1.25h6.5c.69 0 1.25-.56 1.25-1.25V7H9.75A1.75 1.75 0 0 1 8 5.25V2.5zm4.75.81v1.94c0 .138.112.25.25.25h1.94zM2 3.75A2.75 2.75 0 0 1 4.75 1h3.836c.464 0 .909.184 1.237.513l3.664 3.664c.329.328.513.773.513 1.237v5.836A2.75 2.75 0 0 1 11.25 15h-6.5A2.75 2.75 0 0 1 2 12.25z' clip-rule='evenodd'/%3E%3C/svg%3E%0A") !important;
-      height: 32px !important;
-      scale: 0.5 !important;
-      margin-left: -5px !important;
-      width: 30px !important;
+    background: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='none' viewBox='0 0 16 16' xmlns:bx='https://boxy-svg.com'%3E%3Cdefs%3E%3Cbx:export%3E%3Cbx:file format='svg' path='doc icon.svg'/%3E%3C/bx:export%3E%3C/defs%3E%3Cpath fill='%23181c1f' d='M 18.4 0.164 L 34.4 0.164 L 34.4 16.164 L 18.4 16.164 L 18.4 0.164 Z'/%3E%3Cpath fill='%23fff' fill-rule='evenodd' d='M4.75 2.5c-.69 0-1.25.56-1.25 1.25v8.5c0 .69.56 1.25 1.25 1.25h6.5c.69 0 1.25-.56 1.25-1.25V7H9.75A1.75 1.75 0 0 1 8 5.25V2.5zm4.75.81v1.94c0 .138.112.25.25.25h1.94zM2 3.75A2.75 2.75 0 0 1 4.75 1h3.836c.464 0 .909.184 1.237.513l3.664 3.664c.329.328.513.773.513 1.237v5.836A2.75 2.75 0 0 1 11.25 15h-6.5A2.75 2.75 0 0 1 2 12.25z' clip-rule='evenodd'/%3E%3C/svg%3E%0A") !important;
+    height: 32px !important;
+    scale: 0.5 !important;
+    margin-left: -5px !important;
+    width: 30px !important;
   }
 
-/* Colouring Essentials */
+  /* Colouring Essentials */
 
-#zen-essentials-container .tabbrowser-tab {
-  
- 
-  @media (-moz-pref: "zen.theme.essentials-favicon-bg") {
-    &[visuallyselected] .tab-background {
-      &::after {
-        left: -50% !important;
-        top: -50% !important;
-        width: 200% !important;
-        height: 200% !important;
-        filter: blur (20px) !important;
+  #zen-essentials-container .tabbrowser-tab {
+
+
+    @media (-moz-pref: "zen.theme.essentials-favicon-bg") {
+      &[visuallyselected] .tab-background {
+        &::after {
+          left: -50% !important;
+          top: -50% !important;
+          width: 200% !important;
+          height: 200% !important;
+          filter: blur (20px) !important;
+        }
+
+        &::before {
+          mask-image: none !important;
+          background-color: light-dark(color-mix(in srgb, #ffffff 65%, transparent),
+              color-mix(in srgb, #000000 55%, transparent)) !important;
+        }
       }
 
-      &::before {
-        mask-image: none !important;
-        background-color: light-dark(
-          color-mix(in srgb, #ffffff 65%, transparent),
-          color-mix(in srgb, #000000 55%, transparent)
-        ) !important;
+      &[visuallyselected]:hover .tab-background::before {
+        background-color: light-dark(color-mix(in srgb, #ffffff 55%, transparent),
+            color-mix(in srgb, #000000 65%, transparent)) !important;
       }
-    }
-
-    &[visuallyselected]:hover .tab-background::before {
-      background-color: light-dark(
-        color-mix(in srgb, #ffffff 55%, transparent),
-        color-mix(in srgb, #000000 65%, transparent)
-      ) !important;
     }
   }
-}
-  
+
   /* MORE ROUNDED TABS */
-/* Hide attention icon (green dot) under tab icons - Reddit:  https://www.reddit.com/r/zen_browser/comments/1i1c4mt */
-#navigator-toolbox {
-  .tabbrowser-tab:is([image], [pinned])
-> .tab-stack
-> .tab-content[attention]:not([selected]),
-  .tabbrowser-tab
-> .tab-stack
-> .tab-content[pinned][titlechanged]:not([selected]) {
-    background-image: none !important;
+  /* Hide attention icon (green dot) under tab icons - Reddit:  https://www.reddit.com/r/zen_browser/comments/1i1c4mt */
+  #navigator-toolbox {
+
+    .tabbrowser-tab:is([image], [pinned])>.tab-stack>.tab-content[attention]:not([selected]),
+    .tabbrowser-tab>.tab-stack>.tab-content[pinned][titlechanged]:not([selected]) {
+      background-image: none !important;
+    }
+
+    .tabbrowser-tab>.tab-stack>.tab-content[titlechanged]:not([selected="true"]) {
+      background-image: none !important;
+    }
+
+    --border-radius-medium: 11px !important;
+    --tab-border-radius: 6px !important;
   }
-  .tabbrowser-tab
-> .tab-stack
-> .tab-content[titlechanged]:not([selected="true"]) {
-    background-image: none !important;
-  }
-  --border-radius-medium: 11px !important;
-  --tab-border-radius: 6px !important;
-}
-  
+
   /* ======== containers ======= */
   /* ------------------- Container Tabs Styling ------------------- */
-@media -moz-pref("arc-enable-container-styling", 1) {
-  #userContext-icons {
-    width: 5px !important;
-    height: 10px !important;
-    margin: 0 6px 0 2px !important;
-    border-radius: 3px !important;
-    background-color: var(--identity-tab-color) !important;
-    opacity: 0.8;
-  }
-
-  .tab-context-line {
-    display: none !important;
-  }
-
-  .tabbrowser-tab[usercontextid] .tab-background {
-    position: relative !important;
-  }
-
-  .tabbrowser-tab[usercontextid] .tab-background::after {
-    content: "";
-    position: absolute !important;
-    top: 0; left: 0;
-    width: 50% !important;
-    height: 100% !important;
-    z-index: -1 !important;
-    opacity: 0.5 !important;
-    filter: blur(10px) contrast(100%) brightness(100%);
-    background: linear-gradient(to right, var(--identity-tab-color, rgba(0, 0, 255, 0.5)), transparent 50%) !important;
-    transition: opacity 0.3s ease, width 0.3s ease, background 0.3s ease !important;
-  }
-
-  .tabbrowser-tab[usercontextid]:not([selected]):not([visuallyselected]) .tab-background::after {
-    width: 25% !important;
-    opacity: 0.5 !important;
-  }
- }
-
-   @media -moz-pref("arc-enable-container-styling", 2) {
-tab {
-  .tab-background {
-    flex-direction: unset !important;
+  @media -moz-pref("arc-enable-container-styling", 1) {
+    #userContext-icons {
+      width: 5px !important;
+      height: 10px !important;
+      margin: 0 6px 0 2px !important;
+      border-radius: 3px !important;
+      background-color: var(--identity-tab-color) !important;
+      opacity: 0.8;
+    }
 
     .tab-context-line {
-      display: flex !important;
-      box-sizing: border-box !important;
+      display: none !important;
+    }
 
-      width: 22.2px !important;
-      height: 23px !important;
-      margin: auto 5.5px !important;
-      border-radius: 1rem !important;
-      /*   background-color: color-mix(in srgb, var(--identity-tab-color) 20%, white), !important; */
-      background: color-mix(
-        in srgb,
-        var(--identity-tab-color) 30%,
-        transparent
-      ) !important;
+    .tabbrowser-tab[usercontextid] .tab-background {
+      position: relative !important;
+    }
 
-      border: 1.5px var(--identity-tab-color) solid !important;
-      transition: all 0.3s ease-in-out !important;
+    .tabbrowser-tab[usercontextid] .tab-background::after {
+      content: "";
+      position: absolute !important;
+      top: 0;
+      left: 0;
+      width: 50% !important;
+      height: 100% !important;
+      z-index: -1 !important;
+      opacity: 0.5 !important;
+      filter: blur(10px) contrast(100%) brightness(100%);
+      background: linear-gradient(to right, var(--identity-tab-color, rgba(0, 0, 255, 0.5)), transparent 50%) !important;
+      transition: opacity 0.3s ease, width 0.3s ease, background 0.3s ease !important;
+    }
+
+    .tabbrowser-tab[usercontextid]:not([selected]):not([visuallyselected]) .tab-background::after {
+      width: 25% !important;
+      opacity: 0.5 !important;
     }
   }
-  &:hover .tab-context-line, & .tab-background[selected] .tab-context-line{
-    filter: blur(10px) !important;
-    border: 10px var(--identity-tab-color) solid !important;
-  }
-}
 
-[uidensity="compact"] tab .tab-background .tab-context-line {
-  margin: auto 5px !important;
-}
+  @media -moz-pref("arc-enable-container-styling", 2) {
+    tab {
+      .tab-background {
+        flex-direction: unset !important;
 
-tab[zen-essential="true"] .tab-background .tab-context-line {
-  margin: auto !important;
-  z-index: 1000 !important;
-}
+        .tab-context-line {
+          display: flex !important;
+          box-sizing: border-box !important;
 
-tab[discarded=""]:hover,
-tab[pending="true"]:hover {
-  filter: grayscale(0) !important;
-}
-   
- /* ------------------- Close and Reset Button Styling ------------------- */
-  
-   .tab-reset-pin-button {
-    border-top-left-radius: var(--nebula-border-radius) !important;
-    border-bottom-left-radius: var(--nebula-border-radius) !important;
-    background-color: rgba(255, 255, 255, 0);
-    transition: background-color 0.2s ease-out;
-  }
-  
-  .tab-reset-pin-button:hover {
-    background-color: rgba(255, 255, 255, 0.08);
-  }
-  
-  .tabbrowser-tab:has(.tab-close-button:hover, .tab-reset-button:hover) .tab-background::after {
+          width: 22.2px !important;
+          height: 23px !important;
+          margin: auto 5.5px !important;
+          border-radius: 1rem !important;
+          /*   background-color: color-mix(in srgb, var(--identity-tab-color) 20%, white), !important; */
+          background: color-mix(in srgb,
+              var(--identity-tab-color) 30%,
+              transparent) !important;
+
+          border: 1.5px var(--identity-tab-color) solid !important;
+          transition: all 0.3s ease-in-out !important;
+        }
+      }
+
+      &:hover .tab-context-line,
+      & .tab-background[selected] .tab-context-line {
+        filter: blur(10px) !important;
+        border: 10px var(--identity-tab-color) solid !important;
+      }
+    }
+
+    [uidensity="compact"] tab .tab-background .tab-context-line {
+      margin: auto 5px !important;
+    }
+
+    tab[zen-essential="true"] .tab-background .tab-context-line {
+      margin: auto !important;
+      z-index: 1000 !important;
+    }
+
+    tab[discarded=""]:hover,
+    tab[pending="true"]:hover {
+      filter: grayscale(0) !important;
+    }
+
+    /* ------------------- Close and Reset Button Styling ------------------- */
+
+    .tab-reset-pin-button {
+      border-top-left-radius: var(--nebula-border-radius) !important;
+      border-bottom-left-radius: var(--nebula-border-radius) !important;
+      background-color: rgba(255, 255, 255, 0);
+      transition: background-color 0.2s ease-out;
+    }
+
+    .tab-reset-pin-button:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .tabbrowser-tab:has(.tab-close-button:hover, .tab-reset-button:hover) .tab-background::after {
       opacity: 0 !important;
       transition: 1s ease-out;
-  }
-  
-  .tabbrowser-tab:has(.tab-close-button:hover, .tab-reset-button:hover) .tab-background::before {
+    }
+
+    .tabbrowser-tab:has(.tab-close-button:hover, .tab-reset-button:hover) .tab-background::before {
       opacity: 0.7 !important;
-  }
-  
-  .tab-close-button,
-  .tab-reset-button {
+    }
+
+    .tab-close-button,
+    .tab-reset-button {
       border-radius: calc(var(--nebula-border-radius) - 4px) !important;
       transition: opacity 0.25s ease-out !important;
-  }
-  
-  .tabbrowser-tab[selected="true"] .tab-close-button,
-  .tabbrowser-tab[visuallyselected="true"] .tab-close-button,
-  .tabbrowser-tab:hover .tab-close-button,
-  .tabbrowser-tab[selected="true"] .tab-reset-button,
-  .tabbrowser-tab[visuallyselected="true"] .tab-reset-button,
-  .tabbrowser-tab:hover .tab-reset-button {
+    }
+
+    .tabbrowser-tab[selected="true"] .tab-close-button,
+    .tabbrowser-tab[visuallyselected="true"] .tab-close-button,
+    .tabbrowser-tab:hover .tab-close-button,
+    .tabbrowser-tab[selected="true"] .tab-reset-button,
+    .tabbrowser-tab[visuallyselected="true"] .tab-reset-button,
+    .tabbrowser-tab:hover .tab-reset-button {
       opacity: 0.4 !important;
-  }
-  
-  .tabbrowser-tab .tab-close-button:hover,
-  .tabbrowser-tab .tab-reset-button:hover {
+    }
+
+    .tabbrowser-tab .tab-close-button:hover,
+    .tabbrowser-tab .tab-reset-button:hover {
       opacity: 1 !important;
-  }
-  
-  :root:not([zen-single-toolbar="true"]):not([zen-sidebar-expanded="true"]) 
-    .tab-close-button {
-    transform: translateY(2px) scale(1.2) !important;
-  }
-  
- #tabbrowser-tabpanels[zen-split-view="true"] .browserSidebarContainer {
-    outline: none !important; /* Remove default outline */ 
-    box-shadow: 0 0 0 2px light-dark(rgba(0, 0, 0, 0), rgba(69, 69, 69, 0)), 
-                0 4px 10px light-dark(rgba(0, 0, 0, 0.3), rgba(69, 69, 69, 0.3)) !important;
-    transition: box-shadow 0.35s ease !important; 
-  } 
-  
-  #tabbrowser-tabpanels[zen-split-view="true"] .browserSidebarContainer.deck-selected {
-    box-shadow: 0 0 0 2px light-dark(rgba(0, 0, 0, 0.5), rgba(69, 69, 69, 0.5)), 
-                0 4px 10px light-dark(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) !important;
-  } 
-  
-  /* ------------------ Split View Tab Group Styling -------------------- */
-  
-  tab-group[split-view-group] {
-    
-  /*   --- Base Container Properties --- */
-    background-color: transparent !important;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0) !important;
-    border-radius: 13px !important;
-    position: relative !important;
-    flex-direction: column;
-    padding: 2px !important;
-    transform: scale(1);
-    transition: background-color 0.3s ease-out, 
-                box-shadow 0.3s ease-out, 
-                transform 0.2s cubic-bezier(0.2, 0.8, 0.4, 1) !important;
-  
-    /* --- Vertical Indicator Bar --- */
-    /* This bar appears on the left when the group is inactive. */
-    &::after {
-      content: '';
-      position: absolute;
-      top: 6px;
-      bottom: 6px;
-      left: 2px;
-      width: 3px;
-      background-color: var(--tab-selected-bgcolor, #0060df);
-      border-radius: 2px;
-      transition: width 0.2s ease-out, opacity 0.2s ease-out;
     }
-  
-    /* --- Hover State --- */
-    &:hover {
-      background-color: light-dark(rgba(69,69,69,0.45), rgba(0,0,0,0.45)) !important;
-      box-shadow: 0 0 3px rgba(0, 0, 0, 0.55) !important;
+
+    :root:not([zen-single-toolbar="true"]):not([zen-sidebar-expanded="true"]) .tab-close-button {
+      transform: translateY(2px) scale(1.2) !important;
     }
-    
-    /* --- Selected State --- */
-    /* Applies when a tab inside the group is the active/selected tab. */
-    &:has(.tabbrowser-tab:is([selected="true"], [visuallyselected="true"])) {
-      background-color: light-dark(rgba(69,69,69,0.55), rgba(0,0,0,0.35)) !important;
-      box-shadow: 0 0 3px rgba(0, 0, 0, 0.55) !important;
+
+    #tabbrowser-tabpanels[zen-split-view="true"] .browserSidebarContainer {
+      outline: none !important;
+      /* Remove default outline */
+      box-shadow: 0 0 0 2px light-dark(rgba(0, 0, 0, 0), rgba(69, 69, 69, 0)),
+        0 4px 10px light-dark(rgba(0, 0, 0, 0.3), rgba(69, 69, 69, 0.3)) !important;
+      transition: box-shadow 0.35s ease !important;
     }
-    
-    /* --- Active (Click/Press) State --- */
-    &:active {
-      transform: scale(0.95) !important;
-      transition-duration: 0.1s !important;
-      transition-timing-function: ease-out !important;
+
+    #tabbrowser-tabpanels[zen-split-view="true"] .browserSidebarContainer.deck-selected {
+      box-shadow: 0 0 0 2px light-dark(rgba(0, 0, 0, 0.5), rgba(69, 69, 69, 0.5)),
+        0 4px 10px light-dark(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) !important;
     }
-  
-    /* --- Hide Indicator Bar on Hover/Selection --- */
-    /* The bar disappears when the group is interacted with or contains the active tab. */
-    &:is(:hover, :has(.tabbrowser-tab:is([selected="true"], [visuallyselected="true"], [multiselected="true"])), :has(> tab-group-tab[selected="true"])) {
+
+    /* ------------------ Split View Tab Group Styling -------------------- */
+
+    tab-group[split-view-group] {
+
+      & .tab-content{
+        margin-left:4px !important;
+      }
+
+      /*   --- Base Container Properties --- */
+      background-color: transparent !important;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0) !important;
+      border-radius: 13px !important;
+      position: relative !important;
+      flex-direction: column;
+      padding: 2px !important;
+      transform: scale(1);
+      transition: background-color 0.3s ease-out,
+        box-shadow 0.3s ease-out,
+        transform 0.2s cubic-bezier(0.2, 0.8, 0.4, 1) !important;
+
+      /* --- Vertical Indicator Bar --- */
+      /* This bar appears on the left when the group is inactive. */
       &::after {
-        width: 0;
-        opacity: 0;
+        content: '';
+        position: absolute;
+        top: 6px;
+        bottom: 6px;
+        left: 2px;
+        width: 3px;
+        background-color: var(--tab-selected-bgcolor, #0060df);
+        border-radius: 2px;
+        transition: width 0.2s ease-out, opacity 0.2s ease-out;
       }
-    }
-  
-    /* --- Child Tab Styling --- */
-    & .tabbrowser-tab {
-      .tab-background {
-        border-radius: 12px !important;
+
+      /* --- Hover State --- */
+      &:hover {
+        background-color: light-dark(rgba(69, 69, 69, 0.45), rgba(0, 0, 0, 0.45)) !important;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.55) !important;
       }
-  
-      .tab-close-button {
-        border-radius: 10px !important;
+
+      /* --- Selected State --- */
+      /* Applies when a tab inside the group is the active/selected tab. */
+      &:has(.tabbrowser-tab:is([selected="true"], [visuallyselected="true"])) {
+        background-color: light-dark(rgba(69, 69, 69, 0.55), rgba(0, 0, 0, 0.35)) !important;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.55) !important;
       }
-  
-      /* Remove the default separator line between tabs */
-      &:not(:last-child)::after {
-        width: 0 !important;
-        height: 0 !important;
+
+      /* --- Active (Click/Press) State --- */
+      &:active {
+        transform: scale(0.95) !important;
+        transition-duration: 0.1s !important;
+        transition-timing-function: ease-out !important;
+      }
+
+      /* --- Hide Indicator Bar on Hover/Selection --- */
+      /* The bar disappears when the group is interacted with or contains the active tab. */
+      &:is(:hover, :has(.tabbrowser-tab:is([selected="true"], [visuallyselected="true"], [multiselected="true"])), :has(> tab-group-tab[selected="true"])) {
+        &::after {
+          width: 0;
+          opacity: 0;
+        }
+      }
+
+      /* --- Child Tab Styling --- */
+      & .tabbrowser-tab {
+        .tab-background {
+          border-radius: 12px !important;
+        }
+
+        .tab-close-button {
+          border-radius: 10px !important;
+        }
+
+        /* Remove the default separator line between tabs */
+        &:not(:last-child)::after {
+          width: 0 !important;
+          height: 0 !important;
+        }
       }
     }
   }
-  }
 
-/* ------------------------- QUIETIFY SOUND ICON ------------------------- */
+  /* ------------------------- QUIETIFY SOUND ICON ------------------------- */
 
-@media not (-moz-pref("arc.tab.default-audio-indicator")) {
-  
+  @media not (-moz-pref("arc.tab.default-audio-indicator")) {
+
     .tab-audio-button {
-    display: none !important;
+      display: none !important;
     }
 
     .zen-essentials-container .tab-icon-overlay {
       pointer-events: none !important;
     }
-  
+
     .tabbrowser-tab img {
       transition: opacity 0.3s ease-in-out;
     }
-  
+
     .tabbrowser-tab:is([soundplaying], [muted], [activemedia-blocked]) img {
       opacity: 0 !important;
       transition: opacity 0.1s !important;
     }
-  
+
     .tab-icon-overlay {
       &:is([soundplaying], [muted], [activemedia-blocked]) {
         display: block !important;
@@ -321,52 +318,50 @@ tab[pending="true"]:hover {
         mask-repeat: no-repeat !important;
         mask-position: center !important;
       }
-  
+
       @media (prefers-color-scheme: light) {
         &:is([soundplaying], [muted], [activemedia-blocked]) {
           filter: invert(1);
         }
       }
-  
+
       &:is([activemedia-blocked]) {
         background: none !important;
         list-style-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' width='50' height='50' fill='context-fill'%3E%3Cpath d='M0 0 C3.04261908 0.3259949 3.9801219 0.97895261 6.125 3.25 C10.80067538 10.10765723 10.75854626 16.90274712 10 25 C8.66711552 29.34664789 6.52293264 33.06274382 3 36 C2.01 36 1.02 36 0 36 C0.42169501 32.62643988 1.39501858 30.21733512 3.0625 27.3125 C5.50413884 22.5633783 5.85977999 18.25050108 5 13 C4.14055749 10.79165669 3.13574067 8.81508888 1.95703125 6.76171875 C0.76616226 4.56954766 0.30807164 2.46457311 0 0 Z ' fill='contentFill' transform='translate(39,7)'/%3E%3Cpath d='M0 0 C-0.42169501 3.37356012 -1.39501858 5.78266488 -3.0625 8.6875 C-5.50449752 13.43731936 -5.85850686 17.7489386 -5 23 C-4.15206056 25.21300786 -3.18125823 27.17494133 -1.97265625 29.2109375 C-0.93389937 31.12158268 -0.44382988 32.87896037 0 35 C-1.32 35 -2.64 35 -4 35 C-10.01293051 28.81021859 -10.43744298 22.76985381 -10.32421875 14.4609375 C-9.75779176 8.41449998 -7.0335703 0 0 0 Z ' fill='contentFill' transform='translate(11,7)'/%3E%3Cpath d='M0 0 C2.125 0.375 2.125 0.375 4 1 C3.566875 1.8353125 3.566875 1.8353125 3.125 2.6875 C2.75375 3.450625 2.3825 4.21375 2 5 C1.608125 5.721875 1.21625 6.44375 0.8125 7.1875 C-0.36227113 11.25401546 0.02392228 14.90354783 1 19 C2.51553153 21.30166675 2.51553153 21.30166675 4 23 C3.67 23.99 3.34 24.98 3 26 C0.25362183 25.62118922 -0.80049058 25.22167713 -2.6875 23.125 C-5.63236254 18.35712732 -5.49017296 13.43415881 -5 8 C-3.66362375 4.598315 -2.56521154 2.56521154 0 0 Z ' fill='contentFill' transform='translate(12,12)'/%3E%3Cpath d='M0 0 C2.77995714 0.27799571 3.79782921 0.77536579 5.6875 2.875 C8.63236254 7.64287268 8.49017296 12.56584119 8 18 C6.66362375 21.401685 5.56521154 23.43478846 3 26 C0.875 25.625 0.875 25.625 -1 25 C-0.71125 24.443125 -0.4225 23.88625 -0.125 23.3125 C0.24625 22.549375 0.6175 21.78625 1 21 C1.5878125 19.9171875 1.5878125 19.9171875 2.1875 18.8125 C3.74737899 13.41291887 2.65919932 8.50297445 0.4375 3.4375 C-0.2740625 2.2309375 -0.2740625 2.2309375 -1 1 C-0.67 0.67 -0.34 0.34 0 0 Z ' fill='contentFill' transform='translate(35,12)'/%3E%3Cpath d='M0 0 C2.9375 0.8125 2.9375 0.8125 4.9375 3.8125 C4.75 6.875 4.75 6.875 3.9375 9.8125 C0.9375 11.8125 0.9375 11.8125 -2.125 11.625 C-5.0625 10.8125 -5.0625 10.8125 -7.0625 7.8125 C-6.875 4.75 -6.875 4.75 -6.0625 1.8125 C-3.0625 -0.1875 -3.0625 -0.1875 0 0 Z ' fill='contentFill' transform='translate(26.0625,19.1875)'/%3E%3Cpath d='M0 0 C1.32 0 2.64 0 4 0 C6.96681758 4.62823543 7.19975858 7.69786373 6.51953125 12.94921875 C6 15 6 15 4 18 C2.68 18 1.36 18 0 18 C0.144375 17.29875 0.28875 16.5975 0.4375 15.875 C0.623125 14.92625 0.80875 13.9775 1 13 C1.226875 11.96875 1.45375 10.9375 1.6875 9.875 C2.33229486 6.80363259 2.33229486 6.80363259 0 4 C0 2.68 0 1.36 0 0 Z ' fill='contentFill' transform='translate(30,16)'/%3E%3Cpath d='M0 0 C1.32 0.33 2.64 0.66 4 1 C3.855625 1.53625 3.71125 2.0725 3.5625 2.625 C2.89773488 5.43178607 2.30555651 8.12776882 2 11 C2.99 12.485 2.99 12.485 4 14 C4 15.32 4 16.64 4 18 C2.68 18 1.36 18 0 18 C-2.96681758 13.37176457 -3.19975858 10.30213627 -2.51953125 5.05078125 C-2 3 -2 3 0 0 Z ' fill='contentFill' transform='translate(16,16)'/%3E%3C/svg%3E%0A") !important;
-        fill:var(--toolbarbutton-icon-fill) !important;
+        fill: var(--toolbarbutton-icon-fill) !important;
         width: 16px !important;
         height: 16px !important;
         margin: 0px 3px !important;
       }
-  
+
       &:is([soundplaying]) {
         list-style-image: var(--play-svg) !important;
         fill: var(--toolbarbutton-icon-fill) !important;
       }
-      
+
       &:is([muted]) {
         list-style-image: var(--mute-svg) !important;
         fill: var(--toolbarbutton-icon-fill) !important;
       }
     }
-  
 
-      .tabbrowser-tab:is([soundplaying], [muted], [activemedia-blocked])
-        img {
-        opacity: 1 !important;
-        transition: opacity 0.1s ease-out !important;
-      }
-  
-      .tabbrowser-tab:is([soundplaying], [muted], [activemedia-blocked])
-        .tab-icon-overlay {
-        margin: 0px !important;
-        transition: opacity 0.25s ease-out, transform 0.25s ease-out !important;
-        transform: translate(6.9px, -6.9px) scale(0.69) !important;
-      }
 
-      .tabbrowser-tab:is([soundplaying], [muted], [activemedia-blocked]) .tab-icon-overlay {
-        transition: opacity 0.25s ease-in, transform 0.25s ease-in !important;
-      }
-    
-  
+    .tabbrowser-tab:is([soundplaying], [muted], [activemedia-blocked]) img {
+      opacity: 1 !important;
+      transition: opacity 0.1s ease-out !important;
+    }
+
+    .tabbrowser-tab:is([soundplaying], [muted], [activemedia-blocked]) .tab-icon-overlay {
+      margin: 0px !important;
+      transition: opacity 0.25s ease-out, transform 0.25s ease-out !important;
+      transform: translate(6.9px, -6.9px) scale(0.69) !important;
+    }
+
+    .tabbrowser-tab:is([soundplaying], [muted], [activemedia-blocked]) .tab-icon-overlay {
+      transition: opacity 0.25s ease-in, transform 0.25s ease-in !important;
+    }
+
+
     #zen-essentials-container {
       .tab-icon-overlay:is([soundplaying], [muted], [activemedia-blocked]) {
         margin: 0px !important;
