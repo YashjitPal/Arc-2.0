@@ -71,12 +71,6 @@
   src: url("https://github.com/YashjitPal/Arc-2.0/raw/main/Arc%202.0/Chrome%20CSS/fonts/SF-Pro.ttf");
 }
 
-/* Apple's Emoji Font */
-@font-face {
-  font-family: "Color-Emoji";
-  src: url("ACEmoji.ttf");
-}
-
 @font-face {
   font-family: "Nunito";
   src: url("https://github.com/YashjitPal/Arc-2.0/raw/refs/heads/main/Arc%202.0/Chrome%20CSS/fonts/Nunito-VariableFont_wght.ttf");
@@ -87,6 +81,20 @@
 @font-face {
   font-family: "Nunito-Italic";
   src: url("https://github.com/YashjitPal/Arc-2.0/raw/refs/heads/main/Arc%202.0/Chrome%20CSS/fonts/Nunito-Italic-VariableFont_wght.ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Suse";
+  src: url("https://github.com/YashjitPal/Arc-2.0/raw/refs/heads/main/Arc%202.0/Chrome%20CSS/fonts/SUSE-VariableFont_wght.ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Suse-Italic";
+  src: url("https://github.com/YashjitPal/Arc-2.0/raw/refs/heads/main/Arc%202.0/Chrome%20CSS/fonts/SUSE-Italic-VariableFont_wght.ttf");
   font-weight: 600;
   font-style: normal;
 }
@@ -112,6 +120,18 @@
 @media (-moz-pref("arc-font", "SF-Pro")) {
   :root {
     --arc-font: "SF-Pro";
+  }
+}
+
+@media (-moz-pref("arc-font", "SUSE")) {
+  :root {
+    --arc-font: "Suse";
+  }
+}
+
+@meda (-moz-pref("arc-font", "SUSE-Italic")) {
+  :root {
+    --arc-font: "Suse-Italic";
   }
 }
 
