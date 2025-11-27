@@ -129,7 +129,7 @@
   }
 }
 
-@meda (-moz-pref("arc-font", "SUSE-Italic")) {
+@media (-moz-pref("arc-font", "SUSE-Italic")) {
   :root {
     --arc-font: "Suse-Italic";
   }
@@ -533,3 +533,4 @@ html[zen-single-toolbar="true"] {
     }
   }
 }
+
