@@ -145,6 +145,12 @@
     ]
   },
   {
+    "type":  "checkbox",
+    "value": "boolean",
+    "label": "Enable Background for Folders.",
+    "property": "arc-folder-background"
+  },
+  {
     "type": "dropdown",
     "value": "number",
     "property": "arc-tab-loading-animation",
@@ -419,5 +425,6 @@
         "defaultValue": "1.8px"
     }
 ]
+
 
 
