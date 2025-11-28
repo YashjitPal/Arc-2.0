@@ -25,7 +25,7 @@ It’s the skin I personally use, made public due to demand for the CSS. Inspire
 
 > **Note:** Arc 2.0 is *not* a standalone browser.
 
-**Tested on:** `Zen Browser 1.16.1b` (Windows)  
+**Tested on:** `Zen Browser 1.17.10b` (Windows)  
 **Recommended Mode:** Dark Mode + Single Toolbar Mode  
 (Might encounter minor hiccups in other modes.)
 
@@ -51,7 +51,8 @@ It’s the skin I personally use, made public due to demand for the CSS. Inspire
 2. Click **Install** under **Arc 2.0**.  
    Refresh Settings if the theme doesn’t appear under *Installed Mods*.
 
-   ![image](https://github.com/user-attachments/assets/26ce358a-8b19-4745-9a7e-34ae65df8dde)
+  <img width="1902" height="1019" alt="image" src="https://github.com/user-attachments/assets/3f580b73-b2b4-4d92-9de4-3f0a02ba61fa" />
+
 
 3. Configure personalization prefs in the **Settings** button under theme details.
 
