@@ -3,7 +3,7 @@
     "type": "separator",
     "label": "🪟 Window &  Transparency 🪟",
     "margin":"30px 0 30px 0",
-    "size": "17px"
+    "size": "18px"
   },
   {
     "type": "checkbox",
@@ -30,7 +30,7 @@
     "type": "separator",
     "label": "🔎 Url Bar Options 🔎",
     "margin":"30px 0 30px 0",
-    "size": "17px"
+    "size": "18px"
   },
   {
     "type": "checkbox",
@@ -80,7 +80,7 @@
     "type": "separator",
     "label": "📚 Sidebar / Compact mode 📚",
     "margin":"30px 0 30px 0",
-    "size": "17px"
+    "size": "18px"
   },
   {
     "type": "checkbox",
@@ -111,7 +111,7 @@
     "type": "separator",
     "label": "🗂️ Tabs and Tab Animation 🗂️",
     "margin":"30px 0 30px 0",
-    "size": "17px"
+    "size": "18px"
   },
   {
     "type": "checkbox",
@@ -184,7 +184,7 @@
     "type": "separator",
     "label": "📦 Containers / Pinned Extensions / Workspaces 📦",
     "margin":"30px 0 30px 0",
-    "size": "17px"
+    "size": "18px"
   },
   {
     "type": "checkbox",
@@ -229,7 +229,7 @@
     "type": "separator",
     "label": "🎨 Arc UI Mods / Interface 🎨",
     "margin":"30px 0 30px 0",
-    "size": "17px"
+    "size": "18px"
   },
   {
     "type": "checkbox",
@@ -262,7 +262,7 @@
     "type": "separator",
     "label": "🎥 Media Player / PDF / View Experience 🎥",
     "margin":"30px 0 30px 0",
-    "size": "17px"
+    "size": "18px"
   },
   {
     "type": "checkbox",
@@ -284,7 +284,7 @@
     "type": "separator",
     "label": "⚡ Performance &  Memory ⚡",
     "margin":"30px 0 30px 0",
-    "size": "17px"
+    "size": "18px"
   },
   {
     "type": "checkbox",
@@ -312,7 +312,7 @@
     "type": "separator",
     "label": "✨ Fonts &  Misc ✨",
     "margin":"30px 0 30px 0",
-    "size": "17px"
+    "size": "18px"
   },
   {
     "type": "dropdown",
@@ -332,7 +332,7 @@
     "type": "separator",
     "label": "🌀 Deta Loading animation 🌀",
     "margin": "30px 0 30px 0",
-    "size": "17px"
+    "size": "18px"
   },
   {
       "property": "arc.detaloadingbar.enabled",
@@ -356,7 +356,7 @@
         "property": "arc.detaloadingbar.maincolor",
         "label": "Left color",
         "type": "string",
-        "defaultValue": "rgba(243,202,176,255)"
+        "defaultValue": "rgba(243,202,186,255)"
     },
     {
         "property": "arc.detaloadingbar.middlecolor",
@@ -368,7 +368,7 @@
         "property": "arc.detaloadingbar.rightcolor",
         "label": "Right color",
         "type": "string",
-        "defaultValue": "rgba(243,202,176,255)"
+        "defaultValue": "rgba(243,202,186,255)"
     },
     {
         "property": "arc.detaloadingbar.thickness",
@@ -419,4 +419,5 @@
         "defaultValue": "1.8px"
     }
 ]
+
 
