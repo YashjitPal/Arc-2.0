@@ -265,6 +265,27 @@
     "label": "Enable macOS-style window buttons."
   },
   {
+    "type": "dropdown",
+    "property": "arc-macos-style-buttons.radius",
+    "label": "Change macos window control radius",
+    "value": "number",
+    "default": 0,
+    "options": [
+      {
+        "value": 0,
+        "label": "Square"
+      },
+      {
+        "value": 1,
+        "label": "Squircle"
+      },
+      {
+        "value": 2,
+        "label": "Circle"
+      }
+    ]
+  }
+  {
     "type": "separator",
     "label": "🎥 Media Player / PDF / View Experience 🎥",
     "margin":"30px 0 30px 0",

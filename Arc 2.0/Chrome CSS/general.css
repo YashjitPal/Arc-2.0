@@ -10,9 +10,9 @@
 }
 
   /* main ui tint */
-  #zen-main-app-wrapper {
+  /* #zen-main-app-wrapper {
     background: var(--nebula-ui-tint) !important;
-  } 
+  } BUG */
 
   /* Hide identity label for Bonjourr */
   #identity-icon-label[value="Extension (Bonjourr · Minimalist Startpage)"] {
@@ -21,7 +21,7 @@
   
   :root {
     --attention-dot-color: transparent !important; /* remove attention dot */
-    --zen-themed-toolbar-bg-transparent: transparent !important; /* fix for transparency */
+    /*--zen-themed-toolbar-bg-transparent: transparent !important;  BUG */
   }
   
   /* Config for blur rendering */

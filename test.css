@@ -1,0 +1,326 @@
+/* Minimal Findbar test */
+findbar {
+    background: light-dark(rgba(240, 248, 250, 0.8), rgba(36, 37, 39, 0.6)) !important;
+    backdrop-filter: blur(40px) brightness(0.5) saturate(3.5) !important;
+
+
+    box-sizing: border-box;
+    position: fixed;
+    top: 12% !important;
+    right: 2% !important;
+    width: 345px !important;
+    border-radius: 8px !important;
+    border: none !important;
+    box-shadow: inset 0 0 0 .5px #61605a99 !important;
+    padding: 10px 4px !important;
+
+    .findbar-match-diacritics,
+    .findbar-label.found-matches,
+    .findbar-case-sensitive,
+    .findbar-highlight,
+    .findbar-entire-word,
+    description {
+        display: none !important;
+    }
+
+    .findbar-container {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        height: 100% !important;
+
+        hbox[anonid="findbar-textbox-wrapper"] {
+            flex: 1 1 100%;
+        }
+
+        hbox[anonid="findbar-textbox-wrapper"] {
+            order: -2 !important;
+        }
+
+        .findbar-label.found-matches {
+            order: -1 !important;
+            margin-inline-start: 6px !important;
+        }
+    }
+
+    .findbar-case-sensitive {
+        margin-inline-start: 6px !important;
+
+        .checkbox-label-box {
+            &::after {
+                content: 'Aa';
+            }
+
+            label {
+                display: none !important;
+            }
+        }
+    }
+
+    .findbar-match-diacritics {
+        margin-inline-start: 6px !important;
+
+        .checkbox-label-box {
+            &::after {
+                content: 'Äă';
+            }
+
+            label {
+                display: none !important;
+            }
+        }
+    }
+
+    hbox[anonid="findbar-textbox-wrapper"] {
+        .findbar-textbox {
+            border: none !important;
+            box-shadow: none !important;
+            background: transparent !important;
+        }
+    }
+
+    toolbarbutton {
+        &:hover {
+            background-color: color-mix(in srgb, var(--zen-primary-color) 50%, transparent 50%) !important;
+        }
+    }
+
+    .findbar-label.found-matches:is(label, description)[value]::before {
+        content: args !important;
+        display: block;
+    }
+}
+
+
+
+
+
+/* Acrylic/Mica Floating URLBar */
+#urlbar[zen-floating-urlbar] {
+  --zen-urlbar-top: 200px !important;
+  --urlbar-box-bgcolor: color-mix(in srgb, var(--zen-primary-color) 50%, transparent) !important;
+  --urlbar-icon-border-radius: 8px !important;
+  --toolbarbutton-border-radius: 8px !important;
+  --urlbarView-separator-color: light-dark(#61605a66, #61605a99) !important
+}
+
+/* URLBar Background & Blur */
+#urlbar[zen-floating-urlbar] .urlbar-background {
+  background: light-dark(rgba(240, 248, 250, .9), rgba(36, 37, 39, .8)) !important;
+  backdrop-filter: blur(40px) brightness(1) saturate(2) !important
+}
+
+/* Search Mode Switcher */
+#urlbar[zen-floating-urlbar] .searchmode-switcher-chicklet,
+#urlbar[zen-floating-urlbar] .urlbar-searchmode-switcher {
+  --urlbar-box-focus-bgcolor: color-mix(in srgb, var(--zen-primary-color) 50%, transparent) !important;
+  color: #fff !important
+}
+
+.searchmode-switcher-chicklet {
+  height: 30px !important;
+  border-start-end-radius: var(--urlbar-icon-border-radius) !important
+}
+
+/* Remove Pin Icon */
+.urlbarView-row[pinned] .urlbarView-type-icon {
+  background-image: none !important
+}
+
+/* URLBar Expanded Height */
+#urlbar[breakout][breakout-extend]>.urlbar-input-container {
+  height: 60px !important
+}
+
+/* Close Button Opacity */
+#urlbar-search-mode-indicator-close,
+#searchmode-switcher-close {
+  fill-opacity: 1 !important
+}
+
+/* Action Buttons Base */
+.urlbarView-row[has-action][type="switchtab"]>.urlbarView-row-inner>.urlbarView-no-wrap>.urlbarView-action,
+.urlbarView-row[has-action][type="remotetab"]>.urlbarView-row-inner>.urlbarView-no-wrap>.urlbarView-action,
+.urlbarView-row[has-action][type="clipboard"]>.urlbarView-row-inner>.urlbarView-no-wrap>.urlbarView-action {
+  padding-block: 6px !important;
+  background-color: color-mix(in srgb, currentColor 16%, transparent) !important
+}
+
+/* Selected Action Buttons */
+.urlbarView-row[selected][has-action][type="switchtab"]>.urlbarView-row-inner>.urlbarView-no-wrap>.urlbarView-action,
+.urlbarView-row[selected][has-action][type="remotetab"]>.urlbarView-row-inner>.urlbarView-no-wrap>.urlbarView-action,
+.urlbarView-row[selected][has-action][type="clipboard"]>.urlbarView-row-inner>.urlbarView-no-wrap>.urlbarView-action {
+  color: color-mix(in srgb, var(--zen-primary-color) 50%, black) !important;
+  background-color: #fff !important;
+  border-radius: 6px !important
+}
+
+/* Selected Row Styling */
+.urlbarView-row[selected] .urlbarView-title {
+  color: #fff !important;
+  font-weight: 600 !important
+}
+
+.urlbarView-row[selected] .urlbarView-url,
+.urlbarView-row[selected] .urlbarView-title-separator::before {
+  color: #fff !important
+}
+
+/* Default URL & Separator Colors */
+.urlbarView-url,
+.urlbarView-title-separator::before {
+  color: light-dark(#555, #aaa) !important
+}
+
+/* Remove Default Action Icons */
+.urlbarView-row[has-action][type="switchtab"] .urlbarView-action::after,
+.urlbarView-row[has-action][type="remotetab"] .urlbarView-action::after {
+  content: unset !important;
+  display: none !important;
+  width: unset !important;
+  height: unset !important;
+  background-color: unset !important;
+  mask-image: unset !important;
+  mask-size: unset !important;
+  mask-repeat: unset !important;
+  mask-position: unset !important;
+  pointer-events: unset !important;
+  position: static !important;
+  right: unset !important
+}
+
+/* Custom Switch/Remote Tab Icons */
+.urlbarView-row[has-action][type="switchtab"] .urlbarView-action,
+.urlbarView-row[has-action][type="remotetab"] .urlbarView-action {
+  background: url("chrome://browser/content/firefoxview/view-opentabs.svg") no-repeat 4px center/var(--urlbarView-favicon-width) !important;
+  align-items: unset !important;
+  display: block !important;
+  gap: unset !important;
+  font-weight: 600 !important;
+  margin-right: unset !important;
+  position: static !important;
+  scale: 1 !important;
+  transform-origin: unset !important;
+  --border-color-deemphasized: transparent !important
+}
+
+/* Touch Density */
+:root[uidensity="touch"] .urlbarView-row:not([type="tip"]):not([type="dynamic"]) {
+  padding-block: 4px !important
+}
+
+/* Autofill Origin Dynamic Row */
+.urlbarView-row[type="autofill_origin"]+.urlbarView-row[type="dynamic"] {
+  width: 100% !important;
+  display: block !important;
+  height: 0 !important;
+  position: relative !important
+}
+
+.urlbarView-row[type="autofill_origin"]+.urlbarView-row[type="dynamic"] .urlbarView-action-btn {
+  position: absolute !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  height: 17px !important;
+  transform: translateY(-17px) !important;
+  align-items: center !important;
+  color: color-mix(in srgb, var(--zen-primary-color) 50%, black) !important;
+  background-color: #fff !important;
+  border-radius: 6px !important
+}
+
+/* Search Type Dynamic Row */
+.urlbarView-row[type="search"]+.urlbarView-row[type="dynamic"] {
+  width: 100% !important;
+  min-height: 56px !important
+}
+
+.urlbarView-row[type="search"]+.urlbarView-row[type="dynamic"] .urlbarView-action-btn {
+  background-color: transparent !important;
+  width: 100% !important;
+  padding: 4px 5px !important
+}
+
+.urlbarView-row[type="search"]+.urlbarView-row[type="dynamic"] .urlbarView-action-btn img {
+  margin: 0 12px 0 0 !important;
+  padding: 6px !important;
+  border-radius: 4px !important;
+  width: var(--urlbarView-favicon-width) !important;
+  height: var(--urlbarView-favicon-width) !important
+}
+
+.urlbarView-row[type="search"]+.urlbarView-row[type="dynamic"] .urlbarView-action-btn span {
+  font-size: 14px !important;
+  font-weight: 400 !important
+}
+
+/* Hide Menu Button */
+.urlbarView-button.urlbarView-button-menu {
+  display: none !important
+}
+
+/* URLBar Labels Height */
+#urlbar-label-box,
+#urlbar-searchmode-switcher {
+  height: 30px !important
+}
+
+/* Expanded URLBar Border */
+#urlbar[open]>.urlbarView>.urlbarView-body-outer>.urlbarView-body-inner {
+  border-top: 1px solid var(--urlbarView-separator-color) !important
+}
+
+
+  /* Titlebar Button Container */
+.titlebar-buttonbox{margin:4px 4px .5px!important;scale:1!important;transform:translate(0,0)!important;gap:5px!important}
+
+/* Base Titlebar Button Styles */
+.titlebar-button {
+  content: none !important;
+  padding: 0 !important;
+  min-height: 16px !important;
+  min-width: 16px !important;
+  align-self: center;
+  margin-right: 5px !important;
+  border-radius: 25% !important;
+  border: 1.1px solid var(--zen-toolbar-element-bg) !important;
+  background-color: var(--zen-toolbar-element-bg) !important;
+  scale: 1 !important;
+  transition: all .1s
+}
+.titlebar-button>image{visibility:collapse!important}
+
+
+/* Icon Pseudo-elements */
+.titlebar-button::after{content:""!important;position:absolute!important;width:16px!important;height:16px!important;opacity:0!important;transition:opacity .1s!important}
+.titlebar-button:hover::after{opacity:1!important}
+
+/* Inactive Window Colors (macOS) */
+.titlebar-close:not(:hover):-moz-window-inactive{background-color:#FE6254!important}
+.titlebar-min:not(:hover):-moz-window-inactive{background-color:#FDC92D!important}
+.titlebar-max:not(:hover):-moz-window-inactive{background-color:#28D33F!important}
+
+/* Hover Colors */
+.titlebar-min:hover{background-color:#FDC92D!important}
+.titlebar-max:hover,.titlebar-restore:hover{background-color:#28D33F!important}
+.titlebar-close:hover{background-color:#FE6254!important}
+
+/* Button Icons */
+.titlebar-close::after{background-image:url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBzdHlsZT0ib3BhY2l0eTouNTtmaWxsOiMwMDA7ZmlsbC1vcGFjaXR5OjE7c3Ryb2tlLXdpZHRoOjI7c3Ryb2tlLWxpbmVjYXA6cm91bmQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS1taXRlcmxpbWl0OjQ7c3Ryb2tlLWRhc2hhcnJheTpub25lO3N0cm9rZS1vcGFjaXR5OjEiIGQ9Im00LjUgNC41IDcgN20wLTctNyA3IiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PC9zdmc+")!important}
+.titlebar-min::after{background-image:url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoODIuMjE0IC0xMTA2LjIwOCkiLz48cmVjdCBzdHlsZT0ib3BhY2l0eTouNTtmaWxsOiMwMDA7ZmlsbC1vcGFjaXR5OjE7c3Ryb2tlOm5vbmU7c3Ryb2tlLXdpZHRoOjI7c3Ryb2tlLWxpbmVjYXA6cm91bmQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS1taXRlcmxpbWl0OjQ7c3Ryb2tlLWRhc2hhcnJheTpub25lO3N0cm9rZS1vcGFjaXR5OjEiIHdpZHRoPSI4IiBoZWlnaHQ9IjIiIHg9IjgiIHk9IjEwMzkuMzYiIHJ5PSIxIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNCAtMTAzMi4zNjIpIi8+PC9zdmc+")!important}
+.titlebar-max::after{background-image:url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoODEuOTkzIC0xMTA1LjUzNykiLz48ZyBzdHlsZT0iZGlzcGxheTppbmxpbmUiPjxwYXRoIHN0eWxlPSJvcGFjaXR5Oi41O2ZpbGw6IzAwMDtmaWxsLW9wYWNpdHk6MTtzdHJva2U6bm9uZTtzdHJva2Utd2lkdGg6MjtzdHJva2UtbGluZWNhcDpyb3VuZDtzdHJva2UtbGluZWpvaW46cm91bmQ7c3Ryb2tlLW1pdGVybGltaXQ6NDtzdHJva2UtZGFzaGFycmF5Om5vbmU7c3Ryb2tlLW9wYWNpdHk6MSIgZD0iTTUuNDE0IDQgMTAgOC41ODZWNWMwLS40MTUtLjU4NC0xLTEtMVpNNCA1LjQxNFY5YzAgLjQxNi41ODUgMSAxIDFoMy41ODZ6IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxIDEpIi8+PC9nPjwvc3ZnPg==")!important}
+.titlebar-restore::after{background-image:url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoODEuODk0IC0xMTA2LjA0KSIvPjxwYXRoIHN0eWxlPSJvcGFjaXR5Oi41O2ZpbGw6IzAwMDtmaWxsLW9wYWNpdHk6MTtzdHJva2U6bm9uZTtzdHJva2Utd2lkdGg6MjtzdHJva2UtbGluZWNhcDpyb3VuZDtzdHJva2UtbGluZWpvaW46cm91bmQ7c3Ryb2tlLW1pdGVybGltaXQ6NDtzdHJva2UtZGFzaGFycmF5Om5vbmU7c3Ryb2tlLW9wYWNpdHk6MSIgZD0iTTMyNi4yMTQtMjIyLjA4NnYzLjU4NmMwIC40MTYuNTg0IDEgMSAxaDMuNTg2em0uMDAxIDkuMTgxdi0zLjU4NmMwLS40MTUtLjU4NS0xLTEtMWgtMy41ODZ6IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMzE4LjIxNSAyMjUuNDk1KSIvPjwvc3ZnPg==")!important}
+
+/* Sidebar Top Buttons */
+#zen-sidebar-top-buttons{margin-top:-4px!important}
+
+/* Menu Button Icon */
+#PanelUI-menu-button image{list-style-image:url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTMiIHZpZXdCb3g9IjAgMCAxNiAxMyIgZmlsbD0iY29udGV4dC1maWxsIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTUuNjY2IDQuNTIyYy4wOS0uNDIyLjAyMi0uODY2LS4yMDYtMS4yMzhhMS43NSAxLjc1IDAgMCAwLTEuMTY5LS43OTcgMiAyIDAgMCAwLS4zNDQtLjAzNGgtLjAwN2MtLjg0MyAwLTEuNTUyLjU4My0xLjcxOSAxLjM4LS4xLjQ2OS0uMjkzLjkyMS0uNTYzIDEuMzRhLjE2LjE2IDAgMCAxLS4wNjMuMDU1LjE3LjE3IDAgMCAxLS4xNjItLjAxLjE2LjE2IDAgMCAxLS4wNTYtLjA2TDkuNjI2IDEuNjJBMS44IDEuOCAwIDAgMCA4LjUwOS42NzhjLS44NS0uMjQyLTEuNzI2LjE2OC0yLjA4Ny45TDQuNjEzIDUuMjQ1Yy0uMDQ4LjA5Ni0uMTkuMDkzLS4yMzItLjAwM3YtLjAwNGExLjcgMS43IDAgMCAwLS42NDctLjc3MiAxLjg0IDEuODQgMCAwIDAtMS42NjUtLjE1OCAxLjcwNCAxLjcwNCAwIDAgMC0uOTMgMi4yNTVjLjM0MS43ODUuOTAxIDEuNTI2IDEuNjMgMi4xNjVhLjE1LjE1IDAgMCAxIC4wMzguMThsLS41ODYgMS4xODVhMS42OTQgMS42OTQgMCAwIDAgLjc3NiAyLjI3N2MuMjUuMTIxLjUxOC4xODMuNzk1LjE4My42NzYgMCAxLjMtLjM3OCAxLjU5LS45NjhsLjUwNi0xLjAyYS4xNi4xNiAwIDAgMSAuMTg3LS4wODEgNy4zIDcuMyAwIDAgMCAxLjg0MS4yNDhjLjY4NiAwIDEuMzYyLS4xIDIuMDE2LS4yODJhLjE3LjE3IDAgMCAxIC4xMS4wMDdxLjA1NC4wMjIuMDguMDczbC40OTkgMS4wMTJhMS44MSAxLjgxIDAgMCAwIDEuNjAzIDEuMDE0cS40MjEuMDAyLjgwNS0uMTgzYTEuNyAxLjcgMCAwIDAgLjc3Ni0yLjI4M2wtLjYyOC0xLjI3MmEuMTUuMTUgMCAwIDEgLjAzNi0uMThjMS4yMTctMS4wOTIgMi4xMTUtMi41MjIgMi40NTMtNC4xMTZabS0xMC44NiA2Ljc5M2ExLjEgMS4xIDAgMCAxLS40MTQuNDUgMS4xNiAxLjE2IDAgMCAxLTEuMDk2LjA1NiAxLjA4MyAxLjA4MyAwIDAgMS0uNDk2LTEuNDY0bC40ODYtLjk4NGEuMTYyLjE2MiAwIDAgMSAuMjM1LS4wNjJxLjE1NS4xMDcuMzIuMjA4Yy40MjcuMjY0Ljg3NS40ODcgMS4zMzUuNjcuMDg3LjAzNC4xMjYuMTI3LjA4Ny4yMDh6bTMuMTEtMS4yMDZjLTIuNTc5IDAtNS4zMDItMS42ODUtNi4yMDQtMy44MzVhMS4wNCAxLjA0IDAgMCAxIC4wMDctLjgyNWMuMTE2LS4yNjQuMzM2LS40NzIuNjExLS41OHEuMjEtLjA3OS40MTktLjA4Yy40NDQgMCAuODYzLjI1NCAxLjA0LjY3NkM0LjM1MiA2LjgxIDYuMjQyIDcuOTUgNy45MTYgNy45NXEuMzg3LS4wMDIuNzctLjA2OWEuMTYuMTYgMCAwIDEgLjE3NC4wODRsLjg0MyAxLjcxMmEuMTUzLjE1MyAwIDAgMS0uMS4yMTQgNyA3IDAgMCAxLTEuNjg3LjIxOFptLS4zNjctMi45MS4zOS0uNzg4YS4wOS4wOSAwIDAgMSAuMTU4IDBsLjM4Ljc3Yy4wMjUuMDQ5LS4wMS4xMTEtLjA2NS4xMmEzLjIgMy4yIDAgMCAxLS43ODkuMDE5Yy0uMDY3LS4wMS0uMS0uMDcxLS4wNzQtLjEyMVptNS4xODQgNC42MTlhMS4xNiAxLjE2IDAgMCAxLTEuMjQ2LS4xNjVxLS4xNjYtLjE0NS0uMjY0LS4zNGwtMy4wNTYtNi4xOWMtLjA2LS4xMjMtLjI0NC0uMTIzLS4zMDIgMGwtLjk0NyAxLjkyYS4xNi4xNiAwIDAgMS0uMTk2LjA4MSA0LjYgNC42IDAgMCAxLTEuNzEtMS4wMTQuMTUuMTUgMCAwIDEtLjAyOS0uMTc0bDIuMDQ4LTQuMTVhLjkuOSAwIDAgMSAuMzE5LS4zNjZjLjY0NC0uNDA3IDEuMzk3LS4xNTIgMS42NzcuNDE1bDQuMjAyIDguNTE2Yy4yNjQuNTQuMDU4IDEuMjAzLS40OTYgMS40NjdabS0uODg2LTUuNjk2YS4xNS4xNSAwIDAgMSAuMDItLjE2Yy40OC0uNTkzLjgzLTEuMjg1Ljk4Mi0yLjAyLjEwNi0uNTEyLjU3My0uODY5IDEuMDk4LS44NjlxLjEzNCAwIC4yNzMuMDMxYy41OTYuMTQzLjk0LjczOC44MTUgMS4zMTktLjI5NiAxLjM1OC0xLjAzIDIuNTktMi4wMzIgMy41NTVhLjE2NC4xNjQgMCAwIDEtLjI2LS4wNHoiIHN0cm9rZT0iY29udGV4dC1maWxsIiBzdHJva2Utb3BhY2l0eT0iY29udGV4dC1maWxsLW9wYWNpdHkiIHN0cm9rZS13aWR0aD0iLjYiLz48L3N2Zz4=")!important}
+
+/* Navigation Buttons */
+#back-button,#forward-button,#reload-button{transition:transform .1s,opacity .1s;background-size:25px 25px!important}
+
+/* Hover Effects - Scale and Brighten */
+#back-button:hover,#forward-button:hover,#reload-button:hover,#downloads-button:hover,#unified-extensions-button:hover,#PanelUI-menu-button:hover,#zen-create-new-button:hover,#alltabs-button:hover,.unified-extensions-item-row-wrapper:hover,.titlebar-button:hover,.toolbarbutton-icon:hover{opacity:1!important;transform:scale(1.15)!important}
+
+/* Active/Click Effects - Press Down */
+#back-button:active,#forward-button:active,#reload-button:active,#downloads-button:active,#unified-extensions-button:active,#PanelUI-menu-button:active,#zen-create-new-button:active,#alltabs-button:active,.unified-extensions-item-row-wrapper:active,.titlebar-button:active,.toolbarbutton-icon:active{opacity:.5!important;transform:scale(.95)!important}
