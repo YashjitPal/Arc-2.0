@@ -266,7 +266,7 @@
   },
   {
     "type": "dropdown",
-    "property": "arc-macos-style-buttons.radius",
+    "property": "arc-macos-style-buttons-radius",
     "label": "Change macos window control radius",
     "value": "number",
     "default": 0,

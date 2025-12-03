@@ -451,19 +451,19 @@ html[zen-single-toolbar="true"] {
 
 @media (-moz-pref("arc-macos-style-buttons")){
 
-    @media (-moz-pref("arc-macos-style-buttons.radius",0)){
+    @media (-moz-pref("arc-macos-style-buttons-radius",0)){
     .titlebar-button {
       border-radius: 0px !important;
     }
   }
   
-  @media (-moz-pref("arc-macos-style-buttons.radius",1)){
+  @media (-moz-pref("arc-macos-style-buttons-radius",1)){
     .titlebar-button {
       border-radius: 25% !important;
     }
   }
   
-  @media (-moz-pref("arc-macos-style-buttons.radius",2)){
+  @media (-moz-pref("arc-macos-style-buttons-radius",2)){
     .titlebar-button {
       border-radius: 50% !important;
     }
