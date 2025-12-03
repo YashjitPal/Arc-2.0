@@ -62,39 +62,39 @@
 /* Default Arc font */
 @font-face {
   font-family: "SF-Symbols";
-  src: url("https://github.com/YashjitPal/Arc-2.0/raw/main/Arc%202.0/Chrome%20CSS/fonts/SF-Symbols.ttf");
+  src: url("https://github.com/dav2010ID/Arc-2.0/raw/main/Arc%202.0/Chrome%20CSS/fonts/SF-Symbols.ttf");
 }
 
 /* Our symbols font */
 @font-face {
   font-family: "SF-Pro";
-  src: url("https://github.com/YashjitPal/Arc-2.0/raw/main/Arc%202.0/Chrome%20CSS/fonts/SF-Pro.ttf");
+  src: url("https://github.com/dav2010ID/Arc-2.0/raw/main/Arc%202.0/Chrome%20CSS/fonts/SF-Pro.ttf");
 }
 
 @font-face {
   font-family: "Nunito";
-  src: url("https://github.com/YashjitPal/Arc-2.0/raw/refs/heads/main/Arc%202.0/Chrome%20CSS/fonts/Nunito-VariableFont_wght.ttf");
+  src: url("https://github.com/dav2010ID/Arc-2.0/raw/refs/heads/main/Arc%202.0/Chrome%20CSS/fonts/Nunito-VariableFont_wght.ttf");
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Nunito-Italic";
-  src: url("https://github.com/YashjitPal/Arc-2.0/raw/refs/heads/main/Arc%202.0/Chrome%20CSS/fonts/Nunito-Italic-VariableFont_wght.ttf");
+  src: url("https://github.com/dav2010ID/Arc-2.0/raw/refs/heads/main/Arc%202.0/Chrome%20CSS/fonts/Nunito-Italic-VariableFont_wght.ttf");
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Suse";
-  src: url("https://github.com/YashjitPal/Arc-2.0/raw/refs/heads/main/Arc%202.0/Chrome%20CSS/fonts/SUSE-VariableFont_wght.ttf");
+  src: url("https://github.com/dav2010ID/Arc-2.0/raw/refs/heads/main/Arc%202.0/Chrome%20CSS/fonts/SUSE-VariableFont_wght.ttf");
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Suse-Italic";
-  src: url("https://github.com/YashjitPal/Arc-2.0/raw/refs/heads/main/Arc%202.0/Chrome%20CSS/fonts/SUSE-Italic-VariableFont_wght.ttf");
+  src: url("https://github.com/dav2010ID/Arc-2.0/raw/refs/heads/main/Arc%202.0/Chrome%20CSS/fonts/SUSE-Italic-VariableFont_wght.ttf");
   font-weight: 600;
   font-style: normal;
 }
