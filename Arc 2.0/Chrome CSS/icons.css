@@ -418,6 +418,7 @@ html[zen-single-toolbar="true"] {
     min-width: 16px !important;
     align-self: center;
     margin-right: 5px !important;
+    border-radius: 0px !important;
     border: 1.1px solid var(--zen-toolbar-element-bg) !important;
     background-color: var(--zen-toolbar-element-bg) !important;
       scale: 1 !important;
