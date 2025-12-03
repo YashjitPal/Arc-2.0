@@ -276,11 +276,11 @@
         "label": "Square"
       },
       {
-        "value": 1,
+        "value": 25,
         "label": "Squircle"
       },
       {
-        "value": 2,
+        "value": 50,
         "label": "Circle"
       }
     ]

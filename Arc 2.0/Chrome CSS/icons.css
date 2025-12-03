@@ -420,13 +420,34 @@ html[zen-single-toolbar="true"] {
     margin-right: 5px !important;
     border: 1.1px solid var(--zen-toolbar-element-bg) !important;
     background-color: var(--zen-toolbar-element-bg) !important;
-    scale: 1 !important;
-    transition: all .1s
-  }
-  .titlebar-button>image{visibility:collapse!important}
-
-
-  /* Icon Pseudo-elements */
+      scale: 1 !important;
+      transition: all .1s
+    }
+    
+    @media (-moz-pref("arc-macos-style-buttons-radius", 0)) {
+      .titlebar-button {
+        border-radius: 0px !important;
+      }
+    }
+    
+    @media (-moz-pref("arc-macos-style-buttons-radius", 25)) {
+      .titlebar-button {
+        border-radius: 25% !important;
+      }
+    }
+    
+    @media (-moz-pref("arc-macos-style-buttons-radius", 50)) {
+      .titlebar-button {
+        border-radius: 50% !important;
+      }
+    }
+    
+    .titlebar-button>image {
+      visibility: collapse !important
+    }
+    
+    
+    /* Icon Pseudo-elements */
   .titlebar-button::after{content:""!important;position:absolute!important;width:16px!important;height:16px!important;opacity:0!important;transition:opacity .1s!important}
   .titlebar-button:hover::after{opacity:1!important}
 
@@ -449,26 +470,6 @@ html[zen-single-toolbar="true"] {
     
 }
 
-@media (-moz-pref("arc-macos-style-buttons")){
-
-    @media (-moz-pref("arc-macos-style-buttons-radius",0)){
-    .titlebar-button {
-      border-radius: 0px !important;
-    }
-  }
-  
-  @media (-moz-pref("arc-macos-style-buttons-radius",1)){
-    .titlebar-button {
-      border-radius: 25% !important;
-    }
-  }
-  
-  @media (-moz-pref("arc-macos-style-buttons-radius",2)){
-    .titlebar-button {
-      border-radius: 50% !important;
-    }
-  }
-}
 
 
 @media (-moz-pref("arc-macos-style-buttons")) and (-moz-pref("zen.view.experimental-force-window-controls-left")) {
