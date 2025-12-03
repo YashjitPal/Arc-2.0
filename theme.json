@@ -4,7 +4,7 @@
   "author": "YashjitPal",
   "name": "Arc 2.0",
   "description": "Arc-like Zen Browser theme.",
-  "version": "3.2.9",
+  "version": "3.3.0",
   "style":{"chrome": "https://raw.githubusercontent.com/YashjitPal/Arc-2.0/refs/heads/main/userChrome.css",
     "content": "https://raw.githubusercontent.com/YashjitPal/Arc-2.0/refs/heads/main/userContent.css"},
   "preferences": "https://raw.githubusercontent.com/dav2010ID/Arc-2.0/refs/heads/main/preferences.json",
