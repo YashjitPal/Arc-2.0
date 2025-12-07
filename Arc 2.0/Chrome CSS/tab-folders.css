@@ -8,6 +8,11 @@
   transition: background-color 0.3s ease, box-shadow 0.3s ease !important;
 }
 
+/* Advanced Tab Groups Outline show up fixed */
+.tab-group-label{
+  outline:none !important;
+}
+
 /* Override for pinned tabs background 
 @media (-moz-pref("arc-folder-background")) {
   .tab-group-label-container::before {

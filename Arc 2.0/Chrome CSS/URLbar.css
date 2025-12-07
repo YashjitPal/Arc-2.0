@@ -326,7 +326,7 @@
   .urlbarView-row {
     &:not([type="tip"], [type="dynamic"]) {
       :root:not([uidensity="compact"]) & {
-        min-height: 12px !important;
+        min-height: 50px !important;
       }
     }
   }
