@@ -6,6 +6,11 @@
   }
 }
 
+/* Spacer Remover */
+.toolbarButtonSpacer{
+  display:none !important;
+}
+
 #mainContainer::before {
   content: '' !important;
   position: absolute !important;
