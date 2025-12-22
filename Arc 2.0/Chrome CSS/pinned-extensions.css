@@ -13,7 +13,7 @@
 
 :root[zen-single-toolbar="true"] #nav-bar {
   
-  margin-bottom: 17px !important; /* Adjust gap between urlbar and extensions */
+  margin-bottom: 16.5px !important; /* Adjust gap between urlbar and extensions */
 }
 
 /* Pinned extensions */
