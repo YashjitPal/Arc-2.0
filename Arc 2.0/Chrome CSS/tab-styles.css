@@ -104,9 +104,9 @@
           display: flex !important;
           box-sizing: border-box !important;
 
-          width: 21px !important;
-          height: 21px !important;
-          margin: auto 5px !important;
+          width: 23.5px !important;
+          height: 23.5px !important;
+          margin: auto 4.5px !important;
           border-radius: 1rem !important;
           /*   background-color: color-mix(in srgb, var(--identity-tab-color) 20%, white), !important; */
           background: color-mix(in srgb,
