@@ -9,11 +9,11 @@
   );
 }
 
-  /* main ui tint */
+  /* main ui tint 
   #zen-main-app-wrapper {
     background: var(--nebula-ui-tint) !important;
   } 
-
+*/
   /* Hide identity label for Bonjourr */
   #identity-icon-label[value="Extension (Bonjourr · Minimalist Startpage)"] {
     display: none !important;
@@ -23,7 +23,22 @@
     --attention-dot-color: transparent !important; /* remove attention dot */
     --zen-themed-toolbar-bg-transparent: transparent !important; /* fix for transparency */
   }
-  
+
+/*Better Essentials look*/
+.zen-essentials-container {
+    .tabbrowser-tab:is([selected],[visuallyselected]) .tab-background {
+      &::before {
+        opacity: 0.6;
+      }
+    }
+  }
+
+/*Increased blur for Menus*/
+.menupopup-arrowscrollbox {
+  box-shadow: none !important;
+  background-color: #00000030 !important;
+}
+	
   /* Config for blur rendering */
   @media -moz-pref("arc.force-blur-rendering") {
     browser {
