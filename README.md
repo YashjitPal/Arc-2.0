@@ -43,7 +43,7 @@ It’s the skin I personally use, made public due to demand for the CSS. Inspire
 
 ### ✅ Install Using [Sine](https://github.com/CosmoCreeper/Sine) *(Recommended)*
 
-1. Install **Sine**, a JS-based mod & theme manager: [Sine v2 Release](https://github.com/CosmoCreeper/Sine/releases/tag/v2.0).  
+1. Install **Sine**, a JS-based mod & theme manager: [Sine v2.2.3 Release](https://github.com/CosmoCreeper/Sine/releases/tag/v2.2.3).  
    More info: [CosmoCreeper/Sine](https://github.com/CosmoCreeper/Sine)
 
    ![image](https://github.com/user-attachments/assets/0d7255b4-0ae0-43e9-8989-7d7016936e83)
