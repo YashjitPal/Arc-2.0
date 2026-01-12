@@ -85,7 +85,7 @@
   {
     "type": "checkbox",
     "property": "arc-compact-mode-no-sidebar-bg",
-    "label": "Remove pseudo background on compact sidebar."
+    "label": "Remove pseudo background on compact sidebar (only enable if you don't use websites with transparent background)."
   },
   {
     "type": "string",
@@ -137,7 +137,7 @@
     "type": "dropdown",
     "value": "number",
     "property": "arc.tab-groups-disable",
-    "label": "Arc Tab Groups",
+    "label": "Arc Tab Groups (Disable if you are using Advanced Tab Groups).",
     "default": 0,
     "options": [
       { "label": "Enabled", "value": 0 },
@@ -195,7 +195,7 @@
   {
     "type": "checkbox",
     "property": "arc-pinned-extensions-mod",
-    "label": "Enable Pinned Extensions UI."
+    "label": "Enable Pinned Extensions UI (See README in Arc2.0 GitHub Repository to understand how to set this up)."
   },
   {
     "type": "checkbox",
@@ -284,7 +284,7 @@
   {
     "type": "checkbox",
     "property": "arc-findbar-disable",
-    "label": "Disable Arc styling for FindBar."
+    "label": "Disable Arc styling for FindBar (must enable when using Browse Bot mod)."
   },
   {
     "type": "separator",
@@ -323,7 +323,7 @@
   {
     "type": "dropdown",
     "property": "arc-font",
-    "label": "Select the font for Arc.",
+    "label": "Select the font for browser (restart for chosen font to take effect on browser pages).",
     "defaultValue": "Nunito",
     "options": [
       { "label": "Nunito (default)", "value": "Nunito" },
@@ -425,6 +425,7 @@
         "defaultValue": "1.8px"
     }
 ]
+
 
 
 
