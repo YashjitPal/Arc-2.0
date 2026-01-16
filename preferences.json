@@ -13,8 +13,14 @@
   },
   {
     "type": "checkbox",
+    "label": "Enable better blur for context menu (ensure your OS has proper blur support).",
+    "property": "arc-menu-blue"
+  },
+  {
+    "type": "checkbox",
     "label": "Force transparency using clip-path (use this only if the ways mentioned to get transparency in `readme.md` doesn't work).",
-    "property": "arc.force-blur-rendering"
+    "property": "arc.force-blur-rendering",
+    "restart": true
   },
   {
     "type": "checkbox",
@@ -324,6 +330,7 @@
     "type": "dropdown",
     "property": "arc-font",
     "label": "Select the font for browser (restart for chosen font to take effect on browser pages).",
+    "restart": true,
     "defaultValue": "Nunito",
     "options": [
       { "label": "Nunito (default)", "value": "Nunito" },
@@ -425,6 +432,7 @@
         "defaultValue": "1.8px"
     }
 ]
+
 
 
 
