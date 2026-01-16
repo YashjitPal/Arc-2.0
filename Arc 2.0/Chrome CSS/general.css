@@ -34,11 +34,12 @@
   }
 
 /*Increased blur for Menus*/
+@media (-moz-pref("arc-menu-blur")) {
 .menupopup-arrowscrollbox {
   box-shadow: none !important;
   background-color: #00000030 !important;
 }
-	
+}
   /* Config for blur rendering */
   @media -moz-pref("arc.force-blur-rendering") {
     browser {
