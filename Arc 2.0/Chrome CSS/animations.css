@@ -971,6 +971,11 @@ menuitem *,
     background-size: 200% 200%;
   }
 
+  /* Background Line Fix */
+  #zen-media-info-vbox:before{
+    display: none;
+  }
+
   @media -moz-pref("arc.transparency-media") {
     :root {
       --arc-media-color: light-dark(#fffd, #000d);
