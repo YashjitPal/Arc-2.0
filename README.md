@@ -200,48 +200,63 @@ Descriptions are provided in the original instructions above.
 ## 🌫️ Zen Sidebar Transparency Options
 
 ### DWMGlassBlur (Recommended)
-- Download: [DWMBlurGlass](https://github.com/Maplespe/DWMBlurGlass)
+- Download: [DWMBlurGlass](https://github.com/Maplespe/DWMBlurGlass/releases/tag/2.3.2b3)
 - Make symbols **valid** as shown:
 
-  ![image](https://github.com/user-attachments/assets/5219d2b3-1396-4116-b37e-eb85a8a7437d)
+  ![image](<img width="888" height="892" alt="image" src="https://github.com/user-attachments/assets/e38fb950-b8de-42c1-8bd7-49b400929f14" />)
 
 - Create `DWM.ini` and paste:
-  ```ini
+  ```
   [config]
   applyglobal=true
   extendBorder=false
   reflection=false
   oldBtnHeight=false
   customAmount=true
-  crossFade=true
+  crossFade=false
   useAccentColor=false
-  blurAmount=50.000000
-  customBlurAmount=50.000000
-  luminosityOpacity=0.650000
-  activeTextColor=4278190080
-  inactiveTextColor=4290032820
-  activeTextColorDark=4294967295
-  inactiveTextColorDark=4290032820
-  activeBlendColor=1694498815
-  inactiveBlendColor=1694498815
-  activeBlendColorDark=1677721600
-  inactiveBlendColorDark=1677721600
-  glassIntensity=1.000000
-  aeroColorBalance=0.080000
-  aeroAfterglowBalance=0.430000
-  aeroBlurBalance=0.490000
-  blurMethod=0
-  effectType=0
-  crossfadeTime=160
-  overrideAccent=true
+  overrideAccent=false
   occlusionCulling=true
-  disableOnBattery=true
+  disableOnBattery=false
   titlebtnGlow=false
   disableFramerateLimit=true
+  autoDownloadSymbols=true
+  extendRound=10
+  titlebtnOffsetX=-1
+  customTitleBtnSize=false
+  titleBtnSizePreset=1
+  customCloseBtnW=44
+  customMaxBtnW=26
+  customMinBtnW=25
+  customBtnFrameH=18
+  blurAmount=30
+  customBlurAmount=30
+  luminosityOpacity=0.65
+  glassIntensity=1
+  customAeroTexture=false
+  customAeroTexturePath=
+  crossfadeTime=160
+  aeroColorBalance=0.08
+  aeroAfterglowBalance=0.43
+  aeroBlurBalance=0.49
+  activeTextColor=4278190080
+  inactiveTextColor=4282861383
+  activeBlendColor=1694498815
+  inactiveBlendColor=1694498815
+  activeTextColorDark=4294967295
+  inactiveTextColorDark=4290032820
+  activeBlendColorDark=1677721600
+  inactiveBlendColorDark=1677721600
+  blurMethod=0
+  effectType=0
+  blurQuality=1
+
 
 * Import in DWM:
 
-  ![image](https://github.com/user-attachments/assets/12e6c621-ecf8-416d-88c4-670a77b2d66d)
+<img width="888" height="892" alt="image" src="https://github.com/user-attachments/assets/18cded56-9f3f-4c7c-9cea-8f7fe5ec2b9f" />
+
+
 
 ---
 
