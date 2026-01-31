@@ -1,5 +1,5 @@
+/* @import "pdfjs.css"; */
 
-/*---------------------------------transparent zen windows lie setting about config etc--------------------------------------*/
 :root{
   --zen-colors-tertiary: transparent !important;
   --zen-settings-secondary-background: transparent !important;
@@ -7,15 +7,6 @@
 
 #preferences-root{
   background-color: transparent !important;
-}
-
-/* Removes the white or dark layer on top */
-browser{
-  background-color: transparent !important;;
-}
-
-.dialogFrame{
-  background-color: var(--sidebar-background-color) !important;
 }
 
 .sticky-container{
@@ -53,7 +44,7 @@ html:has([data-l10n-id]){
 
 groupbox{
 /*   background: var(--zen-colors-tertiary) !important; */
-  background: var(--zen-colors-border-contrast) !important;
+/*   background: var(--zen-colors-border-contrast) !important; */
   border: none;
 }
 
@@ -121,3 +112,6 @@ footer{
 } */
 
 
+body:has(#viewer.pdfViewer, #json-scrolling-panel){
+  background-color: transparent !important;
+}
