@@ -52,14 +52,14 @@
     "type": "checkbox",
     "property": "arc-urlbar-fade-in",
     "label": "Remove fade-in which is below the urlbar.",
-    "default": false
+    "defaultValue": false
   },
   {
     "type": "dropdown",
     "value": "string",
     "property": "arc-urlbar-animation",
     "label": "Animation for URL bar when focused.",
-    "default": 1,
+    "defaultValue": 1,
     "options": [
       { "label": "Stretch", "value": "stretch" },
       { "label": "Fade in", "value": "fadeIn" }
@@ -70,7 +70,7 @@
     "value": "number",
     "property": "arcline.url.bar",
     "label": "Enables Arcline-like URL Bar.",
-    "default": 0,
+    "defaultValue": 0,
     "options": [
       { "label": "Disable", "value": 0 },
       { "label": "Enable", "value": 1 }
@@ -79,8 +79,9 @@
   {
     "type": "string",
     "property": "arc.urlbar.opacity",
-    "default": 0.3,
-    "label": "Change the transparency of the urlbar."
+    "defaultValue": "0.25",
+    "placeholder": "0.25",
+    "label": "Change the transparency of the urlbar (Enter value between 0 and 1 [for ex.: 0.25])."
   },
   {
     "type": "separator",
@@ -96,22 +97,23 @@
   {
     "type": "string",
     "property": "arc.compact.sidebar-opacity",
-    "default": "0.3",
-    "label": "Change the theme color density in compact sidebar."
+    "defaultValue": "0.25",
+    "placeholder": "0.25",
+    "label": "Change the theme color density in compact sidebar (Enter value between 0 and 1 [for ex.: 0.25])."
   },
   {
     "type": "string",
-    "label": "Blur for compact mode sidebar",
+    "label": "Blur for compact mode sidebar (Enter value between 0 and 100px)",
     "property": "arc.compact.sidebar-blur",
-    "defaultValue": "30px",
-    "placeholder": "30px"
+    "defaultValueValue": "25px",
+    "placeholder": "25px"
   },
   {
     "type": "string",
     "property": "arc-compact-sidebar-size",
-    "default": "25em",
-    "placeholder": "25em",
-    "label": "Custom sidebar size for compact mode."
+    "defaultValue": "23em",
+    "placeholder": "23em",
+    "label": "Custom sidebar size for compact mode (Enter value between 15em and 45em as per preference [if pseudo bg appears smaller than compact sidebar size, increase this value]."
   },
   {
     "type": "separator",
@@ -131,7 +133,7 @@
   },
   {
     "type": "checkbox",
-    "property": "arc.tab.default-audio-indicator",
+    "property": "arc.tab.defaultValue-audio-indicator",
     "label": "Disable audio playing indicator in tab playing media."
   },
   {
@@ -144,7 +146,7 @@
     "value": "number",
     "property": "arc.tab-groups-disable",
     "label": "Arc Tab Groups (Disable if you are using Advanced Tab Groups).",
-    "default": 0,
+    "defaultValue": 0,
     "options": [
       { "label": "Enabled", "value": 0 },
       { "label": "Disabled", "value": 1 }
@@ -161,10 +163,10 @@
     "value": "number",
     "property": "arc-tab-loading-animation",
     "label": "Animation while the website loads.",
-    "default": 1,
+    "defaultValue": 1,
     "options": [
       { "label": "No animation", "value": 0 },
-      { "label": "Blur (default)", "value": 1 },
+      { "label": "Blur (defaultValue)", "value": 1 },
       { "label": "More prominent blur", "value": 2 },
       { "label": "Less prominent blur", "value": 3 },
       { "label": "Grayscale with no blur", "value": 4 },
@@ -176,10 +178,10 @@
     "value": "number",
     "property": "arc-tab-switch-animation",
     "label": "Animation while switching tabs.",
-    "default": 1,
+    "defaultValue": 1,
     "options": [
       { "label": "No animation", "value": 0 },
-      { "label": "Bounce (default)", "value": 1 },
+      { "label": "Bounce (defaultValue)", "value": 1 },
       { "label": "Bouncier", "value": 2 },
       { "label": "More bounce", "value": 3 },
       { "label": "Smooth crossfade (scroll in split-mode might not work)", "value": 4 },
@@ -218,7 +220,7 @@
     "value": "number",
     "property": "arc-enable-container-styling",
     "label": "Edit container styling.",
-    "default": 1,
+    "defaultValue": 1,
     "options": [
       { "label": "Disabled", "value": 0 },
       { "label": "Style-1", "value": 1 },
@@ -230,7 +232,7 @@
     "value": "number",
     "property": "arc-workspace-style",
     "label": "Workspace icon animation style.",
-    "default": 0,
+    "defaultValue": 0,
     "options": [
       { "label": "No background", "value": 0 },
       { "label": "No animation", "value": 1 },
@@ -247,7 +249,7 @@
     "type": "checkbox",
     "label": "Enable Arc Menu Icon",
     "property": "arc-menu-icon",
-    "default": true
+    "defaultValue": true
   },
   {
     "type": "checkbox",
@@ -285,7 +287,7 @@
     "type": "checkbox",
     "property": "arc.media-controls-toolbar-bottom",
     "label": "Enable Media Controls Toolbar to go bottom.",
-    "default": false
+    "defaultValue": false
   },
   {
     "type": "checkbox",
@@ -312,7 +314,7 @@
     "type": "string",
     "value": "number",
     "property": "browser.low_commit_space_threshold_mb",
-    "label": "Memory threshold to activate tab unloading."
+    "label": "Memory threshold to activate tab unloading (in MB)."
   },
   {
     "type": "string",
@@ -331,9 +333,9 @@
     "property": "arc-font",
     "label": "Select the font for browser (restart for chosen font to take effect on browser pages).",
     "restart": true,
-    "defaultValue": "Nunito",
+    "defaultValueValue": "Nunito",
     "options": [
-      { "label": "Nunito (default)", "value": "Nunito" },
+      { "label": "Nunito (defaultValue)", "value": "Nunito" },
       { "label": "Nunito Italic", "value": "Nunito-Italic" },
       { "label": "SF Pro", "value": "SF-Pro" },
       { "label": "SF Symbols", "value": "SF-Symbols" },
@@ -351,87 +353,88 @@
       "property": "arc.detaloadingbar.enabled",
       "label": "Enable/Disable Deta Loading Bar",
       "type": "checkbox",
-      "defaultValue": true
+      "defaultValueValue": true
     },
     {
       "property": "arc.detaloadingbar.usefromzen",
       "label": "Use color from Zen browser theme (will override custom colors)",
       "type": "checkbox",
-      "defaultValue": true
+      "defaultValueValue": true
     },
     {
       "property": "arc.detaloadingbar.singlecolor",
       "label": "Use only left color for the loading bar (Disable gradient)",
       "type": "checkbox",
-      "defaultValue": false
+      "defaultValueValue": false
     },
     {
         "property": "arc.detaloadingbar.maincolor",
         "label": "Left color",
         "type": "string",
-        "defaultValue": "rgba(243,202,186,255)"
+        "defaultValueValue": "rgba(243,202,186,255)"
     },
     {
         "property": "arc.detaloadingbar.middlecolor",
         "label": "Middle color",
         "type": "string",
-        "defaultValue": "rgba(255,255,255,255)"
+        "defaultValueValue": "rgba(255,255,255,255)"
     },
     {
         "property": "arc.detaloadingbar.rightcolor",
         "label": "Right color",
         "type": "string",
-        "defaultValue": "rgba(243,202,186,255)"
+        "defaultValueValue": "rgba(243,202,186,255)"
     },
     {
         "property": "arc.detaloadingbar.thickness",
         "label": "Thickness",
         "type": "string",
-        "defaultValue": "6px"
+        "defaultValueValue": "6px"
     },
     {
         "property": "arc.detaloadingbar.minwidth",
         "label": "Custom Minimum Width",
         "type": "string",
-        "defaultValue": "20px"
+        "defaultValueValue": "20px"
     },
     {
         "property": "arc.detaloadingbar.maxwidth",
         "label": "Custom Maximum Width",
         "type": "string",
-        "defaultValue": "120px"
+        "defaultValueValue": "120px"
     },
     {
         "property": "arc.detaloadingbar.spacerwidth",
-        "label": "Custom gap between loading bar and window edge (default is 8px)",
+        "label": "Custom gap between loading bar and window edge (defaultValue is 8px)",
         "type": "string",
-        "defaultValue": "8px"
+        "defaultValueValue": "8px"
     },
     {
         "property": "arc.detaloadingbar.position.top",
         "label": "Place loading bar at top (unchecked = bottom)",
         "type": "checkbox",
-        "defaultValue": true
+        "defaultValueValue": true
     },
     {
       "property": "arc.detaloadingbar.boxshadow.enabled",
       "label": "Enable/Disable Box Shadow",
       "type": "checkbox",
-      "defaultValue": true
+      "defaultValueValue": true
     },
     {
       "property": "arc.detaloadingbar.blur.enabled",
       "label": "Enable/Disable Blur Effect",
       "type": "checkbox",
-      "defaultValue": true
+      "defaultValueValue": true
     },
     {
         "property": "arc.detaloadingbar.blur.intensity",
         "label": "Blur Intensity",
         "type": "string",
-        "defaultValue": "1.8px"
+        "defaultValueValue": "1.8px"
     }
 ]
+
 
 
 
