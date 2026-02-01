@@ -9,11 +9,16 @@
   );
 }
 
-  /* main ui tint 
+  /* main ui tint */
   #zen-main-app-wrapper {
     background: var(--nebula-ui-tint) !important;
   } 
-*/
+
+	/* Website background tint */
+browser {
+    background: var(--nebula-website-tint) !important;
+}
+	
   /* Hide identity label for Bonjourr */
   #identity-icon-label[value="Extension (Bonjourr · Minimalist Startpage)"] {
     display: none !important;
