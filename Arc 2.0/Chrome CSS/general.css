@@ -9,6 +9,10 @@
   );
 }
 
+browser {
+  will-change: transform;
+}
+	
   /* main ui tint */
   #zen-main-app-wrapper {
     background: var(--nebula-ui-tint) !important;
