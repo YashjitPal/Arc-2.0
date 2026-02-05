@@ -105,7 +105,7 @@
     "type": "string",
     "label": "Blur for compact mode sidebar (Enter value between 0 and 100px)",
     "property": "arc.compact.sidebar-blur",
-    "defaultValueValue": "25px",
+    "defaultValue": "25px",
     "placeholder": "25px"
   },
   {
@@ -434,6 +434,7 @@
         "defaultValueValue": "1.8px"
     }
 ]
+
 
 
 
