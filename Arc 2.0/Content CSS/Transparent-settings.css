@@ -12,10 +12,6 @@
   border-radius: 0 0 1em 1em !important;
 }
 
-html:has([data-l10n-id]){
-  background-color: transparent !important;
-}
-
 .KEYJUMP_hint{
   border-radius: 100px !important;
   background-color: #49FCBB !important;
