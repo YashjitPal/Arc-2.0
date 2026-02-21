@@ -51,14 +51,14 @@
   {
     "type": "checkbox",
     "property": "arc-urlbar-fade-in",
-    "label": "Remove fade-in which is below the urlbar.",
+    "label": "Remove fade-in which is below the URL Bar.",
     "defaultValue": false
   },
   {
     "type": "dropdown",
     "value": "string",
     "property": "arc-urlbar-animation",
-    "label": "Animation for URL bar when focused.",
+    "label": "Animation for URL Bar when focused (Won't work if Arcline-like URL Bar is enabled).",
     "defaultValue": 1,
     "options": [
       { "label": "Stretch", "value": "stretch" },
@@ -81,7 +81,7 @@
     "property": "arc.urlbar.opacity",
     "defaultValue": "0.25",
     "placeholder": "0.25",
-    "label": "Change the transparency of the urlbar (Enter value between 0 and 1 [for ex.: 0.25])."
+    "label": "Change the transparency of the URL Bar (Enter value between 0 and 1 [for ex.: 0.25])."
   },
   {
     "type": "separator",
@@ -99,7 +99,7 @@
     "property": "arc.compact.sidebar-opacity",
     "defaultValue": "0.25",
     "placeholder": "0.25",
-    "label": "Change the theme color density in compact sidebar (Enter value between 0 and 1 [for ex.: 0.25])."
+    "label": "Change the theme color density in Compact Sidebar & URL Bar (Enter value between 0 and 1 [for ex.: 0.25])."
   },
   {
     "type": "string",
@@ -111,8 +111,8 @@
   {
     "type": "string",
     "property": "arc-compact-sidebar-size",
-    "defaultValue": "23em",
-    "placeholder": "23em",
+    "defaultValue": "22em",
+    "placeholder": "22em",
     "label": "Custom sidebar size for compact mode (Enter value between 15em and 45em as per preference [if pseudo bg appears smaller than compact sidebar size, increase this value]."
   },
   {
@@ -163,10 +163,10 @@
     "value": "number",
     "property": "arc-tab-loading-animation",
     "label": "Animation while the website loads.",
-    "defaultValue": 1,
+    "defaultValue": 0,
     "options": [
       { "label": "No animation", "value": 0 },
-      { "label": "Blur (defaultValue)", "value": 1 },
+      { "label": "Blur", "value": 1 },
       { "label": "More prominent blur", "value": 2 },
       { "label": "Less prominent blur", "value": 3 },
       { "label": "Grayscale with no blur", "value": 4 },
@@ -178,10 +178,10 @@
     "value": "number",
     "property": "arc-tab-switch-animation",
     "label": "Animation while switching tabs.",
-    "defaultValue": 1,
+    "defaultValue": 2,
     "options": [
       { "label": "No animation", "value": 0 },
-      { "label": "Bounce (defaultValue)", "value": 1 },
+      { "label": "Bounce", "value": 1 },
       { "label": "Bouncier", "value": 2 },
       { "label": "More bounce", "value": 3 },
       { "label": "Smooth crossfade (scroll in split-mode might not work)", "value": 4 },
@@ -434,6 +434,7 @@
         "defaultValueValue": "1.8px"
     }
 ]
+
 
 
 
