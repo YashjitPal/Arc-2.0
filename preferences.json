@@ -61,8 +61,8 @@
     "label": "Animation for URL Bar when focused (Won't work if Arcline-like URL Bar is enabled).",
     "defaultValue": 1,
     "options": [
-      { "label": "Stretch", "value": "stretch" },
-      { "label": "Fade in", "value": "fadeIn" }
+      { "label": "Stretch", "value": 1 },
+      { "label": "Fade in", "value": 2 }
     ]
   },
   {
@@ -79,8 +79,8 @@
   {
     "type": "string",
     "property": "arc.urlbar.opacity",
-    "defaultValue": "0.25",
-    "placeholder": "0.25",
+    "defaultValue": 0.25,
+    "placeholder": 0.25,
     "label": "Change the transparency of the URL Bar (Enter value between 0 and 1 [for ex.: 0.25])."
   },
   {
@@ -97,9 +97,9 @@
   {
     "type": "string",
     "property": "arc.compact.sidebar-opacity",
-    "defaultValue": "0.25",
-    "placeholder": "0.25",
-    "label": "Change the theme color density in Compact Sidebar & URL Bar (Enter value between 0 and 1 [for ex.: 0.25])."
+    "defaultValue": 0.25,
+    "placeholder": "0.25,
+    "label": "Change the theme color density in Compact Sidebar and URL Bar (Enter value between 0 and 1 [for ex.: 0.25])."
   },
   {
     "type": "string",
@@ -434,6 +434,7 @@
         "defaultValueValue": "1.8px"
     }
 ]
+
 
 
 
