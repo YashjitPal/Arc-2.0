@@ -267,7 +267,7 @@ browser {
     border-radius: 11px !important;
     padding: 3px 10px !important;
     border: 1px solid var(--zen-colors-border) !important;
-    background: light-dark(rgba(255, 255, 255, 1), rgba(0, 0, 0, 0.9)) !important;
+    background: rgba(0, 0, 0, 0.9) !important;
   }
 }
 
