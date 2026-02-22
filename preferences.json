@@ -97,8 +97,8 @@
   {
     "type": "string",
     "property": "arc.compact.sidebar-opacity",
-    "defaultValue": 0.25,
-    "placeholder": "0.25,
+    "defaultValue": 0,
+    "placeholder": 0,
     "label": "Change the theme color density in Compact Sidebar and URL Bar (Enter value between 0 and 1 [for ex.: 0.25])."
   },
   {
@@ -220,7 +220,7 @@
     "value": "number",
     "property": "arc-enable-container-styling",
     "label": "Edit container styling.",
-    "defaultValue": 1,
+    "defaultValue": 0,
     "options": [
       { "label": "Disabled", "value": 0 },
       { "label": "Style-1", "value": 1 },
@@ -286,8 +286,7 @@
   {
     "type": "checkbox",
     "property": "arc.media-controls-toolbar-bottom",
-    "label": "Enable Media Controls Toolbar to go bottom.",
-    "defaultValue": false
+    "label": "Enable Media Controls Toolbar to go bottom."
   },
   {
     "type": "checkbox",
@@ -434,6 +433,7 @@
         "defaultValueValue": "1.8px"
     }
 ]
+
 
 
 
