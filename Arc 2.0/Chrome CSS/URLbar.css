@@ -178,7 +178,7 @@
 @media not (-moz-pref("arc.urlbar.background")){
   #browser:has(#urlbar[open]) .browserStack {
     scale: 1.075 !important;
-    filter: brightness(50%) blur(25px) saturate(125%) !important;
+    filter: brightness(50%) blur(30px) saturate(145%) !important;
     opacity: 1 !important;
   }
 }
