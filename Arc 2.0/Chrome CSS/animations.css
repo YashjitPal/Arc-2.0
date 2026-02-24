@@ -879,6 +879,7 @@ menuitem *,
 }
 
   /*Media Player*/
+@media not -moz-pref("arc-disable-media-player-styles") {
   @-moz-document url-prefix("chrome:") {
     @media (-moz-pref("arc.media-controls-toolbar-bottom")) {
       #zen-media-controls-toolbar {
@@ -935,6 +936,7 @@ menuitem *,
   }
 
   /* Media controls glow effect */
+  @media not -moz-pref("arc-disable-player-glow-effect") {
   #zen-media-controls-toolbar::after {
     position: absolute;
     content: "";
@@ -970,7 +972,8 @@ menuitem *,
         light-dark(#fffd, rgba(0, 0, 0, 0.5)));
     background-size: 200% 200%;
   }
-
+  }
+  
   /* Background Line Fix */
   #zen-media-info-vbox:before{
     display: none;
