@@ -25,7 +25,17 @@
   {
     "type": "checkbox",
     "property": "arc.transparency-media",
-    "label": "Disable glassy look from media player"
+    "label": "Disable glassy look from sidebar media miniplayer."
+  },
+  {
+    "type": "checkbox",
+    "property": "arc-disable-player-glow-effect",
+    "label": "Disable glow effects on sidebar media miniplayer."
+  },
+  {
+    "type": "checkbox",
+    "property": "arc-disable-media-player-styles",
+    "label": "Enable default Zen styling sidebar media miniplayer."
   },
   {
     "type": "checkbox",
@@ -433,6 +443,7 @@
         "defaultValueValue": "1.8px"
     }
 ]
+
 
 
 
