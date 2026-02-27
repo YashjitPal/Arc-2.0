@@ -342,7 +342,7 @@
     "property": "arc-font",
     "label": "Select the font for browser (restart for chosen font to take effect on browser pages).",
     "restart": true,
-    "defaultValueValue": "Nunito",
+    "defaultValue": "Nunito",
     "options": [
       { "label": "Nunito (defaultValue)", "value": "Nunito" },
       { "label": "Nunito Italic", "value": "Nunito-Italic" },
@@ -362,87 +362,88 @@
       "property": "arc.detaloadingbar.enabled",
       "label": "Enable/Disable Deta Loading Bar",
       "type": "checkbox",
-      "defaultValueValue": true
+      "defaultValue": true
     },
     {
       "property": "arc.detaloadingbar.usefromzen",
       "label": "Use color from Zen browser theme (will override custom colors)",
       "type": "checkbox",
-      "defaultValueValue": true
+      "defaultValue": true
     },
     {
       "property": "arc.detaloadingbar.singlecolor",
       "label": "Use only left color for the loading bar (Disable gradient)",
       "type": "checkbox",
-      "defaultValueValue": false
+      "defaultValue": false
     },
     {
         "property": "arc.detaloadingbar.maincolor",
         "label": "Left color",
         "type": "string",
-        "defaultValueValue": "rgba(243,202,186,255)"
+        "defaultValue": "rgba(243,202,186,255)"
     },
     {
         "property": "arc.detaloadingbar.middlecolor",
         "label": "Middle color",
         "type": "string",
-        "defaultValueValue": "rgba(255,255,255,255)"
+        "defaultValue": "rgba(255,255,255,255)"
     },
     {
         "property": "arc.detaloadingbar.rightcolor",
         "label": "Right color",
         "type": "string",
-        "defaultValueValue": "rgba(243,202,186,255)"
+        "defaultValue": "rgba(243,202,186,255)"
     },
     {
         "property": "arc.detaloadingbar.thickness",
         "label": "Thickness",
         "type": "string",
-        "defaultValueValue": "6px"
+        "defaultValue": "6px"
     },
     {
         "property": "arc.detaloadingbar.minwidth",
         "label": "Custom Minimum Width",
         "type": "string",
-        "defaultValueValue": "20px"
+        "defaultValue": "20px"
     },
     {
         "property": "arc.detaloadingbar.maxwidth",
         "label": "Custom Maximum Width",
         "type": "string",
-        "defaultValueValue": "120px"
+        "defaultValue": "120px"
     },
     {
         "property": "arc.detaloadingbar.spacerwidth",
         "label": "Custom gap between loading bar and window edge (defaultValue is 8px)",
         "type": "string",
-        "defaultValueValue": "8px"
+        "defaultValue": "8px"
     },
     {
         "property": "arc.detaloadingbar.position.top",
         "label": "Place loading bar at top (unchecked = bottom)",
         "type": "checkbox",
-        "defaultValueValue": true
+        "defaultValue": true
     },
     {
       "property": "arc.detaloadingbar.boxshadow.enabled",
       "label": "Enable/Disable Box Shadow",
       "type": "checkbox",
-      "defaultValueValue": true
+      "defaultValue": true
     },
     {
       "property": "arc.detaloadingbar.blur.enabled",
       "label": "Enable/Disable Blur Effect",
       "type": "checkbox",
-      "defaultValueValue": true
+      "defaultValue": true
     },
     {
         "property": "arc.detaloadingbar.blur.intensity",
         "label": "Blur Intensity",
         "type": "string",
-        "defaultValueValue": "1.8px"
+        "defaultValue": "1.8px"
     }
 ]
+
 
 
 
