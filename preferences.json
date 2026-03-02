@@ -66,7 +66,7 @@
   },
   {
     "type": "dropdown",
-    "value": "string",
+    "value": "number",
     "property": "arc-urlbar-animation",
     "label": "Animation for URL Bar when focused (Won't work if Arcline-like URL Bar is enabled).",
     "defaultValue": 1,
@@ -443,6 +443,7 @@
         "defaultValue": "1.8px"
     }
 ]
+
 
 
 
