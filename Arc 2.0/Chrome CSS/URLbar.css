@@ -140,13 +140,16 @@
     overflow: hidden !important;
     backdrop-filter: blur(70px) !important;
   }
-  
-  @media (-moz-pref("arc-urlbar-animation", "stretch")) {
+
+  /*stretch animation*/
+  @media (-moz-pref("arc-urlbar-animation", 1)) {
     #urlbar[open] {
       animation: stretch 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     }
   }
-  @media (-moz-pref("arc-urlbar-animation", "fadeIn")) {
+
+  /*fadeIn animation*/
+  @media (-moz-pref("arc-urlbar-animation", 2)) {
     #urlbar[open] {
       animation: fadeIn 0.15s ease-in !important;
     }
