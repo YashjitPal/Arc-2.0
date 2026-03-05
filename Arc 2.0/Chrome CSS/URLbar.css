@@ -196,6 +196,14 @@
     scale 0.25s cubic-bezier(0.175, 0.885, 0.32, 1) !important;
 }
 
+.urlbarView-row {
+  &[selected] {
+    & *, & .urlbarView-title-separator::before {
+      color: light-dark(rgba(0,0,0,1), rgba(255,255,255,1)) !important;
+    }
+  }
+}
+
 @media (-moz-pref("arcline.url.bar", 1)) {
 
   * {
