@@ -35,12 +35,12 @@
   {
     "type": "checkbox",
     "property": "arc-disable-media-player-styles",
-    "label": "Enable default Zen styling sidebar media miniplayer."
+    "label": "Enable default Zen styling for sidebar media miniplayer."
   },
   {
     "type": "checkbox",
     "property": "arc.urlbar.background",
-    "label": "Disable blur for background zoom blur when URL bar popup."
+    "label": "Disable blur for background zoom blur when URL bar popup (Only enable if you don't use transparent websites)."
   },
   {
     "type": "separator",
@@ -123,7 +123,7 @@
     "property": "arc-compact-sidebar-size",
     "defaultValue": "22em",
     "placeholder": "22em",
-    "label": "Custom sidebar size for compact mode (Enter value between 15em and 45em as per preference [if pseudo bg appears smaller than compact sidebar size, increase this value]."
+    "label": "Custom sidebar size for compact mode (Enter value between 15em and 45em as per preference [if pseudo bg appears smaller than compact sidebar size, increase this value])."
   },
   {
     "type": "separator",
@@ -443,6 +443,7 @@
         "defaultValue": "1.8px"
     }
 ]
+
 
 
 
