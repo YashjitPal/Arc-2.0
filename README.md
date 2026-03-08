@@ -25,7 +25,7 @@ It’s the skin I personally use, made public due to demand for the CSS. Inspire
 
 > **Note:** Arc 2.0 is *not* a standalone browser.
 
-**Tested on:** `Zen Browser 1.17.10b` (Windows)  
+**Tested on:** `Zen Browser 1.19.1b` (Windows)  
 **Recommended Mode:** Dark Mode + Single Toolbar Mode  
 (Might encounter minor hiccups in other modes.)
 
@@ -43,8 +43,7 @@ It’s the skin I personally use, made public due to demand for the CSS. Inspire
 
 ### ✅ Install Using [Sine](https://github.com/CosmoCreeper/Sine) *(Recommended)*
 
-1. Install **Sine**, a JS-based mod & theme manager: [Sine v2.2.3 Release](https://github.com/CosmoCreeper/Sine/releases/tag/v2.2.3).  
-   More info: [CosmoCreeper/Sine](https://github.com/CosmoCreeper/Sine)
+1. Install **Sine**, a JS-based mod & theme manager: [Sine v2.3](https://github.com/sineorg/docs/blob/main/src/installation.md).
 
    ![image](https://github.com/user-attachments/assets/0d7255b4-0ae0-43e9-8989-7d7016936e83)
 
@@ -116,7 +115,6 @@ https://github.com/user-attachments/assets/98e35d8f-5638-4791-8369-8ff964ad94df
 ## 🧩 Required Extensions
 
 ### • [Zen Internet (Transparent Websites)](https://addons.mozilla.org/en-US/firefox/addon/zen-internet/)
-### • [Copy Frame or Page URL](https://addons.mozilla.org/en-US/firefox/addon/arc-like-copy-link/)
 
 ---
 
