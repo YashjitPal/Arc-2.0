@@ -175,7 +175,16 @@
 /* ------------------ URL Bar BG ------------------ */
 
 .browserStack {
-  transition: all 0.3s cubic-bezier(0.175, 0.385, 0.12, 1) !important;
+  filter: none !important;
+  opacity: 1 !important;
+  transition:
+    filter 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35),
+    opacity 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35),
+    scale 0.25s cubic-bezier(0.175, 0.885, 0.32, 1) !important;
+}
+
+#browser:has(#urlbar[open]) .browserStack {
+  scale: 1 !important;
 }
 
 @media not (-moz-pref("arc.urlbar.background")){
@@ -184,16 +193,6 @@
     filter: brightness(50%) blur(30px) saturate(145%) !important;
     opacity: 1 !important;
   }
-}
-
-.browserStack:not(:has(#urlbar[open])) {
-  filter: none !important;
-  opacity: 1 !important;
-  scale: 1 !important;
-  transition:
-    filter 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35),
-    opacity 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35),
-    scale 0.25s cubic-bezier(0.175, 0.885, 0.32, 1) !important;
 }
 
 .urlbarView-row {
