@@ -27,7 +27,7 @@ It’s the skin I personally use, made public due to demand for the CSS. Inspire
 
 **Tested on:** `Zen Browser 1.19.5b` (Windows & Linux)  
 **Recommended Mode:** All modes are working properly except **Collapsed Sidebar**.
-Also, in **Sidebar & Top Toolbar** mode, if you're choosing to keep Bookmarks under URL Bar, sidebar pseduo bg might appear above whatever sidebar's size is.. So for good looks, either remove Bookmarks or switch to **Only Sidebar** mode. 
+Also, in **Sidebar & Top Toolbar** mode, if you're choosing to keep Bookmarks under URL Bar while not having compact toolbar on, a small part of compact sidebar's pseduo bg might appear above compact sidebar's actual size. So for good looks, either at least turn on compact mode for toolbar, or remove Bookmarks, or switch to **Only Sidebar** mode. 
 
 ---
 
