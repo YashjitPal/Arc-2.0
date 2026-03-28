@@ -25,9 +25,9 @@ It’s the skin I personally use, made public due to demand for the CSS. Inspire
 
 > **Note:** Arc 2.0 is *not* a standalone browser.
 
-**Tested on:** `Zen Browser 1.19.1b` (Windows)  
-**Recommended Mode:** Dark Mode + Single Toolbar Mode  
-(Might encounter minor hiccups in other modes.)
+**Tested on:** `Zen Browser 1.19.5b` (Windows & Linux)  
+**Recommended Mode:** All modes are working properly except **Collapsed Sidebar**.
+Also, in **Sidebar & Top Toolbar** mode, if you're choosing to keep Bookmarks under URL Bar, sidebar pseduo bg might appear above whatever sidebar's size is.. So for good looks, either remove Bookmarks or switch to **Only Sidebar** mode. 
 
 ---
 
