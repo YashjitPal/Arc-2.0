@@ -111,12 +111,12 @@ their author(s) have been provided above the used code.
       }
 
       #toolbarContainer {
-        position: absolute !important;
+        position: relative !important;
         top: 5px !important;
         left: 50% !important;
         transform: translate(-50%, 0);
-        width: calc(100% - 10px) !important;
-        max-width: min(var(--natsumi-pdfjs-topbar-max-width), calc(100% - 10px)) !important;
+        width: 90% !important;
+        /*max-width: min(var(--natsumi-pdfjs-topbar-max-width), calc(100% - 10px)) !important;*/
         border-radius: 10px;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
