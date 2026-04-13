@@ -418,12 +418,12 @@ html[zen-single-toolbar="true"] {
     padding: 0 !important;
     min-height: 14px !important;
     min-width: 14px !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid light-dark(rgba(0,0,0,0.025), rgba(255, 255, 255, 0.05)) !important;
     align-self: center;
     margin-right: 9px !important;
     border-radius: 50px;
     transition: all 150ms ease-out;
-    background-color: rgba(255, 255, 255, 0.1) !important;
+    background-color: light-dark(rgba(0,0,0,0.1), rgba(255, 255, 255, 0.1)) !important;
     scale: 1 !important;
     content: none !important;
   }
