@@ -61,7 +61,7 @@
     position: absolute;
     inset: 0;
     border-radius: 16px;
-    background-color: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.07));
+    background-color: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.125));
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
