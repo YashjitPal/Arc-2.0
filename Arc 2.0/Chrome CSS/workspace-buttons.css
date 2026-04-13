@@ -62,9 +62,10 @@ min-width: 26px !important; }
   }
   
   #zen-workspaces-button .subviewbutton:hover {
-    background-color: light-dark(rgba(100,100,100,0), rgba(255,255,255,0)) !important;
+    background-color: light-dark(rgba(0,0,0,0.125), rgba(0,0,0,0.125)) !important;
     filter: grayscale(0%) !important;
     opacity: 0.9 !important;
+    box-shadow: 0 0 4px light-dark(rgba(0,0,0,0.25), rgba(255,255,255,0.25)) !important;
   }
   
   #zen-workspaces-button .subviewbutton:hover > img,
@@ -83,8 +84,8 @@ min-width: 26px !important; }
   }
   
   #zen-workspaces-button .subviewbutton[active] {
-    background-color: light-dark(rgba(255,255,255,0.15), rgba(255,255,255,0.07)) !important;
-    box-shadow: 0 0 4px rgba(255,255,255,0.2) !important;
+    background-color: light-dark(rgba(0,0,0,0.125), rgba(255,255,255,0.1)) !important;
+    box-shadow: 0 0 4px light-dark(rgba(0,0,0,0.5), rgba(255,255,255,0.5)) !important;
     overflow: hidden !important;
     position: relative;
     filter: grayscale(0%) !important;
@@ -217,14 +218,14 @@ min-width: 26px !important; }
       overflow: visible !important;
       z-index: 1;
       border-radius: calc(var(--nebula-border-radius) - 2px) !important;
-      background-color: light-dark(rgba(0,0,0,0.15), rgba(255,255,255,0.08)) !important;
-      box-shadow: 0 2px 12px rgba(255,255,255,0.08) !important;
+      background-color: light-dark(rgba(0,0,0,0.15), rgba(255,255,255,0.05)) !important;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25) !important;
       transition: box-shadow 0.35s ease-out, background-color 0.35s ease-out;
     }
   
     #zen-workspaces-button:hover {
-      box-shadow: 0 2px 12px rgba(255,255,255,0.16) !important;
-      background-color: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.08)) !important;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.5) !important;
+      background-color: light-dark(rgba(0,0,0,0.2), rgba(255,255,255,0.08)) !important;
     }
   
     /* Style 2 button styling - resets and custom styles */
