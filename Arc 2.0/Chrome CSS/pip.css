@@ -1,13 +1,12 @@
-/*Credit: JustAdumbPrson*/
 @-moz-document url-prefix("chrome:") {
   /* Add rounded corners to player holder */
   .player-holder {
-    border-radius: 7.6px !important; /* Adjust the radius as needed */
+    border-radius: 8px !important; /* Adjust the radius as needed */
   }
   
   /* ------------------------- Picture in Picture ------------------------- */
   
-  @media not -moz-pref("nebula.pip.disabled") {
+  @media not -moz-pref("arc.pip.disabled") {
     @-moz-document url("chrome://global/content/pictureinpicture/player.xhtml") {
       /*noinspection CssInvalidFunction*/
       * {
