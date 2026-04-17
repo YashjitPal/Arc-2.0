@@ -300,6 +300,11 @@
   },
   {
     "type": "checkbox",
+    "property": "arc.pip.disabled",
+    "label": "Disable Arc stylings on PiP."
+  },
+  {
+    "type": "checkbox",
     "property": "arc-findbar-disable",
     "label": "Disable Arc styling for FindBar (must enable when using Browse Bot mod)."
   },
