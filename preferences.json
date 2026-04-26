@@ -100,23 +100,11 @@
     "size": "18px"
   },
   {
-    "type": "checkbox",
-    "property": "arc-compact-mode-no-sidebar-bg",
-    "label": "Remove pseudo background on compact sidebar (only enable if you don't use websites with transparent background)."
-  },
-  {
     "type": "string",
     "property": "arc.compact.sidebar-opacity",
-    "defaultValue": 0.96,
-    "placeholder": 0.96,
+    "defaultValue": 0.5,
+    "placeholder": 0.5,
     "label": "Change the theme color density in Compact Sidebar and URL Bar (Enter value between 0 and 1 [for ex.: 0.25])."
-  },
-  {
-    "type": "string",
-    "label": "Blur for compact mode sidebar (Enter value between 0 and 100px) [Pseudo Bg Blur for transparent sites broken after 1.19.9b update; cannot find fix, but if anyone can, please do a PR].",
-    "property": "arc.compact.sidebar-blur",
-    "defaultValue": "25px",
-    "placeholder": "25px"
   },
   {
     "type": "string",
