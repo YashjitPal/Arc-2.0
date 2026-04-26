@@ -107,13 +107,13 @@
   {
     "type": "string",
     "property": "arc.compact.sidebar-opacity",
-    "defaultValue": 0,
-    "placeholder": 0,
+    "defaultValue": 80px,
+    "placeholder": 80px,
     "label": "Change the theme color density in Compact Sidebar and URL Bar (Enter value between 0 and 1 [for ex.: 0.25])."
   },
   {
     "type": "string",
-    "label": "Blur for compact mode sidebar (Enter value between 0 and 100px)",
+    "label": "Blur for compact mode sidebar (Enter value between 0 and 100px) [Pseudo Bg Blur for transparent sites broken after 1.19.9b update; cannot find fix, but if anyone can, please do a PR].",
     "property": "arc.compact.sidebar-blur",
     "defaultValue": "25px",
     "placeholder": "25px"
