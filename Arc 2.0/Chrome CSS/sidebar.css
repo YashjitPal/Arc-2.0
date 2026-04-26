@@ -1,4 +1,9 @@
 @-moz-document url-prefix("chrome:") {
+  browser{
+  will-change: transform;
+  backface-visibility: hidden;
+}
+  
 /*Windows 10 Transparency Fix*/
 #sidebar-box,
 #bookmarksPanel.sidebar-panel,
@@ -76,26 +81,23 @@
     opacity: var(--zen-grainy-background-opacity, 0);
     mix-blend-mode: overlay;
   }
-
- /* === TRANSPARENT COMPACT SIDEBAR === */
-@media not (-moz-pref("arc.compact.sidebar-transparent")){
-  :root[zen-compact-mode="true"] #titlebar::before{
-    content: "";
-    inset: 0;
-    position: absolute;
-    pointer-events: none;
-    backdrop-filter: blur(var(--arc-compact-sidebar-blur)) brightness(1.15) !important;
-  }
   
-  :root[zen-compact-mode="true"] #zen-sidebar-top-buttons{
-    z-index: 1 !important;
-  }
+/* Blur (Only for Solid BG Websites)*/
+@media (-moz-pref("zen.view.compact.hide-tabbar")) {
+  &:is([zen-compact-mode="true"]) {
+    #navigator-toolbox:not([animate]) {
+      .zen-browser-generic-background {
+        opacity: var(--arc.compact.sidebar-opacity);
+      }
 
-  :root[zen-compact-mode="true"] .zen-toolbar-background {
-    opacity: var(--arc-compact-sidebar-opacity) !important;
+      #titlebar {
+        border-radius: var(--zen-border-radius) !important;
+        backdrop-filter: saturate(3) blur(70px);
+        outline: none !important;
+      }
+    }
   }
 }
-
   /* -------------------- SINGLE TOOLBAR -------------------- */
 
   @media (-moz-pref("zen.view.compact.hide-tabbar")) {
