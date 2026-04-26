@@ -1,4 +1,5 @@
-/* Transparency for Windows 10*/
+@-moz-document url-prefix("chrome:") {
+/*Windows 10 Transparency Fix*/
 #sidebar-box,
 #bookmarksPanel.sidebar-panel,
 #sidebar-header,
@@ -9,7 +10,26 @@
   box-shadow: none !important;
 }
 
-@-moz-document url-prefix("chrome:") {
+/*Radius*/
+#titlebar:before{
+  border-radius: 12px !important;
+}
+
+#titlebar{
+  border-radius: 12px !important;
+}
+
+.zen-toolbar-background {
+  border-radius: 12px !important;
+}
+
+
+.zen-toolbar-background {
+  &, &::before, &::after {
+    border-radius: 12px !important;
+  }
+}
+
   /* -------------------------- COLLAPSED FIX -------------------------- 
   :root:not([zen-sidebar-expanded="true"]) {
     #titlebar #TabsToolbar {
@@ -622,5 +642,6 @@
 #sidebar-search-container>#search-box:active,
 #viewButton:active {
   background-color: rgba(255, 255, 255, 0.1) !important;
+}
 }
 }
