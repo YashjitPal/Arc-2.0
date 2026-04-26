@@ -25,7 +25,13 @@ It’s the skin I personally use, made public due to demand for the CSS. Inspire
 
 > **Note:** Arc 2.0 is *not* a standalone browser.
 
-**Tested on:** `Zen Browser 1.19.5b` (Windows & Linux)  
+**Tested on:** `Zen Browser 1.19.9b` (Windows & Linux)
+
+**[NOTE: If you intend to use Transparent Webspages in whatever manner, increase Compact Sidebar Opacity in Arc2.0 Mod Settings (Sine) or in `about:config` to have a readable Sidebar.
+But if you're using Opaque Webpages, then you can decrease opacity as per your liking as Compact Sidebar will be blurred.
+Also, Browser Pages like Settings (about:preferences) will be kept Transparent, so please use don't use Compact Sidebar mode at that time.
+Before 1.19.9b everything was fine and sorted out, so blame Firefox 150 update for such breaking changes...]**
+
 **Recommended Mode:** All modes are working properly except **Collapsed Sidebar**.
 Also, in **Sidebar & Top Toolbar** mode, if you're choosing to keep Bookmarks under URL Bar while not having compact toolbar on, a small part of compact sidebar's pseduo bg might appear above compact sidebar's actual size. So for good looks, either at least turn on compact mode for toolbar, or remove Bookmarks, or switch to **Only Sidebar** mode. 
 
@@ -115,6 +121,7 @@ https://github.com/user-attachments/assets/98e35d8f-5638-4791-8369-8ff964ad94df
 ## 🧩 Required Extensions
 
 ### • [Zen Internet (Transparent Websites)](https://addons.mozilla.org/en-US/firefox/addon/zen-internet/)
+**[NOTE: Increase Compact Sidebar Opacity in Arc2.0 Mod Settings (Sine) or in `about:config` to have a readable Sidebar.]**
 
 ---
 
@@ -176,7 +183,7 @@ Descriptions are provided in the original instructions above.
 - **Better Workspace Indicator**  
   ![image](https://github.com/user-attachments/assets/84e3e65f-2c98-4f52-8f33-f28402907d53)
 
-- **Transparent Websites (with Zen Internet)**  
+- **Transparent Websites (with Zen Internet) [NOTE: Increase Compact Sidebar Opacity in Arc2.0 Mod Settings (Sine) or in `about:config` to have a readable Sidebar.]**  
   ![image](https://github.com/user-attachments/assets/34f1d947-33b0-4370-a717-fc354d4f9830)
 
 - **Enhanced PDF Viewer & PiP**  
