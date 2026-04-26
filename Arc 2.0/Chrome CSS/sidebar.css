@@ -87,7 +87,7 @@
   &:is([zen-compact-mode="true"]) {
     #navigator-toolbox:not([animate]) {
       .zen-browser-generic-background {
-        opacity: var(--arc.compact.sidebar-opacity);
+        opacity: var(--arc-compact-sidebar-opacity);
       }
 
       #titlebar {
