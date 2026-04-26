@@ -107,8 +107,8 @@
   {
     "type": "string",
     "property": "arc.compact.sidebar-opacity",
-    "defaultValue": 80,
-    "placeholder": 80,
+    "defaultValue": 0.96,
+    "placeholder": 0.96,
     "label": "Change the theme color density in Compact Sidebar and URL Bar (Enter value between 0 and 1 [for ex.: 0.25])."
   },
   {
