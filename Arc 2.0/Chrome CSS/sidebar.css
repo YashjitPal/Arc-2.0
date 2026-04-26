@@ -77,69 +77,24 @@
     mix-blend-mode: overlay;
   }
 
-  /* -------------------------- COMPACT SIDEBAR PSEUDO BACKGROUND -------------------------- */
-
-  /* --- Base styling for all types --- */
-
-  /* Sidebar container styling */
-  :root[zen-compact-mode="true"] #titlebar {
-    padding: 9px !important;
-    border-radius: 12px !important;
-    /* scale: 1 !important; */
-    background: light-dark(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.3)) !important;
-    /* backdrop-filter: blur(32px) saturate(140%) !important; */
-  }
-
-  :root[zen-compact-mode="true"] #titlebar::before {
-    content: '';
+ /* === TRANSPARENT COMPACT SIDEBAR === */
+@media not (-moz-pref("arc.compact.sidebar-transparent")){
+  :root[zen-compact-mode="true"] #titlebar::before{
+    content: "";
+    inset: 0;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(var(--arc-compact-sidebar-blur)) !important;
-    /* Apply backdrop-filter here */
-    z-index: -1;
-    /* Place it behind the parent's content */
-    isolation: isolate;
-    /* Create a new stacking context */
+    pointer-events: none;
+    backdrop-filter: blur(var(--arc-compact-sidebar-blur)) brightness(1.15) !important;
+  }
+  
+  :root[zen-compact-mode="true"] #zen-sidebar-top-buttons{
+    z-index: 1 !important;
   }
 
   :root[zen-compact-mode="true"] .zen-toolbar-background {
-    opacity: var(--arc-compact-sidebar-opacity);
+    opacity: var(--arc-compact-sidebar-opacity) !important;
   }
-
-  /* Pseudo background overlay */
-  @media not (-moz-pref("arc-compact-mode-no-sidebar-bg")) {
-
-    :root[zen-compact-mode="true"] #browser::after {
-      content: "" !important;
-      position: absolute !important;
-      z-index: -1000;
-      border-radius: 12px !important;
-      filter: blur(0px) !important;
-      background-color: light-dark(rgba(255, 255, 255, 1), rgba(0,0,0,1)) !important;
-      opacity: 0 !important;
-      transition: opacity 0.2s ease;
-    }
-
-    /* Right-side pseudo background alignment */
-    :root[zen-right-side="true"][zen-compact-mode="true"] #browser::after {
-      left: auto !important;
-      right: calc(var(--zen-element-separation) / 0.67) !important;
-    }
-
-    /* Sidebar on right */
-    :root[zen-right-side="true"][zen-compact-mode="true"] #titlebar {
-      left: auto !important;
-      right: calc(var(--zen-element-separation) / 0.9) !important;
-    }
-
-    /* Show pseudo background when active/hovered */
-    :root[zen-compact-mode="true"]:not([customizing]) #browser:has(>#navigator-toolbox:is([zen-has-hover="true"],[zen-user-show=""],[has-popup-menu="true"],[zen-compact-mode-active="true"]))::after{
-      opacity: 1 !important;
-    }
-
+}
 
   /* -------------------- SINGLE TOOLBAR -------------------- */
 
