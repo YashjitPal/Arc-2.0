@@ -59,6 +59,12 @@
     "property": "browser.urlbar.trimURLs"
   },
   {
+    "type": "checkbox",
+    "property": "arc-urlbar-fade-in",
+    "label": "Remove fade-in which is below the URL Bar.",
+    "defaultValue": false
+  },
+  {
       "property": "arc.urlbar.hide_results",
       "label": "Hide search results when opening URL Bar.",
       "type": "dropdown",
@@ -78,12 +84,6 @@
                "value": 2
           }
       ]
-  },
-  {
-    "type": "checkbox",
-    "property": "arc-urlbar-fade-in",
-    "label": "Remove fade-in which is below the URL Bar.",
-    "defaultValue": false
   },
   {
     "type": "dropdown",
@@ -107,7 +107,6 @@
       { "label": "Enable", "value": 1 }
     ]
   },
-  
   {
     "type": "string",
     "property": "arc.urlbar.opacity",
