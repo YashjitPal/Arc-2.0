@@ -108,6 +108,27 @@
   },
   {
     "type": "string",
+    "label": "Blur for Compact Sidebar (Enter value between 0 and 100px) [Pseudo Bg Blur for transparent pages broken after 1.19.9b update; cannot find fix, but if anyone can, please do a PR].",
+    "property": "arc.compact.sidebar-blur",
+    "defaultValue": "25px",
+    "placeholder": "32px"
+  },
+  {
+    "type": "string",
+    "label": "Saturation for Compact Sidebar (Enter value between 0 and 50)",
+    "property": "arc.compact.sidebar-saturate",
+    "defaultValue": 5,
+    "placeholder": 4
+  },
+  {
+    "type": "string",
+    "label": "Contrast for Compact Sidebar (Enter value between 0 and 50)",
+    "property": "arc.compact.sidebar-contrast",
+    "defaultValue": 5,
+    "placeholder": 8
+  },
+  {
+    "type": "string",
     "property": "arc-compact-sidebar-size",
     "defaultValue": "22em",
     "placeholder": "22em",
