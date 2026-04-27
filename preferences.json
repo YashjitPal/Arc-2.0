@@ -87,6 +87,27 @@
     ]
   },
   {
+      "property": "arc.urlbar.hide_results",
+      "label": "Hide search results when opening URL Bar.",
+      "type": "dropdown",
+      "defaultValue": 0,
+      "disabledOn": [],
+      "options": [
+          {
+              "label": "Hide all",
+              "value": 0
+          },
+          {
+              "label": "Hide only top sites",
+              "value": 1
+          },
+          {
+               "label": "Hide only non-pinned top sites",
+               "value": 2
+          }
+      ]
+  },
+  {
     "type": "string",
     "property": "arc.urlbar.opacity",
     "defaultValue": 0.5,
@@ -97,22 +118,22 @@
     "type": "string",
     "property": "arc.urlbar.blur",
     "defaultValue": "25px",
-    "placeholder": "32px",
+    "placeholder": "30px",
     "label": "Change Blur of the URL Bar (Enter value between 0 and 50 [for ex.: 25px])."
   },
   {
     "type": "string",
     "property": "arc.urlbar.saturate",
-    "defaultValue": 5,
-    "placeholder": 4,
-    "label": "Change Saturation of the URL Bar (Enter value between 0 and 50 [for ex.: 5])."
+    "defaultValue": 1,
+    "placeholder": 0.75,
+    "label": "Change Saturation of the URL Bar (Enter value between 0 and 2)."
   },
   {
     "type": "string",
     "property": "arc.urlbar.contrast",
-    "defaultValue": 5,
-    "placeholder": 8,
-    "label": "Change Contrast of the URL Bar (Enter value between 0 and 50 [for ex.: 5])."
+    "defaultValue": 1,
+    "placeholder": 0.75,
+    "label": "Change Contrast of the URL Bar (Enter value between 0 and 1)."
   },
   {
     "type": "separator",
@@ -125,28 +146,28 @@
     "property": "arc.compact.sidebar-opacity",
     "defaultValue": 0.5,
     "placeholder": 0.25,
-    "label": "Change the theme color density in Compact Sidebar and URL Bar (Enter value between 0 and 1 [for ex.: 0.25])."
+    "label": "Change the theme color density in Compact Sidebar and URL Bar (Enter value between 0 and 1)."
   },
   {
     "type": "string",
-    "label": "Blur for Compact Sidebar (Enter value between 0 and 100px) [Pseudo Bg Blur for transparent pages broken after 1.19.9b update; cannot find fix, but if anyone can, please do a PR].",
+    "label": "Blur for Compact Sidebar (Enter value between 0 and 50px) [Pseudo Bg Blur for transparent pages broken after 1.19.9b update; cannot find fix, but if anyone can, please do a PR].",
     "property": "arc.compact.sidebar-blur",
     "defaultValue": "25px",
-    "placeholder": "32px"
+    "placeholder": "30px"
   },
   {
     "type": "string",
-    "label": "Saturation for Compact Sidebar (Enter value between 0 and 50)",
+    "label": "Saturation for Compact Sidebar (Enter value between 0 and 2)",
     "property": "arc.compact.sidebar-saturate",
-    "defaultValue": 5,
-    "placeholder": 4
+    "defaultValue": 1,
+    "placeholder": 0.75
   },
   {
     "type": "string",
-    "label": "Contrast for Compact Sidebar (Enter value between 0 and 50)",
+    "label": "Contrast for Compact Sidebar (Enter value between 0 and 1)",
     "property": "arc.compact.sidebar-contrast",
-    "defaultValue": 5,
-    "placeholder": 8
+    "defaultValue": 1,
+    "placeholder": 0.75
   },
   {
     "type": "string",
