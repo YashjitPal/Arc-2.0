@@ -59,6 +59,27 @@
     "property": "browser.urlbar.trimURLs"
   },
   {
+      "property": "arc.urlbar.hide_results",
+      "label": "Hide search results when opening URL Bar.",
+      "type": "dropdown",
+      "defaultValue": 0,
+      "disabledOn": [],
+      "options": [
+          {
+              "label": "Hide all",
+              "value": 0
+          },
+          {
+              "label": "Hide only top sites",
+              "value": 1
+          },
+          {
+               "label": "Hide only non-pinned top sites",
+               "value": 2
+          }
+      ]
+  },
+  {
     "type": "checkbox",
     "property": "arc-urlbar-fade-in",
     "label": "Remove fade-in which is below the URL Bar.",
@@ -86,27 +107,7 @@
       { "label": "Enable", "value": 1 }
     ]
   },
-  {
-      "property": "arc.urlbar.hide_results",
-      "label": "Hide search results when opening URL Bar.",
-      "type": "dropdown",
-      "defaultValue": 0,
-      "disabledOn": [],
-      "options": [
-          {
-              "label": "Hide all",
-              "value": 0
-          },
-          {
-              "label": "Hide only top sites",
-              "value": 1
-          },
-          {
-               "label": "Hide only non-pinned top sites",
-               "value": 2
-          }
-      ]
-  },
+  
   {
     "type": "string",
     "property": "arc.urlbar.opacity",
