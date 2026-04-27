@@ -91,7 +91,28 @@
     "property": "arc.urlbar.opacity",
     "defaultValue": 0.25,
     "placeholder": 0.25,
-    "label": "Change the transparency of the URL Bar (Enter value between 0 and 1 [for ex.: 0.25])."
+    "label": "Change Opacity of the URL Bar (Enter value between 0 and 1 [for ex.: 0.25])."
+  },
+  {
+    "type": "string",
+    "property": "arc.urlbar.blur",
+    "defaultValue": 25px,
+    "placeholder": 32px,
+    "label": "Change Blur of the URL Bar (Enter value between 0 and 50 [for ex.: 25px])."
+  },
+  {
+    "type": "string",
+    "property": "arc.urlbar.saturate",
+    "defaultValue": 5,
+    "placeholder": 4,
+    "label": "Change Saturation of the URL Bar (Enter value between 0 and 50 [for ex.: 5])."
+  },
+  {
+    "type": "string",
+    "property": "arc.urlbar.contrast",
+    "defaultValue": 5,
+    "placeholder": 8,
+    "label": "Change Contrast of the URL Bar (Enter value between 0 and 50 [for ex.: 5])."
   },
   {
     "type": "separator",
