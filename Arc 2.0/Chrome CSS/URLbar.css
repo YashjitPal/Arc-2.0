@@ -89,6 +89,27 @@
   border-radius: 4px;
 }
 
+/*Search Result Hiding*/
+#urlbar {
+  @media -moz-pref("arc.urlbar.hide_results", "0") {
+    &:not([usertyping], [searchmode])>.urlbarView {
+      display: none !important;
+    }
+  }
+  #urlbar-results div.urlbarView-row[row-selectable][type="top_site"] {
+    @media -moz-pref("arc.urlbar.hide_results", "0"), -moz-pref("arc.urlbar.hide_results", "1") {
+      & {
+        display: none !important;
+      }
+    }
+    @media -moz-pref("arc.urlbar.hide_results", "2") {
+      &:not([pinned]) {
+        display: none !important;
+      }
+    }
+  }
+}
+
 /* ------------------ URLBAR Styling ------------------ */
 :root[zen-single-toolbar="true"] #urlbar {
   /* your existing styles */
