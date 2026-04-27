@@ -78,6 +78,882 @@
 
 /* Simple suggestion hover */
 .urlbarView-row:hover {
+  background: light-dark(rgba(0,0,0,0.1), rgba(255, 255, 255, 0.1));
+  transform: translateX(2px);
+}
+
+/* Clean button effects */
+.urlbar-icon:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+/* ------------------ URLBAR Styling ------------------ */
+:root[zen-single-toolbar="true"] #urlbar {
+  /* your existing styles */
+  margin-bottom: -4px;
+  /* pulls the content below up by 4px */
+}
+
+@media not -moz-pref("arcline.url.bar", 1) {
+  :root[zen-single-toolbar="true"] #urlbar:not([open]) {
+    height: 40px !important;
+  }
+
+  #identity-icon-box {
+    background: none !important;
+  }
+
+  /* Selected row highlight & favicon fix */
+  .urlbarView-row[selected] {
+    background-color: rgba(100, 100, 100, 0.1) !important;
+  }
+
+  .urlbarView-row-inner[selected] .urlbarView-favicon {
+    background: none !important;
+  }
+
+  /* Rounded corners */
+  .urlbarView-row {
+    border-radius: 12px !important;
+  }
+
+  /* When URL bar is open - smooth visual effect */
+  #urlbar[open] .urlbar-background {
+    border-radius: 12px !important;
+    background: light-dark(rgba(255, 255, 255, var(--arc-urlbar-opacity)), rgba(0, 0, 0, var(--arc-urlbar-opacity))) !important;
+    outline: none !important;
+  }
+  
+/*URLBar Blur*/
+  #urlbar[open] {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    backdrop-filter: blur(var(--arc-urlbar-blur)) contrast(var(--arc-urlbar-blur)) saturate(var(--arc-urlbar-saturate)) !important;
+  }
+
+  /*stretch animation*/
+  @media (-moz-pref("arc-urlbar-animation", 1)) {
+    #urlbar[open] {
+      animation: stretch 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+  }
+
+  /*fadeIn animation*/
+  @media (-moz-pref("arc-urlbar-animation", 2)) {
+    #urlbar[open] {
+      animation: fadeIn 0.15s ease-in !important;
+    }
+  }
+
+@keyframes stretch {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      filter: blur(10px);
+    }
+
+    to {
+      opacity: 1;
+      filter: none;
+    }
+  }
+}
+
+/* ------------------ URL Bar BG ------------------ */
+
+.browserStack {
+  filter: none !important;
+  opacity: 1 !important;
+  transition:
+    filter 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35),
+    opacity 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35),
+    scale 0.25s cubic-bezier(0.175, 0.885, 0.32, 1) !important;
+}
+
+#browser:has(#urlbar[open]) .browserStack {
+  scale: 1 !important;
+}
+
+@media not (-moz-pref("arc.urlbar.background")){
+  #browser:has(#urlbar[open]) .browserStack {
+    scale: 1.075 !important;
+    filter: brightness(50%) blur(25px) saturate(12.5) !important;
+    opacity: 1 !important;
+  }
+}
+
+.urlbarView-row {
+  &[selected] {
+    & *, & .urlbarView-title-separator::before {
+      color: light-dark(rgba(0,0,0,1), rgba(255,255,255,1)) !important;
+    }
+  }
+}
+
+@media (-moz-pref("arcline.url.bar", 1)) {
+
+  * {
+    /* Colors */
+    --natsumi-primary-color: var(--natsumi-accent-color, var(--zen-primary-color));
+    --natsumi-colors-primary: color-mix(in srgb, var(--natsumi-primary-color) 50%, black 50%);
+    --natsumi-colors-secondary: color-mix(in srgb, var(--natsumi-colors-primary) 20%, white 80%);
+    --natsumi-colors-tertiary: color-mix(in srgb, var(--natsumi-primary-color) 2%, white 98%);
+    --natsumi-colors-primary-foreground: color-mix(in srgb, var(--natsumi-primary-color) 80%, white 20%);
+
+    @media (prefers-color-scheme: dark) {
+      --natsumi-colors-primary: color-mix(in srgb, var(--natsumi-primary-color) 20%, var(--zen-dark-color-mix-base) 80%);
+      --natsumi-colors-secondary: color-mix(in srgb, var(--natsumi-primary-color) 30%, var(--zen-dark-color-mix-base) 70%);
+      --natsumi-colors-tertiary: color-mix(in srgb, var(--natsumi-primary-color) 1%, var(--zen-dark-color-mix-base) 99%);
+      --natsumi-colors-primary-foreground: color-mix(in srgb, var(--natsumi-primary-color) 80%, white 20%);
+
+      @media -moz-pref('zen.theme.color-prefs.colorful') {
+        --natsumi-colors-primary: color-mix(in srgb, var(--natsumi-primary-color) 50%, black 50%);
+        --natsumi-colors-secondary: color-mix(in srgb, var(--natsumi-primary-color) 40%, black 60%);
+        --natsumi-colors-tertiary: color-mix(in srgb, var(--natsumi-primary-color) 15%, black 85%);
+        --natsumi-colors-primary-foreground: color-mix(in srgb, var(--natsumi-primary-color) 80%, white 20%);
+      }
+    }
+
+    /* Material: Mistcrylic */
+    --natsumi-mat-mc-background: color-mix(in srgb, var(--natsumi-primary-color) 40%, rgba(255, 255, 255, 0.8));
+    --natsumi-mat-mc-shadow-color: rgba(0, 0, 0, 0.3);
+    --natsumi-mat-mc-border-color: rgba(255, 255, 255, 0.1);
+    --natsumi-mat-mc-shadow-size: 10px;
+    --natsumi-mat-mc-blur-radius: 15px;
+
+    @media (prefers-color-scheme: dark) {
+      --natsumi-mat-mc-background: color-mix(in srgb, var(--natsumi-colors-secondary) 50%, rgba(0, 0, 0, 0.8));
+    }
+
+    /* Material: Haze */
+    --natsumi-mat-hz-background: rgba(255, 255, 255, 0.8);
+    --natsumi-mat-hz-background-tinted: color-mix(in srgb, var(--natsumi-primary-color) 20%, rgba(255, 255, 255, 0.8));
+    --natsumi-mat-hz-blur-radius: 100px;
+    --natsumi-mat-hz-shadow-color: rgba(0, 0, 0, 0.3);
+    --natsumi-mat-hz-shadow-size: 10px;
+    --natsumi-mat-hz-saturation: 3;
+    --natsumi-mat-hz-contrast: 2;
+
+    @media (prefers-color-scheme: dark) {
+      --natsumi-mat-hz-background: rgba(0, 0, 0, 0.8);
+      --natsumi-mat-hz-background-tinted: color-mix(in srgb, var(--natsumi-colors-secondary) 20%, rgba(0, 0, 0, 0.8));
+    }
+
+    /* Material: Glass */
+    --natsumi-mat-ga-background: color-mix(in srgb, var(--natsumi-colors-secondary) 75%, transparent);
+    --natsumi-mat-ga-blur-radius: 10px;
+    --natsumi-mat-ga-shadow-size: 10px;
+    --natsumi-mat-ga-shadow-opacity: 75%;
+    --natsumi-mat-ga-shadow-color: color-mix(in srgb, var(--natsumi-colors-secondary) var(--natsumi-mat-ga-shadow-opacity), black);
+
+    @media (prefers-color-scheme: dark) {
+      --natsumi-mat-ga-shadow-color: color-mix(in srgb, var(--natsumi-colors-secondary) var(--natsumi-mat-ga-shadow-opacity), white);
+
+      @media -moz-pref("natsumi.theme.force-glass-dark-shadows") {
+        --natsumi-mat-ga-shadow-color: color-mix(in srgb, var(--natsumi-colors-secondary) var(--natsumi-mat-ga-shadow-opacity), black);
+      }
+    }
+
+    /* Fonts */
+    --natsumi-custom-font: var(--custom-font, system-ui);
+  }
+
+  /* URL bar appear animation */
+  #urlbar {
+    --animation-duration: var(--urlbar-appear-animation-duration, 0.25s);
+  }
+
+  /* Results appear animation */
+  #urlbar-results {
+    --animation-duration: var(--urlbar-results-animation-duration, 0.5s);
+  }
+
+  /* Individual result appear animation */
+  .urlbarView-row {
+    --animation-duration: var(--urlbar-individual-result-animation-duration, 1.0s);
+    --animation-duration-subtle: 0.5s;
+    /* WIP, this won't change anything for now */
+    --animation-delay: var(--urlbar-individual-result-animation-delay, 0.1s);
+    --animation-delay-offset: var(--urlbar-individual-result-animation-delay-offset, 0.3s);
+    --expand-width: var(--urlbar-individual-result-expand-size, 1.1);
+  }
+
+  /* Reload border animation */
+  browser,
+  .browserSidebarContainer.deck-selected {
+    --animation-duration: var(--reload-border-animation-duration, 0.2s);
+    --animation-rotation-duration: var(--reload-border-animation-rotation-duration, 2.0s);
+    --animation-exit-duration: var(--reload-border-animation-exit-duration, 1.0s);
+    --browser-margin: var(--reload-border-margin, 4px);
+  }
+
+  /* Reload URLbar animation */
+  .urlbar-background {
+    --fadein-duration: var(--reload-urlbar-animation-duration, 0.5s);
+    --animation-duration: var(--reload-urlbar-animation-fadein-duration, 1s);
+  }
+
+  /* Container tabs gradient */
+  .tabbrowser-tab {
+    --container-gradient-width: var(--container-tabs-normal-gradient-width, 25%);
+    --container-gradient-width-expanded: var(--container-tabs-expanded-gradient-width, 50%);
+  }
+
+  /* Sidebar position */
+  #sidebar-box {
+    --natsumi-sidebar-x-offset: var(--ff-sidebar-x-offset, 20px);
+    --natsumi-sidebar-y-offset: var(--ff-sidebar-y-offset, 20px);
+  }
+
+  /* Blade offset for tabs (change this if other rices/mods break Blade) */
+  .tabbrowser-tab {
+    --natsumi-tabs-blade-size-offset: 4px;
+    --natsumi-tabs-blade-position-offset: 2px;
+  }
+
+  /*---------------------------------------------------------------------------------------------------------------*/
+  .urlbarView-row {
+    &:not([type="tip"], [type="dynamic"]) {
+      :root[uidensity="touch"] & {
+        padding-block: 5px !important;
+      }
+    }
+  }
+
+  .urlbarView-row {
+    &:not([type="tip"], [type="dynamic"]) {
+      :root:not([uidensity="compact"]) & {
+        min-height: 50px !important;
+      }
+    }
+  }
+
+  @media not -moz-pref("arcline.url.bar.scale", 1) {
+    /* Target the urlbar view rows */
+    #urlbar-results .urlbarView-row {
+      /* Remove default background hihlight */
+    }
+
+    /* Neutralize hover state */
+    #urlbar-results .urlbarView-row:hover {
+      /* Completely remove white/default highlight */
+      background-color: rgba(0, 0, 0, 0) !important;
+      /* Optional: Add a subtle hover effect if desired */
+      border-radius: 8px;
+      transition: background 0.55s ease;
+    }
+
+    /* Ensure text remains visible */
+    #urlbar-results .urlbarView-row-inner {
+      background-color: transparent !important;
+    }
+
+    /* macOS Dock-like Magnification for URL Bar Search Results */
+
+    #urlbar-results .urlbarView-row {
+      /* Base transition for smooth dock-like effect */
+      margin: 0px !important;
+
+      transition: all 0.44s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+      transform-origin: center bottom !important;
+      border: none !important;
+      /* Initial glass morphism styling */
+      backdrop-filter: blur(2px) !important;
+      border-radius: 10px !important;
+
+    }
+
+  }
+
+  @media (-moz-pref("arcline.url.bar.scale", 1)) {
+    /* Remove White Highlight on Hovered Search Results */
+    /* Target the urlbar view rows */
+    #urlbar-results .urlbarView-row {
+      /* Remove default background hihlight */
+    }
+
+    /* Neutralize hover state */
+    #urlbar-results .urlbarView-row:hover {
+      /* Completely remove white/default highlight */
+      background-color: rgba(0, 0, 0, 0) !important;
+      /* Optional: Add a subtle hover effect if desired */
+      border-radius: 8px;
+      transition: background 0.55s ease;
+    }
+    /* Ensure text remains visible */
+    #urlbar-results .urlbarView-row-inner {
+      background-color: transparent !important;
+    }
+
+    /* macOS Dock-like Magnification for URL Bar Search Results */
+    #urlbar-results .urlbarView-row {
+      /* Base transition for smooth dock-like effect */
+      margin: 0px !important;
+      transition: all 0.44s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+      transform-origin: center bottom !important;
+      border: none !important;
+      /* Initial glass morphism styling */
+      backdrop-filter: blur(2px) !important;
+      border-radius: 10px !important;
+    }
+
+    /* macOS Dock-like Magnification Effect */
+    #urlbar-results .urlbarView-row:hover {
+      transition: property-name delay-duration transition-duration transition-timing-function;
+      /* Example */
+      transition: transform 0.4s 0.4s ease-in-out;
+      /* 0.2s delay, then 0.3s transition */
+      /* Advanced magnification with dock-like curve */
+      transform: scale(1.12) translateY(-11.5px) !important;
+      /* Lift effect */
+      /* Enhanced z-index for proper layering */
+      z-index: 100 !important;
+      transform-origin: center !important;
+      /* Advanced glass effect on hover */
+      border: none !important;
+      backdrop-filter: blur(25px) contrast(95%) saturate(115%) !important;
+      box-shadow:
+        0 10px 20px rgba(0, 0, 0, 0.1),
+        0 6px 10px rgba(0, 0, 0, 0.08) !important;
+      /* Width expansion */
+      width: 98.97% !important;
+    }
+    
+    /* Optional: Refined scrollbar for glass effect */
+    #urlbar-results::-webkit-scrollbar {
+      width: 5px !important;
+    }
+
+    #urlbar-results::-webkit-scrollbar-thumb {
+      background: transparent !important;
+      border-radius: 25px !important;
+      backdrop-filter: blur(10px) !important;
+      border-top: 1px solid light-dark(rgba(20, 20, 20, 0.1), rgba(235, 235, 235, 0.1)) !important;
+    }
+
+    /* Smooth text rendering */
+    #urlbar-results .urlbarView-row-inner {
+      transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+    }
+  }
+
+  /*---------------------------------------------------------------------------------------------------------------------------------*/
+  
+  /* expanded urlbar */
+  #urlbar {
+    top: auto !important;
+
+    &[open] {
+      min-width: var(--na-urlbar-width) !important;
+      max-width: var(--na-urlbar-width) !important;
+      display: flex !important;
+      scale: 1 !important;
+      flex-direction: column !important;
+      bottom: 55.5px !important;
+      border-radius: 20px !important;
+    }
+
+    /* move urlbar input to bottom*/
+    &>.urlbar-input-container {
+      order: 1 !important;
+    }
+  }
+
+  #urlbar[open][zen-floating-urlbar='true'] {
+    left: 50% !important;
+    max-width: 650px !important;
+    border-radius: 25px !important;
+  }
+
+  /*------------for arc raycast lie toolbar url bar button idea-----------------*/
+  
+  #page-action-buttons,
+  #urlbar-go-button {
+    order: 1 !important;
+  }
+  /* Make borders more visible */
+  /*noinspection CssInvalidFunction*/
+  .urlbarView-body-inner,
+  .search-one-offs {
+    border-top: 0px solid light-dark(rgba(20, 20, 20, 0.2), rgba(235, 235, 235, 0.2)) !important;
+  }
+
+  .urlbarView-row {
+    &[selected] {
+      background-color: black !important;
+      padding-left: 5px !important;
+      scale: 0.99 !important;
+      filter: brightness(110.1%) !important;
+    }
+  }
+
+  .verifiedDomain {
+    image {
+      /*           list-style-image: url("https://raw.githubusercontent.com/neurokitti/Arc_Zen_Theme/6da4c1ca78cc521bea1026ff024fcc8528ae6a49/icons/arc-logo.svg") !important; */
+    }
+  }
+
+  &:not([zen-newtab]) {
+    #identity-box {
+      &:is([pageproxystate="invalid"]).verifiedDomain {
+        image {
+          list-style-image: url('chrome://global/skin/icons/search-glass.svg') !important;
+        }
+      }
+    }
+    
+    #urlbar-container:has(#urlbar[breakout-extend]) {
+      #urlbar {
+        border-radius: 22px !important;
+        border: 0px solid var(--na-color-border) !important;
+        font-size: 1.2rem !important;
+        height: fit-content !important;
+        scale: 0.99 !important;
+        padding-inline: 0px !important;
+        padding-block: 8.2px !important;
+        padding-bottom: 8.5px !important;
+        color: var(--na-color-text) !important;
+
+        .urlbar-input,
+        .urlbar-input-box {
+          margin: 0px !important;
+          padding: 0px !important;
+        }
+        
+        #urlbar-input {
+          margin-top: 2px !important;
+          font-size: 17px !important;
+          margin-left: 1.5px !important;
+          margin-right: 6% !important;
+          border-radius: 0 !important;
+        }
+        
+        .urlbar-input-container {
+          max-height: fit-content !important;
+          filter: brightness(95%) !important;
+          bottom: 0px !important;
+          width: 97% !important;
+          border-radius: 12px !important;
+          left: 0px !important;
+          padding-block: 3px !important;
+          padding-inline: 0px !important;
+          box-shadow: 0px 0px 92px -10px rgba(0, 0, 0, 0.6) !important;
+        }
+
+        .verifiedDomain {
+          scale: 1.3 !important;
+          margin-bottom: 3px !important;
+          margin-left: 5px !important;
+          image {
+            /*           list-style-image: url("https://raw.githubusercontent.com/neurokitti/Arc_Zen_Theme/6da4c1ca78cc521bea1026ff024fcc8528ae6a49/icons/arc-logo.svg") !important; */
+          }
+        }
+
+        &:not([zen-newtab]) {
+          #identity-box {
+            &:is([pageproxystate="invalid"]).verifiedDomain {
+              image {
+                list-style-image: url('chrome://global/skin/icons/search-glass.svg') !important;
+              }
+              scale: 1.3 !important;
+              margin-bottom: 2px !important;
+              margin-left: 5px !important;
+            }
+          }
+        }
+      }
+
+      .urlbar-background {
+/*         background: rgba(105, 100, 110, 0.000000000000000000000000023) !important; */
+        background: light-dark(rgba(255, 255, 255, var(--arc-urlbar-opacity)), rgba(36, 36, 36, var(--arc-urlbar-opacity))) !important;
+        /* Transparency fine-tuned */
+        box-shadow: 8px 5px 125px 0 rgba(0, 0, 0, 0.5), 0px 30px 50px #00000069 !important;
+        backdrop-filter: blur(5rem) saturate(190%) contrast(95%) brightness(69%) !important;
+        padding: 0.5em 0em !important;
+        border-radius: 18px !important;
+        transition: backdrop-filter 0.5s ease, background 0.5s ease;
+        border: 0px solid light-dark(rgba(255, 255, 255, 0.9), rgba(235, 235, 235, 0.25)) !important;
+      }
+    }
+
+    @media (-moz-pref: "zen.view.use-single-toolbar") {
+      :root[zen-sidebar-expanded="true"] {
+        .urlbar-page-action,
+        #tracking-protection-icon-container {
+          margin-left: 0px !important;
+        }
+      }
+    }
+    /* urlbar action button */
+    .urlbar-page-action,
+    #tracking-protection-icon-container {
+      margin-left: 0px !important;
+    }
+
+    #page-action-buttons {
+      margin-right: 3.5px !important;
+    }
+    
+    /* urlbar search result type icon (site that you bookmark will have star on the right side) */
+    .urlbarView-row>.urlbarView-row-inner .urlbarView-type-icon {
+      margin: 0px !important;
+      position: absolute !important;
+      right: 15px !important;
+    }
+
+    .urlbarView-body-inner:has(.urlbarView-row[type="top_site"]) {
+      display: none !important;
+    }
+
+    .urlbarView-row[selected] {
+      background-color: var(--na-color-text) !important;
+    }
+
+    .urlbarView-url {
+      color: var(--na-color-text-second) !important;
+    }
+
+    .urlbarView-title-separator {
+      color: white !important;
+      filter: brightness(2) !important;
+    }
+
+    /*-----------------------------------------------------------*/
+
+    * {
+      --urlbarView-item-block-padding: 4px !important;
+      --urlbarView-item-inline-padding: 4px !important;
+    }
+
+    #urlbar {
+      .urlbarView {
+        overflow: initial !important;
+      }
+    }
+
+    .urlbarView-row[has-action][type="clipboard"] {
+      .urlbarView-title-separator::before {
+        opacity: 0 !important;
+      }
+    }
+
+    &:not([action-override]) {
+      .urlbarView-row[has-action]:is([type="switchtab"], [type="remotetab"]) {
+        .urlbarView-action {
+          margin-left: 8px !important;
+        }
+
+        .urlbarView-title-separator::before {
+          opacity: 0 !important;
+        }
+      }
+    }
+  }
+
+  &[zen-newtab] {
+    scale: 1.5 !important;
+    margin-bottom: 2px !important;
+    margin-left: 5px !important;
+
+    Z #identity-icon {
+      list-style-image: url("chrome://browser/skin/zen-icons/plus.svg") !important;
+    }
+  }
+
+  /* Border tweaks */
+  /* ==== Natsumi URLbar ==== */
+  /* Animations */
+  @keyframes urlbar-appear {
+    0% {
+      margin-top: -25vh;
+    }
+    100% {
+      margin-top: 0;
+    }
+  }
+
+  @keyframes urlbar-appear-sideways {
+    0% {
+      margin-bottom: calc(-50% + calc(min(90%, 60rem) / 2));
+    }
+    100% {
+      margin-bottom: 0;
+    }
+  }
+
+  /*noinspection CssInvalidFunction*/
+  @keyframes individual-result-appear {
+    0% {
+      opacity: 0;
+      scale: 0.5;
+      background: var(--natsumi-colors-tertiary);
+      filter: blur(20px);
+    }
+    50% {
+      opacity: 1;
+    }
+    60% {
+      opacity: 1;
+      scale: var(--expand-width);
+      background: light-dark(var(--natsumi-primary-color), var(--natsumi-colors-primary));
+      filter: blur(0);
+    }
+    100% {
+      opacity: 1;
+      scale: 1;
+      background: transparent;
+    }
+  }
+
+  /*noinspection CssInvalidFunction*/
+  @keyframes individual-result-appear-subtle {
+    0% {
+      opacity: 1;
+      scale: 1;
+      background: transparent;
+    }
+    60% {
+      scale: 1.05;
+      background: light-dark(var(--natsumi-primary-color), var(--natsumi-colors-primary));
+    }
+    100% {
+      opacity: 1;
+      scale: 1;
+      background: transparent;
+    }
+  }
+
+  @keyframes pinned-icon-appear {
+    0% {
+      opacity: 0;
+      scale: 0.5
+    }
+    50% {
+      opacity: 1;
+    }
+    60% {
+      opacity: 1;
+      scale: 1.1;
+    }
+    100% {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+
+  #urlbar {
+    &[breakout-extend] {
+      @media not -moz-pref("natsumi.urlbar.light") {
+        /* URLbar animations, toggleable to make things lighter. */
+        animation-name: urlbar-appear;
+        animation-duration: var(--animation-duration);
+        
+        @media -moz-pref("zen.view.use-single-toolbar") {
+          animation-name: urlbar-appear-sideways;
+        }
+
+        #urlbar-results {
+          .urlbarView-row {
+            animation-name: individual-result-appear;
+            animation-duration: var(--animation-duration);
+            animation-fill-mode: forwards;
+            opacity: 0;
+            
+            .urlbarView-type-icon {
+              animation-name: pinned-icon-appear;
+              animation-duration: 0.5s;
+              animation-fill-mode: forwards;
+              opacity: 0;
+            }
+          }
+
+          .urlbarView-row:nth-child(1) {
+            animation-delay: calc((var(--animation-delay) * 0) + var(--animation-delay-offset));
+
+            .urlbarView-type-icon {
+              animation-delay: calc((var(--animation-delay) * 0) + var(--animation-delay-offset) + var(--animation-duration));
+            }
+          }
+
+          .urlbarView-row:nth-child(2) {
+            animation-delay: calc((var(--animation-delay) * 1) + var(--animation-delay-offset));
+
+            .urlbarView-type-icon {
+              animation-delay: calc((var(--animation-delay) * 1) + var(--animation-delay-offset) + var(--animation-duration));
+            }
+          }
+
+          .urlbarView-row:nth-child(3) {
+            animation-delay: calc((var(--animation-delay) * 2) + var(--animation-delay-offset));
+
+            .urlbarView-type-icon {
+              animation-delay: calc((var(--animation-delay) * 2) + var(--animation-delay-offset) + var(--animation-duration));
+            }
+          }
+
+          .urlbarView-row:nth-child(4) {
+            animation-delay: calc((var(--animation-delay) * 3) + var(--animation-delay-offset));
+
+            .urlbarView-type-icon {
+              animation-delay: calc((var(--animation-delay) * 3) + var(--animation-delay-offset) + var(--animation-duration));
+            }
+          }
+
+          .urlbarView-row:nth-child(5) {
+            animation-delay: calc((var(--animation-delay) * 4) + var(--animation-delay-offset));
+
+            .urlbarView-type-icon {
+              animation-delay: calc((var(--animation-delay) * 4) + var(--animation-delay-offset) + var(--animation-duration));
+            }
+          }
+
+          .urlbarView-row:nth-child(6) {
+            animation-delay: calc((var(--animation-delay) * 5) + var(--animation-delay-offset));
+
+            .urlbarView-type-icon {
+              animation-delay: calc((var(--animation-delay) * 5) + var(--animation-delay-offset) + var(--animation-duration));
+            }
+          }
+
+          .urlbarView-row:nth-child(7) {
+            animation-delay: calc((var(--animation-delay) * 6) + var(--animation-delay-offset));
+
+            .urlbarView-type-icon {
+              animation-delay: calc((var(--animation-delay) * 6) + var(--animation-delay-offset) + var(--animation-duration));
+            }
+          }
+
+          .urlbarView-row:nth-child(8) {
+            animation-delay: calc((var(--animation-delay) * 7) + var(--animation-delay-offset));
+
+            .urlbarView-type-icon {
+              animation-delay: calc((var(--animation-delay) * 7) + var(--animation-delay-offset) + var(--animation-duration));
+            }
+          }
+
+          .urlbarView-row:nth-child(9) {
+            animation-delay: calc((var(--animation-delay) * 8) + var(--animation-delay-offset));
+
+            .urlbarView-type-icon {
+              animation-delay: calc((var(--animation-delay) * 8) + var(--animation-delay-offset) + var(--animation-duration));
+            }
+          }
+
+          .urlbarView-row:nth-child(10) {
+            animation-delay: calc((var(--animation-delay) * 9) + var(--animation-delay-offset));
+
+            .urlbarView-type-icon {
+              animation-delay: calc((var(--animation-delay) * 9) + var(--animation-delay-offset) + var(--animation-duration));
+            }
+          }
+
+          .urlbarView-row:nth-child(n+11) {
+            animation-delay: calc((var(--animation-delay) * 10) + var(--animation-delay-offset));
+
+            .urlbarView-type-icon {
+              animation-delay: calc((var(--animation-delay) * 10) + var(--animation-delay-offset) + var(--animation-duration));
+            }
+          }
+        }
+      }
+      /* Force icon size */
+    }
+
+    &:is([pageproxystate='invalid']):is([usertyping]) {
+      .urlbarView-row,
+      .urlbarView-row .urlbarView-type-icon {
+        animation: none !important;
+        opacity: 1 !important;
+      }
+    }
+  }
+}
+/* Hides the container info in url-bar */
+#urlbar #userContext-label {
+  display: none !important;
+}
+
+#urlbar #userContext-indicator {
+  display: none !important;
+}
+
+#urlbar #userContext-icons {
+  display: none !important;
+}
+
+/* Center text in URL bar */
+#urlbar .urlbar-input,
+.urlbar-input-container {
+  text-align: center !important;
+  position: relative;
+}
+
+/* New Animations */
+
+/* Basic performance optimization */
+#urlbar,
+.urlbar-background,
+#urlbar-input-container {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  transition: all 0.2s ease;
+}
+
+/* Simple focus animation */
+#urlbar[focused="true"] {
+  transform: scale(1.02);
+  background: rgba(255, 255, 255, 0.15);
+  /* border: 1px solid rgba(255, 255, 255, 0.3); */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Clean hover effect */
+#urlbar:hover:not([focused="true"]) {
+  background: rgba(255, 255, 255, 0.1);
+  /* border: 1px solid rgba(255, 255, 255, 0.2); */
+}
+
+#urlbar-results,
+#PopupAutoCompleteRichResult,
+.autocomplete-richlistbox {
+  overflow-y: auto !important;
+  padding-right: 18px !important;
+  margin-right: -18px !important;
+}
+
+.urlbarView-body-outer {
+  overflow-x: hidden !important;
+}
+
+/* Smooth dropdown appearance */
+#urlbar-results {
+  animation: fadeIn 0.2s ease;
+  /* background: rgba(0, 0, 0, 0.9); */
+  border-radius: 8px;
+  /* border: 1px solid rgba(255, 255, 255, 0.1); */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Simple suggestion hover */
+.urlbarView-row:hover {
   background: rgba(255, 255, 255, 0.1);
   transform: translateX(2px);
 }
