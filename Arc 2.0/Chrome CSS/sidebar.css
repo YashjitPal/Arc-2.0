@@ -35,27 +35,6 @@
   }
 }
 
-  /* -------------------------- COLLAPSED FIX -------------------------- 
-  :root:not([zen-sidebar-expanded="true"]) {
-    #titlebar #TabsToolbar {
-      padding-left: 2px !important;
-      padding-right: 2px !important;
-      transform: none !important;
-      width: 60px !important;
-    }
-
-    #navigator-toolbox:not([zen-sidebar-expanded="true"]) {
-      max-width: calc(var(--zen-toolbox-max-width) + 5px) !important;
-      min-width: calc(var(--zen-toolbox-max-width) + 5px) !important;
-      padding-bottom: var(--zen-toolbox-padding);
-
-      & #titlebar {
-        align-content: center !important;
-        justify-content: center !important;
-      }
-    }
-  }
-*/
   /* -------------------------- COMPACT SIDEBAR -------------------------- */
   
   /* Fix for twilight acrylic */
@@ -83,16 +62,24 @@
   }
   
 /* Blur (Only for Solid BG Websites)*/
+    #zen-toolbar-background {
+    background: transparent !important;
+  
+    &::after, &::before {
+      background: transparent !important;
+    }
+  }
 @media (-moz-pref("zen.view.compact.hide-tabbar")) {
   &:is([zen-compact-mode="true"]) {
     #navigator-toolbox:not([animate]) {
-      .zen-browser-generic-background {
-        opacity: var(--arc-compact-sidebar-opacity);
+      #zen-toolbar-background {
+        background: light-dark(rgb(255,255,255), rgb(0,0,0)) !important;
+        opacity: var(--arc-compact-sidebar-opacity)
       }
 
       #titlebar {
         border-radius: var(--zen-border-radius) !important;
-        backdrop-filter: saturate(3) blur(70px);
+        backdrop-filter: blur(var(--arc-compact-sidebar-blur)) contrast(var(--arc-compact-sidebar-contrast)) saturate(var(--arc-compact-sidebar-saturate)) !important;
         outline: none !important;
       }
     }
