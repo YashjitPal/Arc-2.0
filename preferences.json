@@ -109,31 +109,31 @@
   },
   {
     "type": "string",
-    "property": "arc.urlbar.opacity",
+    "property": "arc-urlbar-opacity",
     "defaultValue": 0.5,
     "placeholder": 0.25,
-    "label": "Change Opacity of the URL Bar (Enter value between 0 and 1 [for ex.: 0.25])."
+    "label": "URL Bar *Opacity* (~enter value between 0 and 1 [for ex.: 0.25]~)."
   },
   {
     "type": "string",
-    "property": "arc.urlbar.blur",
+    "property": "arc-urlbar-blur",
     "defaultValue": "25px",
     "placeholder": "30px",
-    "label": "Change Blur of the URL Bar (Enter value between 0 and 50 [for ex.: 25px])."
+    "label": "URL Bar *Blur* (~enter value between 0 and 50 [for ex.: 25px]~)."
   },
   {
     "type": "string",
-    "property": "arc.urlbar.saturate",
+    "property": "arc-urlbar-saturate",
     "defaultValue": 1,
     "placeholder": 0.75,
-    "label": "Change Saturation of the URL Bar (Enter value between 0 and 2)."
+    "label": "URL Bar *Saturation* (~enter value between 0 and 2~)."
   },
   {
     "type": "string",
-    "property": "arc.urlbar.contrast",
+    "property": "arc-urlbar-contrast",
     "defaultValue": 1,
     "placeholder": 0.75,
-    "label": "Change Contrast of the URL Bar (Enter value between 0 and 1)."
+    "label": "URL Bar *Contrast* (~enter value between 0 and 1~)."
   },
   {
     "type": "separator",
