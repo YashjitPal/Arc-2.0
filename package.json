@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "lint": "prettier --check . && stylelint '**/*.css'",
-    "lint:fix": "prettier --write . && stylelint --fix '**/*.css'",
+    "lint:fix": "bun pretty && stylelint --fix '**/*.css'",
+    "pretty": "prettier --write .",
     "prepare": "husky"
   },
   "dependencies": {

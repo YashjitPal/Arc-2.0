@@ -65,6 +65,27 @@
     "defaultValue": false
   },
   {
+    "property": "arc.urlbar.hide_results",
+    "label": "Hide search results when opening URL Bar.",
+    "type": "dropdown",
+    "defaultValue": 0,
+    "disabledOn": [],
+    "options": [
+      {
+        "label": "Hide all",
+        "value": 0
+      },
+      {
+        "label": "Hide only top sites",
+        "value": 1
+      },
+      {
+        "label": "Hide only non-pinned top sites",
+        "value": 2
+      }
+    ]
+  },
+  {
     "type": "dropdown",
     "value": "number",
     "property": "arc-urlbar-animation",
@@ -88,10 +109,31 @@
   },
   {
     "type": "string",
-    "property": "arc.urlbar.opacity",
-    "defaultValue": 0.25,
+    "property": "arc-urlbar-opacity",
+    "defaultValue": 0.5,
     "placeholder": 0.25,
-    "label": "Change the transparency of the URL Bar (Enter value between 0 and 1 [for ex.: 0.25])."
+    "label": "URL Bar *Opacity* (~enter value between 0 and 1 [for ex.: 0.25]~)."
+  },
+  {
+    "type": "string",
+    "property": "arc-urlbar-blur",
+    "defaultValue": "25px",
+    "placeholder": "30px",
+    "label": "URL Bar *Blur* (~enter value between 0 and 50 [for ex.: 25px]~)."
+  },
+  {
+    "type": "string",
+    "property": "arc-urlbar-saturate",
+    "defaultValue": 1,
+    "placeholder": 0.75,
+    "label": "URL Bar *Saturation* (~enter value between 0 and 2~)."
+  },
+  {
+    "type": "string",
+    "property": "arc-urlbar-contrast",
+    "defaultValue": 1,
+    "placeholder": 0.75,
+    "label": "URL Bar *Contrast* (~enter value between 0 and 1~)."
   },
   {
     "type": "separator",
@@ -100,23 +142,32 @@
     "size": "18px"
   },
   {
-    "type": "checkbox",
-    "property": "arc-compact-mode-no-sidebar-bg",
-    "label": "Remove pseudo background on compact sidebar (only enable if you don't use websites with transparent background)."
-  },
-  {
     "type": "string",
     "property": "arc.compact.sidebar-opacity",
-    "defaultValue": 0,
-    "placeholder": 0,
-    "label": "Change the theme color density in Compact Sidebar and URL Bar (Enter value between 0 and 1 [for ex.: 0.25])."
+    "defaultValue": 0.5,
+    "placeholder": 0.25,
+    "label": "Change the theme color density in Compact Sidebar and URL Bar (Enter value between 0 and 1)."
   },
   {
     "type": "string",
-    "label": "Blur for compact mode sidebar (Enter value between 0 and 100px)",
+    "label": "Blur for Compact Sidebar (Enter value between 0 and 50px) [Pseudo Bg Blur for transparent pages broken after 1.19.9b update; cannot find fix, but if anyone can, please do a PR].",
     "property": "arc.compact.sidebar-blur",
     "defaultValue": "25px",
-    "placeholder": "25px"
+    "placeholder": "30px"
+  },
+  {
+    "type": "string",
+    "label": "Saturation for Compact Sidebar (Enter value between 0 and 2)",
+    "property": "arc.compact.sidebar-saturate",
+    "defaultValue": 1,
+    "placeholder": 0.75
+  },
+  {
+    "type": "string",
+    "label": "Contrast for Compact Sidebar (Enter value between 0 and 1)",
+    "property": "arc.compact.sidebar-contrast",
+    "defaultValue": 1,
+    "placeholder": 0.75
   },
   {
     "type": "string",
