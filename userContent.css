@@ -1,1 +1,5 @@
-@import "Arc 2.0/content.css";
+/* Content styles */
+@import url("modules/content/pdf/pdfjs.css");
+@import url("modules/content/pdf/preload.css");
+@import url("modules/content/pdf/betterpdf.css");
+@import url("modules/content/Transparent-settings.css");

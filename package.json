@@ -1,0 +1,16 @@
+{
+  "name": "arc-theme",
+  "private": true,
+  "scripts": {
+    "lint": "prettier --check . && stylelint '**/*.css'",
+    "lint:fix": "bun pretty && stylelint --fix '**/*.css'",
+    "pretty": "prettier --write .",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "husky": "^9.1.7",
+    "prettier": "^3.8.3",
+    "stylelint": "^17.9.0",
+    "stylelint-config-standard": "^40.0.0"
+  }
+}

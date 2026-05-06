@@ -67,21 +67,41 @@ their author(s) have been provided above the used code.
   }
 }
 
-@media not (-moz-bool-pref: "natsumi.pdfjs.disabled") {
+@media not (-moz-pref("natsumi.pdfjs.disabled")) {
   html[mozdisallowselectionprint] {
     &:has(head link:nth-of-type(1)[href^="resource://pdf.js"]) {
-      --natsumi-colors-border: color-mix(in srgb, var(--natsumi-colors-secondary) 80%, black 20%);
+      --natsumi-colors-border: color-mix(
+        in srgb,
+        var(--natsumi-colors-secondary) 80%,
+        black 20%
+      );
       --toolbarbutton-active-background: rgba(255, 255, 255, 0.9);
-      --toolbarbutton-hover-background: color-mix(in srgb, #202020 10%, transparent);
+      --toolbarbutton-hover-background: color-mix(
+        in srgb,
+        #202020 10%,
+        transparent
+      );
 
       @media (prefers-color-scheme: dark) {
-        --toolbarbutton-active-background: color-mix(in srgb, var(--natsumi-primary-color) 50%, rgba(255, 255, 255, .1));
-        --toolbarbutton-hover-background: color-mix(in srgb, #ebebeb 10%, transparent);
+        --toolbarbutton-active-background: color-mix(
+          in srgb,
+          var(--natsumi-primary-color) 50%,
+          rgba(255, 255, 255, 0.1)
+        );
+        --toolbarbutton-hover-background: color-mix(
+          in srgb,
+          #ebebeb 10%,
+          transparent
+        );
       }
 
       body {
         @media (prefers-color-scheme: dark) {
-          background-color: color-mix(in srgb, var(--natsumi-colors-tertiary) 70%, #0f0f0f 30%) !important;
+          background-color: color-mix(
+            in srgb,
+            var(--natsumi-colors-tertiary) 70%,
+            #0f0f0f 30%
+          ) !important;
         }
       }
 
@@ -99,12 +119,13 @@ their author(s) have been provided above the used code.
         width: 100%;
         height: 10px;
 
-        @media (-moz-bool-pref: "natsumi.theme.compact-marginless") {
+        @media (-moz-pref("natsumi.theme.compact-marginless")) {
           height: 15px;
         }
       }
 
-      #toolbarContainer, #sidebarContainer {
+      #toolbarContainer,
+      #sidebarContainer {
         background: var(--natsumi-glass-background) !important;
         backdrop-filter: blur(10px);
         border-radius: 10px;
@@ -116,13 +137,14 @@ their author(s) have been provided above the used code.
         left: 50% !important;
         transform: translate(-50%, 0);
         width: 90% !important;
-        /*max-width: min(var(--natsumi-pdfjs-topbar-max-width), calc(100% - 10px)) !important;*/
+        /* max-width: min(var(--natsumi-pdfjs-topbar-max-width), calc(100% - 10px)) !important; */
         border-radius: 10px;
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         height: calc(var(--toolbar-height) + 10px) !important;
         border: 1px solid rgba(20, 20, 20, 0.2) !important;
-        box-shadow: 0 0 var(--natsumi-glass-shadow-size) var(--natsumi-glass-shadow-color) !important;
+        box-shadow: 0 0 var(--natsumi-glass-shadow-size)
+          var(--natsumi-glass-shadow-color) !important;
         animation: pdfjs-appear 0.3s ease;
         overflow: hidden !important;
 
@@ -147,7 +169,8 @@ their author(s) have been provided above the used code.
           backdrop-filter: blur(10px);
           border-radius: 10px !important;
           border: 1px solid rgba(20, 20, 20, 0.2) !important;
-          box-shadow: 0 0 var(--natsumi-glass-shadow-size) var(--natsumi-glass-shadow-color) !important;
+          box-shadow: 0 0 var(--natsumi-glass-shadow-size)
+            var(--natsumi-glass-shadow-color) !important;
           animation: secondary-appear 0.3s ease;
 
           &.hidden {
@@ -158,13 +181,15 @@ their author(s) have been provided above the used code.
             border-color: rgba(235, 235, 235, 0.3) !important;
           }
 
-          &::before, &::after {
+          &::before,
+          &::after {
             display: none !important;
           }
         }
 
         .thicknessPicker {
-          &::before, &::after {
+          &::before,
+          &::after {
             @media (prefers-color-scheme: dark) {
               background-color: white !important;
             }
@@ -188,9 +213,13 @@ their author(s) have been provided above the used code.
         top: auto !important;
         bottom: 5px !important;
         opacity: 0 !important;
-        transition: left 0.2s ease, opacity 0.2s ease, filter 0.2s ease !important;
+        transition:
+          left 0.2s ease,
+          opacity 0.2s ease,
+          filter 0.2s ease !important;
         border: 1px solid rgba(20, 20, 20, 0.2) !important;
-        box-shadow: 0 0 var(--natsumi-glass-shadow-size) var(--natsumi-glass-shadow-color) !important;
+        box-shadow: 0 0 var(--natsumi-glass-shadow-size)
+          var(--natsumi-glass-shadow-color) !important;
         filter: blur(5px);
 
         @media (prefers-color-scheme: dark) {
@@ -210,7 +239,8 @@ their author(s) have been provided above the used code.
         }
 
         .treeItem {
-          a, .treeItems {
+          a,
+          .treeItems {
             border-radius: 5px !important;
             transition: background-color 0.2s ease;
           }
@@ -219,7 +249,7 @@ their author(s) have been provided above the used code.
             &::before {
               background-color: transparent !important;
               mask-image: none !important;
-              background-image: url('chrome://browser/skin/zen-icons/arrow-down.svg') !important;
+              background-image: url("chrome://browser/skin/zen-icons/arrow-down.svg") !important;
 
               @media (prefers-color-scheme: dark) {
                 filter: invert();
@@ -227,7 +257,7 @@ their author(s) have been provided above the used code.
             }
 
             &.treeItemsHidden::before {
-              background-image: url('chrome://browser/skin/zen-icons/arrow-right.svg') !important;
+              background-image: url("chrome://browser/skin/zen-icons/arrow-right.svg") !important;
             }
           }
         }
@@ -273,7 +303,7 @@ their author(s) have been provided above the used code.
       #pageNumber {
         border-radius: 4px !important;
         overflow: hidden !important;
-        background-color: #ffffff !important;
+        background-color: #fff !important;
         border-color: var(--natsumi-colors-border) !important;
 
         @media (prefers-color-scheme: dark) {
@@ -281,7 +311,10 @@ their author(s) have been provided above the used code.
         }
       }
 
-      .verticalToolbarSeparator, .splitToolbarButtonSeparator, .horizontalToolbarSeparator, .separator {
+      .verticalToolbarSeparator,
+      .splitToolbarButtonSeparator,
+      .horizontalToolbarSeparator,
+      .separator {
         border-color: rgba(20, 20, 20, 0.2) !important;
 
         @media (prefers-color-scheme: dark) {
@@ -323,7 +356,8 @@ their author(s) have been provided above the used code.
         backdrop-filter: blur(10px);
         border-radius: 10px !important;
         border: 1px solid rgba(20, 20, 20, 0.2) !important;
-        box-shadow: 0 0 var(--natsumi-glass-shadow-size) var(--natsumi-glass-shadow-color) !important;
+        box-shadow: 0 0 var(--natsumi-glass-shadow-size)
+          var(--natsumi-glass-shadow-color) !important;
 
         @media (prefers-color-scheme: dark) {
           border-color: rgba(235, 235, 235, 0.3) !important;
@@ -345,18 +379,23 @@ their author(s) have been provided above the used code.
 
       /* Compact mode */
 
-      @media (-moz-bool-pref: "natsumi.pdfjs.compact") {
+      @media (-moz-pref("natsumi.pdfjs.compact")) {
         .toolbar {
           #toolbarContainer {
             opacity: 0 !important;
             pointer-events: none;
             top: -5px !important;
-            transition: opacity 0.3s ease, top 0.3s ease, filter 0.3s ease;
+            transition:
+              opacity 0.3s ease,
+              top 0.3s ease,
+              filter 0.3s ease;
             filter: blur(5px);
           }
 
-          &:hover, &:has(.toolbarButton:not(#sidebarToggleButton)[aria-expanded="true"]),
-          &:has(input:focus), &:has(select:focus) {
+          &:hover,
+          &:has(.toolbarButton:not(#sidebarToggleButton)[aria-expanded="true"]),
+          &:has(input:focus),
+          &:has(select:focus) {
             height: 52px;
 
             #toolbarContainer {
@@ -367,171 +406,174 @@ their author(s) have been provided above the used code.
             }
           }
         }
-        
-          .toolbar:has(#sidebarToggleButton[aria-expanded="true"]) {
-            height: 52px;
 
-            #toolbarContainer {
-              top: 5px !important;
-              opacity: 1 !important;
-              pointer-events: auto;
-              filter: blur(0);
-            }
-          }
+        .toolbar:has(#sidebarToggleButton[aria-expanded="true"]) {
+          height: 52px;
 
-          &:has(#sidebarToggleButton:not([aria-expanded="true"])) {
-            #viewer > .page:first-of-type,
-            #viewer .spread:first-of-type .page {
-              margin-top: 0 !important;
-            }
+          #toolbarContainer {
+            top: 5px !important;
+            opacity: 1 !important;
+            pointer-events: auto;
+            filter: blur(0);
           }
+        }
+
+        &:has(#sidebarToggleButton:not([aria-expanded="true"])) {
+          #viewer > .page:first-of-type,
+          #viewer .spread:first-of-type .page {
+            margin-top: 0 !important;
+          }
+        }
       }
 
       /* Topbar buttons */
 
       #previous::before {
-        mask-image: url('chrome://browser/skin/zen-icons/arrow-up.svg') !important;
+        mask-image: url("chrome://browser/skin/zen-icons/arrow-up.svg") !important;
       }
 
       #next::before {
-        mask-image: url('chrome://browser/skin/zen-icons/arrow-down.svg') !important;
+        mask-image: url("chrome://browser/skin/zen-icons/arrow-down.svg") !important;
       }
 
       #zoomOutButton::before {
-        mask-image: url('chrome://browser/skin/zen-icons/zoom-out.svg') !important;
+        mask-image: url("chrome://browser/skin/zen-icons/zoom-out.svg") !important;
       }
 
       #zoomInButton::before {
-        mask-image: url('chrome://browser/skin/zen-icons/plus.svg') !important;
+        mask-image: url("chrome://browser/skin/zen-icons/plus.svg") !important;
       }
 
       #sidebarToggleButton::before {
-        mask-image: url('chrome://browser/skin/zen-icons/sidebar.svg') !important;
+        mask-image: url("chrome://browser/skin/zen-icons/sidebar.svg") !important;
       }
 
       #editorHighlightButton::before {
-        mask-image: url('resource://pdf.js/web/images/toolbarButton-editorHighlight.svg') !important;
+        mask-image: url("resource://pdf.js/web/images/toolbarButton-editorHighlight.svg") !important;
       }
 
       #editorFreeTextButton::before {
-        mask-image: url('resource://pdf.js/web/images/toolbarButton-editorFreeText.svg') !important;
+        mask-image: url("resource://pdf.js/web/images/toolbarButton-editorFreeText.svg") !important;
       }
 
       #editorInkButton::before {
-        mask-image: url('resource://pdf.js/web/images/toolbarButton-editorInk.svg') !important;
+        mask-image: url("resource://pdf.js/web/images/toolbarButton-editorInk.svg") !important;
       }
 
       #editorStampButton::before {
-        mask-image: url('chrome://browser/skin/zen-icons/canvas.svg') !important;
+        mask-image: url("chrome://browser/skin/zen-icons/canvas.svg") !important;
       }
 
-      #secondaryPrint::before, #printButton::before {
-        mask-image: url('chrome://browser/skin/zen-icons/print.svg') !important;
+      #secondaryPrint::before,
+      #printButton::before {
+        mask-image: url("chrome://browser/skin/zen-icons/print.svg") !important;
       }
 
-      #secondaryDownload::before, #downloadButton::before {
-        mask-image: url('chrome://browser/skin/zen-icons/save.svg') !important;
+      #secondaryDownload::before,
+      #downloadButton::before {
+        mask-image: url("chrome://browser/skin/zen-icons/save.svg") !important;
       }
 
       #presentationMode::before {
-        mask-image: url('resource://pdf.js/web/images/toolbarButton-presentationMode.svg') !important;
+        mask-image: url("resource://pdf.js/web/images/toolbarButton-presentationMode.svg") !important;
       }
 
       #viewBookmark::before {
-        mask-image: url('resource://pdf.js/web/images/toolbarButton-bookmark.svg') !important;
+        mask-image: url("resource://pdf.js/web/images/toolbarButton-bookmark.svg") !important;
       }
 
       #firstPage::before {
-        mask-image: url('chrome://browser/skin/zen-icons/arrow-up.svg') !important;
+        mask-image: url("chrome://browser/skin/zen-icons/arrow-up.svg") !important;
       }
 
       #lastPage::before {
-        mask-image: url('chrome://browser/skin/zen-icons/arrow-down.svg') !important;
+        mask-image: url("chrome://browser/skin/zen-icons/arrow-down.svg") !important;
       }
 
       #pageRotateCw::before {
-        mask-image: url('chrome://browser/skin/zen-icons/reload.svg') !important;
+        mask-image: url("chrome://browser/skin/zen-icons/reload.svg") !important;
       }
 
       #pageRotateCcw::before {
         transform: scaleX(-1);
-        mask-image: url('chrome://browser/skin/zen-icons/reload.svg') !important;
+        mask-image: url("chrome://browser/skin/zen-icons/reload.svg") !important;
       }
 
       #cursorSelectTool::before {
-        mask-image: url('resource://pdf.js/web/images/secondaryToolbarButton-selectTool.svg') !important;
+        mask-image: url("resource://pdf.js/web/images/secondaryToolbarButton-selectTool.svg") !important;
       }
 
       #cursorHandTool::before {
-        mask-image: url('resource://pdf.js/web/images/secondaryToolbarButton-handTool.svg') !important;
+        mask-image: url("resource://pdf.js/web/images/secondaryToolbarButton-handTool.svg") !important;
       }
 
       #scrollPage::before {
-        mask-image: url('resource://pdf.js/web/images/secondaryToolbarButton-scrollPage.svg') !important;
+        mask-image: url("resource://pdf.js/web/images/secondaryToolbarButton-scrollPage.svg") !important;
       }
 
       #scrollVertical::before {
-        mask-image: url('resource://pdf.js/web/images/secondaryToolbarButton-scrollVertical.svg') !important;
+        mask-image: url("resource://pdf.js/web/images/secondaryToolbarButton-scrollVertical.svg") !important;
       }
 
       #scrollHorizontal::before {
-        mask-image: url('resource://pdf.js/web/images/secondaryToolbarButton-scrollHorizontal.svg') !important;
+        mask-image: url("resource://pdf.js/web/images/secondaryToolbarButton-scrollHorizontal.svg") !important;
       }
 
       #scrollWrapped::before {
-        mask-image: url('resource://pdf.js/web/images/secondaryToolbarButton-scrollWrapped.svg') !important;
+        mask-image: url("resource://pdf.js/web/images/secondaryToolbarButton-scrollWrapped.svg") !important;
       }
 
       #spreadNone::before {
-        mask-image: url('resource://pdf.js/web/images/secondaryToolbarButton-spreadNone.svg') !important;
+        mask-image: url("resource://pdf.js/web/images/secondaryToolbarButton-spreadNone.svg") !important;
       }
 
       #spreadOdd::before {
-        mask-image: url('resource://pdf.js/web/images/secondaryToolbarButton-spreadOdd.svg') !important;
+        mask-image: url("resource://pdf.js/web/images/secondaryToolbarButton-spreadOdd.svg") !important;
       }
 
       #spreadEven::before {
-        mask-image: url('resource://pdf.js/web/images/secondaryToolbarButton-spreadEven.svg') !important;
+        mask-image: url("resource://pdf.js/web/images/secondaryToolbarButton-spreadEven.svg") !important;
       }
 
       #documentProperties::before {
-        mask-image: url('resource://pdf.js/web/images/secondaryToolbarButton-documentProperties.svg') !important;
+        mask-image: url("resource://pdf.js/web/images/secondaryToolbarButton-documentProperties.svg") !important;
       }
 
       #editorStampAddImage::before {
-        mask-image: url('chrome://browser/skin/zen-icons/plus.svg') !important;
+        mask-image: url("chrome://browser/skin/zen-icons/plus.svg") !important;
       }
 
       #secondaryToolbarToggleButton::before {
-        mask-image: url('chrome://browser/skin/zen-icons/arrow-right.svg') !important;
+        mask-image: url("chrome://browser/skin/zen-icons/arrow-right.svg") !important;
       }
 
       /* Sidebar buttons */
 
       #viewThumbnail::before {
-        mask-image: url('resource://pdf.js/web/images/toolbarButton-viewThumbnail.svg') !important;
+        mask-image: url("resource://pdf.js/web/images/toolbarButton-viewThumbnail.svg") !important;
       }
 
       #viewOutline::before {
-        mask-image: url('resource://pdf.js/web/images/toolbarButton-viewOutline.svg') !important;
+        mask-image: url("resource://pdf.js/web/images/toolbarButton-viewOutline.svg") !important;
       }
 
       #viewAttachments::before {
-        mask-image: url('resource://pdf.js/web/images/toolbarButton-viewAttachments.svg') !important;
+        mask-image: url("resource://pdf.js/web/images/toolbarButton-viewAttachments.svg") !important;
       }
 
       #viewLayers::before {
-        mask-image: url('resource://pdf.js/web/images/toolbarButton-viewLayers.svg') !important;
+        mask-image: url("resource://pdf.js/web/images/toolbarButton-viewLayers.svg") !important;
       }
 
       #currentOutlineItem::before {
-        mask-image: url('resource://pdf.js/web/images/toolbarButton-currentOutlineItem.svg') !important;
+        mask-image: url("resource://pdf.js/web/images/toolbarButton-currentOutlineItem.svg") !important;
       }
 
       /* Checked buttons */
 
-      #secondaryToolbarButtonContainer .toolbarButton[aria-checked="true"]::before {
-        mask-image: url('chrome://browser/skin/zen-icons/checkmark.svg') !important;
+      #secondaryToolbarButtonContainer
+        .toolbarButton[aria-checked="true"]::before {
+        mask-image: url("chrome://browser/skin/zen-icons/checkmark.svg") !important;
       }
     }
   }

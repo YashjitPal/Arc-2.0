@@ -2,7 +2,7 @@
   {
     "type": "separator",
     "label": "🪟 Window &  Transparency 🪟",
-    "margin":"30px 0 30px 0",
+    "margin": "30px 0 30px 0",
     "size": "18px"
   },
   {
@@ -45,7 +45,7 @@
   {
     "type": "separator",
     "label": "🔎 Url Bar Options 🔎",
-    "margin":"30px 0 30px 0",
+    "margin": "30px 0 30px 0",
     "size": "18px"
   },
   {
@@ -65,25 +65,25 @@
     "defaultValue": false
   },
   {
-      "property": "arc.urlbar.hide_results",
-      "label": "Hide search results when opening URL Bar.",
-      "type": "dropdown",
-      "defaultValue": 0,
-      "disabledOn": [],
-      "options": [
-          {
-              "label": "Hide all",
-              "value": 0
-          },
-          {
-              "label": "Hide only top sites",
-              "value": 1
-          },
-          {
-               "label": "Hide only non-pinned top sites",
-               "value": 2
-          }
-      ]
+    "property": "arc.urlbar.hide_results",
+    "label": "Hide search results when opening URL Bar.",
+    "type": "dropdown",
+    "defaultValue": 0,
+    "disabledOn": [],
+    "options": [
+      {
+        "label": "Hide all",
+        "value": 0
+      },
+      {
+        "label": "Hide only top sites",
+        "value": 1
+      },
+      {
+        "label": "Hide only non-pinned top sites",
+        "value": 2
+      }
+    ]
   },
   {
     "type": "dropdown",
@@ -138,7 +138,7 @@
   {
     "type": "separator",
     "label": "📚 Sidebar / Compact mode 📚",
-    "margin":"30px 0 30px 0",
+    "margin": "30px 0 30px 0",
     "size": "18px"
   },
   {
@@ -179,7 +179,7 @@
   {
     "type": "separator",
     "label": "🗂️ Tabs and Tab Animation 🗂️",
-    "margin":"30px 0 30px 0",
+    "margin": "30px 0 30px 0",
     "size": "18px"
   },
   {
@@ -214,7 +214,7 @@
     ]
   },
   {
-    "type":  "checkbox",
+    "type": "checkbox",
     "value": "boolean",
     "label": "Enable Background for Folders.",
     "property": "arc-folder-background"
@@ -245,7 +245,10 @@
       { "label": "Bounce", "value": 1 },
       { "label": "Bouncier", "value": 2 },
       { "label": "More bounce", "value": 3 },
-      { "label": "Smooth crossfade (scroll in split-mode might not work)", "value": 4 },
+      {
+        "label": "Smooth crossfade (scroll in split-mode might not work)",
+        "value": 4
+      },
       { "label": "Zoom out effect", "value": 5 }
     ]
   },
@@ -258,7 +261,7 @@
   {
     "type": "separator",
     "label": "📦 Containers / Pinned Extensions / Workspaces 📦",
-    "margin":"30px 0 30px 0",
+    "margin": "30px 0 30px 0",
     "size": "18px"
   },
   {
@@ -303,7 +306,7 @@
   {
     "type": "separator",
     "label": "🎨 Arc UI Mods / Interface 🎨",
-    "margin":"30px 0 30px 0",
+    "margin": "30px 0 30px 0",
     "size": "18px"
   },
   {
@@ -336,7 +339,7 @@
   {
     "type": "separator",
     "label": "🎥 Media Player / PDF / View Experience 🎥",
-    "margin":"30px 0 30px 0",
+    "margin": "30px 0 30px 0",
     "size": "18px"
   },
   {
@@ -362,7 +365,7 @@
   {
     "type": "separator",
     "label": "⚡ Performance &  Memory ⚡",
-    "margin":"30px 0 30px 0",
+    "margin": "30px 0 30px 0",
     "size": "18px"
   },
   {
@@ -390,7 +393,7 @@
   {
     "type": "separator",
     "label": "✨ Fonts &  Misc ✨",
-    "margin":"30px 0 30px 0",
+    "margin": "30px 0 30px 0",
     "size": "18px"
   },
   {
@@ -415,101 +418,87 @@
     "size": "18px"
   },
   {
-      "property": "arc.detaloadingbar.enabled",
-      "label": "Enable/Disable Deta Loading Bar",
-      "type": "checkbox",
-      "defaultValue": true
-    },
-    {
-      "property": "arc.detaloadingbar.usefromzen",
-      "label": "Use color from Zen browser theme (will override custom colors)",
-      "type": "checkbox",
-      "defaultValue": true
-    },
-    {
-      "property": "arc.detaloadingbar.singlecolor",
-      "label": "Use only left color for the loading bar (Disable gradient)",
-      "type": "checkbox",
-      "defaultValue": false
-    },
-    {
-        "property": "arc.detaloadingbar.maincolor",
-        "label": "Left color",
-        "type": "string",
-        "defaultValue": "rgba(243,202,186,255)"
-    },
-    {
-        "property": "arc.detaloadingbar.middlecolor",
-        "label": "Middle color",
-        "type": "string",
-        "defaultValue": "rgba(255,255,255,255)"
-    },
-    {
-        "property": "arc.detaloadingbar.rightcolor",
-        "label": "Right color",
-        "type": "string",
-        "defaultValue": "rgba(243,202,186,255)"
-    },
-    {
-        "property": "arc.detaloadingbar.thickness",
-        "label": "Thickness",
-        "type": "string",
-        "defaultValue": "6px"
-    },
-    {
-        "property": "arc.detaloadingbar.minwidth",
-        "label": "Custom Minimum Width",
-        "type": "string",
-        "defaultValue": "20px"
-    },
-    {
-        "property": "arc.detaloadingbar.maxwidth",
-        "label": "Custom Maximum Width",
-        "type": "string",
-        "defaultValue": "120px"
-    },
-    {
-        "property": "arc.detaloadingbar.spacerwidth",
-        "label": "Custom gap between loading bar and window edge (defaultValue is 8px)",
-        "type": "string",
-        "defaultValue": "8px"
-    },
-    {
-        "property": "arc.detaloadingbar.position.top",
-        "label": "Place loading bar at top (unchecked = bottom)",
-        "type": "checkbox",
-        "defaultValue": true
-    },
-    {
-      "property": "arc.detaloadingbar.boxshadow.enabled",
-      "label": "Enable/Disable Box Shadow",
-      "type": "checkbox",
-      "defaultValue": true
-    },
-    {
-      "property": "arc.detaloadingbar.blur.enabled",
-      "label": "Enable/Disable Blur Effect",
-      "type": "checkbox",
-      "defaultValue": true
-    },
-    {
-        "property": "arc.detaloadingbar.blur.intensity",
-        "label": "Blur Intensity",
-        "type": "string",
-        "defaultValue": "1.8px"
-    }
+    "property": "arc.detaloadingbar.enabled",
+    "label": "Enable/Disable Deta Loading Bar",
+    "type": "checkbox",
+    "defaultValue": true
+  },
+  {
+    "property": "arc.detaloadingbar.usefromzen",
+    "label": "Use color from Zen browser theme (will override custom colors)",
+    "type": "checkbox",
+    "defaultValue": true
+  },
+  {
+    "property": "arc.detaloadingbar.singlecolor",
+    "label": "Use only left color for the loading bar (Disable gradient)",
+    "type": "checkbox",
+    "defaultValue": false
+  },
+  {
+    "property": "arc.detaloadingbar.maincolor",
+    "label": "Left color",
+    "type": "string",
+    "defaultValue": "rgba(243,202,186,255)"
+  },
+  {
+    "property": "arc.detaloadingbar.middlecolor",
+    "label": "Middle color",
+    "type": "string",
+    "defaultValue": "rgba(255,255,255,255)"
+  },
+  {
+    "property": "arc.detaloadingbar.rightcolor",
+    "label": "Right color",
+    "type": "string",
+    "defaultValue": "rgba(243,202,186,255)"
+  },
+  {
+    "property": "arc.detaloadingbar.thickness",
+    "label": "Thickness",
+    "type": "string",
+    "defaultValue": "6px"
+  },
+  {
+    "property": "arc.detaloadingbar.minwidth",
+    "label": "Custom Minimum Width",
+    "type": "string",
+    "defaultValue": "20px"
+  },
+  {
+    "property": "arc.detaloadingbar.maxwidth",
+    "label": "Custom Maximum Width",
+    "type": "string",
+    "defaultValue": "120px"
+  },
+  {
+    "property": "arc.detaloadingbar.spacerwidth",
+    "label": "Custom gap between loading bar and window edge (defaultValue is 8px)",
+    "type": "string",
+    "defaultValue": "8px"
+  },
+  {
+    "property": "arc.detaloadingbar.position.top",
+    "label": "Place loading bar at top (unchecked = bottom)",
+    "type": "checkbox",
+    "defaultValue": true
+  },
+  {
+    "property": "arc.detaloadingbar.boxshadow.enabled",
+    "label": "Enable/Disable Box Shadow",
+    "type": "checkbox",
+    "defaultValue": true
+  },
+  {
+    "property": "arc.detaloadingbar.blur.enabled",
+    "label": "Enable/Disable Blur Effect",
+    "type": "checkbox",
+    "defaultValue": true
+  },
+  {
+    "property": "arc.detaloadingbar.blur.intensity",
+    "label": "Blur Intensity",
+    "type": "string",
+    "defaultValue": "1.8px"
+  }
 ]
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,0 +1,15 @@
+{
+  "Arc-2.0": {
+    "id": "Arc-2.0",
+    "name": "Arc 2.0",
+    "description": "Imported via browsercfg (https://github.com/CosmoCreeper/browsercfg)",
+    "createdAt": "2000-01-01",
+    "updatedAt": "2000-01-01",
+    "homepage": "https://github.com/YashjitPal/Arc-2.0",
+    "version": "1.0.0",
+    "style": { "chrome": "userChrome.css", "content": "userContent.css" },
+    "preferences": "preferences.json",
+    "no-updates": true,
+    "enabled": true
+  }
+}

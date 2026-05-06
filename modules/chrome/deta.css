@@ -1,4 +1,4 @@
-/* CREDITS TO rasyidrafi who has a zen-deta-loading-bar repo which is been copied chrome.css to here*/
+/* CREDITS TO rasyidrafi who has a zen-deta-loading-bar repo which is been copied chrome.css to here */
 
 /*
  * =================================================================
@@ -14,7 +14,7 @@
   );
 }
 
-@media (-moz-bool-pref: "arc.detaloadingbar.usefromzen") {
+@media (-moz-pref("arc.detaloadingbar.usefromzen")) {
   :root {
     --arc-detaloadingbar-primarycolor-final: var(
       --zen-primary-color,
@@ -23,7 +23,7 @@
   }
 }
 
-@media not (-moz-bool-pref: "arc.detaloadingbar.usefromzen") {
+@media not (-moz-pref("arc.detaloadingbar.usefromzen")) {
   :root {
     --arc-detaloadingbar-primarycolor-final: var(
       --arc-detaloadingbar-maincolor,
@@ -48,7 +48,7 @@
 }
 
 /* Now, create the loading bar inside it when the window is loading */
-@media (-moz-bool-pref: "arc.detaloadingbar.enabled") {
+@media (-moz-pref("arc.detaloadingbar.enabled")) {
   #main-window .browserStack::before {
     content: "" !important;
     position: absolute !important;
@@ -61,11 +61,13 @@
     /* Hidden by default */
     opacity: 0 !important;
     visibility: hidden !important;
-    transition: opacity 0.2s ease, visibility 0.2s ease !important;
+    transition:
+      opacity 0.2s ease,
+      visibility 0.2s ease !important;
   }
 
   /* Position at top when checked (default) */
-  @media (-moz-bool-pref: "arc.detaloadingbar.position.top") {
+  @media (-moz-pref("arc.detaloadingbar.position.top")) {
     #main-window .browserStack::before {
       top: var(--arc-detaloadingbar-spacerwidth, 8px) !important;
       bottom: auto !important;
@@ -73,27 +75,28 @@
   }
 
   /* Position at bottom when unchecked */
-  @media not (-moz-bool-pref: "arc.detaloadingbar.position.top") {
+  @media not (-moz-pref("arc.detaloadingbar.position.top")) {
     #main-window .browserStack::before {
       bottom: var(--arc-detaloadingbar-spacerwidth, 8px) !important;
       top: auto !important;
     }
   }
 
-  @media (-moz-bool-pref: "arc.detaloadingbar.boxshadow.enabled") {
+  @media (-moz-pref("arc.detaloadingbar.boxshadow.enabled")) {
     #main-window .browserStack::before {
-      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.25),
+      box-shadow:
+        0 2px 12px 0 rgba(0, 0, 0, 0.25),
         0 1.5px 4px 0 rgba(0, 0, 0, 0.15) !important;
     }
   }
 
-  @media (-moz-bool-pref: "arc.detaloadingbar.singlecolor") {
+  @media (-moz-pref("arc.detaloadingbar.singlecolor")) {
     #main-window .browserStack::before {
       background: var(--arc-detaloadingbar-primarycolor-final) !important;
     }
   }
 
-  @media not (-moz-bool-pref: "arc.detaloadingbar.singlecolor") {
+  @media not (-moz-pref("arc.detaloadingbar.singlecolor")) {
     #main-window .browserStack::before {
       background: linear-gradient(
         to right,
@@ -121,7 +124,7 @@
 }
 
 /* Pulse animation with conditional blur */
-@media (-moz-bool-pref: "arc.detaloadingbar.blur.enabled") {
+@media (-moz-pref("arc.detaloadingbar.blur.enabled")) {
   @keyframes zen-loading-pulse {
     0% {
       width: var(--arc-detaloadingbar-minwidth, 20px);
@@ -129,20 +132,24 @@
       opacity: 0.3;
       transform: translateX(-50%) scale(0.9);
     }
+
     25% {
       opacity: 0.5;
       filter: blur(var(--arc-detaloadingbar-blur-intensity-final));
     }
+
     50% {
       opacity: 0.7;
       filter: blur(var(--arc-detaloadingbar-blur-intensity-final));
       transform: translateX(-50%) scale(0.95);
     }
+
     75% {
       opacity: 0.9;
       filter: blur(var(--arc-detaloadingbar-blur-intensity-final));
       transform: translateX(-50%) scale(1);
     }
+
     100% {
       width: var(--arc-detaloadingbar-maxwidth, 120px);
       filter: blur(var(--arc-detaloadingbar-blur-intensity-final));
@@ -152,24 +159,28 @@
   }
 }
 
-@media not (-moz-bool-pref: "arc.detaloadingbar.blur.enabled") {
+@media not (-moz-pref("arc.detaloadingbar.blur.enabled")) {
   @keyframes zen-loading-pulse {
     0% {
       width: var(--arc-detaloadingbar-minwidth, 20px);
       opacity: 0.3;
       transform: translateX(-50%) scale(0.9);
     }
+
     25% {
       opacity: 0.5;
     }
+
     50% {
       opacity: 0.7;
       transform: translateX(-50%) scale(0.95);
     }
+
     75% {
       opacity: 0.9;
       transform: translateX(-50%) scale(1);
     }
+
     100% {
       width: var(--arc-detaloadingbar-maxwidth, 120px);
       opacity: 1;
