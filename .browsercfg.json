@@ -1,0 +1,24 @@
+{
+  "remote": {
+    "run_on": ["import"],
+    "init": [
+      ["git_clone", "https://github.com/sineorg/bootloader.git", "bootloader"],
+      ["git_clone", "https://github.com/CosmoCreeper/Sine.git", "sine"]
+    ],
+    "update": [
+      ["cd", "bootloader"],
+      ["git_pull", "origin", "main"],
+      ["cd", "sine"],
+      ["git_pull", "origin", "main"]
+    ]
+  },
+  "import": {
+    "{remote}/bootloader/program": "{browser}/",
+    "{remote}/bootloader/profile/utils": "{profile}/chrome/utils",
+    "{remote}/sine/src": "{profile}/chrome/JS",
+    "{remote}/sine/locales": "{profile}/chrome/JS/locales",
+    "template": "{profile}/chrome/sine-mods",
+    "./": "{profile}/chrome/sine-mods/Arc-2.0"
+  },
+  "ignore": ["node_modules"]
+}

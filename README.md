@@ -23,11 +23,11 @@
 Arc 2.0 Browser is a **skin made for Zen Browser** that adds polish to the design by incorporating animations, blurs, and more.  
 It’s the skin I personally use, made public due to demand for the CSS. Inspired by **Arc Browser** and other Zen skins (listed in credits).
 
-> **Note:** Arc 2.0 is *not* a standalone browser.
+> **Note:** Arc 2.0 is _not_ a standalone browser.
 
 **Tested on:** `Zen Browser 1.19.5b` (Windows & Linux)  
 **Recommended Mode:** All modes are working properly except **Collapsed Sidebar**.
-Also, in **Sidebar & Top Toolbar** mode, if you're choosing to keep Bookmarks under URL Bar while not having compact toolbar on, a small part of compact sidebar's pseduo bg might appear above compact sidebar's actual size. So for good looks, either at least turn on compact mode for toolbar, or remove Bookmarks, or switch to **Only Sidebar** mode. 
+Also, in **Sidebar & Top Toolbar** mode, if you're choosing to keep Bookmarks under URL Bar while not having compact toolbar on, a small part of compact sidebar's pseduo bg might appear above compact sidebar's actual size. So for good looks, either at least turn on compact mode for toolbar, or remove Bookmarks, or switch to **Only Sidebar** mode.
 
 ---
 
@@ -41,17 +41,16 @@ Also, in **Sidebar & Top Toolbar** mode, if you're choosing to keep Bookmarks un
 
 ## 🧩 Installation Methods
 
-### ✅ Install Using [Sine](https://github.com/CosmoCreeper/Sine) *(Recommended)*
+### ✅ Install Using [Sine](https://github.com/CosmoCreeper/Sine) _(Recommended)_
 
 1. Install **Sine**, a JS-based mod & theme manager: [Sine v2.3](https://github.com/sineorg/docs/blob/main/src/installation.md).
 
    ![image](https://github.com/user-attachments/assets/0d7255b4-0ae0-43e9-8989-7d7016936e83)
 
 2. Click **Install** under **Arc 2.0**.  
-   Refresh Settings if the theme doesn’t appear under *Installed Mods*.
+   Refresh Settings if the theme doesn’t appear under _Installed Mods_.
 
   <img width="1902" height="1019" alt="image" src="https://github.com/user-attachments/assets/3f580b73-b2b4-4d92-9de4-3f0a02ba61fa" />
-
 
 3. Configure personalization prefs in the **Settings** button under theme details.
 
@@ -69,13 +68,13 @@ Also, in **Sidebar & Top Toolbar** mode, if you're choosing to keep Bookmarks un
 
 ---
 
-### 📦 Install Using ZIP Files *(Traditional Method)*
+### 📦 Install Using ZIP Files _(Traditional Method)_
 
-1. Go to `about:profiles`, open **Root Directory**, then open or create a lowercase `chrome` folder.  
-2. Download and extract the Arc 2.0 ZIP from **Releases**.  
-3. Copy the contents into the `chrome` folder.  
-4. Edit preferences in `CONFIG.css` and `about:config`.  
-5. Install the required mods and extensions (listed below).  
+1. Go to `about:profiles`, open **Root Directory**, then open or create a lowercase `chrome` folder.
+2. Download and extract the Arc 2.0 ZIP from **Releases**.
+3. Copy the contents into the `chrome` folder.
+4. Edit preferences in `CONFIG.css` and `about:config`.
+5. Install the required mods and extensions (listed below).
 6. Customize the toolbar layout as desired.
 
 **Enable this setting:**  
@@ -98,7 +97,7 @@ Also, in **Sidebar & Top Toolbar** mode, if you're choosing to keep Bookmarks un
 4. Drag extensions above Essentials to mimic Arc layout.
 5. Click **Done**.
 
-**Tutorial video:**  
+**Tutorial video:**
 
 https://github.com/user-attachments/assets/98e35d8f-5638-4791-8369-8ff964ad94df
 
@@ -107,7 +106,9 @@ https://github.com/user-attachments/assets/98e35d8f-5638-4791-8369-8ff964ad94df
 ## 🧱 Required Mods
 
 ### • [Transparent Zen](https://zen-browser.app/mods/642854b5-88b4-4c40-b256-e035532109df/)
+
 ### • [Customize Font Size](https://zen-browser.app/mods/d23733fa-983e-4680-8869-bf5b292d4fe6/)
+
 ![image](https://github.com/user-attachments/assets/bb964ef8-af07-491b-99e8-8a4fa0c87789)
 
 ---
@@ -120,7 +121,7 @@ https://github.com/user-attachments/assets/98e35d8f-5638-4791-8369-8ff964ad94df
 
 ## ⚙️ Basic Configurations
 
-*(Skip this if using Sine — all prefs are in mod settings.)*
+_(Skip this if using Sine — all prefs are in mod settings.)_
 
 Open a new tab → type `about:config` → press Enter → add the following preferences:
 
@@ -149,7 +150,7 @@ browser.low_commit_space_threshold_mb → [2/3 of total RAM]
 browser.tabs.min_inactive_duration_before_unload → [milliseconds]
 dom.ipc.processPriorityManager.backgroundUsesEcoQoS → true
 
-````
+```
 
 Descriptions are provided in the original instructions above.
 
@@ -198,6 +199,7 @@ Descriptions are provided in the original instructions above.
 ## 🌫️ Zen Sidebar Transparency Options
 
 ### DWMGlassBlur (Recommended)
+
 - Download: [DWMBlurGlass](https://github.com/Maplespe/DWMBlurGlass/releases/tag/2.3.2b3)
 - Make symbols **valid** as shown:
 
@@ -248,21 +250,19 @@ Descriptions are provided in the original instructions above.
   blurMethod=0
   effectType=0
   blurQuality=1
-
+  ```
 
 * Import in DWM:
 
 <img width="888" height="892" alt="image" src="https://github.com/user-attachments/assets/18cded56-9f3f-4c7c-9cea-8f7fe5ec2b9f" />
 
-
-
 ---
 
 ### MicaForEveryone
 
-* Download: [MicaForEveryone](https://github.com/MicaForEveryone)
-* Add rule for `zen`
-* Set **Background Type:** `Acrylic`
+- Download: [MicaForEveryone](https://github.com/MicaForEveryone)
+- Add rule for `zen`
+- Set **Background Type:** `Acrylic`
 
 ![image](https://github.com/user-attachments/assets/9a2581af-4d14-49b7-8f03-d35bd034ad3a)
 
@@ -270,20 +270,20 @@ Descriptions are provided in the original instructions above.
 
 ## 🙌 Credits
 
-* [neurokitti / Arc_Zen_Theme](https://github.com/neurokitti/Arc_Zen_Theme)
-* [TheBigWazz / Pineapple-Fried](https://github.com/TheBigWazz/Pineapple-Fried)
-* [GuiMar10 / Mindfulness](https://github.com/GuiMar10/Mindfulness)
-* [Tanay-Kar / Lacuna](https://github.com/Tanay-Kar/Lacuna)
-* [greeeen-dev / natsumi-browser](https://github.com/greeeen-dev/natsumi-browser)
-* [lunar-os / ZenCss](https://github.com/lunar-os/ZenCss)
-* [SameeraSW / Zen Transparency Guide](https://sameerasw.notion.site/Zen-Transparency-1939c6099d4080468f02cf05ae50e827)
-* [Discord: #1340837003448684605](https://discord.com/channels/1088172780480114748/1340837003448684605)
-* [Discord: #1342214828487344209](https://discord.com/channels/1088172780480114748/1342214828487344209)
-* [ferrocyante / vyang](https://github.com/ferrocyante/vyang)
-* [JustAdumbPrsn / Nebula Theme](https://github.com/JustAdumbPrsn/Nebula-A-Minimal-Theme-for-Zen-Browser)
-* [sameerasw / ZenZero](https://github.com/sameerasw/ZenZero)
-* [rrthrr](https://github.com/rrthrr)
-* [Comp-Tech-Guy / No-Gaps](https://github.com/Comp-Tech-Guy/No-Gaps)
+- [neurokitti / Arc_Zen_Theme](https://github.com/neurokitti/Arc_Zen_Theme)
+- [TheBigWazz / Pineapple-Fried](https://github.com/TheBigWazz/Pineapple-Fried)
+- [GuiMar10 / Mindfulness](https://github.com/GuiMar10/Mindfulness)
+- [Tanay-Kar / Lacuna](https://github.com/Tanay-Kar/Lacuna)
+- [greeeen-dev / natsumi-browser](https://github.com/greeeen-dev/natsumi-browser)
+- [lunar-os / ZenCss](https://github.com/lunar-os/ZenCss)
+- [SameeraSW / Zen Transparency Guide](https://sameerasw.notion.site/Zen-Transparency-1939c6099d4080468f02cf05ae50e827)
+- [Discord: #1340837003448684605](https://discord.com/channels/1088172780480114748/1340837003448684605)
+- [Discord: #1342214828487344209](https://discord.com/channels/1088172780480114748/1342214828487344209)
+- [ferrocyante / vyang](https://github.com/ferrocyante/vyang)
+- [JustAdumbPrsn / Nebula Theme](https://github.com/JustAdumbPrsn/Nebula-A-Minimal-Theme-for-Zen-Browser)
+- [sameerasw / ZenZero](https://github.com/sameerasw/ZenZero)
+- [rrthrr](https://github.com/rrthrr)
+- [Comp-Tech-Guy / No-Gaps](https://github.com/Comp-Tech-Guy/No-Gaps)
 
 ---
 

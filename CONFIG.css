@@ -1,17 +1,28 @@
-/*Do not edit variable names. Only edit values as directed by comments for each config*/
-/*DO NOT EDIT THIS IF YOU USED SINE TO INSTALL*/
+/* Do not edit variable names. Only edit values as directed by comments for each config */
+/* DO NOT EDIT THIS IF YOU USED SINE TO INSTALL */
 :root {
   --nebula-border-radius: 13px; /* This will change roundness of everything in Nebula (DEFAULT: 13px) */
-  --nebula-website-tint: light-dark(rgba(255,255,255,0), #00000000); /* Edit the color values to change the tint on transparent websites */
-  --nebula-ui-tint: light-dark(rgba(255,255,255,0.2), #00000000); /* Edit the color values to change the tint of sidebar and etc. */
+  --nebula-website-tint: light-dark(
+    rgba(255, 255, 255, 0),
+    #0000
+  ); /* Edit the color values to change the tint on transparent websites */
+
+  --nebula-ui-tint: light-dark(
+    rgba(255, 255, 255, 0.2),
+    #0000
+  ); /* Edit the color values to change the tint of sidebar and etc. */
+
   --nebula-workspace-grayscale: 100%; /* Edit the % to make non active workspace icons more colored */
   --nebula-essentials-width: 60px !important; /* Edit the "60px" to something less to make width of essentials smaller */
-  --nebula-sidebar-width: var(--arc-compact-sidebar-size, 22em) !important; /* Edit the 25em to any other value you would like for compact sidebar.*/
+  --nebula-sidebar-width: var(
+    --arc-compact-sidebar-size,
+    22em
+  ) !important; /* Edit the 25em to any other value you would like for compact sidebar. */
 }
 
-/*Press `Ctrl+T` to open the floating URL bar and type "about:config" and press `Enter`. 
+/* Press `Ctrl+T` to open the floating URL bar and type "about:config" and press `Enter`. 
 Advanced Preferences page will open where you need to add configs mentioned below as per the ways directed in `()`. 
-Restart browser after applying all configs.*/
+Restart browser after applying all configs. */
 
 /*
 1. `browser.tabs.allow_transparent_browser` - (boolean > true) - Allows transparent browser windows.
@@ -63,10 +74,5 @@ Restart browser after applying all configs.*/
                                                                     in which tab unloading should be executed.
 20. `dom.ipc.processPriorityManager.backgroundUsesEcoQoS` - (Boolean > True) - Makes browser run on performance efficiency mode.
 */
-  /* DO NOT ADD OTHER CSS BELOW */
-  /* More styles and options will come soon here! */
-
-
-
-
-
+/* DO NOT ADD OTHER CSS BELOW */
+/* More styles and options will come soon here! */
