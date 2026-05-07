@@ -501,7 +501,9 @@ html[mozdisallowselectionprint] {
       }
     }
 
-    /* Compact mode */
+    /*Firefox 150 update has broken support for Pseudo BG; but if a way is found possible to persist it, please create a PR
+    to Arc2.0.*/
+    /* Compact mode 
 
     @media (-moz-pref("natsumi.pdfjs.compact")) {
       .toolbar {
@@ -558,7 +560,7 @@ html[mozdisallowselectionprint] {
         }
       }
     }
-
+*/
     /* Topbar buttons */
 
     #previous::before {
