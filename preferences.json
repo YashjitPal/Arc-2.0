@@ -386,11 +386,6 @@
   },
   {
     "type": "checkbox",
-    "property": "natsumi.pdfjs.compact",
-    "label": "Enable *Compact mode* for PDF viewer."
-  },
-  {
-    "type": "checkbox",
     "property": "arc-findbar-disable",
     "label": "Disable *Arc styling* for FindBar (~must disable when using **Browse Bot** mod~)."
   },
