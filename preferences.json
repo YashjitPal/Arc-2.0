@@ -1,7 +1,7 @@
 [
   {
     "type": "separator",
-    "label": "**Window & Transparency**",
+    "label": "**Window &  Transparency**",
     "margin":"30px 0 30px 0",
     "size": "18px"
   },
@@ -110,7 +110,7 @@
   },
   {
     "type": "separator",
-    "label": "URL Bar Options",
+    "label": "**URL Bar Options**",
     "margin":"30px 0 30px 0",
     "size": "18px"
   },
@@ -208,7 +208,7 @@
   },
   {
     "type": "separator",
-    "label": "Sidebar / Compact mode",
+    "label": "**Sidebar / Compact mode**",
     "margin":"30px 0 30px 0",
     "size": "18px"
   },
@@ -249,7 +249,7 @@
   },
   {
     "type": "separator",
-    "label": "**Tabs & Tab Animations**",
+    "label": "**Tabs &  Tab Animations**",
     "margin":"30px 0 30px 0",
     "size": "18px"
   },
@@ -507,7 +507,7 @@
   },
   {
     "type": "separator",
-    "label": "**Fonts & Miscellaneous**",
+    "label": "**Fonts &  Miscellaneous**",
     "margin":"30px 0 30px 0",
     "size": "18px"
   },
