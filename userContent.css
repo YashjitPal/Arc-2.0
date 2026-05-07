@@ -2,4 +2,7 @@
 @import url("modules/content/pdf/pdfjs.css");
 @import url("modules/content/pdf/preload.css");
 @import url("modules/content/pdf/betterpdf.css");
-@import url("modules/content/Transparent-settings.css");
+
+
+/*If you want transparent browser pages uncomment the code below by removing `/` and `*` at start and end of code below*/ 
+/*@import url("modules/content/Transparent-settings.css");*/

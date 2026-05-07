@@ -4,7 +4,7 @@
   "author": "YashjitPal",
   "name": "Arc 2.0",
   "description": "Arc-like Zen Browser theme.",
-  "version": "3.3.1",
+  "version": "3.3.3",
   "style": {
     "chrome": "userChrome.css",
     "content": "userContent.css"
