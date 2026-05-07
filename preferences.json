@@ -13,7 +13,7 @@
   },
   {
     "type": "string",
-    "label": "Enable *better blur* for context menu (~enter CSS color value in HEX or RGBA; ensure your OS has proper blur support~).",
+    "label": "Enable *better blur* for context menu (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.1), rgba(0,0,0,0.1))`]; ensure your OS has proper blur support~).",
     "property": "arc-menu-blur",
     "defaultValue": "light-dark(rgba(255,255,255,0.1), rgba(0,0,0,0.1))",
     "placeholder": "light-dark(rgba(255,255,255,0.1), rgba(0,0,0,0.1))"
@@ -41,14 +41,14 @@
     "property": "arc-ui-tint",
     "defaultValue": "light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))",
     "placeholder": "light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))",
-    "label": "Custom *UI Tint* for browser (~enter CSS color value in HEX or RGBA; works if no Workspace Theme color is selected~)."
+    "label": "Custom *UI Tint* for browser (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))`]; works if no Workspace Theme color is selected~)."
   },
   {
     "type": "string",
     "property": "arc-website-tint",
     "defaultValue": "light-dark(rgba(255,255,255,0.1), rgba(0,0,0,0.1))",
     "placeholder":"light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))",
-    "label": "Custom *Website Tint* for browser (~enter CSS color value in HEX or RGBA; works if no Workspace Theme color is selected, only on transparent websites~)."
+    "label": "Custom *Website Tint* for browser (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.1), rgba(0,0,0,0.1))`]; works if no Workspace Theme color is selected, only on transparent websites~)."
   },
   {
     "type": "string",
@@ -123,12 +123,6 @@
     "type": "checkbox",
     "label": "*Shorten URL* to only show domain name.",
     "property": "browser.urlbar.trimURLs"
-  },
-  {
-    "type": "checkbox",
-    "property": "arc-urlbar-fade-in",
-    "label": "Remove *fade-in* below URL Bar.",
-    "defaultValue": false
   },
   {
     "type": "checkbox",
@@ -217,7 +211,7 @@
     "property": "arc-compact-sidebar-bg",
     "defaultValue": "light-dark(rgba(255,255,255,0.5), rgba(0,0,0,0.5))" ,
     "placeholder": "light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))",
-    "label": "URL Bar & Sidebar *Theme color density* (~enter CSS color value in HEX or RGBA~)."
+    "label": "URL Bar & Sidebar *Theme color density* (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.1), rgba(0,0,0,0.1))`]~)."
   },
   {
     "type": "string",
@@ -293,7 +287,7 @@
   {
     "type": "string",
     "property": "arc-folder-bg-color",
-    "label": "Custom *Folder Background Color* (~enter CSS color value in HEX or RGBA; enter `var(--zen-primary-color)` to use chosen Workspace Theme color~).",
+    "label": "Custom *Folder Background Color* (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.125))`]; enter `var(--zen-primary-color)` to use chosen Workspace Theme color~).",
     "defaultValue": "light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.125))",
     "placeholder": "var(--zen-primary-color)"
   },
@@ -420,7 +414,7 @@
   {
     "type": "string",
     "property": "arc-findbar-bg",
-    "label": "Custom *background* for FindBar (~enter CSS color value in HEX or RGBA~).",
+    "label": "Custom *background* for FindBar (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))`]~).",
     "defaultValue": "light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))",
     "placeholder": "light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))"
   },
