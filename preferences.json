@@ -58,10 +58,10 @@
     "placeholder": "12px"
   },
   {
-    "type": "number",
+    "type": "string",
+    "value": "number",
     "label": "Edit Zen window margin width between web-view and border (enter value between 0 to 12).",
-    "property": "zen.theme.content-element-separation",
-    "placeholder": 8
+    "property": "zen.theme.content-element-separation"
   },
   {
     "type": "checkbox",
