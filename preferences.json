@@ -58,6 +58,12 @@
     "placeholder": "12px"
   },
   {
+    "type": "string",
+    "label": "Edit Zen window margin width between web-view and border (enter value between 0 to 12).",
+    "property": "zen.theme.content-element-separation",
+    "placeholder": 8
+  },
+  {
     "type": "checkbox",
     "label": "Enable *Arc Menu Icon*",
     "property": "arc-menu-icon",
@@ -73,7 +79,7 @@
     "value": "number",
     "label": "Choose mode for No Gaps mode",
     "property": "no-gap.mode-select",
-    "default": 1,
+    "defaultValue": 1,
     "options": [
       {
         "label": "Only Compact Mode",
@@ -107,6 +113,11 @@
     "type": "checkbox",
     "property": "arc-macos-style-buttons",
     "label": "Enable *macOS-style* window buttons."
+  },
+  {
+    "type": "checkbox",
+    "property": "arc-disable-floating-statusbar",
+    "label": "Disable Status Bar (URL info that appears on bottom left of web-view when you hover on a link)."
   },
   {
     "type": "separator",
