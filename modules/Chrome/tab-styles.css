@@ -113,8 +113,8 @@
 
     .tabbrowser-tab[usercontextid]:not([selected]):not([visuallyselected])
       .tab-background::after {
-      width: 25% !important;
-      opacity: 0.5 !important;
+        width: 25% !important;
+        opacity: 0.5 !important;
     }
   }
 
@@ -211,7 +211,7 @@
 
   :root:not([zen-single-toolbar="true"]):not([zen-sidebar-expanded="true"])
     .tab-close-button {
-    transform: translateY(2px) scale(1.2) !important;
+      transform: translateY(2px) scale(1.2) !important;
   }
 
   #tabbrowser-tabpanels[zen-split-view="true"] .browserSidebarContainer {
@@ -225,11 +225,24 @@
 
   #tabbrowser-tabpanels[zen-split-view="true"]
     .browserSidebarContainer.deck-selected {
-    box-shadow:
-      0 0 0 2px light-dark(rgba(0, 0, 0, 0.5), rgba(69, 69, 69, 0.5)),
-      0 4px 10px light-dark(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) !important;
+      box-shadow:
+        0 0 0 2px light-dark(rgba(0, 0, 0, 0.5), rgba(69, 69, 69, 0.5)),
+        0 4px 10px light-dark(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) !important;
   }
+  
+  /* - for essentials */
+  @media -moz-pref("arc-essentials-unload-button") {
+    .tabbrowser-tab[zen-essential="true"]:not([pending]):not([glance-id]):hover .tab-reset-button {
+      display: block !important;
+      position: absolute;
+      top: 0 !important;
+      right: 0% !important;
+      background: light-dark(rgba(0,0,0,0.25), rgba(255,255,255,0.25)) !important;
 
+      border-radius: 8px !important;
+      transform: scale(0.75) translate(10%, -10%) !important;
+    }
+  }
   /* ------------------ Split View Tab Group Styling -------------------- */
 
   tab-group[split-view-group] {
