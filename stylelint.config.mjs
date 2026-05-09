@@ -47,20 +47,5 @@ export default {
 
     // Tampers highly with organization
     "no-descending-specificity": null,
-
-    // tmp
-    "color-function-alias-notation": null,
-    "color-function-notation": null,
-    "alpha-value-notation": null,
-
-    /* "no-descending-specificity": null,
-    "declaration-property-value-no-unknown": [
-      true,
-      {
-        ignoreProperties: {
-          "max-width": ["auto", "/fr$/"],
-        },
-      },
-    ], */
   },
 };
