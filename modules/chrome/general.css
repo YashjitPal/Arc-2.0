@@ -1,5 +1,6 @@
 browser {
   will-change: transform;
+  backface-visibility: hidden;
 }
 
 /* main ui tint */
@@ -293,7 +294,6 @@ hbox.browserSidebarContainer,
     display: none !important;
   }
 }
-
 @media not (-moz-pref("arc-disable-floating-statusbar")) {
   #statuspanel {
     margin: 10px !important;
@@ -333,18 +333,18 @@ hbox.browserSidebarContainer,
 }
 
 /* -------Removes scrollbar in tab panel and also adds fade effect -------- */
-@media not (-moz-pref("arc-urlbar-fade-in")) {
-  #zen-tabs-wrapper {
-    mask-image: linear-gradient(
-      to bottom,
-      transparent,
-      black 20px,
-      black calc(100% - 20px),
-      transparent 100%
-    ) !important;
+/* @media not (-moz-pref("arc-urlbar-fade-in")) {
+    #zen-tabs-wrapper {
+      mask-image: linear-gradient(
+        to bottom,
+        transparent,
+        black 20px,
+        black calc(100% - 20px),
+        transparent 100%
+      ) !important;
+    }
   }
-}
-
+*/
 #zen-tabs-wrapper {
   scrollbar-width: none !important;
   -ms-overflow-style: none !important;
@@ -366,34 +366,36 @@ hbox.browserSidebarContainer,
   border-radius: 12px;
   padding: 10px;
   background: light-dark(rgb(255 255 255 / 32%), rgb(0 0 0 / 30%)) !important;
+}
 
-  #customization-panel-container {
-    padding: 10px !important;
-  }
-
-  #customization-panelWrapper {
-    --panel-arrow-offset: 0px;
-  }
-
-  .panel-arrowbox {
-    display: none !important;
-  }
-
-  .panel-arrowcontent {
-    height: 100% !important;
-    background: light-dark(rgb(255 255 255 / 80%), rgb(0 0 0 / 40%)) !important;
-    border: none !important;
-    margin: 0 !important;
-    border-radius: 8px;
-  }
-
-  @media (-moz-pref("zen.tabs.vertical.right-side")) {
+@media (-moz-pref("zen.tabs.vertical.right-side")) {
+  #customization-container {
     left: 10px;
-
-    #customization-content-container {
-      flex-direction: row-reverse;
-    }
   }
+
+  #customization-container #customization-content-container {
+    flex-direction: row-reverse;
+  }
+}
+
+#customization-container #customization-panel-container {
+  padding: 10px !important;
+}
+
+#customization-container #customization-panelWrapper {
+  --panel-arrow-offset: 0px;
+}
+
+#customization-container .panel-arrowbox {
+  display: none !important;
+}
+
+#customization-container .panel-arrowcontent {
+  height: 100% !important;
+  background: light-dark(rgb(255 255 255 / 80%), rgb(0 0 0 / 40%)) !important;
+  border: none !important;
+  margin: 0 !important;
+  border-radius: 8px;
 }
 
 /* Check when the width is low */

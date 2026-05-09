@@ -19,10 +19,6 @@
 }
 
 .zen-toolbar-background {
-  border-radius: var(--arc-border-radius, 12px) !important;
-}
-
-.zen-toolbar-background {
   &,
   &::before,
   &::after {
@@ -58,7 +54,7 @@
 
 /* Blur (Only for Solid BG Websites) */
 #zen-toolbar-background {
-  background: transparent !important;
+  backdrop-filter: none !important;
 
   &::after,
   &::before {
@@ -547,7 +543,8 @@ scrollbox {
       contrast(var(--arc-findbar-contrast, 1)) !important;
     border-radius: var(--arc-border-radius, 12px) !important;
     box-shadow: 0 4px 14px rgb(0 0 0 / 60%) !important;
-    will-change: transform, opacity;
+    /* Useless? */
+    /* will-change: transform, opacity; */
     border-top: 0 !important;
   }
 

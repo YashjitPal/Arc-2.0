@@ -10,8 +10,9 @@
     "content": "userContent.css"
   },
   "preferences": "preferences.json",
-  "readme": "https://raw.githubusercontent.com/YashjitPal/Arc-2.0/main/README.md",
+  "readme": "https://raw.githubusercontent.com/YashjitPal/Arc-2.0/refs/heads/main/README.md",
   "image": "https://github.com/user-attachments/assets/f9a25afb-2503-421a-bed0-6e94f2ab43db",
+  "ai": "partial",
   "tags": ["content", "chrome", "sleek"],
   "fork": ["zen"]
 }
