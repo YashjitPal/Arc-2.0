@@ -77,9 +77,9 @@
   {
     "type": "dropdown",
     "value": "number",
-    "label": "Choose mode for No Gaps mode",
+    "label": "Choose mode for No Gaps (margin width set above would be overriden by whatever mode is chose",
     "property": "no-gap.mode-select",
-    "defaultValue": 1,
+    "defaultValue": 0,
     "options": [
       {
         "label": "Only Compact Mode",
@@ -145,7 +145,6 @@
     "label": "Hide *search results* when opening URL Bar.",
     "type": "dropdown",
     "defaultValue": 0,
-    "disabledOn": [],
     "options": [
       {
         "label": "Hide all",
@@ -277,6 +276,18 @@
     "type": "checkbox",
     "property": "browser.tabs.fadeOutUnloadedTabs",
     "label": "Fade *unloaded tabs* in the background."
+  },
+  {
+    "type": "checkbox",
+    "property": "arc-essentials-unload-button",
+    "label": "Add *unload button* to Essentials."
+  },
+  {
+    "type": "string",
+    "property": "arc-essentials-opacity",
+    "label": "Custom favicon gradient opacity on Essentials",
+    "defaultValue": 0.6,
+    "placeholder": 0.6
   },
   {
     "type": "dropdown",
