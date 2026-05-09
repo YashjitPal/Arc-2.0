@@ -35,7 +35,7 @@
   background: rgba(255, 255, 255, 0.15);
   /* border: 1px solid rgba(255, 255, 255, 0.3); */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  border-radius: var(--arc-border-radius, 12px) !important;
 }
 
 /* Clean hover effect */
@@ -60,7 +60,7 @@
 #urlbar-results {
   animation: fadeIn 0.2s ease;
   /* background: rgba(0, 0, 0, 0.9); */
-  border-radius: 8px;
+  border-radius: var(--arc-border-radius, 12px) !important;
   /* border: 1px solid rgba(255, 255, 255, 0.1); */
 }
 
@@ -86,7 +86,7 @@
 .urlbar-icon:hover {
   transform: scale(1.1);
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
+  border-radius: var(--arc-border-radius, 12px) !important;
 }
 
 /*Search Result Hiding*/
@@ -138,23 +138,25 @@
 
   /* Rounded corners */
   .urlbarView-row {
-    border-radius: 12px !important;
+    border-radius: var(--arc-border-radius, 12px) !important;
   }
 
   /* When URL bar is open - smooth visual effect */
   #urlbar[open] .urlbar-background {
-    border-radius: 15px !important;
+    border-radius: var(--arc-border-radius, 12px) !important;
     background: light-dark(
       rgba(255, 255, 255, var(--arc-urlbar-opacity)),
-      rgba(36, 36, 36, var(--arc-urlbar-opacity))
+      rgba(0, 0, 0, var(--arc-urlbar-opacity))
     ) !important;
     outline: none !important;
   }
   #urlbar[open] {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-    border-radius: 15px !important;
+    border-radius: var(--arc-border-radius, 12px) !important;
     overflow: hidden !important;
-    backdrop-filter: blur(70px) !important;
+    backdrop-filter: blur(var(--arc-urlbar-blur, 25px))
+      saturate(var(--arc-urlbar-saturate, var(--arc-urlbar-saturation, 1)))
+      contrast(var(--arc-urlbar-contrast, 1)) !important;
   }
 
   /*stretch animation*/
@@ -307,7 +309,7 @@
     --natsumi-mat-mc-shadow-color: rgba(0, 0, 0, 0.3);
     --natsumi-mat-mc-border-color: rgba(255, 255, 255, 0.1);
     --natsumi-mat-mc-shadow-size: 10px;
-    --natsumi-mat-mc-blur-radius: 15px;
+    --natsumi-mat-mc-blur-radius: var(--arc-urlbar-blur, 25px);
 
     @media (prefers-color-scheme: dark) {
       --natsumi-mat-mc-background: color-mix(
@@ -324,7 +326,7 @@
       var(--natsumi-primary-color) 20%,
       rgba(255, 255, 255, 0.8)
     );
-    --natsumi-mat-hz-blur-radius: 100px;
+    --natsumi-mat-hz-blur-radius: var(--arc-urlbar-blur, 100px);
     --natsumi-mat-hz-shadow-color: rgba(0, 0, 0, 0.3);
     --natsumi-mat-hz-shadow-size: 10px;
     --natsumi-mat-hz-saturation: 3;
@@ -345,7 +347,7 @@
       var(--natsumi-colors-secondary) 75%,
       transparent
     );
-    --natsumi-mat-ga-blur-radius: 10px;
+    --natsumi-mat-ga-blur-radius: var(--arc-urlbar-blur, 10px);
     --natsumi-mat-ga-shadow-size: 10px;
     --natsumi-mat-ga-shadow-opacity: 75%;
     --natsumi-mat-ga-shadow-color: color-mix(
@@ -461,7 +463,7 @@
 
   #urlbar-results .urlbarView-row:hover {
     background-color: rgba(0, 0, 0, 0) !important;
-    border-radius: 8px;
+    border-radius: var(--arc-border-radius, 12px) !important;
     transition: background 0.55s ease;
   }
 
@@ -475,7 +477,7 @@
     transform-origin: center bottom !important;
     border: none !important;
     backdrop-filter: blur(2px) !important;
-    border-radius: 10px !important;
+    border-radius: var(--arc-border-radius, 12px) !important;
   }
 
   @media -moz-pref("arcline.url.bar.scale", 1) {
@@ -485,7 +487,7 @@
       z-index: 100 !important;
       transform-origin: center !important;
       border: none !important;
-      backdrop-filter: blur(25px) contrast(95%) saturate(115%) !important;
+      backdrop-filter: blur(var(--arc-urlbar-blur, 25px)) saturate(--arc-urlbar-saturate, 1) contrast(--arc-urlbar-contrast, 1) !important;
       box-shadow:
         0 10px 20px rgba(0, 0, 0, 0.1),
         0 6px 10px rgba(0, 0, 0, 0.08) !important;
@@ -640,13 +642,17 @@
         /*         background: rgba(105, 100, 110, 0.000000000000000000000000023) !important; */
         background: light-dark(
           rgba(255, 255, 255, var(--arc-urlbar-opacity)),
-          rgba(36, 36, 36, var(--arc-urlbar-opacity))
+          rgba(0, 0, 0, var(--arc-urlbar-opacity))
         ) !important;
         /* Transparency fine-tuned */
         box-shadow:
           8px 5px 125px 0 rgba(0, 0, 0, 0.5),
           0px 30px 50px #00000069 !important;
-        backdrop-filter: blur(5rem) saturate(190%) contrast(95%) brightness(69%) !important;
+        backdrop-filter: blur(var(--arc-urlbar-blur, 5rem))
+          saturate(
+            var(--arc-urlbar-saturate, 1)
+          )
+          contrast(var(--arc-urlbar-contrast, 1)) !important;
         padding: 0.5em 0em !important;
         border-radius: 18px !important;
         transition:

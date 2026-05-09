@@ -334,7 +334,7 @@
   }
 
   /* -------Removes scrollbar in tab panel and also adds fade effect -------- */
-  @media not (-moz-pref("arc-urlbar-fade-in")) {
+  /*@media not (-moz-pref("arc-urlbar-fade-in")) {
     #zen-tabs-wrapper {
       mask-image: linear-gradient(
         to bottom,
@@ -345,7 +345,7 @@
       ) !important;
     }
   }
-
+*/
   #zen-tabs-wrapper {
     scrollbar-width: none !important;
     -ms-overflow-style: none !important;

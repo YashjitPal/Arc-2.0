@@ -377,7 +377,9 @@ their author(s) have been provided above the used code.
         }
       }
 
-      /* Compact mode */
+      /* Compact Mode for PDF Toolbar doesn't work after Firefox 150 update removed Pseudo BG support.*/
+      /*PLease do create a PR to Arc2.0 if a solution is found to retain this feature.*/
+      /* Compact mode 
 
       @media (-moz-pref("natsumi.pdfjs.compact")) {
         .toolbar {
@@ -425,7 +427,7 @@ their author(s) have been provided above the used code.
           }
         }
       }
-
+*/
       /* Topbar buttons */
 
       #previous::before {
