@@ -2,15 +2,14 @@
 @import url("config.css");
 
 /* Chrome styles */
-@import url("modules/Chrome/animations.css");
-@import url("modules/Chrome/icons.css");
-@import url("modules/Chrome/general.css");
-@import url("modules/Chrome/pinned-extensions.css");
-@import url("modules/Chrome/pip.css");
-@import url("modules/Chrome/sidebar.css");
-@import url("modules/Chrome/tab-folders.css");
-@import url("modules/Chrome/tab-styles.css");
-@import url("modules/Chrome/URLbar.css");
-@import url("modules/Chrome/workspace-buttons.css");
-@import url("modules/Chrome/deta.css");
-@import url("modules/Chrome/borders.css");
+@import url("modules/chrome/animations.css");
+@import url("modules/chrome/icons.css");
+@import url("modules/chrome/general.css");
+@import url("modules/chrome/pinned-extensions.css");
+@import url("modules/chrome/pip.css");
+@import url("modules/chrome/sidebar.css");
+@import url("modules/chrome/tab-folders.css");
+@import url("modules/chrome/tab-styles.css");
+@import url("modules/chrome/urlbar.css");
+@import url("modules/chrome/workspace-buttons.css");
+@import url("modules/chrome/deta.css");

@@ -75,7 +75,7 @@ their author(s) have been provided above the used code.
         var(--natsumi-colors-secondary) 80%,
         black 20%
       );
-      --toolbarbutton-active-background: rgba(255, 255, 255, 0.9);
+      --toolbarbutton-active-background: rgb(255 255 255 / 90%);
       --toolbarbutton-hover-background: color-mix(
         in srgb,
         #202020 10%,
@@ -86,7 +86,7 @@ their author(s) have been provided above the used code.
         --toolbarbutton-active-background: color-mix(
           in srgb,
           var(--natsumi-primary-color) 50%,
-          rgba(255, 255, 255, 0.1)
+          rgb(255 255 255 / 10%)
         );
         --toolbarbutton-hover-background: color-mix(
           in srgb,
@@ -142,14 +142,14 @@ their author(s) have been provided above the used code.
         padding-top: 5px !important;
         padding-bottom: 5px !important;
         height: calc(var(--toolbar-height) + 10px) !important;
-        border: 1px solid rgba(20, 20, 20, 0.2) !important;
+        border: 1px solid rgb(20 20 20 / 20%) !important;
         box-shadow: 0 0 var(--natsumi-glass-shadow-size)
           var(--natsumi-glass-shadow-color) !important;
         animation: pdfjs-appear 0.3s ease;
         overflow: hidden !important;
 
         @media (prefers-color-scheme: dark) {
-          border-color: rgba(235, 235, 235, 0.3) !important;
+          border-color: rgb(235 235 235 / 30%) !important;
         }
 
         &:has(#loadingBar.hidden) {
@@ -168,7 +168,7 @@ their author(s) have been provided above the used code.
           background: var(--natsumi-glass-background) !important;
           backdrop-filter: blur(10px);
           border-radius: 10px !important;
-          border: 1px solid rgba(20, 20, 20, 0.2) !important;
+          border: 1px solid rgb(20 20 20 / 20%) !important;
           box-shadow: 0 0 var(--natsumi-glass-shadow-size)
             var(--natsumi-glass-shadow-color) !important;
           animation: secondary-appear 0.3s ease;
@@ -178,7 +178,7 @@ their author(s) have been provided above the used code.
           }
 
           @media (prefers-color-scheme: dark) {
-            border-color: rgba(235, 235, 235, 0.3) !important;
+            border-color: rgb(235 235 235 / 30%) !important;
           }
 
           &::before,
@@ -217,13 +217,13 @@ their author(s) have been provided above the used code.
           left 0.2s ease,
           opacity 0.2s ease,
           filter 0.2s ease !important;
-        border: 1px solid rgba(20, 20, 20, 0.2) !important;
+        border: 1px solid rgb(20 20 20 / 20%) !important;
         box-shadow: 0 0 var(--natsumi-glass-shadow-size)
           var(--natsumi-glass-shadow-color) !important;
         filter: blur(5px);
 
         @media (prefers-color-scheme: dark) {
-          border-color: rgba(235, 235, 235, 0.3) !important;
+          border-color: rgb(235 235 235 / 30%) !important;
         }
 
         #toolbarSidebar {
@@ -315,18 +315,18 @@ their author(s) have been provided above the used code.
       .splitToolbarButtonSeparator,
       .horizontalToolbarSeparator,
       .separator {
-        border-color: rgba(20, 20, 20, 0.2) !important;
+        border-color: rgb(20 20 20 / 20%) !important;
 
         @media (prefers-color-scheme: dark) {
-          border-color: rgba(235, 235, 235, 0.3) !important;
+          border-color: rgb(235 235 235 / 30%) !important;
         }
       }
 
       #editorHighlightVisibility .divider {
-        background-color: rgba(20, 20, 20, 0.2) !important;
+        background-color: rgb(20 20 20 / 20%) !important;
 
         @media (prefers-color-scheme: dark) {
-          background-color: rgba(235, 235, 235, 0.3) !important;
+          background-color: rgb(235 235 235 / 30%) !important;
         }
       }
 
@@ -355,12 +355,12 @@ their author(s) have been provided above the used code.
         background: var(--natsumi-glass-background) !important;
         backdrop-filter: blur(10px);
         border-radius: 10px !important;
-        border: 1px solid rgba(20, 20, 20, 0.2) !important;
+        border: 1px solid rgb(20 20 20 / 20%) !important;
         box-shadow: 0 0 var(--natsumi-glass-shadow-size)
           var(--natsumi-glass-shadow-color) !important;
 
         @media (prefers-color-scheme: dark) {
-          border-color: rgba(235, 235, 235, 0.3) !important;
+          border-color: rgb(235 235 235 / 30%) !important;
         }
 
         &:is([open]) {
@@ -377,8 +377,8 @@ their author(s) have been provided above the used code.
         }
       }
 
-      /* Compact Mode for PDF Toolbar doesn't work after Firefox 150 update removed Pseudo BG support.*/
-      /*PLease do create a PR to Arc2.0 if a solution is found to retain this feature.*/
+      /* Compact Mode for PDF Toolbar doesn't work after Firefox 150 update removed Pseudo BG support. */
+      /* PLease do create a PR to Arc2.0 if a solution is found to retain this feature. */
       /* Compact mode 
 
       @media (-moz-pref("natsumi.pdfjs.compact")) {
