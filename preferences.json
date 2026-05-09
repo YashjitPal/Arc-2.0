@@ -60,7 +60,7 @@
   {
     "type": "string",
     "value": "number",
-    "label": "Edit Zen window margin width between web-view and border (enter value between 0 to 12).",
+    "label": "Edit Zen window margin width between web-view and border (~enter value between 0 to 12; value set here will be overriden by whatever mode is for *No Gaps*~).",
     "property": "zen.theme.content-element-separation"
   },
   {
@@ -77,7 +77,7 @@
   {
     "type": "dropdown",
     "value": "number",
-    "label": "Choose mode for No Gaps (margin width set above would be overriden by whatever mode is chose",
+    "label": "Choose mode for *No Gaps* (~*margin width* set above would be overriden by whatever mode is chosen~).",
     "property": "no-gap.mode-select",
     "defaultValue": 0,
     "options": [
