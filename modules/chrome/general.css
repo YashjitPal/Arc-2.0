@@ -45,9 +45,9 @@ browser {
 }
 
 /* --------------------- TABS: NO SHADOW --------------------- */
-hbox.browserSidebarContainer,
-#zen-tabbox-wrapper {
-  @media (-moz-pref("arc-tabs-no-shadow")) {
+@media (-moz-pref("arc-tabs-no-shadow")) {
+  hbox.browserSidebarContainer,
+  #zen-tabbox-wrapper {
     box-shadow: none !important;
   }
 }
@@ -57,7 +57,7 @@ hbox.browserSidebarContainer,
   transition: margin 0.2s ease-in !important;
 }
 
-@media not -moz-pref("arc-no-gap.mode-select", 0) {
+@media (not (-moz-pref("arc-no-gap.mode-select", 0))) {
   /* Only Compact Mode */
   @media (-moz-pref("arc-no-gap.mode-select", 1)) {
     /* Remove height from the topbar in just singlular toolbar */
@@ -72,7 +72,7 @@ hbox.browserSidebarContainer,
         height: 34px !important;
       }
 
-      @media ((not (-moz-pref("zen.view.shift-down-site-on-hover"))) and (not (((-moz-pref("zen.view.experimental-no-window-controls")) or (not (-moz-pref("zen.view.hide-window-controls"))))) and (-moz-pref("zen.view.use-single-toolbar")))) {
+      @media (not (-moz-pref("zen.view.shift-down-site-on-hover"))) and (not ((-moz-pref("zen.view.experimental-no-window-controls")) or (not (-moz-pref("zen.view.hide-window-controls"))))) and (-moz-pref("zen.view.use-single-toolbar")) {
         .browserSidebarContainer:is(.deck-selected, [zen-split="true"]) .browserContainer {
           #tabbrowser-tabpanels[has-toolbar-hovered] & {
             margin-top: -34px !important;
@@ -103,7 +103,7 @@ hbox.browserSidebarContainer,
           height: var(--zen-toolbar-height-with-bookmarks) !important;
         }
 
-        @media (not (-moz-pref("zen.view.shift-down-site-on-hover"))) and (not (((-moz-pref("zen.view.experimental-no-window-controls")) or (not (-moz-pref("zen.view.hide-window-controls"))))) and (not (-moz-pref("zen.view.use-single-toolbar")))) {
+        @media (not (-moz-pref("zen.view.shift-down-site-on-hover"))) and (not ((-moz-pref("zen.view.experimental-no-window-controls")) or (not (-moz-pref("zen.view.hide-window-controls"))))) and (not (-moz-pref("zen.view.use-single-toolbar"))) {
           .browserSidebarContainer:is(.deck-selected, [zen-split="true"]) .browserContainer {
             #tabbrowser-tabpanels[has-toolbar-hovered] & {
               margin-top: calc(-1 * var(--zen-toolbar-height-with-bookmarks)) !important;
@@ -192,7 +192,7 @@ hbox.browserSidebarContainer,
         height: 34px !important;
       }
 
-      @media (not (-moz-pref("zen.view.shift-down-site-on-hover"))) and (not (((-moz-pref("zen.view.experimental-no-window-controls")) or (not (-moz-pref("zen.view.hide-window-controls"))))) and (-moz-pref("zen.view.use-single-toolbar")))) {
+      @media (not (-moz-pref("zen.view.shift-down-site-on-hover"))) and (not ((-moz-pref("zen.view.experimental-no-window-controls")) or (not (-moz-pref("zen.view.hide-window-controls"))))) and (-moz-pref("zen.view.use-single-toolbar")) {
         .browserSidebarContainer:is(.deck-selected, [zen-split="true"]) .browserContainer {
           #tabbrowser-tabpanels[has-toolbar-hovered] & {
             margin-top: -34px !important;
@@ -213,7 +213,7 @@ hbox.browserSidebarContainer,
           height: var(--zen-toolbar-height-with-bookmarks) !important;
         }
 
-        @media (not (-moz-pref("zen.view.shift-down-site-on-hover"))) and (not (((-moz-pref("zen.view.experimental-no-window-controls")) or (not (-moz-pref("zen.view.hide-window-controls"))))) and (not (-moz-pref("zen.view.use-single-toolbar")))) {
+        @media (not (-moz-pref("zen.view.shift-down-site-on-hover"))) and (not ((-moz-pref("zen.view.experimental-no-window-controls")) or (not (-moz-pref("zen.view.hide-window-controls"))))) and (not (-moz-pref("zen.view.use-single-toolbar"))) {
           .browserSidebarContainer:is(.deck-selected, [zen-split="true"]) .browserContainer {
             #tabbrowser-tabpanels[has-toolbar-hovered] & {
               margin-top: calc(-1 * var(--zen-toolbar-height-with-bookmarks)) !important;
@@ -262,7 +262,6 @@ hbox.browserSidebarContainer,
   }
 }
 
-
 /* Remove Highlight on split tabs */
 @media (-moz-pref("arc-no-gaps.remove-split-highlight", true)) {
   .browserSidebarContainer[zen-split="true"] {
@@ -281,13 +280,15 @@ hbox.browserSidebarContainer,
     box-shadow: none !important;
   }
 }
+
 /* ------------------- FLOATING STATUSBAR ------------------- */
 @media (-moz-pref("arc-disable-floating-statusbar")) {
   #statuspanel {
     display: none !important;
   }
 }
-@media not (-moz-pref("arc-disable-floating-statusbar")) {
+
+@media (not (-moz-pref("arc-disable-floating-statusbar"))) {
   #statuspanel {
     margin: 10px !important;
   }
@@ -325,19 +326,6 @@ hbox.browserSidebarContainer,
   }
 }
 
-/* -------Removes scrollbar in tab panel and also adds fade effect -------- */
-/* @media not (-moz-pref("arc-urlbar-fade-in")) {
-    #zen-tabs-wrapper {
-      mask-image: linear-gradient(
-        to bottom,
-        transparent,
-        black 20px,
-        black calc(100% - 20px),
-        transparent 100%
-      ) !important;
-    }
-  }
-*/
 #zen-tabs-wrapper {
   scrollbar-width: none !important;
   -ms-overflow-style: none !important;
