@@ -1,6 +1,3 @@
-/* Global config */
-@import url("config.css");
-
 /* Chrome styles */
 @import url("modules/chrome/animations.css");
 @import url("modules/chrome/icons.css");
