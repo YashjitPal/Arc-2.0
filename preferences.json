@@ -142,7 +142,8 @@
   {
     "type": "checkbox",
     "property": "arc.urlbar.background",
-    "label": "Disable *background zoom blur* when URL bar popup (~only enable if you don't use transparent websites~)."
+    "label": "Disable *background zoom blur* when URL bar popup.",
+    "defaultValue": true
   },
   {
     "property": "arc.urlbar.hide_results",
@@ -188,10 +189,10 @@
   },
   {
     "type": "string",
-    "property": "arc-urlbar-opacity",
-    "defaultValue": 0.5,
-    "placeholder": 0.25,
-    "label": "URL Bar *Opacity* (~enter value between 0 and 1 [for ex.: 0.25]~)."
+    "property": "arc-urlbar-bg",
+    "defaultValue": "light-dark(rgba(255,255,255,0.5), rgba(0,0,0,0.5))",
+    "placeholder": "light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25)",
+    "label": "URL Bar *Opacity* (~enter CSS color value in HEX or RGBA [for ex.: light-dark(rgba(255,255,255,0.5), rgba(0,0,0,0.5))]~)."
   },
   {
     "type": "string",
@@ -225,11 +226,11 @@
     "property": "arc-compact-sidebar-bg",
     "defaultValue": "light-dark(rgba(255,255,255,0.5), rgba(0,0,0,0.5))",
     "placeholder": "light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))",
-    "label": "URL Bar & Sidebar *Theme color density* (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.1), rgba(0,0,0,0.1))`]~)."
+    "label": "Sidebar *opacity* (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.5), rgba(0,0,0,0.5))`]~)."
   },
   {
     "type": "string",
-    "label": "Compact Sidebar *Blur* (~enter value between 0 and 50px~) [~pseudo Bg Blur for transparent pages broken after 1.19.9b update; cannot find fix, but if anyone can, please do a PR~].",
+    "label": "Compact Sidebar *Blur* (~enter value between 0 and 50px~).",
     "property": "arc-compact-sidebar-blur",
     "defaultValue": "25px",
     "placeholder": "30px"
@@ -253,7 +254,7 @@
     "property": "arc-compact-sidebar-width",
     "defaultValue": "22em",
     "placeholder": "22em",
-    "label": "Custom sidebar size for compact mode (~enter value between 15em and 30em~ as per preference [if pseudo bg appears smaller than compact sidebar size, increase this value])."
+    "label": "Custom sidebar size for compact mode (~enter value between 15em and 30em~ as per preference~)."
   },
   {
     "type": "separator",
