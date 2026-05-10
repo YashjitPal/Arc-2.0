@@ -61,7 +61,9 @@ browser {
   /* Only Compact Mode */
   @media (-moz-pref("arc-no-gap.mode-select", 1)) {
     /* Remove height from the topbar in just singlular toolbar */
-    :root[zen-single-toolbar="true"][zen-compact-mode="true"]:not([customizing]) {
+    :root[zen-single-toolbar="true"][zen-compact-mode="true"]:not(
+        [customizing]
+      ) {
       #zen-appcontent-navbar-wrapper {
         min-height: 0.1px !important;
         height: 0.1px !important;
@@ -73,7 +75,8 @@ browser {
       }
 
       @media (not (-moz-pref("zen.view.shift-down-site-on-hover"))) and (not ((-moz-pref("zen.view.experimental-no-window-controls")) or (not (-moz-pref("zen.view.hide-window-controls"))))) and (-moz-pref("zen.view.use-single-toolbar")) {
-        .browserSidebarContainer:is(.deck-selected, [zen-split="true"]) .browserContainer {
+        .browserSidebarContainer:is(.deck-selected, [zen-split="true"])
+          .browserContainer {
           #tabbrowser-tabpanels[has-toolbar-hovered] & {
             margin-top: -34px !important;
           }
@@ -104,9 +107,12 @@ browser {
         }
 
         @media (not (-moz-pref("zen.view.shift-down-site-on-hover"))) and (not ((-moz-pref("zen.view.experimental-no-window-controls")) or (not (-moz-pref("zen.view.hide-window-controls"))))) and (not (-moz-pref("zen.view.use-single-toolbar"))) {
-          .browserSidebarContainer:is(.deck-selected, [zen-split="true"]) .browserContainer {
+          .browserSidebarContainer:is(.deck-selected, [zen-split="true"])
+            .browserContainer {
             #tabbrowser-tabpanels[has-toolbar-hovered] & {
-              margin-top: calc(-1 * var(--zen-toolbar-height-with-bookmarks)) !important;
+              margin-top: calc(
+                -1 * var(--zen-toolbar-height-with-bookmarks)
+              ) !important;
             }
           }
         }
@@ -164,11 +170,13 @@ browser {
       border-top-right-radius: 0.1px !important;
     }
 
-    :root[zen-right-side="true"]:not([zen-single-toolbar="true"]) .browserSidebarContainer {
+    :root[zen-right-side="true"]:not([zen-single-toolbar="true"])
+      .browserSidebarContainer {
       border-top-left-radius: 0.1px !important;
     }
 
-    :root:not([zen-right-side="true"], [zen-single-toolbar="true"]) .browserSidebarContainer {
+    :root:not([zen-right-side="true"], [zen-single-toolbar="true"])
+      .browserSidebarContainer {
       border-top-right-radius: 0.1px !important;
     }
 
@@ -193,7 +201,8 @@ browser {
       }
 
       @media (not (-moz-pref("zen.view.shift-down-site-on-hover"))) and (not ((-moz-pref("zen.view.experimental-no-window-controls")) or (not (-moz-pref("zen.view.hide-window-controls"))))) and (-moz-pref("zen.view.use-single-toolbar")) {
-        .browserSidebarContainer:is(.deck-selected, [zen-split="true"]) .browserContainer {
+        .browserSidebarContainer:is(.deck-selected, [zen-split="true"])
+          .browserContainer {
           #tabbrowser-tabpanels[has-toolbar-hovered] & {
             margin-top: -34px !important;
           }
@@ -214,9 +223,12 @@ browser {
         }
 
         @media (not (-moz-pref("zen.view.shift-down-site-on-hover"))) and (not ((-moz-pref("zen.view.experimental-no-window-controls")) or (not (-moz-pref("zen.view.hide-window-controls"))))) and (not (-moz-pref("zen.view.use-single-toolbar"))) {
-          .browserSidebarContainer:is(.deck-selected, [zen-split="true"]) .browserContainer {
+          .browserSidebarContainer:is(.deck-selected, [zen-split="true"])
+            .browserContainer {
             #tabbrowser-tabpanels[has-toolbar-hovered] & {
-              margin-top: calc(-1 * var(--zen-toolbar-height-with-bookmarks)) !important;
+              margin-top: calc(
+                -1 * var(--zen-toolbar-height-with-bookmarks)
+              ) !important;
             }
           }
         }

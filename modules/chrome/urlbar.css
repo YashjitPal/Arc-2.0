@@ -40,7 +40,7 @@
 
 /* Clean hover effect */
 #urlbar:hover:not([focused="true"]) {
-  background-color:  rgb(255 255 255 / 10%);
+  background-color: rgb(255 255 255 / 10%);
   /* border: 1px solid rgb(255 255 255 / 20%); */
 }
 
@@ -153,7 +153,7 @@
       animation: fade-in 0.15s ease-in !important;
     }
   }
-  
+
   @keyframes stretch {
     from {
       transform: scaleX(0);
@@ -182,29 +182,30 @@
   backdrop-filter: none !important;
   &::after,
   &::before {
-    background-color: light-dark(rgb(255 255 255 / 0%),
-      rgb(0 0 0 / 0%)) !important;
+    background-color: light-dark(
+      rgb(255 255 255 / 0%),
+      rgb(0 0 0 / 0%)
+    ) !important;
   }
 }
 
 #urlbar[open] .urlbar-background {
-    border-radius: var(--arc-border-radius, 12px) !important;
-    background-color: var(--arc-urlbar-bg,
-      light-dark(rgb(255 255 255 / 25%),
-      rgb(0 0 0 / 25%))
-    ) !important;
-    outline: none !important;
-  }
+  border-radius: var(--arc-border-radius, 12px) !important;
+  background-color: var(
+    --arc-urlbar-bg,
+    light-dark(rgb(255 255 255 / 25%), rgb(0 0 0 / 25%))
+  ) !important;
+  outline: none !important;
+}
 
 #urlbar[open] .urlbar-background {
-    box-shadow: 0 20px 40px rgb(0 0 0 / 50%);
-    border-radius: var(--arc-border-radius, 12px) !important;
-    overflow: hidden !important;
-    backdrop-filter: blur(var(--arc-urlbar-blur, 25px))
-      saturate(var(--arc-urlbar-saturate, 1))
-      contrast(var(--arc-urlbar-contrast, 1)) !important;
-  }
-
+  box-shadow: 0 20px 40px rgb(0 0 0 / 50%);
+  border-radius: var(--arc-border-radius, 12px) !important;
+  overflow: hidden !important;
+  backdrop-filter: blur(var(--arc-urlbar-blur, 25px))
+    saturate(var(--arc-urlbar-saturate, 1))
+    contrast(var(--arc-urlbar-contrast, 1)) !important;
+}
 
 /*ARCLINE LIKE URLBAR*/
 @media (-moz-pref("arcline.url.bar", 1)) {
@@ -357,21 +358,23 @@
     --natsumi-custom-font: var(--custom-font, system-ui);
   }
 
-    /* TRANSPARENCY */
+  /* TRANSPARENCY */
   #urlbar[open] .urlbar-background {
     backdrop-filter: none !important;
     &::after,
     &::before {
-      background-color: light-dark(rgb(255 255 255 / 0%),
-      rgb(0 0 0 / 0%)) !important;
+      background-color: light-dark(
+        rgb(255 255 255 / 0%),
+        rgb(0 0 0 / 0%)
+      ) !important;
     }
   }
 
   #urlbar[open] .urlbar-background {
     border-radius: var(--arc-border-radius, 12px) !important;
-    background-color: var(--arc-urlbar-bg,
-      light-dark(rgb(255 255 255 / 25%),
-      rgb(0 0 0 / 25%))
+    background-color: var(
+      --arc-urlbar-bg,
+      light-dark(rgb(255 255 255 / 25%), rgb(0 0 0 / 25%))
     ) !important;
     outline: none !important;
   }
@@ -384,7 +387,7 @@
       saturate(var(--arc-urlbar-saturate, 1))
       contrast(var(--arc-urlbar-contrast, 1)) !important;
   }
-  
+
   /* URL bar appear animation */
   #urlbar {
     --animation-duration: var(--urlbar-appear-animation-duration, 0.25s);

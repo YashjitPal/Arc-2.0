@@ -6,7 +6,7 @@
       "name": "arc-theme",
       "dependencies": {
         "husky": "^9.1.7",
-        "prettier": "^3.8.3",
+        "prettier": "3.8.3",
         "stylelint": "^17.9.0",
         "stylelint-config-standard": "^40.0.0",
       },

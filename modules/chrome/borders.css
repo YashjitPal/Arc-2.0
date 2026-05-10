@@ -64,12 +64,16 @@ body > hbox {
   box-shadow: none !important;
 }
 
-:root:has(#tabbrowser-tabpanels [zen-split]) .browserSidebarContainer[is-zen-split="true"] {
+:root:has(#tabbrowser-tabpanels [zen-split])
+  .browserSidebarContainer[is-zen-split="true"] {
   margin: 0 !important;
 }
 
 /* content window border radius */
-:root:has([zen-compact-mode="true"]):has([zen-single-toolbar="true"]):not([inDOMFullscreen="true"]) .browserSidebarContainer {
+:root:has([zen-compact-mode="true"]):has([zen-single-toolbar="true"]):not(
+    [inDOMFullscreen="true"]
+  )
+  .browserSidebarContainer {
   border-radius: var(--arc-border-radius, 12px) !important;
 }
 
@@ -96,11 +100,17 @@ body > hbox {
   box-sizing: border-box !important;
 }
 
-:root[zen-right-side="true"]:not([zen-compact-mode="true"]):not([inDOMFullscreen="true"]) #zen-tabbox-wrapper {
+:root[zen-right-side="true"]:not([zen-compact-mode="true"]):not(
+    [inDOMFullscreen="true"]
+  )
+  #zen-tabbox-wrapper {
   border-radius: var(--arc-border-radius, 12px) !important;
 }
 
-:root:not([zen-right-side="true"]):not([zen-compact-mode="true"]):not([inDOMFullscreen="true"]) #zen-tabbox-wrapper {
+:root:not([zen-right-side="true"]):not([zen-compact-mode="true"]):not(
+    [inDOMFullscreen="true"]
+  )
+  #zen-tabbox-wrapper {
   border-radius: var(--arc-border-radius, 12px) !important;
 }
 
@@ -114,12 +124,22 @@ body > hbox {
   transition: border-radius 0.18s linear !important;
 }
 
-:root:has([zen-compact-mode="true"]):has([sizemode="normal"]):has(#zen-appcontent-navbar-wrapper[zen-has-hover="false"]) #zen-tabbox-wrapper {
+:root:has([zen-compact-mode="true"]):has([sizemode="normal"]):has(
+    #zen-appcontent-navbar-wrapper[zen-has-hover="false"]
+  )
+  #zen-tabbox-wrapper {
   border-radius: var(--arc-border-radius, 12px) !important;
 }
 
-:root:has([zen-compact-mode="true"]):has([sizemode="normal"]):has(#zen-appcontent-navbar-wrapper[zen-has-hover="false"]) #tabbrowser-tabbox,
-:root:has([zen-compact-mode="true"]):has([sizemode="normal"]):has(#zen-appcontent-navbar-wrapper[zen-has-hover="false"]) #tabbrowser-tabbox > * {
+:root:has([zen-compact-mode="true"]):has([sizemode="normal"]):has(
+    #zen-appcontent-navbar-wrapper[zen-has-hover="false"]
+  )
+  #tabbrowser-tabbox,
+:root:has([zen-compact-mode="true"]):has([sizemode="normal"]):has(
+    #zen-appcontent-navbar-wrapper[zen-has-hover="false"]
+  )
+  #tabbrowser-tabbox
+  > * {
   border-radius: var(--arc-border-radius, 12px) !important;
 }
 
