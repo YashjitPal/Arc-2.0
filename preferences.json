@@ -99,13 +99,13 @@
     "type": "checkbox",
     "defaultValue": false,
     "label": "Remove highlight on tab when in split mode",
-    "property": "no-gaps.remove-split-highlight"
+    "property": "arc-no-gaps.remove-split-highlight"
   },
   {
     "type": "checkbox",
     "defaultValue": false,
     "label": "Remove shadow emited by the website",
-    "property": "no-gaps.remove-box-shadow"
+    "property": "arc-no-gaps.remove-box-shadow"
   },
   {
     "type": "checkbox",
