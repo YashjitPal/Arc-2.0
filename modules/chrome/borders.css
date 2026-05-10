@@ -111,7 +111,7 @@ body > hbox {
     border: 12px solid transparent !important;
   }
 
-  /* content window border size on LEFT side tabbar */
+  /* content window border size on LEFT side tabbar 
   :root:not(
       [zen-right-side="true"],
       [zen-compact-mode="true"],
@@ -121,7 +121,7 @@ body > hbox {
     border: 12px solid transparent !important;
   }
 }
-
+*/
 /* fix for overflowing borders when webview border is off */
 @media not (-moz-pref("wireframe.webview.border")) {
   /* content window border size on RIGHT side tabbar */
