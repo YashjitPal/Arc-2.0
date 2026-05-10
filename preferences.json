@@ -59,6 +59,13 @@
   },
   {
     "type": "string",
+    "label": "Custom *border radius* for tab box",
+    "property": "arc-tabbox-border-radius",
+    "defaultValue": "12px",
+    "placeholder": "12px"
+  },
+  {
+    "type": "string",
     "value": "number",
     "label": "Edit Zen window margin width between web-view and border (~enter value between 0 to 12; value set here will be overriden by whatever mode is for *No Gaps*~).",
     "property": "zen.theme.content-element-separation"

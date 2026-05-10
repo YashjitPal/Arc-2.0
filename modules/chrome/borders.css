@@ -97,11 +97,26 @@ body > hbox {
 }
 
 :root[zen-right-side="true"]:not([zen-compact-mode="true"]):not([inDOMFullscreen="true"]) #zen-tabbox-wrapper {
-  border-radius: var(--arc-border-radius, 12px) !important;
+  border-radius: var(--arc-tabbox-border-radius, 12px) !important;
 }
 
 :root:not([zen-right-side="true"]):not([zen-compact-mode="true"]):not([inDOMFullscreen="true"]) #zen-tabbox-wrapper {
-  border-radius: var(--arc-border-radius, 12px) !important;
+  border-radius: var(--arc-tabbox-border-radius, 12px) !important;
+:root[zen-right-side="true"]:not(
+    [zen-compact-mode="true"],
+    [inDOMFullscreen="true"]
+  )
+  #zen-tabbox-wrapper {
+  border-radius: var(--arc-tabbox-border-radius, 12px) !important;
+}
+
+:root:not(
+    [zen-right-side="true"],
+    [zen-compact-mode="true"],
+    [inDOMFullscreen="true"]
+  )
+  #zen-tabbox-wrapper {
+  border-radius: var(--arc-tabbox-border-radius, 12px) !important;
 }
 
 /* ADD WEBVIEW BORDER RADIUS TO CHILDREN ELEMENTS OF TABBOX */
@@ -115,12 +130,12 @@ body > hbox {
 }
 
 :root:has([zen-compact-mode="true"]):has([sizemode="normal"]):has(#zen-appcontent-navbar-wrapper[zen-has-hover="false"]) #zen-tabbox-wrapper {
-  border-radius: var(--arc-border-radius, 12px) !important;
+  border-radius: var(--arc-tabbox-border-radius, 12px) !important;
 }
 
 :root:has([zen-compact-mode="true"]):has([sizemode="normal"]):has(#zen-appcontent-navbar-wrapper[zen-has-hover="false"]) #tabbrowser-tabbox,
 :root:has([zen-compact-mode="true"]):has([sizemode="normal"]):has(#zen-appcontent-navbar-wrapper[zen-has-hover="false"]) #tabbrowser-tabbox > * {
-  border-radius: var(--arc-border-radius, 12px) !important;
+  border-radius: var(--arc-tabbox-border-radius, 12px) !important;
 }
 
 :root[inDOMFullscreen="true"] #tabbrowser-tabpanels {
