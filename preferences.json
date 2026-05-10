@@ -290,7 +290,7 @@
     "type": "string",
     "property": "arc-essentials-opacity",
     "label": "Custom favicon gradient opacity on Essentials",
-    "defaultValue": 0.6,
+    "defaultValue": "0.6",
     "placeholder": 0.6
   },
   {
@@ -556,16 +556,22 @@
     "size": "18px"
   },
   {
+    "type": "checkbox",
+    "property": "zen.view.enable-loading-indicator",
+    "label": "Zen's default *Deta Loading Bar* (~disable to use Arc's version of it~).",
+    "defaultValue": true
+  },
+  {
     "property": "arc.detaloadingbar.enabled",
     "label": "Enable *Deta Loading Bar* (~a thin loading bar at the top/bottom of the window that indicates page loading~).",
     "type": "checkbox",
-    "defaultValue": true
+    "defaultValue": false
   },
   {
     "property": "arc.detaloadingbar.usefromzen",
     "label": "Use color from Zen browser *workspace theme* (~will override custom colors chosen below~).",
     "type": "checkbox",
-    "defaultValue": true
+    "defaultValue": false
   },
   {
     "property": "arc.detaloadingbar.singlecolor",
