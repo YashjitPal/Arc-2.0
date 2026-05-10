@@ -63,7 +63,10 @@
     content: "";
     position: absolute;
     inset: 0;
-    border-radius: 16px;
+    border-radius: var(
+      --arc-border-radius,
+      12px
+    );
     background-color: var(
       --arc-folder-bg,
       light-dark(rgb(0 0 0 / 10%), rgb(255 255 255 / 12.5%))
