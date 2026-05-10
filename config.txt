@@ -52,5 +52,3 @@ Restart browser after applying all configs. */
                                                                     in which tab unloading should be executed.
 20. `dom.ipc.processPriorityManager.backgroundUsesEcoQoS` - (Boolean > True) - Makes browser run on performance efficiency mode.
 */
-/* DO NOT ADD OTHER CSS BELOW */
-/* More styles and options will come soon here! */
