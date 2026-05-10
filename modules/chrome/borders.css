@@ -100,16 +100,12 @@ body > hbox {
   box-sizing: border-box !important;
 }
 
-:root[zen-right-side="true"]:not([zen-compact-mode="true"]):not(
-    [inDOMFullscreen="true"]
-  )
+:root[zen-right-side="true"]:not([zen-compact-mode="true"], [inDOMFullscreen="true"])
   #zen-tabbox-wrapper {
   border-radius: var(--arc-border-radius, 12px) !important;
 }
 
-:root:not([zen-right-side="true"]):not([zen-compact-mode="true"]):not(
-    [inDOMFullscreen="true"]
-  )
+:root:not([zen-right-side="true"], [zen-compact-mode="true"], [inDOMFullscreen="true"])
   #zen-tabbox-wrapper {
   border-radius: var(--arc-border-radius, 12px) !important;
 }

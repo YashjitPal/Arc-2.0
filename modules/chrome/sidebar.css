@@ -55,6 +55,7 @@
 /* TRANSPARENCY */
 #zen-toolbar-background {
   backdrop-filter: none !important;
+
   &::after,
   &::before {
     background-color: light-dark(
