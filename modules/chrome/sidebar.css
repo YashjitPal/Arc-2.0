@@ -52,13 +52,13 @@
   mix-blend-mode: overlay;
 }
 
-/* Blur (Only for Solid BG Websites) */
+/* TRANSPARENCY */
 #zen-toolbar-background {
   backdrop-filter: none !important;
-
   &::after,
   &::before {
-    background: transparent !important;
+    background-color: light-dark(rgb(255 255 255 / 0%),
+      rgb(0 0 0 / 0%)) !important;
   }
 }
 
@@ -66,13 +66,13 @@
   :root[zen-compact-mode="true"] {
     #navigator-toolbox:not([animate]) {
       #zen-toolbar-background {
-        background: var(
+        background-color: var(
           --arc-compact-sidebar-bg,
-          light-dark(rgb(255 255 255 / 50%), rgb(0 0 0 / 50%))
+          light-dark(rgb(255 255 255 / 25%), rgb(0 0 0 / 25%))
         ) !important;
       }
 
-      #titlebar {
+      #zen-toolbar-background {
         border-radius: var(--arc-border-radius, 12px) !important;
         backdrop-filter: blur(var(--arc-compact-sidebar-blur, 25px))
           contrast(var(--arc-compact-sidebar-contrast, 1))
