@@ -182,14 +182,14 @@
   }
 }
 
-@media not (-moz-pref("arc.tab-groups-disable", 1)) {
+@media (not (-moz-pref("arc.tab-groups-disable", 1))) {
   /* ------------------------- TAB GROUPS Stylings ------------------------- */
 
   /* fix for collapsed toolbar */
   tab-group:not([split-view-group]) {
     display: flex !important;
     flex-direction: column !important;
-    @media not (-moz-pref("zen.view.sidebar-expanded")) {
+    @media (not (-moz-pref("zen.view.sidebar-expanded"))) {
       width: var(--tab-min-width) !important;
       margin: calc(var(--zen-element-separation) / 2) auto !important;
     }
@@ -226,7 +226,7 @@
       transition:
         background-color 0.2s ease,
         border-radius 0.2s ease-in-out;
-      @media not (-moz-pref("zen.view.sidebar-expanded")) {
+      @media (not (-moz-pref("zen.view.sidebar-expanded"))) {
         width: var(--tab-min-width) !important;
       }
 
@@ -260,7 +260,7 @@
         padding-left: 34.5px !important;
         font-size: 12px !important;
         margin-top: 6px !important;
-        @media not (-moz-pref("zen.view.sidebar-expanded")) {
+        @media (not (-moz-pref("zen.view.sidebar-expanded"))) {
           color: transparent !important;
         }
       }
@@ -269,7 +269,7 @@
         content: "" !important;
         position: absolute !important;
         left: 6px !important;
-        @media not (-moz-pref("zen.view.sidebar-expanded")) {
+        @media (not (-moz-pref("zen.view.sidebar-expanded"))) {
           left: 8px !important;
         }
 
@@ -283,14 +283,14 @@
             transparent
           ) !important;
         }
-        @media not (-moz-pref("tab.groups.theme-folders")) {
+        @media (not (-moz-pref("tab.groups.theme-folders"))) {
           background-color: light-dark(
             var(--tab-group-color-invert),
             var(--tab-group-color-invert)
           );
           filter: contrast(150%);
         }
-        @media not (-moz-pref("tab.groups.fill-folders")) {
+        @media (not (-moz-pref("tab.groups.fill-folders"))) {
           mask-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjAgOS41MDJWOC43NWEyLjI1IDIuMjUgMCAwIDAtMi4yNS0yLjI1aC01LjcyNWwtMi4zOC0xLjk4QTIuMjUgMi4yNSAwIDAgMCA4LjIwNCA0SDQuMjVBMi4yNSAyLjI1IDAgMCAwIDIgNi4yNWwtLjAwNCAxMS41QTIuMjUgMi4yNSAwIDAgMCA0LjI0NiAyMEgxOC40N2ExLjc1IDEuNzUgMCAwIDAgMS42OTgtMS4zMjVsMS43NS02Ljk5OGExLjc1IDEuNzUgMCAwIDAtMS42OTgtMi4xNzVIMjBaTTQuMjUgNS41aDMuOTU2YS43NS43NSAwIDAgMSAuNDguMTczbDIuNTg4IDIuMTU0YS43NS43NSAwIDAgMCAuNDguMTczaDUuOTk2YS43NS43NSAwIDAgMSAuNzUuNzV2Ljc1Mkg2LjQyNGEyLjI1IDIuMjUgMCAwIDAtMi4xODMgMS43MDRsLS43NDQgMi45NzhMMy41IDYuMjVhLjc1Ljc1IDAgMCAxIC43NS0uNzVabTEuNDQ3IDYuMDdhLjc1Ljc1IDAgMCAxIC43MjctLjU2OEgyMC4yMmEuMjUuMjUgMCAwIDEgLjI0Mi4zMWwtMS43NSA2Ljk5OWEuMjUuMjUgMCAwIDEtLjI0Mi4xODlINC4yODVhLjI1LjI1IDAgMCAxLS4yNDMtLjMxbDEuNjU1LTYuNjJaIiBmaWxsPSIjMDAwMDAwIi8+PC9zdmc+");
         }
         @media (-moz-pref("tab.groups.fill-folders")) {
@@ -324,7 +324,7 @@
       .tab-background:active {
         backdrop-filter: blur(10px) !important;
       }
-      @media not (-moz-pref("zen.view.sidebar-expanded")) {
+      @media (not (-moz-pref("zen.view.sidebar-expanded"))) {
         margin-left: 0 !important;
       }
     }
@@ -346,7 +346,7 @@
         transform: translateX(-5px) !important;
       }
     }
-    @media not (-moz-pref("tab.groups.display-tab-range")) {
+    @media (not (-moz-pref("tab.groups.display-tab-range"))) {
       tab::before {
         background: none !important;
       }
@@ -371,14 +371,14 @@
         content: "" !important;
         position: absolute !important;
         left: 6px !important;
-        @media not (-moz-pref("zen.view.sidebar-expanded")) {
+        @media (not (-moz-pref("zen.view.sidebar-expanded"))) {
           left: 8px !important;
         }
 
         top: 21% !important;
         width: 20px !important;
         height: 20px !important;
-        @media not (-moz-pref("tab.groups.fill-folders")) {
+        @media (not (-moz-pref("tab.groups.fill-folders"))) {
           mask-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNOC4yMDcgNGMuNDYgMCAuOTA4LjE0MSAxLjI4NC40MDJsLjE1Ni4xMkwxMi4wMjIgNi41aDcuNzI4YTIuMjUgMi4yNSAwIDAgMSAyLjIyOSAxLjkzOGwuMDE2LjE1OC4wMDUuMTU0djlhMi4yNSAyLjI1IDAgMCAxLTIuMDk2IDIuMjQ1TDE5Ljc1IDIwSDQuMjVhMi4yNSAyLjI1IDAgMCAxLTIuMjQ1LTIuMDk2TDIgMTcuNzVWNi4yNWEyLjI1IDIuMjUgMCAwIDEgMi4wOTYtMi4yNDVMNC4yNSA0aDMuOTU3Wm0xLjQ0IDUuOTc5YTIuMjUgMi4yNSAwIDAgMS0xLjI0NC45MTJsLS4xOTYuMDA5LTQuNzA3LS4wMDF2Ny4yNTFjMCAuMzguMjgyLjY5NC42NDguNzQzbC4xMDIuMDA3aDE1LjVhLjc1Ljc1IDAgMCAwIC43NDMtLjY0OGwuMDA3LS4xMDJ2LTlhLjc1Ljc1IDAgMCAwLS42NDgtLjc0M0wxOS43NSA4aC03LjcyOUw5LjY0NyA5Ljk3OVpNOC4yMDcgNS41SDQuMjVhLjc1Ljc1IDAgMCAwLS43NDMuNjQ4TDMuNSA2LjI1djIuNzQ5TDguMjA3IDlhLjc1Ljc1IDAgMCAwIC4zOTUtLjExM2wuMDg1LS4wNiAxLjg5MS0xLjU3OC0xLjg5LTEuNTc1YS43NS43NSAwIDAgMC0uMzc3LS4xNjdMOC4yMDcgNS41WiIgZmlsbD0iIzAwMDAwMCIvPjwvc3ZnPg==");
         }
         @media (-moz-pref("tab.groups.fill-folders")) {
@@ -448,10 +448,10 @@
 
   .all-tabs-group-button {
     .toolbarbutton-icon {
-      @media not (-moz-pref("tab.groups.theme-folders")) {
+      @media (not (-moz-pref("tab.groups.theme-folders"))) {
         fill: #fff !important;
       }
-      @media not (-moz-pref("tab.groups.fill-folders")) {
+      @media (not (-moz-pref("tab.groups.fill-folders"))) {
         mask-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjAgOS41MDJWOC43NWEyLjI1IDIuMjUgMCAwIDAtMi4yNS0yLjI1aC01LjcyNWwtMi4zOC0xLjk4QTIuMjUgMi4yNSAwIDAgMCA4LjIwNCA0SDQuMjVBMi4yNSAyLjI1IDAgMCAwIDIgNi4yNWwtLjAwNCAxMS41QTIuMjUgMi4yNSAwIDAgMCA0LjI0NiAyMEgxOC40N2ExLjc1IDEuNzUgMCAwIDAgMS42OTgtMS4zMjVsMS43NS02Ljk5OGExLjc1IDEuNzUgMCAwIDAtMS42OTgtMi4xNzVIMjBaTTQuMjUgNS41aDMuOTU2YS43NS43NSAwIDAgMSAuNDguMTczbDIuNTg4IDIuMTU0YS43NS43NSAwIDAgMCAuNDguMTczaDUuOTk2YS43NS43NSAwIDAgMSAuNzUuNzV2Ljc1Mkg2LjQyNGEyLjI1IDIuMjUgMCAwIDAtMi4xODMgMS43MDRsLS43NDQgMi45NzhMMy41IDYuMjVhLjc1Ljc1IDAgMCAxIC43NS0uNzVabTEuNDQ3IDYuMDdhLjc1Ljc1IDAgMCAxIC43MjctLjU2OEgyMC4yMmEuMjUuMjUgMCAwIDEgLjI0Mi4zMWwtMS43NSA2Ljk5OWEuMjUuMjUgMCAwIDEtLjI0Mi4xODlINC4yODVhLjI1LjI1IDAgMCAxLS4yNDMtLjMxbDEuNjU1LTYuNjJaIiBmaWxsPSIjMDAwMDAwIi8+PC9zdmc+");
       }
       @media (-moz-pref("tab.groups.fill-folders")) {
@@ -466,10 +466,10 @@
 
   #context_moveTabToGroupPopupMenu {
     .menu-iconic-icon {
-      @media not (-moz-pref("tab.groups.theme-folders")) {
+      @media (not (-moz-pref("tab.groups.theme-folders"))) {
         fill: #fff !important;
       }
-      @media not (-moz-pref("tab.groups.fill-folders")) {
+      @media (not (-moz-pref("tab.groups.fill-folders"))) {
         mask-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNOC4yMDcgNGMuNDYgMCAuOTA4LjE0MSAxLjI4NC40MDJsLjE1Ni4xMkwxMi4wMjIgNi41aDcuNzI4YTIuMjUgMi4yNSAwIDAgMSAyLjIyOSAxLjkzOGwuMDE2LjE1OC4wMDUuMTU0djlhMi4yNSAyLjI1IDAgMCAxLTIuMDk2IDIuMjQ1TDE5Ljc1IDIwSDQuMjVhMi4yNSAyLjI1IDAgMCAxLTIuMjQ1LTIuMDk2TDIgMTcuNzVWNi4yNWEyLjI1IDIuMjUgMCAwIDEgMi4wOTYtMi4yNDVMNC4yNSA0aDMuOTU3Wm0xLjQ0IDUuOTc5YTIuMjUgMi4yNSAwIDAgMS0xLjI0NC45MTJsLS4xOTYuMDA5LTQuNzA3LS4wMDF2Ny4yNTFjMCAuMzguMjgyLjY5NC42NDguNzQzbC4xMDIuMDA3aDE1LjVhLjc1Ljc1IDAgMCAwIC43NDMtLjY0OGwuMDA3LS4xMDJ2LTlhLjc1Ljc1IDAgMCAwLS42NDgtLjc0M0wxOS43NSA4aC03LjcyOUw5LjY0NyA5Ljk3OVpNOC4yMDcgNS41SDQuMjVhLjc1Ljc1IDAgMCAwLS43NDMuNjQ4TDMuNSA2LjI1djIuNzQ5TDguMjA3IDlhLjc1Ljc1IDAgMCAwIC4zOTUtLjExM2wuMDg1LS4wNiAxLjg5MS0xLjU3OC0xLjg5LTEuNTc1YS43NS43NSAwIDAgMC0uMzc3LS4xNjdMOC4yMDcgNS41WiIgZmlsbD0iIzAwMDAwMCIvPjwvc3ZnPg==");
       }
       @media (-moz-pref("tab.groups.fill-folders")) {
@@ -487,10 +487,10 @@
     clip-path: none !important;
 
     .toolbarbutton-icon {
-      @media not (-moz-pref("tab.groups.theme-folders")) {
+      @media (not (-moz-pref("tab.groups.theme-folders"))) {
         fill: #fff !important;
       }
-      @media not (-moz-pref("tab.groups.fill-folders")) {
+      @media (not (-moz-pref("tab.groups.fill-folders"))) {
         mask-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNOC4yMDcgNGMuNDYgMCAuOTA4LjE0MSAxLjI4NC40MDJsLjE1Ni4xMkwxMi4wMjIgNi41aDcuNzI4YTIuMjUgMi4yNSAwIDAgMSAyLjIyOSAxLjkzOGwuMDE2LjE1OC4wMDUuMTU0djlhMi4yNSAyLjI1IDAgMCAxLTIuMDk2IDIuMjQ1TDE5Ljc1IDIwSDQuMjVhMi4yNSAyLjI1IDAgMCAxLTIuMjQ1LTIuMDk2TDIgMTcuNzVWNi4yNWEyLjI1IDIuMjUgMCAwIDEgMi4wOTYtMi4yNDVMNC4yNSA0aDMuOTU3Wm0xLjQ0IDUuOTc5YTIuMjUgMi4yNSAwIDAgMS0xLjI0NC45MTJsLS4xOTYuMDA5LTQuNzA3LS4wMDF2Ny4yNTFjMCAuMzguMjgyLjY5NC42NDguNzQzbC4xMDIuMDA3aDE1LjVhLjc1Ljc1IDAgMCAwIC43NDMtLjY0OGwuMDA3LS4xMDJ2LTlhLjc1Ljc1IDAgMCAwLS42NDgtLjc0M0wxOS43NSA4aC03LjcyOUw5LjY0NyA5Ljk3OVpNOC4yMDcgNS41SDQuMjVhLjc1Ljc1IDAgMCAwLS43NDMuNjQ4TDMuNSA2LjI1djIuNzQ5TDguMjA3IDlhLjc1Ljc1IDAgMCAwIC4zOTUtLjExM2wuMDg1LS4wNiAxLjg5MS0xLjU3OC0xLjg5LTEuNTc1YS43NS43NSAwIDAgMC0uMzc3LS4xNjdMOC4yMDcgNS41WiIgZmlsbD0iIzAwMDAwMCIvPjwvc3ZnPg==");
       }
       @media (-moz-pref("tab.groups.fill-folders")) {
@@ -509,10 +509,10 @@
 
   .all-tabs-group-button {
     .toolbarbutton-icon {
-      @media not (-moz-pref("tab.groups.theme-folders")) {
+      @media (not (-moz-pref("tab.groups.theme-folders"))) {
         fill: #fff !important;
       }
-      @media not (-moz-pref("tab.groups.fill-folders")) {
+      @media (not (-moz-pref("tab.groups.fill-folders"))) {
         mask-image: url("chrome://browser/skin/zen-icons/folder.svg");
       }
       @media (-moz-pref("tab.groups.fill-folders")) {
@@ -527,10 +527,10 @@
 
   #context_moveTabToGroupPopupMenu {
     .menu-iconic-icon {
-      @media not (-moz-pref("tab.groups.theme-folders")) {
+      @media (not (-moz-pref("tab.groups.theme-folders"))) {
         fill: #fff !important;
       }
-      @media not (-moz-pref("tab.groups.fill-folders")) {
+      @media (not (-moz-pref("tab.groups.fill-folders"))) {
         mask-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNOC4yMDcgNGMuNDYgMCAuOTA4LjE0MSAxLjI4NC40MDJsLjE1Ni4xMkwxMi4wMjIgNi41aDcuNzI4YTIuMjUgMi4yNSAwIDAgMSAyLjIyOSAxLjkzOGwuMDE2LjE1OC4wMDUuMTU0djlhMi4yNSAyLjI1IDAgMCAxLTIuMDk2IDIuMjQ1TDE5Ljc1IDIwSDQuMjVhMi4yNSAyLjI1IDAgMCAxLTIuMjQ1LTIuMDk2TDIgMTcuNzVWNi4yNWEyLjI1IDIuMjUgMCAwIDEgMi4wOTYtMi4yNDVMNC4yNSA0aDMuOTU3Wm0xLjQ0IDUuOTc5YTIuMjUgMi4yNSAwIDAgMS0xLjI0NC45MTJsLS4xOTYuMDA5LTQuNzA3LS4wMDF2Ny4yNTFjMCAuMzguMjgyLjY5NC42NDguNzQzbC4xMDIuMDA3aDE1LjVhLjc1Ljc1IDAgMCAwIC43NDMtLjY0OGwuMDA3LS4xMDJ2LTlhLjc1Ljc1IDAgMCAwLS42NDgtLjc0M0wxOS43NSA4aC03LjcyOUw5LjY0NyA5Ljk3OVpNOC4yMDcgNS41SDQuMjVhLjc1Ljc1IDAgMCAwLS43NDMuNjQ4TDMuNSA2LjI1djIuNzQ5TDguMjA3IDlhLjc1Ljc1IDAgMCAwIC4zOTUtLjExM2wuMDg1LS4wNiAxLjg5MS0xLjU3OC0xLjg5LTEuNTc1YS43NS43NSAwIDAgMC0uMzc3LS4xNjdMOC4yMDcgNS41WiIgZmlsbD0iIzAwMDAwMCIvPjwvc3ZnPg==");
       }
       @media (-moz-pref("tab.groups.fill-folders")) {
@@ -546,10 +546,10 @@
     clip-path: none !important;
 
     .toolbarbutton-icon {
-      @media not (-moz-pref("tab.groups.theme-folders")) {
+      @media (not (-moz-pref("tab.groups.theme-folders"))) {
         fill: #fff !important;
       }
-      @media not (-moz-pref("tab.groups.fill-folders")) {
+      @media (not (-moz-pref("tab.groups.fill-folders"))) {
         mask-image: url("chrome://browser/skin/zen-icons/folder.svg");
       }
       @media (-moz-pref("tab.groups.fill-folders")) {
