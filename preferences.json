@@ -78,16 +78,20 @@
     "type": "dropdown",
     "value": "number",
     "label": "Choose mode for *No Gaps* (~*margin width* set above would be overriden by whatever mode is chosen~).",
-    "property": "no-gap.mode-select",
+    "property": "arc-no-gap.mode-select",
     "defaultValue": 0,
     "options": [
       {
-        "label": "Only Compact Mode",
+        "label": "Disable",
         "value": 0
       },
       {
-        "label": "Both non compact and compact mode",
+        "label": "Only Compact Mode",
         "value": 1
+      },
+      {
+        "label": "Both Compact & Non-Compact Mode",
+        "value": 2
       }
     ]
   },
