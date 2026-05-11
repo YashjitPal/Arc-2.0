@@ -11,9 +11,14 @@ jobs:
   lint:
     name: Linter
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
 
       - name: Install bun
         uses: oven-sh/setup-bun@v2
@@ -23,5 +28,12 @@ jobs:
       - name: Install dependencies
         run: bun ci
 
-      - name: Lint code
-        run: bun lint
+      - name: Lint and Fix
+        # Using your project's built-in fix script
+        run: bun run lint:fix
+
+      - name: Commit and Push fixes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: auto-fix linting and formatting issues"
+          commit_options: '--no-verify'
