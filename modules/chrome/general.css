@@ -27,6 +27,15 @@ browser {
 :root {
   --attention-dot-color: transparent !important; /* remove attention dot */
   --zen-themed-toolbar-bg-transparent: transparent !important; /* fix for transparency */
+
+  /* Fix icon border radius */
+  .tab-icon-image,
+  .toolbarbutton-icon,
+  .toolbarbutton-animatable-iamge,
+  #downloads-indicator-icon {
+    border-radius: 0 !important;
+    overflow: visible !important;
+  }
 }
 
 /* Increased blur for Menus */
