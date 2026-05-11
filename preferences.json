@@ -254,7 +254,7 @@
     "property": "arc-compact-sidebar-width",
     "defaultValue": "22em",
     "placeholder": "22em",
-    "label": "Custom sidebar size for compact mode (~enter value between 15em and 30em~ as per preference~)."
+    "label": "Custom sidebar size for compact mode (~enter value between 15em and 30em as per your preference~)."
   },
   {
     "type": "separator",
