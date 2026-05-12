@@ -1,6 +1,7 @@
 /* === BORDER === */
 
-/* === OUTER BROWSER BORDER FIX === */
+/* === OUTER BROWSER BORDER FIX === 
+
 :root,
 #main-window,
 #navigator-toolbox,
@@ -16,17 +17,16 @@ body,
 body > hbox,
 #zen-main-app {
   border-radius: var(--arc-border-radius, 12px);
-}
-
-/* Specifically target the outermost window elements */
+}*/
+/* Specifically target the outermost window elements 
 window,
 #main-window,
 :root[sizemode="normal"],
 :root[sizemode="maximized"] {
   border-radius: var(--arc-border-radius, 12px) !important;
 }
-
-/* Ensure the main browser area has sharp corners */
+*/
+/* Ensure the main browser area has sharp corners 
 #browser {
   border-radius: var(--arc-border-radius, 12px) !important;
   appearance: none !important;
@@ -39,14 +39,15 @@ body > hbox {
 }
 
 :root[sizemode="fullscreen"] #browser::before,
+:root[sizemode="maximize"] #browser::before,
 :root[inDOMFullscreen="true"] #browser::before {
   border: 0 !important;
   border-radius: 0 !important;
   outline: none !important;
   outline-offset: 0 !important;
 }
-
-/* Ensure all browser elements have squared corners */
+*/
+/* Ensure all browser elements have squared corners 
 :root #browser,
 :root body * {
   border-radius: var(--arc-border-radius, 12px) !important;
@@ -55,6 +56,9 @@ body > hbox {
 :root[sizemode="normal"] #zen-browser-background {
   border-radius: var(--arc-border-radius, 12px) !important;
 }
+*/
+
+/*ABOVE COMMENTED CODE AFFECTS ZEN BROWSER WINDOW BORDER RADIUS*/
 
 :root:has(#tabbrowser-tabpanels [zen-split]) #tabbrowser-tabpanels > * {
   border-radius: 0 !important;
