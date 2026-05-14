@@ -13,12 +13,19 @@
     ]
   },
   "import": {
-    "{remote}/bootloader/program": "{browser}/",
-    "{remote}/bootloader/profile/utils": "{profile}/chrome/utils",
-    "{remote}/sine/src": "{profile}/chrome/JS",
-    "{remote}/sine/locales": "{profile}/chrome/JS/locales",
-    "template": "{profile}/chrome/sine-mods",
-    "./": "{profile}/chrome/sine-mods/Arc-2.0"
-  },
-  "ignore": ["node_modules"]
+    "scripts": {
+      "init": [
+        ["py_exec", ".browsercfg/remote/sine/scripts/extract_update.py"]
+      ],
+      "cleanup": [["rm", ".browsercfg/remote/sine/engine.tmp.json"]]
+    },
+    "files": {
+      "{remote}/bootloader/program": "{browser}/",
+      "{remote}/bootloader/profile/utils": "{profile}/chrome/utils",
+      "{remote}/sine/src": "{profile}/chrome/JS",
+      "{remote}/sine/locales": "{profile}/chrome/JS/locales",
+      "template": "{profile}/chrome/sine-mods",
+      "./": "{profile}/chrome/sine-mods/Arc-2.0"
+    }
+  }
 }

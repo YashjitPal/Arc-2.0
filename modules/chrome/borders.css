@@ -17,7 +17,7 @@ body,
 body > hbox,
 #zen-main-app {
   border-radius: var(--arc-border-radius, 12px);
-}*/
+} */
 /* Specifically target the outermost window elements 
 window,
 #main-window,
@@ -46,15 +46,13 @@ window,
 /*
 body > hbox {
   border-radius: var(--arc-border-radius, 12px) !important;
-}*/
-
-
+} */
 
 /* Ensure all browser elements have squared corners 
 :root #browser,
 :root body * {
   border-radius: var(--arc-border-radius, 12px) !important;
-}*/
+} */
 
 /*
 :root[sizemode="normal"] #zen-browser-background {
@@ -62,17 +60,17 @@ body > hbox {
 }
 */
 
-/*ABOVE COMMENTED CODE AFFECTS ZEN BROWSER WINDOW BORDER RADIUS*/
+/* ABOVE COMMENTED CODE AFFECTS ZEN BROWSER WINDOW BORDER RADIUS */
 
 #zen-site-data-header-bookmark::before,
 #zen-site-data-header-screenshot::before,
 #zen-site-data-header-reader-mode::before,
 #zen-site-data-header-share::before,
-#unified-extensions-area>toolbaritem,
+#unified-extensions-area > toolbaritem,
 unified-extensions-item.toolbaritem-combined-buttons,
 #zen-site-data-new-addon-button,
 #zen-site-data-security-info,
-#zen-site-data-actions, 
+#zen-site-data-actions,
 #navigator-toolbox,
 #titlebar,
 .browserContainer browser {
@@ -83,15 +81,10 @@ unified-extensions-item.toolbaritem-combined-buttons,
 .tab-icon-image,
 .toolbarbutton-icon,
 .toolbarbutton-animatable-iamge,
-.unified-extensions-item-icon
-#downloads-indicator-icon {
+.unified-extensions-item-icon #downloads-indicator-icon {
   border-radius: 0 !important;
   overflow: visible !important;
 }
-
-
-
-
 
 :root:has(#tabbrowser-tabpanels [zen-split]) #tabbrowser-tabpanels > * {
   border-radius: 0 !important;

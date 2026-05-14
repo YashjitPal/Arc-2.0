@@ -658,10 +658,7 @@ scrollbox {
 #sidebar-box {
   background-color: var(
     --arc-other-sidebar-bg,
-    light-dark(
-      rgb(255 255 255 / 25%),
-      rgb(0 0 0 / 25%)
-    )
+    light-dark(rgb(255 255 255 / 25%), rgb(0 0 0 / 25%))
   ) !important;
   border: none !important;
 }
@@ -672,10 +669,7 @@ scrollbox {
 
 #sidebar-search-container #search-box {
   background: transparent !important;
-  border-radius: var(
-    --arc-border-radius, 
-    12px
-  ) !important;
+  border-radius: var(--arc-border-radius, 12px) !important;
 }
 
 /* Transparent Sidebar Search Box & View Button 

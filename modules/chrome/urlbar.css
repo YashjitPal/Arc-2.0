@@ -178,11 +178,13 @@
 }
 
 /* ------------------ URL Bar BG ------------------ */
-/*Blur Zoom Animation on opening URLBar*/
-@media not (-moz-pref("arc.urlbar.background")){
+/* Blur Zoom Animation on opening URLBar */
+@media not (-moz-pref("arc.urlbar.background")) {
   #browser:has(#urlbar[open]) .browserStack {
     scale: 1.075 !important;
-    filter: blur(var(--arc-urlbar-blur, 25px)) saturate(var(--arc-urlbar-saturate, 1)) contrast(var(--arc-urlbar-contrast, 1)) !important;
+    filter: blur(var(--arc-urlbar-blur, 25px))
+      saturate(var(--arc-urlbar-saturate, 1))
+      contrast(var(--arc-urlbar-contrast, 1)) !important;
     opacity: 1 !important;
   }
 }

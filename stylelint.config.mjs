@@ -41,6 +41,7 @@ export default {
           "tooltip",
           "tab-group-tab",
           "tabpanels",
+          "unified-extensions-item",
         ],
       },
     ],
