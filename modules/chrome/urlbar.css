@@ -219,6 +219,15 @@
     contrast(var(--arc-urlbar-contrast, 1)) !important;
 }
 
+/*URL Bar suggestions text color adjustments*/
+.urlbarView-row {
+  &[selected] {
+    & *, & .urlbarView-title-separator::before {
+      color: light-dark(rgba(0,0,0,1), rgba(255,255,255,1)) !important;
+    }
+  }
+}
+
 /* ARCLINE LIKE URLBAR */
 @media (-moz-pref("arcline.url.bar", 1)) {
   * {
