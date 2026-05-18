@@ -11,11 +11,12 @@
   display: none !important;
 }
 
-/* Center text in URL bar */
-#urlbar .urlbar-input,
-.urlbar-input-container {
-  text-align: center !important;
-  position: relative;
+@media not -moz-pref("arc-url-left-align") {
+  #urlbar .urlbar-input,
+  .urlbar-input-container {
+    text-align: center !important;
+    position: relative;
+  }
 }
 
 /* New Animations */
