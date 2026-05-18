@@ -141,6 +141,11 @@
   },
   {
     "type": "checkbox",
+    "label": "Left-align URL instead of default Center-alignment.",
+    "property": "arc-url-left-align"
+  },
+  {
+    "type": "checkbox",
     "property": "arc.urlbar.background",
     "label": "Disable *background zoom blur* when URL bar popup.",
     "defaultValue": true
