@@ -286,6 +286,11 @@
   },
   {
     "type": "checkbox",
+    "property": "arc-disable-vertical-split-tabs",
+    "label": "Disable *vertically*-aligned split tabs to get Zen's default *horizontally*-aligned ones."
+  },
+  {
+    "type": "checkbox",
     "property": "arc.tab.defaultValue-audio-indicator",
     "label": "Disable *audio playing indicator* in tab playing media."
   },
