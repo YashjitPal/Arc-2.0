@@ -86,14 +86,14 @@ unified-extensions-item.toolbaritem-combined-buttons,
   overflow: visible !important;
 }
 
-:root:has(#tabbrowser-tabpanels [zen-split]) #tabbrowser-tabpanels > * {
+/*:root:has(#tabbrowser-tabpanels [zen-split]) #tabbrowser-tabpanels > * {
   border-radius: 0 !important;
 }
 
 :root:has(#tabbrowser-tabpanels [zen-split]) .browserSidebarContainer {
   box-shadow: none !important;
 }
-/*
+
 :root:has(#tabbrowser-tabpanels [zen-split])
   .browserSidebarContainer[is-zen-split="true"] {
   margin: 0 !important;
