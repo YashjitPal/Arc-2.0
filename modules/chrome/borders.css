@@ -114,11 +114,10 @@ unified-extensions-item.toolbaritem-combined-buttons,
 /* content window + address bar */
 #zen-appcontent-wrapper {
   border-radius: var(--arc-border-radius, 12px) !important;
-  /*padding: 0 !important;*/
+  /* padding: 0 !important; */
 }
 
-window 
-#zen-tabbox-wrapper {
+window #zen-tabbox-wrapper {
   padding: 0 !important;
 }
 
@@ -179,4 +178,3 @@ window
 :root[inDOMFullscreen="true"] #tabbrowser-tabpanels {
   border-radius: 0 !important;
 }
-
