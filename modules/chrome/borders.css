@@ -93,12 +93,12 @@ unified-extensions-item.toolbaritem-combined-buttons,
 :root:has(#tabbrowser-tabpanels [zen-split]) .browserSidebarContainer {
   box-shadow: none !important;
 }
-
+/*
 :root:has(#tabbrowser-tabpanels [zen-split])
   .browserSidebarContainer[is-zen-split="true"] {
   margin: 0 !important;
 }
-
+*/
 /* content window border radius */
 :root:has([zen-compact-mode="true"]):has([zen-single-toolbar="true"]):not(
     [inDOMFullscreen="true"]
@@ -114,22 +114,22 @@ unified-extensions-item.toolbaritem-combined-buttons,
 /* content window + address bar */
 #zen-appcontent-wrapper {
   border-radius: var(--arc-border-radius, 12px) !important;
-  padding: 0 !important;
+  /*padding: 0 !important;*/
 }
 
-/* window */
+window 
 #zen-tabbox-wrapper {
   padding: 0 !important;
 }
 
-/* WEBVIEW BORDER RADIUS */
+/* WEBVIEW BORDER RADIUS 
 #tabbrowser-tabbox,
 #tabbrowser-tabbox > * {
-  margin: 0 !important;
+  margin: 0 !important; 
   padding: 0 !important;
   box-sizing: border-box !important;
 }
-
+*/
 :root[zen-right-side="true"]:not(
     [zen-compact-mode="true"],
     [inDOMFullscreen="true"]
@@ -179,3 +179,4 @@ unified-extensions-item.toolbaritem-combined-buttons,
 :root[inDOMFullscreen="true"] #tabbrowser-tabpanels {
   border-radius: 0 !important;
 }
+
