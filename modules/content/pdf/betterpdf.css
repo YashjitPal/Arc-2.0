@@ -263,7 +263,7 @@ html[mozdisallowselectionprint] {
       top: 5px !important;
       left: 50% !important;
       transform: translate(-50%, 0);
-      width: 90% !important;
+      width: 99% !important;
       /* max-width: min(var(--natsumi-pdfjs-topbar-max-width), calc(100% - 10px)) !important; */
       border-radius: 10px;
       padding-top: 5px !important;
