@@ -251,9 +251,9 @@ html[mozdisallowselectionprint] {
     #toolbarContainer,
     #sidebarContainer {
       background: var(
-        --arc-findbar-bg, 
-        light-dark(rgb(255 255 255 / 50%),
-          rgb(0 0 0 / 50%))) !important;
+        --arc-findbar-bg,
+        light-dark(rgb(255 255 255 / 50%), rgb(0 0 0 / 50%))
+      ) !important;
       backdrop-filter: blur(var(--arc-findbar-blur, 10px)) !important;
       border-radius: var(--arc-border-radius, 12px) !important;
     }
