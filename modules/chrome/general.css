@@ -15,7 +15,7 @@ browser {
 browser {
   background: var(
     --arc-website-tint,
-    light-dark(rgb(255 255 255 / 20%), rgb(0 0 0 / 0%))
+    light-dark(rgb(255 255 255 / 5%), rgb(0 0 0 / 5%))
   ) !important;
 }
 
@@ -394,7 +394,7 @@ browser {
   width: 70%;
   border-radius: 12px;
   padding: 10px;
-  background: light-dark(rgb(255 255 255 / 32%), rgb(0 0 0 / 30%)) !important;
+  background-color: light-dark(rgb(255 255 255 / 40%), rgb(0 0 0 / 25%)) !important;
 }
 
 @media (-moz-pref("zen.tabs.vertical.right-side")) {
@@ -421,7 +421,7 @@ browser {
 
 #customization-container .panel-arrowcontent {
   height: 100% !important;
-  background: light-dark(rgb(255 255 255 / 80%), rgb(0 0 0 / 40%)) !important;
+  background-color: light-dark(rgb(255 255 255 / 80%), rgb(0 0 0 / 50%)) !important;
   border: none !important;
   margin: 0 !important;
   border-radius: 8px;
