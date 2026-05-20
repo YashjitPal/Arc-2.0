@@ -548,7 +548,7 @@
   },
   {
     "type": "separator",
-    "label": "**Fonts &  Miscellaneous**",
+    "label": "**Fonts**",
     "margin": "30px 0 30px 0",
     "size": "18px"
   },
@@ -601,37 +601,44 @@
     "property": "arc.detaloadingbar.maincolor",
     "label": "*Left color*",
     "type": "string",
-    "defaultValue": "rgba(243,202,186,255)"
+    "defaultValue": "rgba(243,202,186)",
+    "placeholder": "rgba(243,202,186,1)
   },
   {
     "property": "arc.detaloadingbar.middlecolor",
     "label": "*Middle color*",
     "type": "string",
-    "defaultValue": "rgba(255,255,255,255)"
+    "defaultValue": "rgba(255,255,255,1)",
+    "placeholder": "rgba(255,255,255,1)"
   },
   {
     "property": "arc.detaloadingbar.rightcolor",
-    "label": "*Right color*",
+    "label": "*Right color* (enter CSS color value in HEX or RGBA)",
     "type": "string",
-    "defaultValue": "rgba(243,202,186,255)"
+    "defaultValue": "rgba(243,202,186,1)",
+    "placeholder": "rgba(243,202,186,1)"
+    
   },
   {
     "property": "arc.detaloadingbar.thickness",
     "label": "*Thickness* of the loading bar (~enter value between 1px and 10px~).",
     "type": "string",
-    "defaultValue": "6px"
+    "defaultValue": "6px",
+    "placeholder": "6px"
   },
   {
     "property": "arc.detaloadingbar.minwidth",
     "label": "*Custom Minimum Width* (~enter value between 10px and 30px~).",
     "type": "string",
-    "defaultValue": "20px"
+    "defaultValue": "20px",
+    "placeholder": "20px"
   },
   {
     "property": "arc.detaloadingbar.maxwidth",
     "label": "*Custom Maximum Width* (~enter value between 90px and 180px~).",
     "type": "string",
-    "defaultValue": "120px"
+    "defaultValue": "120px",
+    "placeholder": "120px"
   },
   {
     "property": "arc.detaloadingbar.spacerwidth",
