@@ -617,7 +617,6 @@
     "type": "string",
     "defaultValue": "rgba(243,202,186,1)",
     "placeholder": "rgba(243,202,186,1)"
-    
   },
   {
     "property": "arc.detaloadingbar.thickness",
