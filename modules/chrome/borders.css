@@ -73,7 +73,7 @@ unified-extensions-item.toolbaritem-combined-buttons,
 #zen-site-data-actions,
 #navigator-toolbox,
 #titlebar,
-.browserContainer browser {
+/*.browserContainer browser*/ {
   border-radius: var(--arc-border-radius, 12px) !important;
 }
 
