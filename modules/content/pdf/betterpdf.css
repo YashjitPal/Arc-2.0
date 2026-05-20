@@ -21,7 +21,7 @@
   transform: translate(-50%, 0);
   width: 90% !important;
   /* max-width: min(var(--natsumi-pdfjs-topbar-max-width), calc(100% - 10px)) !important; */
-  border-radius: 10px;
+  border-radius: var(--arc-border-radius, 12px) !important;
   padding-top: 5px !important;
   padding-bottom: 5px !important;
   height: calc(var(--toolbar-height)) !important;
@@ -36,7 +36,7 @@
   left: 5px !important;
   top: auto !important;
   bottom: 5px !important;
-  border-radius: 10px !important;
+  border-radius: var(--arc-border-radius, 12px) !important;
   width: var(--sidebar-width) !important;
 }
 
@@ -250,9 +250,12 @@ html[mozdisallowselectionprint] {
 
     #toolbarContainer,
     #sidebarContainer {
-      background: var(--natsumi-glass-background) !important;
-      backdrop-filter: blur(5px);
-      border-radius: 10px;
+      background: var(
+        --arc-findbar-bg, 
+        light-dark(rgb(255 255 255 / 50%),
+          rgb(0 0 0 / 50%))) !important;
+      backdrop-filter: blur(var(--arc-findbar-blur, 10px)) !important;
+      border-radius: var(--arc-border-radius, 12px) !important;
     }
 
     #toolbarContainer {
@@ -290,8 +293,8 @@ html[mozdisallowselectionprint] {
         top: 40px !important;
         right: -7px !important;
         background: var(--natsumi-glass-background) !important;
-        backdrop-filter: blur(5px);
-        border-radius: 10px !important;
+        backdrop-filter: blur(var(--arc-findbar-blur, 10px));
+        border-radius: var(--arc-border-radius, 12px) !important;
         border: 1px solid rgb(20 20 20 / 20%) !important;
         box-shadow: 0 0 var(--natsumi-glass-shadow-size)
           var(--natsumi-glass-shadow-color) !important;
@@ -477,8 +480,8 @@ html[mozdisallowselectionprint] {
 
     #documentPropertiesDialog {
       background: var(--natsumi-glass-background) !important;
-      backdrop-filter: blur(5px);
-      border-radius: 10px !important;
+      backdrop-filter: blur(var(--arc-findbar-blur, 10px));
+      border-radius: var(--arc-border-radius, 12px) !important;
       border: 1px solid rgb(20 20 20 / 20%) !important;
       box-shadow: 0 0 var(--natsumi-glass-shadow-size)
         var(--natsumi-glass-shadow-color) !important;
