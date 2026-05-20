@@ -15,8 +15,8 @@
     "type": "string",
     "label": "Enable *better blur* for context menu (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.1), rgba(0,0,0,0.1))`]; ensure your OS has proper blur support~).",
     "property": "arc-menu-blur",
-    "defaultValue": "light-dark(rgba(255,255,255,0.1), rgba(0,0,0,0.1))",
-    "placeholder": "light-dark(rgba(255,255,255,0.1), rgba(0,0,0,0.1))"
+    "defaultValue": "light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))",
+    "placeholder": "light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))"
   },
   {
     "type": "checkbox",
@@ -434,15 +434,15 @@
     "type": "string",
     "property": "arc-findbar-vertical",
     "label": "Custom *vertical position* for FindBar (~enter value between 0px and whatever under 1000px that feels right for you~).",
-    "defaultValue": "50px",
-    "placeholder": "50px"
+    "defaultValue": "70px",
+    "placeholder": "70px"
   },
   {
     "type": "string",
     "property": "arc-findbar-horizontal",
     "label": "Custom *horizontal position* for FindBar (~enter value between 0px and whatever under 50px that feels right for you~).",
-    "defaultValue": "25px",
-    "placeholder": "25px"
+    "defaultValue": "50px",
+    "placeholder": "50px"
   },
   {
     "type": "string",
@@ -461,16 +461,16 @@
   {
     "type": "string",
     "property": "arc-findbar-bg",
-    "label": "Custom *background* for FindBar (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))`]~).",
-    "defaultValue": "light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))",
+    "label": "Custom *background* for FindBar (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.5), rgba(0,0,0,0.5))`]~).",
+    "defaultValue": "light-dark(rgba(255,255,255,0.5), rgba(0,0,0,0.5))",
     "placeholder": "light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))"
   },
   {
     "type": "string",
     "property": "arc-findbar-blur",
     "label": "Custom *blur* for FindBar (~enter value between 0 and 50px~).",
-    "defaultValue": "25px",
-    "placeholder": "25px"
+    "defaultValue": "10px",
+    "placeholder": "10px"
   },
   {
     "type": "string",
@@ -602,7 +602,7 @@
     "label": "*Left color*",
     "type": "string",
     "defaultValue": "rgba(243,202,186)",
-    "placeholder": "rgba(243,202,186,1)
+    "placeholder": "rgba(243,202,186,1)"
   },
   {
     "property": "arc.detaloadingbar.middlecolor",
