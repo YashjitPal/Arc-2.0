@@ -804,16 +804,16 @@ tabpanels .browserStack browser {
 
 /* ctrl tab visuals and animations */
 #ctrlTab-panel {
-  --panel-background: rgb(0 0 0 / 90%) !important;
+  --panel-background: light-dark(rgb(255 255 255 / 75%), rgb(0 0 0 / 75%)) !important;
 
-  transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.1) 0.2s !important;
-  border-radius: 13px;
+/*  transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.1) 0.2s !important;*/
+  border-radius: var(--arc-border-radius, 12px);
   scale: 0.7;
 }
 
 #ctrlTab-panel:has(.ctrlTab-preview:not([hidden="true"])) {
   scale: 0.7 !important;
-  border-radius: 13px;
+  border-radius: var(--arc-border-radius, 12px) !important;
 }
 
 slot:nth-child(1) {
@@ -826,7 +826,7 @@ slot:nth-child(1) {
   transition: all 0.2s ease-in-out;
 
   .ctrlTab-canvas {
-    border-radius: 1em !important;
+    border-radius: var(--arc-border-radius, 12px) !important;
     overflow: hidden;
 
     img {
@@ -854,8 +854,8 @@ slot:nth-child(1) {
   outline: none !important;
   /* border: none !important;   */
   background-color: var(--sidebar-background-color) !important;
-  border-radius: 1.5em !important;
-  scale: 1.03 !important;
+  border-radius: var(--arc-border-radius, 12px) !important;
+  /*scale: 1.03 !important;*/
 
   .ctrlTab-favicon-container {
     image {
