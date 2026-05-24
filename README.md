@@ -50,20 +50,19 @@ Also, in **Sidebar & Top Toolbar** mode, if you're choosing to keep Bookmarks un
 ### Install Using [Sine](https://github.com/CosmoCreeper/Sine) _(Recommended)_
 
 1. Install **Sine**, a JS-based mod & theme manager: [Sine v2.3.3](https://github.com/sineorg/docs/blob/main/src/installation.md).
-  <img width="1906" height="1033" alt="image" src="https://github.com/user-attachments/assets/1d45cb42-61d7-4f02-8765-f8edb12b8924" />
+   <img width="1906" height="1033" alt="image" src="https://github.com/user-attachments/assets/1d45cb42-61d7-4f02-8765-f8edb12b8924" />
 
-2. **Theme Installation** (*Method-1*): Copy the link ![url](https://github.com/YashjitPal/Arc-2.0) and paste it to install and update theme with latest changes.
+2. **Theme Installation** (_Method-1_): Copy the link ![url](https://github.com/YashjitPal/Arc-2.0) and paste it to install and update theme with latest changes.
    <img width="1906" height="1033" alt="image" src="https://github.com/user-attachments/assets/7bb0ecd3-ccbf-4d95-98e1-3a1f15c29f35" />
 
-   (*Method-2*):  Install mod named `Arc-2.0` from **Marketplace**; this will not install or update theme instantly with latest changes as it takes time to get processed, so prefer Method-1.
+   (_Method-2_): Install mod named `Arc-2.0` from **Marketplace**; this will not install or update theme instantly with latest changes as it takes time to get processed, so prefer Method-1.
    <img width="1906" height="1033" alt="image" src="https://github.com/user-attachments/assets/5b723429-00cf-4e40-bd35-8e0a806d3259" />
 
    Refresh Settings if the theme doesn’t appear under **Installed Mods**.
-   
-3. Configure personalization prefs in **Mod Settings** by clicking on gear icon under theme details.
-  <img width="636" height="372" alt="image" src="https://github.com/user-attachments/assets/6676845c-c412-47e9-9675-86bb88f15ff0" />
-  <img width="1906" height="1033" alt="image" src="https://github.com/user-attachments/assets/0c7eddc3-da0d-4633-afc9-0c694d80b0ce" />
 
+3. Configure personalization prefs in **Mod Settings** by clicking on gear icon under theme details.
+   <img width="636" height="372" alt="image" src="https://github.com/user-attachments/assets/6676845c-c412-47e9-9675-86bb88f15ff0" />
+   <img width="1906" height="1033" alt="image" src="https://github.com/user-attachments/assets/0c7eddc3-da0d-4633-afc9-0c694d80b0ce" />
 
 ---
 
@@ -79,6 +78,7 @@ Also, in **Sidebar & Top Toolbar** mode, if you're choosing to keep Bookmarks un
 ---
 
 ## Floating URL Bar
+
 ![image](https://github.com/user-attachments/assets/994e74d5-5c29-4c11-8f50-8d6cf95f9b61)
 
 🎉 Congrats! You now have an Arc-inspired Zen Browser setup!
@@ -88,10 +88,14 @@ Also, in **Sidebar & Top Toolbar** mode, if you're choosing to keep Bookmarks un
 ---
 
 ## How to Get Arc-Like Pinned Extensions
+
 ### If installed via Sine
+
 1. Go to Arc-2.0 Settings and click `Enable Pinned Extensions UI`.
-**OR**
+   **OR**
+
 ### If installed via Traditional Method
+
 1. Go to `about:config` and add:  
    `arc-pinned-extensions-mod` → **Boolean > True**.
    **NEXT**
@@ -206,14 +210,14 @@ Descriptions are provided in the original instructions above.
 ### DWMGlassBlur (Recommended for Windows 11)
 
 - Download: **If you're on Windows 11 version 24H2 (26100.7171) or above, install this - **[DWMBlurGlass](https://github.com/Maplespe/DWMBlurGlass/releases/tag/2.3.2b3)
-**If you are on Windows 11 version below 24H2 (26100.7171), then install this - **[DWMBlurGlass](https://github.com/Maplespe/DWMBlurGlass/releases/tag/2.3.1r)
-  
+  **If you are on Windows 11 version below 24H2 (26100.7171), then install this - **[DWMBlurGlass](https://github.com/Maplespe/DWMBlurGlass/releases/tag/2.3.1r)
 - Make symbols **valid** as shown:
 
   ![image](<img width="888" height="892" alt="image" src="https://github.com/user-attachments/assets/e38fb950-b8de-42c1-8bd7-49b400929f14" />)
 
 - Create `DWM.ini` and paste:
   **FOR DWMBlurGlass v2.3.2b3**
+
 ```
 [config]
 applyglobal=true
@@ -262,7 +266,7 @@ blurQuality=1
 
 **[NOTE]: For v2.3.1, configure it as you like.**
 
-* Import in DWM:
+- Import in DWM:
 
 <img width="888" height="892" alt="image" src="https://github.com/user-attachments/assets/18cded56-9f3f-4c7c-9cea-8f7fe5ec2b9f" />
 
