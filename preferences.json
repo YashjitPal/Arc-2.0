@@ -13,9 +13,9 @@
   },
   {
     "type": "string",
-    "label": "Enable *better blur* for context menu (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.1), rgba(0,0,0,0.1))`]; ensure your OS has proper blur support~).",
-    "property": "arc-menu-blur",
-    "defaultValue": "light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))",
+    "label": "Toggle *opacity* for context menu (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.1), rgba(0,0,0,0.1))`]; ensure your OS has proper blur support~).",
+    "property": "arc-menu-opacity",
+    "defaultValue": "light-dark(rgba(255,255,255,0.5), rgba(0,0,0,0.5))",
     "placeholder": "light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))"
   },
   {
@@ -117,6 +117,54 @@
     "type": "checkbox",
     "property": "arc-macos-style-buttons",
     "label": "Enable *macOS-style* window buttons."
+  },
+  {
+    "property": "mod.forkedtidypopup.disabletidypopup",
+    "label": "Disable Tidy Popup",
+    "type": "checkbox",
+    "defaultValue": false
+  },
+  {
+    "property": "mod.forkedtidypopup.removedividers",
+    "label": "Remove *divider lines* in Menus",
+    "type": "checkbox",
+    "defaultValue": false
+  },
+  {
+    "property": "mod.forkedtidypopup.disablecustomhovercolor",
+    "label": "Disable *custom hover* color on menus and popups (Any hover color pref below will be ignored).",
+    "type": "checkbox",
+    "defaultValue": false
+  },
+  {
+    "property": "mod.forkedtidypopup.disablezenprimarycolor",
+    "label": "Disable use of *primary color* chosen in Theme Menu to use Custom Hover Colors below.)",
+    "type": "checkbox",
+    "defaultValue": false
+  },
+  {
+    "property": "mod.forkedtidypopup.hovercolor.light",
+    "label": "Button color when hovered (Light mode)",
+    "type": "string",
+    "defaultValue": "rgba(243,202,176,1)"
+  },
+  {
+    "property": "mod.forkedtidypopup.hovercolor.dark",
+    "label": "Button color when hovered (Dark mode)",
+    "type": "string",
+    "defaultValue": "rgba(87,65,50,1)"
+  },
+  {
+    "property": "mod.forkedtidypopup.disabletidyextension",
+    "label": "Disable *Tidy Extension Menu*",
+    "type": "checkbox",
+    "defaultValue": false
+  },
+  {
+    "property": "mod.forkedtidypopup.disablecenterbookmarkbar",
+    "label": "Disable *Center Bookmark Bar*",
+    "type": "checkbox",
+    "defaultValue": false
   },
   {
     "type": "checkbox",
