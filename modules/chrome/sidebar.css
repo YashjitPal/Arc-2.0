@@ -657,7 +657,7 @@ scrollbox {
 /* Clean & Transparent Sidebar Box */
 #sidebar-box {
   background-color: var(
-    --arc-other-sidebar-bg,
+    --arc-compact-sidebar-bg,
     light-dark(rgb(255 255 255 / 25%), rgb(0 0 0 / 25%))
   ) !important;
   border: none !important;
