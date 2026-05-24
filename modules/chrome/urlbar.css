@@ -19,43 +19,24 @@
   }
 }
 
-/* New Animations */
-
-/* Basic performance optimization */
-#urlbar,
-.urlbar-background,
-#urlbar-input-container {
-  /* will-change: transform, opacity; */
-  transform: translateZ(0);
-  transition: all 0.2s ease;
-}
-
 /* Simple focus animation */
 #urlbar[focused="true"] {
-  transform: scale(1.02);
-  background-color: rgb(255 255 255 / 15%);
+  background-color: var(--zen-primary-color) !important;
   /* border: 1px solid rgb(255 255 255 / 30%); */
   box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
   border-radius: var(--arc-border-radius, 12px) !important;
 }
 
-/* Clean hover effect */
-#urlbar:hover:not([focused="true"]) {
-  background-color: rgb(255 255 255 / 10%);
-  /* border: 1px solid rgb(255 255 255 / 20%); */
-}
+
 
 #urlbar-results,
 #PopupAutoCompleteRichResult,
 .autocomplete-richlistbox {
-  overflow-y: auto !important;
-  padding-right: 18px !important;
-  margin-right: -18px !important;
+  padding-right: 5px !important;
+  padding-left: 4px !important;
+  
 }
 
-.urlbarView-body-outer {
-  overflow-x: hidden !important;
-}
 
 /* Smooth dropdown appearance */
 #urlbar-results {
@@ -65,28 +46,18 @@
   /* border: 1px solid rgb(255 255 255 / 0.1); */
 }
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(-5px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 /* Simple suggestion hover */
 .urlbarView-row:hover {
-  background: rgb(255 255 255 / 10%);
+  background: var(--zen-primary-color) !important;
   transform: translateX(2px);
+  border-radius: var(--arc-border-radius, 12px) !important;
 }
 
 /* Clean button effects */
 .urlbar-icon:hover {
   transform: scale(1.1);
-  background-color: rgb(255 255 255 / 10%);
+  background-color: var(--zen-primary-color) !important;
   border-radius: var(--arc-border-radius, 12px) !important;
 }
 
@@ -125,11 +96,6 @@
 
   #identity-icon-box {
     background: none !important;
-  }
-
-  /* Selected row highlight & favicon fix */
-  .urlbarView-row[selected] {
-    background-color: rgb(100 100 100 / 10%) !important;
   }
 
   .urlbarView-row-inner[selected] .urlbarView-favicon {
@@ -220,7 +186,7 @@
     contrast(var(--arc-urlbar-contrast, 1)) !important;
 }
 
-/* URL Bar suggestions text color adjustments */
+/* URL Bar suggestions text color adjustments 
 .urlbarView-row {
   &[selected] {
     & *,
@@ -229,7 +195,7 @@
     }
   }
 }
-
+*/
 /* ARCLINE LIKE URLBAR */
 @media (-moz-pref("arcline.url.bar", 1)) {
   * {
