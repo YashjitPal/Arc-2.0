@@ -32,7 +32,7 @@
   },
   {
     "type": "separator",
-    "label": "**Arc UI / Interface**",
+    "label": "**Arc UI**",
     "margin": "30px 0 30px 0",
     "size": "18px"
   },
@@ -120,7 +120,7 @@
   },
   {
     "property": "mod.forkedtidypopup.disabletidypopup",
-    "label": "Disable Tidy Popup",
+    "label": "Disable **Tidy Menu and Popup** (~None of the prefs for Menus and Popups below in this Arc UI category will work~).",
     "type": "checkbox",
     "defaultValue": false
   },
@@ -132,25 +132,25 @@
   },
   {
     "property": "mod.forkedtidypopup.disablecustomhovercolor",
-    "label": "Disable *custom hover* color on menus and popups (Any hover color pref below will be ignored).",
+    "label": "Disable *custom hover* color on menus and popups (~Any hover color pref below will be ignored~).",
     "type": "checkbox",
     "defaultValue": false
   },
   {
     "property": "mod.forkedtidypopup.disablezenprimarycolor",
-    "label": "Disable use of *primary color* chosen in Theme Menu to use Custom Hover Colors below.)",
+    "label": "Disable use of *primary color* chosen in Theme Menu to use Custom Hover Colors below.",
     "type": "checkbox",
     "defaultValue": false
   },
   {
     "property": "mod.forkedtidypopup.hovercolor.light",
-    "label": "Button color when hovered (Light mode)",
+    "label": "Button color when hovered (~Light mode~)",
     "type": "string",
     "defaultValue": "rgba(243,202,176,1)"
   },
   {
     "property": "mod.forkedtidypopup.hovercolor.dark",
-    "label": "Button color when hovered (Dark mode)",
+    "label": "Button color when hovered (~Dark mode~)",
     "type": "string",
     "defaultValue": "rgba(87,65,50,1)"
   },
@@ -169,7 +169,7 @@
   {
     "type": "checkbox",
     "property": "arc-disable-floating-statusbar",
-    "label": "Disable Status Bar (URL info that appears on bottom left of web-view when you hover on a link)."
+    "label": "Disable Status Bar (~URL info that appears on bottom left of web-view when you hover on a link~)."
   },
   {
     "type": "separator",
