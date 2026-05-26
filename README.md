@@ -213,7 +213,7 @@ Descriptions are provided in the original instructions above.
   **If you are on Windows 11 version below 24H2 (26100.7171), then install this - **[DWMBlurGlass](https://github.com/Maplespe/DWMBlurGlass/releases/tag/2.3.1r)
 - Make symbols **valid** as shown:
 
-  ![image](<img width="888" height="892" alt="image" src="https://github.com/user-attachments/assets/e38fb950-b8de-42c1-8bd7-49b400929f14" />)
+  <img width="888" height="892" alt="image" src="https://github.com/user-attachments/assets/e38fb950-b8de-42c1-8bd7-49b400929f14" />
 
 - Create `DWM.ini` and paste:
   **FOR DWMBlurGlass v2.3.2b3**
