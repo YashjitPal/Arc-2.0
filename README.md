@@ -293,7 +293,6 @@ blurQuality=1
 - [greeeen-dev / natsumi-browser](https://github.com/greeeen-dev/natsumi-browser)
 - [lunar-os / ZenCss](https://github.com/lunar-os/ZenCss)
 - [SameeraSW / Zen Transparency Guide](https://sameerasw.notion.site/Zen-Transparency-1939c6099d4080468f02cf05ae50e827)
-- [ferrocyante / vyang](https://github.com/ferrocyante/vyang)
 - [JustAdumbPrsn / Nebula Theme](https://github.com/JustAdumbPrsn/Nebula-A-Minimal-Theme-for-Zen-Browser)
 - [sameerasw / ZenZero](https://github.com/sameerasw/ZenZero)
 - [rrthrr](https://github.com/rrthrr)
