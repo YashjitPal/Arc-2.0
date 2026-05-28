@@ -66,6 +66,7 @@
         rgb(0 0 0 / 10%),
         rgb(225 225 225 / 10%)
       ) !important;
+      transition-duration: 1s !important;
       box-shadow: 0 0 3px light-dark(rgb(0 0 0 / 50%), rgb(255 255 255 / 50%)) !important;
     }
 
