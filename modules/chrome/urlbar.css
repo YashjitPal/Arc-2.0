@@ -54,13 +54,13 @@
   border-radius: var(--arc-border-radius, 12px) !important;
 }
 
-/* Clean button effects */
+/* Clean button effects 
 .urlbar-icon:hover {
-  transform: scale(1.1);
-  background-color: var(--zen-primary-color) !important;
+  transition-duration: 1s !important;
+  transform: scale(1.25);
   border-radius: var(--arc-border-radius, 12px) !important;
 }
-
+*/
 /* Search Result Hiding */
 #urlbar {
   @media (-moz-pref("arc.urlbar.hide_results", "0")) {
