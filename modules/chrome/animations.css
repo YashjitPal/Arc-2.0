@@ -19,23 +19,22 @@ tooltip {
   .tabbrowser-tab {
     transition:
       box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-      transform 0.24s cubic-bezier(0.22, 1.5, 0.36, 1),
+      transform 1.25s cubic-bezier(0.22, 1.5, 0.36, 1),
       opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1),
       filter 0.2s ease !important;
     box-shadow: none !important;
   }
 
   .tabbrowser-tab:hover {
-    transform: translateY(-2px) scale(1.04);
+    transform: translateY(-2px) scale(1.05);
     box-shadow: 0 4px 12px -4px rgb(30 40 80 / 9%);
     z-index: 2;
   }
 
   /* Fade inactive tabs with breathing effect */
   .tabbrowser-tab:not([selected]) {
-    opacity: 0.82;
-    filter: blur(0.2px);
-    animation: tab-breathe 4s ease-in-out infinite;
+    opacity: 0.9;
+    animation: tab-breathe 3s ease-in-out infinite;
   }
 
   @keyframes tab-breathe {
@@ -149,7 +148,7 @@ tooltip {
   }
 }
 
-/* NAVIGATION BUTTON ANIMATIONS */
+/* NAVIGATION BUTTON ANIMATIONS 
 
 #back-button {
   transition:
@@ -168,8 +167,8 @@ tooltip {
   transform: translateX(-1px) scale(1.04);
   transition-duration: 0.1s;
 }
-
-/* Forward button without trail effect */
+*/
+/* Forward button without trail effect 
 #forward-button {
   transition:
     transform 0.22s cubic-bezier(0.68, -0.6, 0.32, 1.6),
@@ -187,8 +186,8 @@ tooltip {
   transform: translateX(1px) scale(1.04);
   transition-duration: 0.1s;
 }
-
-/* Reload button with enhanced spin and pulse */
+*/
+/* Reload button with enhanced spin and pulse 
 #reload-button {
   transition:
     transform 0.25s cubic-bezier(0.68, -0.6, 0.32, 1.6),
@@ -228,8 +227,8 @@ tooltip {
     transform: rotate(360deg);
   }
 }
-
-/* Menu button animation */
+*/
+/* Menu button animation 
 @keyframes menu-button-animation {
   0% {
     transform: rotate(0deg) scale(1);
@@ -259,39 +258,7 @@ tooltip {
     transform: rotate(0deg) scale(1.2);
   }
 }
-
-#PanelUI-menu-button:hover {
-  animation: menu-button-animation 0.6s cubic-bezier(0.2, 0.49, 0.78, 1.01)
-    forwards;
-}
-
-/* Extension button animation */
-@keyframes bounce-extension-button {
-  0% {
-    transform: scale(1);
-  }
-
-  40% {
-    transform: scale(1.25);
-  }
-
-  60% {
-    transform: scale(1.15);
-  }
-
-  80% {
-    transform: scale(1.2);
-  }
-
-  100% {
-    transform: scale(1.1);
-  }
-}
-
-#unified-extensions-button:hover {
-  animation: bounce-extension-button 0.6s cubic-bezier(0.25, 1.3, 0.5, 1)
-    forwards;
-}
+*/
 
 /* === URL BAR & SEARCH BAR ENHANCEMENTS === */
 #urlbar {
@@ -303,8 +270,9 @@ tooltip {
 }
 
 #urlbar:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
   box-shadow: 0 4px 12px -4px rgb(30 40 80 / 10%);
+  transition-duration: 1.25s !important;
 }
 
 #urlbar:focus-within,
