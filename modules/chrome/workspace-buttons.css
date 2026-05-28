@@ -154,8 +154,8 @@
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    height: 40px !important;
-    border-radius: 12px !important;
+    height: 32px !important;
+    border-radius: var(--arc-border-radius, 12px) !important;
     font-size: 1.25em !important;
     transform: scale(1) !important;
     transform-origin: bottom center !important;
@@ -169,11 +169,12 @@
 
   /* Hover states */
   #zen-workspaces-button .subviewbutton:hover {
-    transform: scale(1.4) !important;
+    transform-origin: bottom !important;
+    transform: scale(1.25) !important;
     filter: grayscale(0%) !important;
     opacity: 1 !important;
     z-index: 3 !important;
-    font-size: 1.35em !important;
+    font-size: 1.25em !important;
     color: inherit !important;
   }
 
@@ -277,8 +278,8 @@
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    height: 40px !important;
-    border-radius: 12px !important;
+    height: 32px !important;
+    border-radius: var(--arc-border-radius) !important;
     font-size: 1.25em !important;
     transform: scale(1) !important;
     transform-origin: bottom center !important;
@@ -292,11 +293,12 @@
 
   /* Hover states */
   #zen-workspaces-button .subviewbutton:hover {
-    transform: scale(1.4) !important;
+    transform-origin: bottom !important;
+    transform: scale(1.25) !important;
     filter: grayscale(0%) !important;
     opacity: 1 !important;
     z-index: 3 !important;
-    font-size: 1.35em !important;
+    font-size: 1.25em !important;
     color: inherit !important;
   }
 
