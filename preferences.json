@@ -22,7 +22,8 @@
     "label": "Edit *opacity* for context menu [Enable above checkbox to make it work] (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.1), rgba(0,0,0,0.1))`]; ensure your OS has proper blur support~).",
     "property": "arc-menu-opacity-value",
     "defaultValue": "light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))",
-    "placeholder": "light-dark(rgba(255,255,255,0.5), rgba(0,0,0,0.5))"
+    "placeholder": "light-dark(rgba(255,255,255,0.5), rgba(0,0,0,0.5))",
+    "restart": false
   },
   {
     "type": "checkbox",
