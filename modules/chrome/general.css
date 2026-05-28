@@ -33,11 +33,11 @@ browser {
 @media (-moz-pref("arc-menu-opacity")) {
   .menupopup-arrowscrollbox {
     box-shadow: none !important;
-    background-color: var(--arc-menu-blur, rgb(0 0 0 / 0%)) !important;
+    background-color: var(--arc-menu-opacity-value, light-dark(rgb(255 255 255 / 0%), rgb(0 0 0 / 0%))) !important;
   }
 }
 
-/*---------------------- MENU AND POPUPS STYLINGS ----------------------*/
+
 /* Config for blur rendering */
 @media (-moz-pref("arc.force-blur-rendering")) {
   browser {
@@ -45,6 +45,7 @@ browser {
   }
 }
 
+/*---------------------- MENU AND POPUPS STYLINGS ----------------------*/
 /* Tidy Popup Styles - Only active when mod.forkedtidypopup.usetidypopup is true */
 @media not -moz-pref("mod.forkedtidypopup.disabletidypopup") {
   /* These are for the popups */
@@ -722,7 +723,7 @@ browser {
   height: 100% !important;
   background-color: light-dark(
     rgb(255 255 255 / 80%),
-    rgb(0 0 0 / 50%)
+    rgb(0 0 0 / 25%)
   ) !important;
   border: none !important;
   margin: 0 !important;
