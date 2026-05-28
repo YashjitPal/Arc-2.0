@@ -12,11 +12,17 @@
     "restart": true
   },
   {
-    "type": "string",
-    "label": "Toggle *opacity* for context menu (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.1), rgba(0,0,0,0.1))`]; ensure your OS has proper blur support~).",
+    "type": "checkbox",
+    "label": "Enable *Custom Menu Opacity*.",
     "property": "arc-menu-opacity",
-    "defaultValue": "light-dark(rgba(255,255,255,0.5), rgba(0,0,0,0.5))",
-    "placeholder": "light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))"
+    "defaultValue": false
+  },
+  {
+    "type": "string",
+    "label": "Edit *opacity* for context menu [Enable above checkbox to make it work] (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.1), rgba(0,0,0,0.1))`]; ensure your OS has proper blur support~).",
+    "property": "arc-menu-opacity-value",
+    "defaultValue": "light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))",
+    "placeholder": "light-dark(rgba(255,255,255,0.5), rgba(0,0,0,0.5))"
   },
   {
     "type": "checkbox",
@@ -146,13 +152,13 @@
     "property": "mod.forkedtidypopup.hovercolor.light",
     "label": "Button color when hovered (~Light mode~)",
     "type": "string",
-    "defaultValue": "rgba(243,202,176,1)"
+    "placeholder": "rgba(243,202,176,1)"
   },
   {
     "property": "mod.forkedtidypopup.hovercolor.dark",
     "label": "Button color when hovered (~Dark mode~)",
     "type": "string",
-    "defaultValue": "rgba(87,65,50,1)"
+    "placeholder": "rgba(87,65,50,1)"
   },
   {
     "property": "mod.forkedtidypopup.disabletidyextension",
