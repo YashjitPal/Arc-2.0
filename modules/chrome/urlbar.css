@@ -61,21 +61,22 @@
   border-radius: var(--arc-border-radius, 12px) !important;
 }
 */
-/* Search Result Hiding */
-@media not (-moz-ref("arc-urlbar.hide.results", 0)) {
+
+/* Search Suggestions Hiding */
+@media not (-moz-pref("arc-urlbar-hide-results", 0)) {
   #urlbar {
-    @media (-moz-pref("arc-urlbar.hide.results", 1)) {
-      &:not([usertyping], [searchmode]) > .urlbarView {
+    @media (-moz-pref("arc-urlbar-hide-results", 1)) {
+      &:not([usertyping]) > .urlbarView {
         display: none !important;
       }
     }
 
     #urlbar-results div.urlbarView-row[row-selectable][type="top_site"] {
-      @media (-moz-pref("arc-urlbar.hide.results", 1)),
-      (-moz-pref("arc-urlbar.hide.results", 2)) {
+      @media (-moz-pref("arc-urlbar-hide-results", 1)),
+      (-moz-pref("arc-urlbar-hide-results", 2)) {
         display: none !important;
       }
-      @media (-moz-pref("arc-urlbar.hide.results", 3)) {
+      @media (-moz-pref("arc-urlbar-hide-results", 3)) {
         &:not([pinned]) {
           display: none !important;
         }
