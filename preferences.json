@@ -312,8 +312,8 @@
   {
     "type": "string",
     "property": "arc-compact-sidebar-width",
-    "defaultValue": "22em",
-    "placeholder": "22em",
+    "defaultValue": "20em",
+    "placeholder": "20em",
     "label": "*Custom* Compact Sidebar size (~enter value between 15em and 30em as per your preference~)."
   },
   {
