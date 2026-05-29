@@ -13,6 +13,20 @@ tooltip {
   will-change: auto;
 }
 
+/*WORKSPACE MENU*/
+#\{fa1a05ed-8dcc-4f69-9dcc-ab724e7713f4\} > vbox:nth-child(2) {
+  margin-top: 6.5px !important;
+}
+
+#\{fa1a05ed-8dcc-4f69-9dcc-ab724e7713f4\} > vbox:nth-child(2):hover {
+  background-color: light-dark(rgb(0 0 0 / 10%), rgb(255 255 255 / 10%));
+  border-radius: var(--arc-border-radius, 12px);
+  transform: translateY(-1.5px) scale(1.01);
+  transition-duration: 0.45s !important;
+  box-shadow: 0 4px 12px -4px rgb(30 40 80 / 9%);
+  z-index: 2;
+}
+
 /* === TAB ANIMATIONS === */
 /* Tab hover and active animation with enhanced shadows */
 @media not (-moz-pref("arc-disable-tab-hover-animations")) {
