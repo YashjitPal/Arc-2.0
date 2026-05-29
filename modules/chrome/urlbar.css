@@ -62,7 +62,7 @@
 }
 */
 /* Search Result Hiding */
-@media not (-moz-ref("arc-urlbar.hide.results", 0)) {
+@media not (-moz-pref("arc-urlbar.hide.results", 0)) {
   #urlbar {
     @media (-moz-pref("arc-urlbar.hide.results", 1)) {
       &:not([usertyping], [searchmode]) > .urlbarView {
