@@ -63,20 +63,20 @@
 */
 
 /* Search Suggestions Hiding */
-@media not (-moz-pref("arc-urlbar-hide-results", 0)) {
+@media not -moz-pref("arc-urlbar-hide-suggestions", 0) {
   #urlbar {
-    @media (-moz-pref("arc-urlbar-hide-results", 1)) {
-      &:not([usertyping]) > .urlbarView {
+    @media -moz-pref("arc-urlbar-hide-suggestions", 1) {
+      &:not([usertyping], [searchmode])>.urlbarView {
         display: none !important;
       }
     }
-
     #urlbar-results div.urlbarView-row[row-selectable][type="top_site"] {
-      @media (-moz-pref("arc-urlbar-hide-results", 1)),
-      (-moz-pref("arc-urlbar-hide-results", 2)) {
-        display: none !important;
+      @media -moz-pref("arc-urlbar-hide-suggestions", 1), -moz-pref("arc-urlbar-hide-suggestions", 2) {
+        & {
+          display: none !important;
+        }
       }
-      @media (-moz-pref("arc-urlbar-hide-results", 3)) {
+      @media -moz-pref("arc-urlbar-hide-suggestions", 3) {
         &:not([pinned]) {
           display: none !important;
         }
