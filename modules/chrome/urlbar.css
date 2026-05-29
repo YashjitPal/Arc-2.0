@@ -119,7 +119,7 @@
   /* fade-in animation */
   @media (-moz-pref("arc-urlbar-animation", 2)) {
     #urlbar[open] {
-      animation: fade-in 0.15s ease-in !important;
+      animation: fade-in 0.25s ease-in !important;
     }
   }
 
@@ -136,12 +136,10 @@
   @keyframes fade-in {
     from {
       opacity: 0;
-      filter: blur(10px);
     }
 
     to {
       opacity: 1;
-      filter: none;
     }
   }
 }
