@@ -62,20 +62,20 @@
 }
 */
 /* Search Result Hiding */
-@media (-moz-ref("arc-enable-urlbar.hide.results") {
+@media not (-moz-ref("arc-urlbar.hide.results", 0) {
   #urlbar {
-    @media (-moz-pref("arc-urlbar.hide.results", 0)) {
+    @media (-moz-pref("arc-urlbar.hide.results", 1)) {
       &:not([usertyping], [searchmode]) > .urlbarView {
         display: none !important;
       }
     }
 
     #urlbar-results div.urlbarView-row[row-selectable][type="top_site"] {
-      @media (-moz-pref("arc-urlbar.hide.results", 0)),
-      (-moz-pref("arc-urlbar.hide.results", 1)) {
+      @media (-moz-pref("arc-urlbar.hide.results", 1)),
+      (-moz-pref("arc-urlbar.hide.results", 2)) {
         display: none !important;
       }
-      @media (-moz-pref("arc-urlbar.hide.results", 2)) {
+      @media (-moz-pref("arc-urlbar.hide.results", 3)) {
         &:not([pinned]) {
           display: none !important;
         }
