@@ -206,7 +206,7 @@
     "defaultValue": true
   },
   {
-    "property": "arc-urlbar-hide-results",
+    "property": "arc-urlbar-hide-suggestions",
     "label": "Choose what to hide of *Search Suggestions* when opening URL Bar (~enable pref above to make this work~).",
     "defaultValue": 0,
     "type": "dropdown",
