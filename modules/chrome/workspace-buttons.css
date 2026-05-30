@@ -6,18 +6,18 @@
 }
 
 /*WORKSPACE MENU*/
-.zen-current-workspace-indicator {
-  background-color: light-dark(rgb(0 0 0 / 5%), rgb(255 255 255 / 5%));
-  border-radius: var(--arc-border-radius, 12px);
-  margin-bottom: 3px;
-  margin-top: -1px;
+.zen-current-workspace-indicator::before{
+  background-color: light-dark(rgba(0, 0, 0, 5%), rgba(255, 255, 255, 5%));
+  border-radius: var(--arc-border-radius, 12px) !important;
 }
 
-.zen-current-workspace-indicator:hover {
-  background-color: light-dark(rgb(0 0 0 / 10%), rgb(255 255 255 / 10%));
-  border-radius: var(--arc-border-radius, 12px);
+.zen-current-workspace-indicator:hover::before{
+  background: light-dark(rgba(0, 0, 0, 10%), rgba(255, 255, 255, 10%)) !important;
+  border-radius: var(--arc-border-radius, 12px) !important;
+  transition-duration: 0.25s !important;
+  box-shadow: 0 4px 12px -4px rgb(0 0 0 / 10%) !important;
+  z-index: -1 !important;
 }
-
 /* ------------------------------ Workspace Button Styles ------------------------------ */
 
 /* make workspace indicator have arc theme background on hover */
