@@ -15,18 +15,15 @@ tooltip {
 
 /*WORKSPACE MENU*/
 #\{fa1a05ed-8dcc-4f69-9dcc-ab724e7713f4\} > vbox:nth-child(2) {
-  margin-top: 6.5px !important;
-}
-#\{fa1a05ed-8dcc-4f69-9dcc-ab724e7713f4\} > vbox:nth-child(2)::before{
-  margin-right: 5px !important;
+  background-color: light-dark(rgb(0 0 0 / 5%), rgb(255 255 255 / 5%));
+  border-radius: var(--arc-border-radius, 12px);
 }
 
 #\{fa1a05ed-8dcc-4f69-9dcc-ab724e7713f4\} > vbox:nth-child(2):hover {
   background-color: light-dark(rgb(0 0 0 / 10%), rgb(255 255 255 / 10%));
   border-radius: var(--arc-border-radius, 12px);
-  transform: translateY(-1.5px) scale(1.01);
-  transition-duration: 0.45s !important;
-  box-shadow: 0 4px 12px -4px rgb(30 40 80 / 9%);
+  transition-duration: 0.25s !important;
+  box-shadow: 0 4px 12px -4px rgb(0 0 0 / 10%);
   z-index: 2;
 }
 
