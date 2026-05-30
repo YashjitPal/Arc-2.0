@@ -17,6 +17,9 @@ tooltip {
 #\{fa1a05ed-8dcc-4f69-9dcc-ab724e7713f4\} > vbox:nth-child(2) {
   margin-top: 6.5px !important;
 }
+#\{fa1a05ed-8dcc-4f69-9dcc-ab724e7713f4\} > vbox:nth-child(2)::before{
+  margin-right: 5px !important;
+}
 
 #\{fa1a05ed-8dcc-4f69-9dcc-ab724e7713f4\} > vbox:nth-child(2):hover {
   background-color: light-dark(rgb(0 0 0 / 10%), rgb(255 255 255 / 10%));
@@ -40,7 +43,7 @@ tooltip {
   }
 
   .tabbrowser-tab:hover {
-    transform: translateY(-1.25px) scale(1.05);
+    transform: /*translateY(-1.25px)*/ scale(1.05);
     box-shadow: 0 4px 12px -4px rgb(30 40 80 / 9%);
     z-index: 2;
   }
@@ -277,26 +280,18 @@ tooltip {
 /* === URL BAR & SEARCH BAR ENHANCEMENTS === */
 #urlbar {
   transition:
-    transform 0.2s cubic-bezier(0.22, 1.5, 0.36, 1),
-    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 0.2s ease !important;
-  position: relative;
+    transform 0.5s ease-out,
+    box-shadow 0.5s ease-out
 }
 
 #urlbar:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px -4px rgb(30 40 80 / 10%);
-  transition-duration: 1.25s !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px -4px rgb(0 0 0 / 10%);
+  transition-duration: 0.5s !important;
 }
 
-#urlbar:focus-within,
-#urlbar[focused="true"] {
-  transform: translateY(-2px) scale(1.01);
-  box-shadow: 0 6px 16px -6px rgb(50 70 160 / 15%);
-  transition-duration: 0.15s;
-}
 
-/* Typing indicator animation */
+/* Typing indicator animation 
 #urlbar[focused="true"]::after {
   content: "";
   position: absolute;
@@ -324,6 +319,7 @@ tooltip {
     background-position: 200% 50%;
   }
 }
+*/
 
 /* === CONTEXT MENU ENHANCEMENTS === */
 /* Menu Animations */
