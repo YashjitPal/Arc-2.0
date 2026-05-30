@@ -37,7 +37,7 @@
 }
 */
 /* arc's folder styling (Background and vertical bar) */
-@media not (-moz-pref("arc-folder-background")) {
+@media (-moz-pref("arc-folder-background")) {
   /* ------------------- Vertical Bar for Tab Group ------------------- */
 
   .tab-group-container {
