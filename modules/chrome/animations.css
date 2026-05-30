@@ -35,87 +35,87 @@ tooltip {
 @media not (-moz-pref("arc-disable-tab-hover-animations")) {
   .tabbrowser-tab {
     transition:
-      box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-      transform 1.25s cubic-bezier(0.22, 1.5, 0.36, 1),
-      opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1),
-      filter 0.2s ease !important;
-    box-shadow: none !important;
+      box-shadow 0.1s ease-out,
+      transform 0.1s ease-out !important;
+    box-shadow: 0 6px 12px -6px light-dark(rgb(255 255 255 / 10%), rgb(0 0 0 / 10%)) !important;
+    /*box-shadow: none !important;*/
   }
 
   .tabbrowser-tab:hover {
     transform: /*translateY(-1.25px)*/ scale(1.05);
-    box-shadow: 0 4px 12px -4px rgb(30 40 80 / 9%);
     z-index: 2;
   }
 
   /* Fade inactive tabs with breathing effect */
   .tabbrowser-tab:not([selected]) {
     opacity: 0.99;
-    animation: tab-breathe 3s ease-in-out infinite;
   }
-
-  @keyframes tab-breathe {
-    0%,
-    100% {
-      opacity: 0.82;
-    }
-
-    50% {
-      opacity: 0.75;
-    }
-  }
-
+  
   /* Enhanced tab opening animation */
   .tabbrowser-tab[fadein] {
-    animation: tab-bounce-in 0.34s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    animation: tab-bounce-in 0.25s ease-out;
   }
 
   @keyframes tab-bounce-in {
     0% {
       opacity: 0;
-      transform: scale(0.86) translateY(4px) rotateX(15deg);
+      transform: scale(0) translateY(0px) rotateX(0);
     }
 
-    60% {
-      opacity: 1;
-      transform: scale(1.09) translateY(-3px) rotateX(-5deg);
+    25% {
+      opacity: 0.25;
+      transform: scale(0.25) translateY(-0.25px);
+    }
+    
+    50% {
+      opacity: 0.5;
+      transform: scale(0.75) translateY(-0.75px);
+    }
+    
+    75% {
+      opacity: 0.75;
+      transform: scale(1.05) translateY(-1.05px);
     }
 
     100% {
       opacity: 1;
-      transform: scale(1) translateY(0) rotateX(0);
+      transform: scale(1) translateY(0);
     }
   }
 
   /* Enhanced tab closing animation */
   .tabbrowser-tab[closing] {
-    animation: tab-shrink-out 0.19s cubic-bezier(0.68, -0.6, 0.32, 1.6) forwards;
+    animation: tab-shrink-out 0.25s ease-out;
   }
 
   @keyframes tab-shrink-out {
     0% {
       opacity: 1;
-      transform: scale(1) rotateY(0deg);
-      max-width: 100%;
+      transform: scale(1);
+    }
+    
+    25% {
+      opacity: 0.75;
+      transform: scale(0.75);
     }
 
     50% {
-      opacity: 0.3;
-      transform: scale(0.9) rotateY(15deg);
+      opacity: 0.5;
+      transform: scale(0.5);
+    }
+    
+    75% {
+      opacity: 0.25;
+      transform: scale(0.25);
     }
 
     100% {
       opacity: 0;
-      transform: scale(0.7) rotateY(30deg);
-      max-width: 0;
+      transform: scale(0);
     }
   }
 
-  /* Pinned tab special pulse animation */
-  .tabbrowser-tab[pinned="true"] {
-    animation: pinned-pulse 3s ease-in-out infinite;
-  }
-
+ 
   @keyframes pinned-pulse {
     0%,
     100% {
@@ -286,7 +286,7 @@ tooltip {
 
 #urlbar:hover {
   transform: translateY(-2px) !important;
-  box-shadow: 0 4px 12px -4px rgb(0 0 0 / 10%);
+  box-shadow: 0 12px 12px -12px light-dark(rgb(255 255 255 / 10%), rgb(0 0 0 / 10%));
   transition-duration: 0.5s !important;
 }
 
@@ -334,10 +334,10 @@ tooltip {
     toolbarbutton.subviewbutton {
       .menu-text,
       .toolbarbutton-text {
-        font-size: 0.93em !important;
+        font-size: 1em !important;
         padding: 2px 5px !important;
         opacity: 1 !important;
-        transition: all 0.25s ease-in-out !important;
+        transition: all 0.25s ease-out !important;
       }
 
       &:hover > .menu-text,
@@ -350,20 +350,20 @@ tooltip {
     &:has(menu[open="true"]) {
       & > menuitem,
       menu:not([open="true"]) {
-        opacity: 0.3 !important;
+        opacity: 0.25 !important;
       }
     }
   }
 
   menupopup {
-    animation: context-menu-slide-in 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    animation: context-menu-slide-in 0.25s ease-out !important;
     transform-origin: top left;
   }
 
   @keyframes context-menu-slide-in {
     0% {
       opacity: 0;
-      transform: scale(0.92) translateY(-4px);
+      transform: scale(0.92) translateX(-5px);
     }
 
     100% {
@@ -375,34 +375,34 @@ tooltip {
   /* Context menu items with stagger delay */
   menuitem {
     transition:
-      background-color 0.12s ease,
-      transform 0.15s cubic-bezier(0.4, 0, 0.2, 1),
-      opacity 0.12s ease !important;
-    animation: menu-item-slide-in 0.2s ease-out backwards;
+      background-color 0.25s ease-out,
+      transform 0.25s ease-out,
+      opacity 0.25s ease-out !important;
+    animation: menu-item-slide-in 0.25s ease-out backwards;
   }
 
   menuitem:nth-child(1) {
-    animation-delay: 0.02s;
+    animation-delay: 0.03s;
   }
 
   menuitem:nth-child(2) {
-    animation-delay: 0.04s;
-  }
-
-  menuitem:nth-child(3) {
     animation-delay: 0.06s;
   }
 
+  menuitem:nth-child(3) {
+    animation-delay: 0.09s;
+  }
+
   menuitem:nth-child(4) {
-    animation-delay: 0.08s;
+    animation-delay: 0.12s;
   }
 
   menuitem:nth-child(5) {
-    animation-delay: 0.1s;
+    animation-delay: 0.15s;
   }
 
   menuitem:nth-child(n + 6) {
-    animation-delay: 0.12s;
+    animation-delay: 0.18s;
   }
 
   @keyframes menu-item-slide-in {
@@ -417,6 +417,7 @@ tooltip {
     }
   }
 }
+
 
 /* === NOTIFICATION ANIMATIONS === */
 /* Download notification */
