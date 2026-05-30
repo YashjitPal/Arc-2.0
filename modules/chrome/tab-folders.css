@@ -3,20 +3,17 @@
 
 
 /* Default group background */
+
 .tab-group-label-container {
   background-color: light-dark(rgb(0 0 0 / 5%), rgb(255 255 255 / 5%)) !important;
   border-radius: var(--arc-border-radius, 12px) !important;
-  margin-bottom: 5px !important;
+  margin-top: 5px !important;
 }
 
 .tab-group-label-container::before:hover {
   background-color: light-dark(rgb(0 0 0 / 10%), rgb(255 255 255 / 10%)) !important;
   box-shadow: 0 0 3px transparent !important;
   border-radius: var(--arc-border-radius, 12px) !important;
-  transition:
-    transform 1s scale(1.05),
-    background-color 0.25s ease,
-    box-shadow 0.25s ease-out !important;
 }
 
 
@@ -40,7 +37,7 @@
 }
 */
 /* arc's folder styling (Background and vertical bar) */
-@media (-moz-pref("arc-folder-background")) {
+@media not (-moz-pref("arc-folder-background")) {
   /* ------------------- Vertical Bar for Tab Group ------------------- */
 
   .tab-group-container {
@@ -76,7 +73,7 @@
     border-radius: var(--arc-border-radius, 12px);
     background-color: var(
       --arc-folder-bg,
-      light-dark(rgb(0 0 0 / 10%), rgb(255 255 255 / 12.5%))
+      light-dark(rgb(0 0 0 / 5%), rgb(255 255 255 / 10%))
     ) !important;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -92,9 +89,9 @@
     ),
   zen-folder:not(zen-folder zen-folder):has([selected="true"]),
   zen-folder:not(zen-folder zen-folder):has([folder-active="true"]) {
-    padding: 2px !important;
-    border-radius: 16px;
-    margin: 2px !important; /* Top-level margin */
+    padding: 5px !important;
+    border-radius: var(--arc-border-radius, 12px);
+    margin: 3.6px !important; /* Top-level margin */
   }
 
   /* ------------------ Subfolders ------------------ */
