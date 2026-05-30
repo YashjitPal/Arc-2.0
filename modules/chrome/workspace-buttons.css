@@ -5,6 +5,18 @@
   min-width: 26px !important;
 }
 
+/*WORKSPACE MENU*/
+.zen-current-workspace-indicator {
+  background-color: light-dark(rgb(0 0 0 / 5%), rgb(255 255 255 / 5%));
+  border-radius: var(--arc-border-radius, 12px);
+  margin-bottom: 3px;
+}
+
+.zen-current-workspace-indicator:hover {
+  background-color: light-dark(rgb(0 0 0 / 10%), rgb(255 255 255 / 10%));
+  border-radius: var(--arc-border-radius, 12px);
+}
+
 /* ------------------------------ Workspace Button Styles ------------------------------ */
 
 /* make workspace indicator have arc theme background on hover */
