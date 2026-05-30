@@ -499,15 +499,15 @@
   },
   {
     "type": "string",
-    "property": "arc-findbar-length",
-    "label": "Custom *length* for FindBar (~enter value between 750px and 1000px~).",
-    "defaultValue": "850px",
-    "placeholder": "850px"
+    "property": "arc-findbar-width",
+    "label": "Custom *width* for FindBar (~enter value between 900px and 1000px~).",
+    "defaultValue": "960px",
+    "placeholder": "960px"
   },
   {
     "type": "string",
     "property": "arc-findbar-breadth",
-    "label": "Custom *breadth* for FindBar (~enter value between 20px and 200px~).",
+    "label": "Custom *breadth/height* for FindBar (~enter value between 20px and 200px~).",
     "defaultValue": "50px",
     "placeholder": "50px"
   },
