@@ -227,7 +227,11 @@ tab[pending="true"]:hover {
     0 4px 10px light-dark(rgb(0 0 0 / 50%), rgb(0 0 0 / 50%)) !important;
 }
 
-/* - for essentials */
+/*ESSENTIALS*/
+.zen-essentials-container {
+  margin-top: -5px;
+}
+
 @media (-moz-pref("arc-essentials-unload-button")) {
   .tabbrowser-tab[zen-essential="true"]:not([pending], [glance-id]):hover
     .tab-reset-button {
