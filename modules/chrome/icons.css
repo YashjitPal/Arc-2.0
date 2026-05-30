@@ -389,32 +389,32 @@
 
 /* Animation triggers */
 #preferences-button:hover .toolbarbutton-icon {
-  animation: spin-once 1s cubic-bezier(0.35, 0.15, 0.12, 1) forwards !important;
+  animation: spin-once 0.5s cubic-bezier(0.35, 0.15, 0.12, 1) forwards !important;
   transform: scale(1.5);
 }
 
 :is(#reload-button, #panic-button):hover .toolbarbutton-icon {
-  animation: rotate-bounce-right 1s cubic-bezier(0.4, 0.2, 0.55, 1) forwards;
+  animation: rotate-bounce-right 0.5s cubic-bezier(0.4, 0.2, 0.55, 1) forwards;
   transform-origin: center;
 }
 
 #history-panelmenu:hover .toolbarbutton-icon {
   transform: scale(1.25);
-  transition-duration: 1s;
+  transition-duration: 0.5s;
   transform-origin: center;
 }
 
 #back-button:hover .toolbarbutton-icon {
-  animation: wiggle-left 1s ease-out;
+  animation: wiggle-left 0.5s ease-out;
 }
 
 #forward-button:hover .toolbarbutton-icon {
-  animation: wiggle-right 1s ease-out;
+  animation: wiggle-right 0.5s ease-out;
 }
 
 :is(#downloads-button, #bookmarks-menu-button):hover
   :is(.toolbarbutton-badge-stack, .toolbarbutton-icon) {
-    animation: bounce-down 1s ease-out;
+    animation: bounce-down 0.5s ease-out;
  }
 
 /*:is(#new-tab-button, #zen-create-new-button) .toolbarbutton-icon {
@@ -423,58 +423,58 @@
 }*/
 
 :is(#zen-create-new-button):hover {
-  animation: spin-once 1s cubic-bezier(0.35, 0.15, 0.12, 1) forwards;
+  animation: spin-once 0.5s cubic-bezier(0.35, 0.15, 0.12, 1) forwards;
   transform-origin: center;
   transform: scale(1.5);
 }
   
 :is(#PanelUI-menu-button):hover {
   transform: scale(1.25);
-  transition-duration: 1s !important;
+  transition-duration: 0.5s !important;
 }
   
 :is(#zen-toggle-compact-mode > toolbarbutton:nth-child(1)):hover {
   transform: scale(1.25);
-  transition-duration: 1s !important;
+  transition-duration: 0.5s !important;
 }
 
 :is(#home-button):hover {
   transform: scale(1.25);
   transform-origin: bottom;
-  transition-duration: 1s !important;
+  transition-duration: 0.5s !important;
 }
 
 :is(#fullscreen-button):hover {
   transform: scale(1.25);
   transform-origin: center;
-  transition-duration: 1s !important;
+  transition-duration: 0.5s !important;
 }
 
 :is(#library-button):hover {
   transform: scale(1.25);
-  transition-duration: 1s !important;
+  transition-duration: 0.5s !important;
 }
 
 #share-tab-button:hover,
 #alltabs-button:hover {
   position: relative;
   display: inline-block;
-  animation: bounce-up 1s ease-in-out;
+  animation: bounce-up 0.5s ease-in-out;
 }
 
 #sync-button:hover {
   transform: scale(1.25);
-  transition-duration: 1s !important;
+  transition-duration: 0.5s !important;
 }
 
 #screenshot-button:hover {
   transform: scale(1.25);
-  transition-duration: 1s !important;
+  transition-duration: 0.5s !important;
 }
 
 #privatebrowsing-button:hover {
   transform: scale(1.25);
-  transition-duration: 1s !important;
+  transition-duration: 0.5s !important;
 }
 
 
