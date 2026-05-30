@@ -528,11 +528,11 @@ scrollbox {
 
   findbar {
     position: fixed !important;
-    top: var(--arc-findbar-vertical, 50px) !important;
-    right: var(--arc-findbar-horizontal, 25px) !important;
+    top: var(--arc-findbar-vertical, 70px) !important;
+    right: var(--arc-findbar-horizontal, 50px) !important;
     height: var(--arc-findbar-breadth, 50px) !important;
     /* z-index: 1000 !important; */
-    min-width: var(--arc-findbar-length, 850px) !important;
+    min-width: var(--arc-findbar-length, 960px) !important;
     display: flex !important;
     align-items: center !important;
     gap: 0 !important;
