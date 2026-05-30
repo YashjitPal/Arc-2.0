@@ -8,7 +8,7 @@
 
 /* make workspace indicator have arc theme background on hover */
 .zen-current-workspace-indicator::before{
-  background-color: light-dark(rgba(0, 0, 0, 5%), rgba(255, 255, 255, 5%));
+  background-color: light-dark(rgba(0, 0, 0, 5%), rgba(255, 255, 255, 5%)) !important;
   border-radius: var(--arc-border-radius, 12px) !important;
 }
 
