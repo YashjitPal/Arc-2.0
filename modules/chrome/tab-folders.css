@@ -1,14 +1,24 @@
 /* ---------------------- Zen Folders Styling ---------------------- */
 
+
+
 /* Default group background */
-.tab-group-label-container::before {
-  background-color: var(--arc-color-min) !important;
+.tab-group-label-container {
+  background-color: light-dark(rgb(0 0 0 / 5%), rgb(255 255 255 / 5%)) !important;
+  border-radius: var(--arc-border-radius, 12px) !important;
+  margin-bottom: 5px !important;
+}
+
+.tab-group-label-container::before:hover {
+  background-color: light-dark(rgb(0 0 0 / 10%), rgb(255 255 255 / 10%)) !important;
   box-shadow: 0 0 3px transparent !important;
   border-radius: var(--arc-border-radius, 12px) !important;
   transition:
-    background-color 0.3s ease,
-    box-shadow 0.3s ease !important;
+    transform 1s scale(1.05),
+    background-color 0.25s ease,
+    box-shadow 0.25s ease-out !important;
 }
+
 
 /* Advanced Tab Groups Outline show up fixed */
 .tab-group-label {
