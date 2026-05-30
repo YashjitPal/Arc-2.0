@@ -228,9 +228,6 @@ tab[pending="true"]:hover {
 }
 
 /*ESSENTIALS*/
-.zen-essentials-container {
-  margin-top: -5px;
-}
 
 @media (-moz-pref("arc-essentials-unload-button")) {
   .tabbrowser-tab[zen-essential="true"]:not([pending], [glance-id]):hover
