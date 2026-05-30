@@ -14,12 +14,20 @@ tooltip {
 }
 
 /*WORKSPACE MENU*/
-#\{fa1a05ed-8dcc-4f69-9dcc-ab724e7713f4\} > vbox:nth-child(2) {
+#\{fa1a05ed-8dcc-4f69-9dcc-ab724e7713f4\} > vbox:nth-child(2),
+#\{08771faf-5fff-4680-a7f5-b1ecd5ba361f\} > vbox:nth-child(2),
+#\{b1d15b96-ad2d-4ea1-8304-038557403e4f\} > vbox:nth-child(2),
+#\{525df03c-3c2b-49c0-b59a-412da0c5ddf7\} > vbox:nth-child(2),
+#\{2843c426-4517-418c-9b8c-4a4496e637b7\} > vbox:nth-child(2){
   background-color: light-dark(rgb(0 0 0 / 5%), rgb(255 255 255 / 5%));
   border-radius: var(--arc-border-radius, 12px);
 }
 
-#\{fa1a05ed-8dcc-4f69-9dcc-ab724e7713f4\} > vbox:nth-child(2):hover {
+#\{fa1a05ed-8dcc-4f69-9dcc-ab724e7713f4\} > vbox:nth-child(2):hover,
+#\{08771faf-5fff-4680-a7f5-b1ecd5ba361f\} > vbox:nth-child(2):hover,
+#\{b1d15b96-ad2d-4ea1-8304-038557403e4f\} > vbox:nth-child(2):hover,
+#\{525df03c-3c2b-49c0-b59a-412da0c5ddf7\} > vbox:nth-child(2):hover,
+#\{2843c426-4517-418c-9b8c-4a4496e637b7\} > vbox:nth-child(2):hover {
   background-color: light-dark(rgb(0 0 0 / 10%), rgb(255 255 255 / 10%));
   border-radius: var(--arc-border-radius, 12px);
   transition-duration: 0.25s !important;
