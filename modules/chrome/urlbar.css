@@ -122,7 +122,7 @@
     /* fade-in animation */
     @media (-moz-pref("arc-urlbar-animation", 2)) {
       #urlbar[open] {
-        animation: fade-in 5s ease-out !important;
+        animation: fade-in 2.5s ease-out !important;
       }
     }
   }
