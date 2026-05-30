@@ -234,10 +234,11 @@
     "value": "number",
     "property": "arc-urlbar-animation",
     "label": "*Animation* for URL Bar when focused (~Won't work if Arcline-like URL Bar is enabled~).",
-    "defaultValue": 1,
+    "defaultValue": 2,
     "options": [
+      { "label": "Disable", "value": 0 },
       { "label": "Stretch", "value": 1 },
-      { "label": "Fade in", "value": 2 }
+      { "label": "Fade-in", "value": 2 }
     ]
   },
   {
