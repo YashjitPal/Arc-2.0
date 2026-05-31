@@ -76,12 +76,6 @@ unified-extensions-item.toolbaritem-combined-buttons,
   border-radius: var(--arc-border-radius, 12px) !important;
 }
 
-/*Workspace Menu Button*/
-toolbarbutton.zen-workspaces-actions {
-    border-radius: var(--arc-border-radius, 12px) !important;
-    overflow: hidden !important;
-}
-
 /* Fix icon border radius */
 .tab-icon-image,
 .toolbarbutton-icon,
