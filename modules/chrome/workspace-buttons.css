@@ -9,8 +9,8 @@
 /* make workspace indicator have arc theme background on hover */
 @media not (-moz-pref("arc-remove-workspace-indicator")) {
   .zen-current-workspace-indicator{
-    margin-top: -3px;
-    margin-bottom: 3.6px;
+    margin-top: -2px;
+    margin-bottom: 5px;
   }
 }  
 
