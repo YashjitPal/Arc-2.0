@@ -8,6 +8,12 @@ tab[label$=".pdf"] img.tab-icon-image {
   width: 30px !important;
 }
 
+/*ESSENTIALS*/
+
+.zen-essentials-container {
+  margin-top: -5.5px;
+}
+
 /* Colouring Essentials */
 /* Better Essentials look */
 .zen-essentials-container {
