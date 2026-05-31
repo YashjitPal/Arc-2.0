@@ -25,6 +25,12 @@
   z-index: -1 !important;
 }
 
+/*Workspace Indicator Button*/
+toolbarbutton.zen-workspaces-actions {
+    border-radius: var(--arc-border-radius, 12px) !important;
+    overflow: hidden !important;
+}
+
 /* Common animations */
 @keyframes emoji-pulse {
   0% {
