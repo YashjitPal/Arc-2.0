@@ -10,6 +10,12 @@ tab[label$=".pdf"] img.tab-icon-image {
 
 /*ESSENTIALS*/
 
+@media not (-moz-pref("arc-pinned-extension-mod")) {
+  .zen-essential-container {
+    margin-top: -3px;
+  }
+}
+
 .zen-essentials-container {
   margin-top: -3.54px;
   position: relative;
