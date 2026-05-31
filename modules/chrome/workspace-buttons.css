@@ -7,6 +7,10 @@
 /* ------------------------------ Workspace Button Styles ------------------------------ */
 
 /* make workspace indicator have arc theme background on hover */
+.zen-current-workspace-indicator{
+  margin-top: -4.5px;
+}
+
 .zen-current-workspace-indicator::before{
   background-color: light-dark(rgba(0, 0, 0, 5%), rgba(255, 255, 255, 5%)) !important;
   border-radius: var(--arc-border-radius, 12px) !important;
@@ -15,8 +19,6 @@
 .zen-current-workspace-indicator:hover::before{
   background: light-dark(rgba(0, 0, 0, 10%), rgba(255, 255, 255, 10%)) !important;
   border-radius: var(--arc-border-radius, 12px) !important;
-  transition-duration: 0.25s !important;
-  box-shadow: 0 4px 12px -4px rgb(0 0 0 / 10%) !important;
   z-index: -1 !important;
 }
 
