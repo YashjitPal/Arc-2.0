@@ -10,15 +10,17 @@ tab[label$=".pdf"] img.tab-icon-image {
 
 /*ESSENTIALS*/
 
-@media not (-moz-pref("arc-pinned-extension-mod")) {
+@media not (-moz-pref("arc-pinned-extensions-mod")) {
   .zen-essential-container {
-    margin-top: -3px;
+    margin-top: 3px;
   }
 }
 
-.zen-essentials-container {
-  margin-top: -3.54px;
-  position: relative;
+@media (-moz-pref("arc-pinned-extensions-mod")) {
+  .zen-essentials-container {
+    margin-top: -3.54px;
+    position: relative;
+  }
 }
 
 /* Colouring Essentials */
