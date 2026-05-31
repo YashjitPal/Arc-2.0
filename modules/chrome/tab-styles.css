@@ -11,7 +11,8 @@ tab[label$=".pdf"] img.tab-icon-image {
 /*ESSENTIALS*/
 
 .zen-essentials-container {
-  margin-top: -5.5px;
+  margin-top: -6px;
+  position: relative;
 }
 
 /* Colouring Essentials */
