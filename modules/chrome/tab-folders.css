@@ -1,13 +1,20 @@
 /* ---------------------- Zen Folders Styling ---------------------- */
 
-
-
 /* Default group background */
 
 .tab-group-label-container {
   background-color: light-dark(rgb(0 0 0 / 5%), rgb(255 255 255 / 5%)) !important;
   border-radius: var(--arc-border-radius, 12px) !important;
-  margin-top: 5px !important;
+}
+
+@media (-moz-pref("arc-remove-workspace-indicator")) {
+  .tab-group-label-container {
+    margin-top: -1px !important;
+  }
+}
+
+.tab-group-container{
+  margin-bottom: 7px;
 }
 
 .tab-group-label-container::before:hover {
