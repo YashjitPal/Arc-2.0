@@ -17,7 +17,7 @@ tab[label$=".pdf"] img.tab-icon-image {
 
 @media -moz-pref("arc-pinned-extensions-mod") and (not -moz-pref("arc-remove-workspace-indicator")) {
   .zen-essentials-container {
-    margin-top: -4px;
+    margin-top: -3px;
   }
 }
 
