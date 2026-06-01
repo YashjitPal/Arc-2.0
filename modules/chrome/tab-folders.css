@@ -7,14 +7,8 @@
   border-radius: var(--arc-border-radius, 12px) !important;
 }
 
-@media (-moz-pref("arc-remove-workspace-indicator")) {
-  .tab-group-label-container {
-    margin-top: -1px !important;
-  }
-}
-
 .tab-group-container{
-  margin-bottom: 7px;
+  margin-bottom: 6px;
 }
 
 .tab-group-label-container::before:hover {
