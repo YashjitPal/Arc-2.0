@@ -8,18 +8,16 @@ tab[label$=".pdf"] img.tab-icon-image {
   width: 30px !important;
 }
 
-/*ESSENTIALS*/
-
-@media not (-moz-pref("arc-pinned-extensions-mod")) {
-  .zen-essential-container {
-    margin-top: 3px;
+/*ESSENTIALS */
+@media -moz-pref("arc-pinned-extensions-mod") {
+  .zen-essentials-container {
+    margin-top: -3px;
   }
 }
 
-@media (-moz-pref("arc-pinned-extensions-mod")) {
+@media not -moz-pref("arc-pinned-extensions-mod") {
   .zen-essentials-container {
-    margin-top: -3.54px;
-    position: relative;
+    margin-top: 2px;
   }
 }
 
