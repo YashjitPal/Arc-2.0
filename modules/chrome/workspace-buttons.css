@@ -21,6 +21,11 @@
   }
 }
 
+toolbarbutton.zen-workspaces-actions {
+    border-radius: var(--arc-border-radius, 12px) !important;
+    overflow: hidden !important;
+}
+
 .zen-current-workspace-indicator::before{
   background-color: light-dark(rgba(0, 0, 0, 5%), rgba(255, 255, 255, 5%)) !important;
   border-radius: var(--arc-border-radius, 12px) !important;
