@@ -6,10 +6,11 @@
 }
 /* ------------------------------ Workspace Button Styles ------------------------------ */
 
-/* make workspace indicator have arc theme background on hover */
+/* Workspace Indicator */
 @media -moz-pref("arc-pinned-extensions-mod") {
   .zen-current-workspace-indicator {
-    margin-top: -3px !important;
+    margin-top: -2.5px;
+    margin-bottom: 5px;
   }
 }
 
