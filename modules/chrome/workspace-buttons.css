@@ -22,8 +22,8 @@
 }
 
 toolbarbutton.zen-workspaces-actions {
-    border-radius: var(--arc-border-radius, 12px) !important;
-    overflow: hidden !important;
+    border-radius: var(--arc-border-radius, 12px);
+    overflow: hidden;
 }
 
 .zen-current-workspace-indicator::before{
