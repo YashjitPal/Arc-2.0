@@ -21,7 +21,7 @@ tab[label$=".pdf"] img.tab-icon-image {
   }
 }
 
-@media not -moz-pref("arc-pinned-extensions-mod") {
+@media (not -moz-pref("arc-pinned-extensions-mod")) and (not -moz-pref("arc-remove-workspace-indicator")) {
   .zen-essentials-container {
     margin-top: 2px;
   }
@@ -29,7 +29,7 @@ tab[label$=".pdf"] img.tab-icon-image {
 
 @media -moz-pref("arc-remove-workspace-indicator") and (not -moz-pref("arc-pinned-extensions-mod")) {
   .zen-essentials-container {
-    margin-top: -0.1px;
+    margin-top: 1px;
   }
 }
 
