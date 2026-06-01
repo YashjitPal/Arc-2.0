@@ -873,6 +873,15 @@ slot:nth-child(1) {
 */
 
 /* Media Player */
+#zen-media-mute-button,
+#zen-media-focus-button,
+#zen-media-nexttrack-button,
+#zen-media-playpause-button,
+#zen-media-previoustrack-button {
+  border-radius: var(--arc-border-radius, 12px) !important;
+  overflow: hidden;
+}
+
 @media not (-moz-pref("arc-disable-media-player-styles")) {
   @media (-moz-pref("arc.media-controls-toolbar-bottom")) {
     #zen-media-controls-toolbar {
