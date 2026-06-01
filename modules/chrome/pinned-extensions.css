@@ -1,5 +1,24 @@
 /* ------------------------- PINNED EXTENSIONS ------------------------- */
 
+@media not (-moz-pref("arc-pinned-extensions-mod")) {
+  #zen-overflow-extensions-list toolbaritem {
+    border-radius: var(--arc-border-radius, 12px);
+    margin-top: -2px;
+    margin-bottom: -2px;
+    background-color: light-dark(
+        rgb(0 0 0 / 10%),
+        rgb(225 225 225 / 10%)
+      ) !important;
+    box-shadow: 0 0 3px light-dark(rgb(0 0 0 / 15%), rgb(255 255 255 / 10%)) !important;
+      border-radius: calc(var(--arc-border-radius, 12px) - 0.5px) !important;
+      transition:
+        background-color 0.3s ease,
+        box-shadow 0.3s ease !important;
+  }
+}
+ 
+
+
 @media (-moz-pref("arc-pinned-extensions-mod")) {
   /* Zen >1.12.6b Fix */
   :root[customizing] #TabsToolbar-customization-target {
@@ -12,7 +31,7 @@
   }
 
   :root[zen-single-toolbar="true"] #nav-bar {
-    margin-bottom: 6px !important; /* Adjust gap between urlbar and extensions */
+    margin-bottom: 8px !important; /* Adjust gap between urlbar and extensions */
   }
 
   /* Pinned extensions */
@@ -43,7 +62,7 @@
 
     /* Pinned Extensions */
     .unified-extensions-item {
-      margin-inline: 1px !important;
+      margin-inline: 2px !important;
       border-bottom: 0 !important;
       padding: 0 !important;
       height: 32px !important;
