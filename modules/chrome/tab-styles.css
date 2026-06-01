@@ -27,6 +27,12 @@ tab[label$=".pdf"] img.tab-icon-image {
   }
 }
 
+@media -moz-pref("arc-remove-workspace-indicator") and (not -moz-pref("arc-pinned-extensions-mod")) {
+  .zen-essentials-container {
+    margin-top: -0.1px;
+  }
+}
+
 /* Colouring Essentials */
 /* Better Essentials look */
 .zen-essentials-container {
