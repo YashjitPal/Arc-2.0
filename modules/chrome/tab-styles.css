@@ -9,9 +9,15 @@ tab[label$=".pdf"] img.tab-icon-image {
 }
 
 /*ESSENTIALS */
-@media -moz-pref("arc-pinned-extensions-mod") {
+@media -moz-pref("arc-pinned-extensions-mod") and -moz-pref("arc-remove-workspace-indicator") {
   .zen-essentials-container {
     margin-top: -3px;
+  }
+}
+
+@media -moz-pref("arc-pinned-extensions-mod") and (not -moz-pref("arc-remove-workspace-indicator")) {
+  .zen-essentials-container {
+    margin-top: -4px;
   }
 }
 
