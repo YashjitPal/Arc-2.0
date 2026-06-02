@@ -894,6 +894,15 @@ slot:nth-child(1) {
     }
   }
 
+  @media not (-moz-pref("arc.media-controls-toolbar-bottom")){
+    #zen-media-controls-toolbar {
+      &:hover {
+        height: 120px !important;
+        margin-top: -10px !important;
+      }
+    }
+  }
+
   /* Media player expanded layout */
   #zen-media-controls-toolbar {
     & .show-on-hover {
