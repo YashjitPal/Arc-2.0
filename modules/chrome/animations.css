@@ -1026,9 +1026,9 @@ slot:nth-child(1) {
       animation: animate-glow 5s cubic-bezier(0.1, 0.7, 0.5, 0.1) infinite;
     }
 
-    &:hover::after {
+    /* &:hover::after {
       height: 150%;
-    }
+    } */
   }
 
   /* Glow animation keyframes */
