@@ -7,16 +7,19 @@
   border-radius: var(--arc-border-radius, 12px) !important;
 }
 
-.tab-group-container{
-  margin-bottom: 6px;
-}
+@media not -moz-pref("arc-folder-bg") {
+  
+  .tab-group-container{
+    margin-bottom: 4px;
+    margin-top: 2px;
+  }
 
-.tab-group-label-container::before:hover {
-  background-color: light-dark(rgb(0 0 0 / 10%), rgb(255 255 255 / 10%)) !important;
-  box-shadow: 0 0 3px transparent !important;
-  border-radius: var(--arc-border-radius, 12px) !important;
+  .tab-group-label-container::before:hover {
+    background-color: light-dark(rgb(0 0 0 / 10%), rgb(255 255 255 / 10%)) !important;
+    box-shadow: 0 0 3px transparent !important;
+    border-radius: var(--arc-border-radius, 12px) !important;
+  }
 }
-
 
 /* Advanced Tab Groups Outline show up fixed */
 .tab-group-label {
@@ -38,7 +41,13 @@
 }
 */
 /* arc's folder styling (Background and vertical bar) */
-@media (-moz-pref("arc-folder-background")) {
+@media (-moz-pref("arc-folder-bg")) {
+  
+  .tab-group-container{
+    margin-bottom: 6px;
+    margin-top: 2px;
+}
+  
   /* ------------------- Vertical Bar for Tab Group ------------------- */
 
   .tab-group-container {
@@ -54,7 +63,9 @@
     width: 4px;
     opacity: 0.5;
     border-radius: 5px;
-    background: var(--zen-primary-color);
+    background: color-mix(
+      in srgb, 
+      var(--zen-primary-color) 70%, light-dark(black, white));
     transition:
       background 0.3s ease,
       transform 0.2s ease;
@@ -71,16 +82,26 @@
     content: "";
     position: absolute;
     inset: 0;
+    margin-block-start: -4.5px;
+    margin-block-end: 3.2px;
+    margin-inline: -2px;
     border-radius: var(--arc-border-radius, 12px);
     background-color: var(
       --arc-folder-bg,
-      light-dark(rgb(0 0 0 / 5%), rgb(255 255 255 / 10%))
+      light-dark(rgb(0 0 0 / 5%), rgb(255 255 255 / 5%))
     ) !important;
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
     z-index: -1;
   }
+  
+  zen-folder::before:hover {
+    background-color: var(
+      --arc-folder-bg, 
+      light-dark(rgb(0 0 0 / 10), rgb(255 255 255 / 10%)));
+  }
+  
 
   /* Common trigger: expanded label, selected child, or active tab */
   /* ------------------ Top-Level Folders ------------------ */
