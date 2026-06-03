@@ -895,6 +895,15 @@ slot:nth-child(1) {
     }
   }
 
+  @media not (-moz-pref("arc.media-controls-toolbar-bottom")){
+    #zen-media-controls-toolbar {
+      &:hover {
+        height: 120px !important;
+        margin-top: -10px !important;
+      }
+    }
+  }
+
   /* Media player expanded layout */
   #zen-media-controls-toolbar {
     & .show-on-hover {
@@ -1018,9 +1027,9 @@ slot:nth-child(1) {
       animation: animate-glow 5s cubic-bezier(0.1, 0.7, 0.5, 0.1) infinite;
     }
 
-    &:hover::after {
+    /* &:hover::after {
       height: 150%;
-    }
+    } */
   }
 
   /* Glow animation keyframes */
