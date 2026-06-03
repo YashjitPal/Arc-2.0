@@ -423,9 +423,9 @@
 }*/
 
 :is(#zen-create-new-button):hover {
-  animation: spin-once 0.5s cubic-bezier(0.35, 0.15, 0.12, 1) forwards;
+  animation: spin-once 0.25s ease-out;
   transform-origin: center;
-  transform: scale(1.5);
+  transform: scale(1.05);
 }
   
 :is(#PanelUI-menu-button):hover {
