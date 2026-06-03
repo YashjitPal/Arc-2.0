@@ -379,7 +379,8 @@
     "type": "checkbox",
     "value": "boolean",
     "label": "Enable *Background* for Folders.",
-    "property": "arc-folder-background"
+    "property": "arc-folder-bg",
+    "defaultValue": true
   },
   {
     "type": "string",
