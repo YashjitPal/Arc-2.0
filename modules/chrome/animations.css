@@ -904,6 +904,16 @@ slot:nth-child(1) {
     }
   }
 
+  /* Smooth Anim for the hover Music controls */
+  #zen-media-controls-toolbar{
+    transition:height 0.2s ease-in-out !important;
+  }
+  
+  /* Non Aligned Logo Fix*/
+  #zen-media-focus-button{
+    align-self: auto !important;
+  }
+
   /* Media player expanded layout */
   #zen-media-controls-toolbar {
     & .show-on-hover {
@@ -913,10 +923,10 @@ slot:nth-child(1) {
       padding-right: 6px;
       pointer-events: none;
       transition:
-        max-height 0.2s ease,
-        opacity 0.2s ease,
-        transform 0.2s ease,
-        padding 0.2s ease;
+        max-height 0.5s ease,
+        opacity 0.5s ease,
+        transform 0.5s ease,
+        padding 0.5s ease;
     }
   }
 
@@ -935,13 +945,17 @@ slot:nth-child(1) {
     #zen-media-controls-hbox {
       order: 0 !important;
       height: 0 !important;
-      overflow: hidden !important;
+      opacity: 0;
+      transition:all 0.2s !important;
+      pointer-events: none;
+/*       overflow: hidden !important; */
     }
 
     &:hover {
       #zen-media-controls-hbox {
         height: fit-content !important;
         opacity: 1 !important;
+        pointer-events: all;
       }
     }
   }
