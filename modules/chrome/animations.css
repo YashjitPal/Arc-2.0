@@ -979,38 +979,23 @@ slot:nth-child(1) {
       filter: blur(15px);
       opacity: 0 !important;
       transition: all 0.3s ease-in-out !important;
-      /* background: linear-gradient(
-        135deg,
-        color-mix(in srgb, var(--zen-primary-color) 10%, rgb(0 0 0 / 20%)),
-        var(--zen-primary-color),
-        color-mix(in srgb, var(--zen-primary-color) 25%, white),
-        var(--zen-primary-color),
-        light-dark(#fffd, rgb(0 0 0 / 50%)),
-        light-dark(#fffd, rgb(0 0 0 / 50%)),
-        var(--zen-primary-color),
-        color-mix(in srgb, var(--zen-primary-color) 50%, white),
-        color-mix(in srgb, var(--zen-primary-color) 25%, white),
-        var(--zen-primary-color),
-        color-mix(in srgb, var(--zen-primary-color) 25%, rgb(0 0 0 / 20%)),
-        light-dark(#fffd, rgb(0 0 0 / 50%)),
-        color-mix(in srgb, var(--zen-primary-color) 10%, rgb(0 0 0 / 20%)),
-        light-dark(#fffd, rgb(0 0 0 / 50%)),
-        color-mix(in srgb, var(--zen-primary-color) 75%, rgb(0 0 0 / 20%)),
-        color-mix(in srgb, var(--zen-primary-color) 50%, rgb(0 0 0 / 20%)),
-        color-mix(in srgb, var(--zen-primary-color) 25%, rgb(0 0 0 / 20%)),
-        color-mix(in srgb, var(--zen-primary-color) 10%, rgb(0 0 0 / 20%)),
-        light-dark(#fffd, rgb(0 0 0 / 50%))
-      ); */
-      background: linear-gradient( 
-        135deg, 
-        color-mix(in srgb, var(--zen-primary-color) 15%, rgba(0, 0, 0, 0.2)) 0%, 
-        color-mix(in srgb, var(--zen-primary-color) 40%, white) 12%, var(--zen-primary-color) 22%, 
-        light-dark(#fffd, rgba(0, 0, 0, 0.5)) 30%, var(--zen-primary-color) 40%, 
-        color-mix(in srgb, var(--zen-primary-color) 30%, white) 50%, var(--zen-primary-color) 60%,
-        light-dark(#fffd, rgba(0, 0, 0, 0.5)) 70%, var(--zen-primary-color) 78%, 
-        color-mix(in srgb, var(--zen-primary-color) 40%, white) 88%, 
-        color-mix(in srgb, var(--zen-primary-color) 15%, rgba(0, 0, 0, 0.2)) 100% );
-      background-size: 200% 200%;
+/*       background: linear-gradient( 135deg, color-mix(in srgb, var(--zen-primary-color) 10%, rgb(0 0 0 / 20%)), var(--zen-primary-color), color-mix(in srgb, var(--zen-primary-color) 25%, white), var(--zen-primary-color), light-dark(#fffd, rgb(0 0 0 / 50%)), light-dark(#fffd, rgb(0 0 0 / 50%)), var(--zen-primary-color), color-mix(in srgb, var(--zen-primary-color) 50%, white), color-mix(in srgb, var(--zen-primary-color) 25%, white), var(--zen-primary-color), color-mix(in srgb, var(--zen-primary-color) 25%, rgb(0 0 0 / 20%)), light-dark(#fffd, rgb(0 0 0 / 50%)), color-mix(in srgb, var(--zen-primary-color) 10%, rgb(0 0 0 / 20%)), light-dark(#fffd, rgb(0 0 0 / 50%)), color-mix(in srgb, var(--zen-primary-color) 75%, rgb(0 0 0 / 20%)), color-mix(in srgb, var(--zen-primary-color) 50%, rgb(0 0 0 / 20%)), color-mix(in srgb, var(--zen-primary-color) 25%, rgb(0 0 0 / 20%)), color-mix(in srgb, var(--zen-primary-color) 10%, rgb(0 0 0 / 20%)), light-dark(#fffd, rgb(0 0 0 / 50%)) ); */
+      
+      background-image: repeating-linear-gradient(
+        125deg,
+        light-dark(#fffd, rgba(0, 0, 0, 0.5)) 0,
+        light-dark(#fffd, rgba(0, 0, 0, 0.5)) 40px,
+        var(--zen-primary-color) 40px,
+        var(--zen-primary-color) 50px,
+        white 50px,
+        white 65px,
+        var(--zen-primary-color) 65px,
+        var(--zen-primary-color) 75px,
+        light-dark(#fffd, rgba(0, 0, 0, 0.5)) 75px,
+        light-dark(#fffd, rgba(0, 0, 0, 0.5)) 200px
+        );
+      
+      background-size: 200% 100%;
     }
   }
 
@@ -1047,7 +1032,8 @@ slot:nth-child(1) {
 
     &::after {
       opacity: 1 !important;
-      animation: animate-glow 5s cubic-bezier(0.1, 0.7, 0.5, 0.1) infinite;
+      animation: animate-glow 4s cubic-bezier(0.1, 0.7, 0.5, 0.1) infinite;
+/*       animation: animate-glow 3s cubic-bezier(.04,.32,.5,.28) infinite; */
     }
 
     /* &:hover::after {
@@ -1058,7 +1044,7 @@ slot:nth-child(1) {
   /* Glow animation keyframes */
   @keyframes animate-glow {
     0% {
-      background-position: 0% 20%;
+      background-position: 0% 50%;
     }
 
     100% {
