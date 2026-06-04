@@ -470,7 +470,8 @@
     "options": [
       { "label": "No background", "value": 0 },
       { "label": "No animation", "value": 1 },
-      { "label": "Capsule background", "value": 2 }
+      { "label": "Capsule background", "value": 2 },
+      { "label": "Disable", "value": 3}
     ]
   },
   {
