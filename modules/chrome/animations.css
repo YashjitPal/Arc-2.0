@@ -979,7 +979,7 @@ slot:nth-child(1) {
       filter: blur(15px);
       opacity: 0 !important;
       transition: all 0.3s ease-in-out !important;
-      background: linear-gradient(
+      /* background: linear-gradient(
         135deg,
         color-mix(in srgb, var(--zen-primary-color) 10%, rgb(0 0 0 / 20%)),
         var(--zen-primary-color),
@@ -1000,7 +1000,16 @@ slot:nth-child(1) {
         color-mix(in srgb, var(--zen-primary-color) 25%, rgb(0 0 0 / 20%)),
         color-mix(in srgb, var(--zen-primary-color) 10%, rgb(0 0 0 / 20%)),
         light-dark(#fffd, rgb(0 0 0 / 50%))
-      );
+      ); */
+      background: linear-gradient( 
+        135deg, 
+        color-mix(in srgb, var(--zen-primary-color) 15%, rgba(0, 0, 0, 0.2)) 0%, 
+        color-mix(in srgb, var(--zen-primary-color) 40%, white) 12%, var(--zen-primary-color) 22%, 
+        light-dark(#fffd, rgba(0, 0, 0, 0.5)) 30%, var(--zen-primary-color) 40%, 
+        color-mix(in srgb, var(--zen-primary-color) 30%, white) 50%, var(--zen-primary-color) 60%,
+        light-dark(#fffd, rgba(0, 0, 0, 0.5)) 70%, var(--zen-primary-color) 78%, 
+        color-mix(in srgb, var(--zen-primary-color) 40%, white) 88%, 
+        color-mix(in srgb, var(--zen-primary-color) 15%, rgba(0, 0, 0, 0.2)) 100% );
       background-size: 200% 200%;
     }
   }
