@@ -55,7 +55,7 @@
     "property": "arc-website-tint",
     "defaultValue": "light-dark(rgba(255,255,255,0.1), rgba(0,0,0,0.1))",
     "placeholder": "light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))",
-    "label": "Custom *Website Tint* for browser (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.1), rgba(0,0,0,0.1))`]; works if no Workspace Theme color is selected, only on transparent websites~)."
+    "label": "Custom *Webview Tint* for browser (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.1), rgba(0,0,0,0.1))`]; works if no Workspace Theme color is selected, only on transparent websites~)."
   },
   {
     "type": "string",
@@ -183,6 +183,11 @@
     "label": "**URL Bar Options**",
     "margin": "30px 0 30px 0",
     "size": "18px"
+  },
+  {
+    "type": "checkbox",
+    "property": "browser.taskbarTabs.enabled",
+    "label": "Enable button in URL Bar to *install* any webpage as **Web App**."
   },
   {
     "type": "checkbox",
@@ -346,11 +351,6 @@
     "type": "checkbox",
     "property": "arc.tab.defaultValue-audio-indicator",
     "label": "Disable *audio playing indicator* in tab playing media."
-  },
-  {
-    "type": "checkbox",
-    "property": "browser.tabs.fadeOutUnloadedTabs",
-    "label": "Fade *unloaded tabs* in the background."
   },
   {
     "type": "checkbox",
@@ -543,11 +543,6 @@
   },
   {
     "type": "checkbox",
-    "property": "arc.media-controls-toolbar-bottom",
-    "label": "Enable *Media Controls Toolbar* to go bottom."
-  },
-  {
-    "type": "checkbox",
     "property": "arc.pip.disabled",
     "label": "Disable *Arc stylings* on PiP."
   },
@@ -559,20 +554,33 @@
   },
   {
     "type": "checkbox",
-    "property": "arc.transparency-media",
-    "label": "Disable *glassy look* from sidebar media miniplayer."
-  },
-  {
-    "type": "checkbox",
-    "property": "arc-disable-player-glow-effect",
-    "label": "Disable *glow effects* on sidebar media miniplayer."
+    "property": "arc.media-controls-toolbar-bottom",
+    "label": "Enable *Media Mini Player* to go at *bottom* of Sidebar."
   },
   {
     "type": "checkbox",
     "property": "arc-disable-media-player-styles",
-    "label": "Enable *default Zen* styling for sidebar media miniplayer."
+    "label": "Disable *Arc styling* for Sidebar Media Player."
   },
-
+  {
+    "type": "checkbox",
+    "property": "arc-disable-player-glow-effect",
+    "label": "Disable *Glow Effects* on Sidebar Media Player."
+  },
+  {
+    "type": "string",
+    "property": "arc-mediaplayer-opacity",
+    "label": "*Background Color* for Sidebar Media Player. (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.2), rgba(0,0,0,0.2))`]~)",
+    "defaultValue": "light-dark(rgba(255,255,255,0.2), rgba(0,0,0,0.2))",
+    "placeholder": "light-dark(rgba(255,255,255,0.2), rgba(0,0,0,0.2))"
+  },
+  {
+    "type": "string",
+    "property": "arc-mediaplayer-blur",
+    "label": "Blur Effects on Glow Animation Effects for Media Player (~Set between 20px to 30px~).",
+    "defaultValue": "20px",
+    "placeholder": "20px"
+  },
   {
     "type": "separator",
     "label": "**Performance &  Memory Management**",
@@ -654,21 +662,21 @@
   },
   {
     "property": "arc.detaloadingbar.maincolor",
-    "label": "*Left color*",
+    "label": "*Left color* (~enter CSS color value in HEX or RGBA~)",
     "type": "string",
-    "defaultValue": "rgba(243,202,186)",
+    "defaultValue": "rgba(243,202,1)",
     "placeholder": "rgba(243,202,186,1)"
   },
   {
     "property": "arc.detaloadingbar.middlecolor",
-    "label": "*Middle color*",
+    "label": "*Middle color* (~enter CSS color value in HEX or RGBA~)",
     "type": "string",
     "defaultValue": "rgba(255,255,255,1)",
     "placeholder": "rgba(255,255,255,1)"
   },
   {
     "property": "arc.detaloadingbar.rightcolor",
-    "label": "*Right color* (enter CSS color value in HEX or RGBA)",
+    "label": "*Right color* (~enter CSS color value in HEX or RGBA~)",
     "type": "string",
     "defaultValue": "rgba(243,202,186,1)",
     "placeholder": "rgba(243,202,186,1)"
