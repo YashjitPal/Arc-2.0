@@ -8,6 +8,12 @@ tab[label$=".pdf"] img.tab-icon-image {
   width: 30px !important;
 }
 
+/*Tab Unload Style*/
+.tabbrowser-tab[pending=true] {
+    filter: grayscale(1);
+    opacity: 0.5;
+}
+
 /*ESSENTIALS */
 @media -moz-pref("arc-pinned-extensions-mod") and -moz-pref("arc-remove-workspace-indicator") {
   .zen-essentials-container {
