@@ -872,7 +872,7 @@ slot:nth-child(1) {
 }
 */
 
-/*----------------------MINI MEDIA PLAYER--------------------------*/
+/*----------------------SIDEBAR MEDIA PLAYER--------------------------*/
 /* Media Player */
 #zen-media-mute-button,
 #zen-media-focus-button,
@@ -964,7 +964,7 @@ slot:nth-child(1) {
     order: 1 !important;
   }
 
-  /* Media controls glow effect */
+    /* Media controls glow effect */
   @media not (-moz-pref("arc-disable-player-glow-effect")) {
     #zen-media-controls-toolbar::after {
       position: absolute;
@@ -972,11 +972,11 @@ slot:nth-child(1) {
       bottom: 0;
       left: 0;
       right: 0;
-      z-index: -1;
+      z-index: -1;  
       height: 100%;
       width: 100%;
       transform: scale(0.9) translateZ(0);
-      filter: blur(15px);
+      filter: blur(var(--arc-mediaplayer-blur, 20px));
       opacity: 0 !important;
       transition: all 0.3s ease-in-out !important;
 /*       background: linear-gradient( 
@@ -1003,15 +1003,15 @@ slot:nth-child(1) {
       ); */
       
       background-image: repeating-linear-gradient(
-        125deg,
+        132deg,
         rgba(0, 0, 0, 0) 20px,
         rgba(0, 0, 0, 0) 55px,
-        var(--zen-primary-color) 50px,
+        var(--zen-primary-color) 60px,
         var(--zen-primary-color) 90px,
-        light-dark(rgba(250, 250, 250, 1), #fffd) 80px,
-        light-dark(rgba(250, 250, 250, 1), #fffd) 130px,
+        light-dark(rgba(0, 0, 0, 1), rgba(255,255,255,1)) 52.5px,
+        light-dark(rgba(0, 0, 0, 1), rgba(255,255,255,1)) 105px,
         var(--zen-primary-color) 100px,
-        var(--zen-primary-color) 160px,
+        var(--zen-primary-color) 150px,
         rgba(0, 0, 0, 0) 130px,
         rgba(0, 0, 0, 0) 200px
         );
@@ -1024,24 +1024,13 @@ slot:nth-child(1) {
   #zen-media-info-vbox::before {
     display: none;
   }
-
-  @media (-moz-pref("arc.transparency-media")) {
-    :root {
-      --arc-media-color: light-dark(#fffd, #000d);
-    }
-  }
-
-  @media not (-moz-pref("arc.transparency-media")) {
-    :root {
-      --arc-media-color: light-dark(
-        rgb(255 255 255 / 10%),
-        rgb(0 0 0 / 20%)
-      ) !important;
-    }
-  }
+  
 
   #zen-media-controls-toolbar toolbaritem {
-    background-color: var(--arc-media-color) !important;
+    background-color: var(--arc-mediaplayer-opacity, light-dark(
+      rgb(255 255 255 / 20%),
+      rgb(0 0 0 / 20%)
+    )) !important;
   }
 
   /* Playing media styling */
@@ -1053,13 +1042,13 @@ slot:nth-child(1) {
 
     &::after {
       opacity: 1 !important;
-      animation: animate-glow 4s cubic-bezier(0.1, 0.7, 0.5, 0.1) infinite;
-/*       animation: animate-glow 3s cubic-bezier(.04,.32,.5,.28) infinite; */
+      animation: animate-glow 4.25s cubic-bezier(0.1, 0.7, 0.5, 0.1) infinite;
+      /* animation: animate-glow 3s cubic-bezier(.04,.32,.5,.28) infinite; */
     }
 
-    /* &:hover::after {
-      height: 150%;
-    } */
+    /**/ &:hover::after {
+      height: 100%;
+    } 
   }
 
   /* Glow animation keyframes */
