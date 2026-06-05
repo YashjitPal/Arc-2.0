@@ -372,7 +372,7 @@ browser {
       }
 
       @media (not (-moz-pref("zen.view.shift-down-site-on-hover"))) and (not ((-moz-pref("zen.view.experimental-no-window-controls")) or (not (-moz-pref("zen.view.hide-window-controls"))))) and (-moz-pref("zen.view.use-single-toolbar")) {
-        .browserSidebarContainer:is(.deck-selected, [zen-split="true"])
+        .browserSidebarContainer:is(.deck-selected, [zen-split="true"]):not(.zen-glance-overlay)
           .browserContainer {
           #tabbrowser-tabpanels[has-toolbar-hovered] & {
             margin-top: -34px !important;
@@ -404,7 +404,7 @@ browser {
         }
 
         @media (not (-moz-pref("zen.view.shift-down-site-on-hover"))) and (not ((-moz-pref("zen.view.experimental-no-window-controls")) or (not (-moz-pref("zen.view.hide-window-controls"))))) and (not (-moz-pref("zen.view.use-single-toolbar"))) {
-          .browserSidebarContainer:is(.deck-selected, [zen-split="true"])
+          .browserSidebarContainer:is(.deck-selected, [zen-split="true"]):not(.zen-glance-overlay)
             .browserContainer {
             #tabbrowser-tabpanels[has-toolbar-hovered] & {
               margin-top: calc(
@@ -498,7 +498,7 @@ browser {
       }
 
       @media (not (-moz-pref("zen.view.shift-down-site-on-hover"))) and (not ((-moz-pref("zen.view.experimental-no-window-controls")) or (not (-moz-pref("zen.view.hide-window-controls"))))) and (-moz-pref("zen.view.use-single-toolbar")) {
-        .browserSidebarContainer:is(.deck-selected, [zen-split="true"])
+        .browserSidebarContainer:is(.deck-selected, [zen-split="true"]):not(.zen-glance-overlay)
           .browserContainer {
           #tabbrowser-tabpanels[has-toolbar-hovered] & {
             margin-top: -34px !important;
@@ -520,7 +520,7 @@ browser {
         }
 
         @media (not (-moz-pref("zen.view.shift-down-site-on-hover"))) and (not ((-moz-pref("zen.view.experimental-no-window-controls")) or (not (-moz-pref("zen.view.hide-window-controls"))))) and (not (-moz-pref("zen.view.use-single-toolbar"))) {
-          .browserSidebarContainer:is(.deck-selected, [zen-split="true"])
+          .browserSidebarContainer:is(.deck-selected, [zen-split="true"]):not(.zen-glance-overlay)
             .browserContainer {
             #tabbrowser-tabpanels[has-toolbar-hovered] & {
               margin-top: calc(
