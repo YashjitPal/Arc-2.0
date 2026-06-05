@@ -339,6 +339,18 @@
   },
   {
     "type": "checkbox",
+    "label": "Enable *Unloaded* Tabs to be *faded*.",
+    "property": "browser.tabs.fadeOutUnloadedTabs",
+    "defaultValue": true
+  },
+  {
+    "type": "checkbox",
+    "label": "Grayscale Unloaded Tabs (~won't work unless above pref is enabled~).",
+    "property": "arc-grayscale-unloaded-tabs",
+    "defaultValue": false
+  },
+  {
+    "type": "checkbox",
     "property": "arc-disable-tab-hover-animations",
     "label": "Disable *animations* for hover and click on tabs."
   },
