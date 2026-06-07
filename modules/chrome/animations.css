@@ -878,7 +878,8 @@ slot:nth-child(1) {
 #zen-media-focus-button,
 #zen-media-nexttrack-button,
 #zen-media-playpause-button,
-#zen-media-previoustrack-button {
+#zen-media-previoustrack-button,
+#zen-media-close-button {
   border-radius: var(--arc-border-radius, 12px) !important;
   overflow: hidden;
 }
