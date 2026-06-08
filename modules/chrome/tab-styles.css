@@ -53,6 +53,16 @@ tab[label$=".pdf"] img.tab-icon-image {
   }
 }
 
+/* --- ZEN ESSENTIALS UNHOVERED & HOVERED STATES --- */
+#zen-essentials .tab-background {
+  background-color: light-dark(rgba(0,0,0,0.05), rgba(255,255,255,0.05)) !important;
+}
+
+/* Trigger background change when an essential tab element is hovered */
+#zen-essentials .tabbrowser-tab:hover .tab-background {
+  background-color: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.1)) !important;
+}
+
 #zen-essentials-container .tabbrowser-tab {
   @media (-moz-pref("zen.theme.essentials-favicon-bg")) {
     &[visuallyselected] .tab-background {
