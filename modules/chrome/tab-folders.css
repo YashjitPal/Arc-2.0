@@ -1,7 +1,7 @@
 /* ---------------------- Zen Folders Styling ---------------------- */
 
-/* Default group background */
-
+/* Default group background 
+*/
 .tab-group-label-container {
   background-color: light-dark(rgb(0 0 0 / 5%), rgb(255 255 255 / 5%)) !important;
   border-radius: var(--arc-border-radius, 12px) !important;
@@ -82,9 +82,9 @@
     content: "";
     position: absolute;
     inset: 0;
-    margin-block-start: -4.5px;
-    margin-block-end: 3.2px;
-    margin-inline: -2px;
+    margin-block-start: -0.61px;
+    margin-block-end: 6.3px;
+    margin-inline: 0px;
     border-radius: var(--arc-border-radius, 12px);
     background-color: var(
       --arc-folder-bg,
