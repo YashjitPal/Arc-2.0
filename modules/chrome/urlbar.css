@@ -159,6 +159,23 @@
     opacity: 1 !important;
   }
 }
+
+/* --- URL BAR HOVER & ACTIVE STATS --- */
+#urlbar .urlbar-background {
+  background-color: light-dark(rgba(0,0,0,0.05), rgba(255,255,255,0.05)) !important;
+}
+
+/* Trigger when the main URL bar is hovered */
+#urlbar:hover .urlbar-background {
+  background-color: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.1)) !important;
+}
+
+/* Trigger when the URL bar is focused or clicked */
+#urlbar[focused="true"] .urlbar-background,
+#urlbar:active .urlbar-background {
+  background-color: light-dark(rgba(0,0,0,0.125), rgba(255,255,255,0.125)) !important;
+}
+
 /* TRANSPARENCY */
 #urlbar[open] .urlbar-background {
   backdrop-filter: none !important;
