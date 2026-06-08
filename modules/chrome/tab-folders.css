@@ -111,9 +111,10 @@
     ),
   zen-folder:not(zen-folder zen-folder):has([selected="true"]),
   zen-folder:not(zen-folder zen-folder):has([folder-active="true"]) {
-    padding: 5px !important;
+    padding: 6px !important;
     border-radius: var(--arc-border-radius, 12px);
-    margin: 3.6px !important; /* Top-level margin */
+    margin-right: 3px !important; /* Top-level margin */
+    margin-left: 3px !important;
   }
 
   /* ------------------ Subfolders ------------------ */
