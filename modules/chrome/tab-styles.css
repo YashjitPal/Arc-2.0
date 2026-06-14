@@ -19,27 +19,38 @@ tab[label$=".pdf"] img.tab-icon-image {
 }
 
 /*ESSENTIALS */
-@media -moz-pref("arc-pinned-extensions-mod") and -moz-pref("arc-remove-workspace-indicator") {
-  .zen-essentials-container {
-    margin-top: -3px;
+@media -moz-pref("zen.view.use-single-toolbar") {
+  @media -moz-pref("arc-pinned-extensions-mod") and -moz-pref("arc-remove-workspace-indicator") {
+    .zen-essentials-container {
+      margin-top: -2px;
+    }
+  }
+
+  @media -moz-pref("arc-pinned-extensions-mod") and (not -moz-pref("arc-remove-workspace-indicator")) {
+    .zen-essentials-container {
+      margin-top: -4px;
+    }
+  }
+
+  @media (not -moz-pref("arc-pinned-extensions-mod")) and (not -moz-pref("arc-remove-workspace-indicator")) {
+    .zen-essentials-container {
+      margin-top: 1px;
+    }
+  }
+
+  @media -moz-pref("arc-remove-workspace-indicator") and (not -moz-pref("arc-pinned-extensions-mod")) {
+    .zen-essentials-container {
+      margin-top: 1px;
+    }
   }
 }
 
-@media -moz-pref("arc-pinned-extensions-mod") and (not -moz-pref("arc-remove-workspace-indicator")) {
-  .zen-essentials-container {
-    margin-top: -3px;
-  }
-}
-
-@media (not -moz-pref("arc-pinned-extensions-mod")) and (not -moz-pref("arc-remove-workspace-indicator")) {
-  .zen-essentials-container {
-    margin-top: 2px;
-  }
-}
-
-@media -moz-pref("arc-remove-workspace-indicator") and (not -moz-pref("arc-pinned-extensions-mod")) {
-  .zen-essentials-container {
-    margin-top: 1px;
+@media not -moz-pref("zen.view.use-single-toolbar") {
+  @media not -moz-pref("arc-remove-workspace-indicator") {
+    .zen-essentials-container {
+      margin-top: -1px;
+    }
+   
   }
 }
 
