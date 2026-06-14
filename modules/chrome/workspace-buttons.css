@@ -7,16 +7,25 @@
 /* ------------------------------ Workspace Button Styles ------------------------------ */
 
 /* Workspace Indicator */
-@media -moz-pref("arc-pinned-extensions-mod") {
-  .zen-current-workspace-indicator {
-    margin-top: -2.5px;
-    margin-bottom: 5px;
+@media -moz-pref("zen.view.use-single-toolbar") {
+  @media -moz-pref("arc-pinned-extensions-mod") {
+    .zen-current-workspace-indicator {
+      margin-top: -4.5px;
+      margin-bottom: 4.5px;
+    }
+  }
+
+  @media not -moz-pref("arc-pinned-extensions-mod") {
+    .zen-current-workspace-indicator {
+      margin-top: 0px;
+      margin-bottom: 3px;
+    }
   }
 }
 
-@media not -moz-pref("arc-pinned-extensions-mod") {
+@media not -moz-pref("zen.view.use-single-toolbar") {
   .zen-current-workspace-indicator {
-    margin-top: 2px;
+    margin-top: -1px;
     margin-bottom: 2px;
   }
 }
