@@ -89,7 +89,8 @@
     position: absolute;
     inset: 0;
     margin-block-end: 6.3px;
-    margin-inline: 2.5px;
+    margin-inline-start: 2px;
+    margin-inline-end: 2px;
     border-radius: var(--arc-border-radius, 12px);
     background-color: var(
       --arc-folder-bg,
