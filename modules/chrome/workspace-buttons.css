@@ -6,6 +6,10 @@
 }
 /* ------------------------------ Workspace Button Styles ------------------------------ */
 
+.zen-current-workspace-indicator {
+  margin-inline: -1px;
+}
+
 /* Workspace Indicator */
 @media -moz-pref("zen.view.use-single-toolbar") {
   @media -moz-pref("arc-pinned-extensions-mod") {
@@ -394,7 +398,7 @@ toolbarbutton.zen-workspaces-actions {
   .zen-current-workspace-indicator {
     display: none !important;
   }
-
+  
   #zen-tabs-wrapper {
     padding-top: 4px; /* Add missing padding */
   }
