@@ -1,4 +1,4 @@
-/* Windows 10 Transparency Fix */
+/* Windows 10 Transparency Fix with DWMGlassBlur*/
 #sidebar-box,
 #bookmarksPanel.sidebar-panel,
 #sidebar-header,
@@ -86,7 +86,7 @@
   }
 }
 
-/* -------------------- SINGLE TOOLBAR -------------------- */
+/* -------------------- SINGLE TOOLBAR -------------------- 
 
 @media (-moz-pref("zen.view.compact.hide-tabbar")) {
   :root[zen-single-toolbar="true"][zen-compact-mode="true"] #titlebar {
@@ -159,8 +159,8 @@
     height: calc(100% - (var(--zen-element-separation) * 3)) !important;
   }
 }
-
-/* -------------------- MULTI TOOLBAR -------------------- */
+*/
+/* -------------------- MULTI TOOLBAR -------------------- 
 
 @media (-moz-pref("zen.view.compact.hide-tabbar")) {
   :root[zen-sidebar-expanded="true"]:not(
@@ -240,7 +240,6 @@
     left: calc(var(--zen-element-separation) / 1) !important;
     width: calc(var(--arc-compact-sidebar-width, 22em)) !important;
     height: calc(100% - (var(--zen-element-separation) * 3)) !important;
-    /* Re-apply blur & visuals */
     background: light-dark(rgb(255 255 255 / 40%), rgb(0 0 0 / 40%)) !important;
     backdrop-filter: blur(32px) saturate(140%) !important;
     padding: 8px !important;
@@ -274,8 +273,8 @@
     right: calc(var(--zen-element-separation) / 0.67) !important;
   }
 }
-
-/* -------------------- COLLAPSED TOOLBAR -------------------- */
+*/
+/* -------------------- COLLAPSED TOOLBAR -------------------- 
 
 @media (-moz-pref("zen.view.compact.hide-tabbar")) {
   :root:not(
@@ -362,7 +361,6 @@
     left: calc(var(--zen-element-separation) / 1) !important;
     width: calc(var(--arc-compact-sidebar-width, 22em)) !important;
     height: calc(100% - (var(--zen-element-separation) * 3)) !important;
-    /* Re-apply blur & visuals */
     background: light-dark(rgb(255 255 255 / 30%), rgb(0 0 0 / 30%)) !important;
     backdrop-filter: blur(30px) saturate(145%) !important;
     padding: 8px !important;
@@ -398,7 +396,7 @@
     right: calc(var(--zen-element-separation) / 1) !important;
   }
 }
-
+*/
 /* ------------------------- GENERAL SIDEBAR -------------------------- */
 
 /* hide scrollbar */
