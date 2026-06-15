@@ -483,7 +483,8 @@
 
 #ipprotection-button,
 #alltabs-button,
-#sync-button {
+#sync-button,
+#zen-media-pip-button {
   border-radius: var(--arc-border-radius, 12px) !important;
   overflow: hidden !important;
 }
