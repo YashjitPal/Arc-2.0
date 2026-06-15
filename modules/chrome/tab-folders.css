@@ -7,13 +7,13 @@
 .tab-group-label-container {
   background-color: light-dark(rgb(0 0 0 / 5%), rgb(255 255 255 / 5%)) !important;
   border-radius: var(--arc-border-radius, 12px) !important;
-  margin-bottom: 4px !important;
+  margin-bottom: 3px !important;
 }
 
 @media not -moz-pref("arc-folder-bg") {
   
   .tab-group-container{
-    margin-bottom: 4px;
+    margin-bottom: 3px;
   }
 
   .tab-group-label-container::before:hover {
@@ -46,10 +46,14 @@
 @media (-moz-pref("arc-folder-bg")) {
   
   .tab-group-container{
-    margin-bottom: 6px;
-    margin-top: 2px;
-}
+    margin-bottom: 3px;
+    margin-top: 0px;
+  }
   
+  .tab-group-label-container {
+    margin-top: -2px !important;
+    margin-inline-start: 0px !important;
+  }
   /* ------------------- Vertical Bar for Tab Group ------------------- */
 
   .tab-group-container {
@@ -84,9 +88,8 @@
     content: "";
     position: absolute;
     inset: 0;
-    margin-block-start: -0.61px;
     margin-block-end: 6.3px;
-    margin-inline: 0px;
+    margin-inline: 2.5px;
     border-radius: var(--arc-border-radius, 12px);
     background-color: var(
       --arc-folder-bg,
