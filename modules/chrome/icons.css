@@ -353,7 +353,6 @@
 #bookmarks-menu-button,
 #privatebrowsing-button .toolbarbutton-icon {
   border-radius: var(--arc-border-radius, 12px) !important;
-  transition: background-color 0.2s ease-in-out !important;
 }
 
 /* Hover background */
@@ -477,7 +476,17 @@
   transition-duration: 0.5s !important;
 }
 
+#ipprotection-button:hover {
+  transform: scale(1.1);
+  transition-duration: 0.5s !important;
+}
 
+#ipprotection-button,
+#alltabs-button,
+#sync-button {
+  border-radius: var(--arc-border-radius, 12px) !important;
+  overflow: hidden !important;
+}
 
 /* Button border radius */
 #zen-sidebar-bottom-buttons
