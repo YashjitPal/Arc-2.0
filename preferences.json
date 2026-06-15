@@ -320,13 +320,6 @@
     "placeholder": 0.75
   },
   {
-    "type": "string",
-    "property": "arc-compact-sidebar-width",
-    "defaultValue": "20em",
-    "placeholder": "20em",
-    "label": "*Custom* Compact Sidebar size (~enter value between 15em and 30em as per your preference~)."
-  },
-  {
     "type": "separator",
     "label": "**Tabs &  Tab Animations**",
     "margin": "30px 0 30px 0",
