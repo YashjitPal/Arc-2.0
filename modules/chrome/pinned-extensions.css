@@ -6,10 +6,10 @@
     margin-top: -2px;
     margin-bottom: -2px;
     background-color: light-dark(
-        rgb(0 0 0 / 10%),
-        rgb(225 225 225 / 10%)
+        rgb(0 0 0 / 0.5%),
+        rgb(225 225 225 / 0.5%)
       ) !important;
-    box-shadow: 0 0 3px light-dark(rgb(0 0 0 / 15%), rgb(255 255 255 / 10%)) !important;
+    box-shadow: 0 0 3px light-dark(rgb(0 0 0 / 0.5%), rgb(255 255 255 / 0.5%)) !important;
       border-radius: calc(var(--arc-border-radius, 12px) - 0.5px) !important;
       transition:
         background-color 0.3s ease,
