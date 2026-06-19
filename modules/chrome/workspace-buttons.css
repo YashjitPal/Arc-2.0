@@ -20,9 +20,24 @@
   }
 
   @media not -moz-pref("arc-pinned-extensions-mod") {
-    .zen-current-workspace-indicator {
-      margin-top: 0px;
-      margin-bottom: 3px;
+     
+    /*Condition-1: Margin for Workspace Indicator only when Essentials are there*/
+    :root:has(
+    #zen-essentials:not([collapsed="true"]):not([hidden="true"]):not([style*="display: none"]),
+    .zen-essentials-container:not([collapsed="true"]):not([hidden="true"]):not([style*="display: none"])
+    ) .zen-current-workspace-indicator {
+      margin-top: 0px !important;
+      margin-bottom: 3px !important;
+    }
+
+    /*Condition-2: Margin for Workspace Indicator when Essentials are NOT there*/
+    :root:not(:has(
+     #zen-essentials .tabbrowser-tab:not([collapsed="true"]):not([hidden="true"]):not([style*="display: none"]), 
+    .zen-workspace-tabs-section .zen-essentials-container .tabbrowser-tab:not([collapsed="true"]):not([hidden="true"]):not([style*="display: none"])
+    )) .zen-current-workspace-indicator {
+      margin-top: 2px !important;
+      margin-bottom: 2px !important;
+    }
     }
   }
 }
