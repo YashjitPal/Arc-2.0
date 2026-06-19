@@ -20,11 +20,11 @@
   }
 
   @media not -moz-pref("arc-pinned-extensions-mod") {
-     
+
     /*Condition-1: Margin for Workspace Indicator only when Essentials are there*/
     :root:has(
-    #zen-essentials:not([collapsed="true"]):not([hidden="true"]):not([style*="display: none"]),
-    .zen-essentials-container:not([collapsed="true"]):not([hidden="true"]):not([style*="display: none"])
+      #zen-essentials:not([collapsed="true"]):not([hidden="true"]):not([style*="display: none"]),
+      .zen-essentials-container:not([collapsed="true"]):not([hidden="true"]):not([style*="display: none"])
     ) .zen-current-workspace-indicator {
       margin-top: 0px !important;
       margin-bottom: 3px !important;
@@ -32,20 +32,19 @@
 
     /*Condition-2: Margin for Workspace Indicator when Essentials are NOT there*/
     :root:not(:has(
-     #zen-essentials .tabbrowser-tab:not([collapsed="true"]):not([hidden="true"]):not([style*="display: none"]), 
-    .zen-workspace-tabs-section .zen-essentials-container .tabbrowser-tab:not([collapsed="true"]):not([hidden="true"]):not([style*="display: none"])
+      #zen-essentials .tabbrowser-tab:not([collapsed="true"]):not([hidden="true"]):not([style*="display: none"]),
+      .zen-workspace-tabs-section .zen-essentials-container .tabbrowser-tab:not([collapsed="true"]):not([hidden="true"]):not([style*="display: none"])
     )) .zen-current-workspace-indicator {
       margin-top: 2px !important;
       margin-bottom: 2px !important;
-    }
     }
   }
 }
 
 @media not -moz-pref("zen.view.use-single-toolbar") {
   .zen-current-workspace-indicator {
-    margin-top: -1px;
-    margin-bottom: 2px;
+    margin-top: -1px !important;
+    margin-bottom: 2px !important;
   }
 }
 
