@@ -51,7 +51,7 @@
   }
   
   .tab-group-label-container {
-    margin-top: -2px !important;
+    margin-top: 0px !important;
     margin-inline-start: 0px !important;
   }
   /* ------------------- Vertical Bar for Tab Group ------------------- */
