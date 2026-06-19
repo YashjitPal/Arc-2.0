@@ -13,7 +13,7 @@
 @media not -moz-pref("arc-folder-bg") {
   
   .tab-group-container{
-    margin-bottom: 3px;
+    margin-bottom: 4px;
   }
 
   .tab-group-label-container::before:hover {
@@ -88,7 +88,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    margin-block-end: 6.3px;
+    margin-block-end: 7px;
     margin-inline-start: 2px;
     margin-inline-end: 2px;
     border-radius: var(--arc-border-radius, 12px);
