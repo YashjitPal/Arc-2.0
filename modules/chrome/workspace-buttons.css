@@ -43,8 +43,8 @@
 
 @media not -moz-pref("zen.view.use-single-toolbar") {
   .zen-current-workspace-indicator {
-    margin-top: -1px !important;
-    margin-bottom: 2px !important;
+    margin-top: -1px;
+    margin-bottom: 2px;
   }
 }
 
