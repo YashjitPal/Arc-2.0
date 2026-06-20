@@ -25,7 +25,7 @@ tooltip {
   }
 
   .tabbrowser-tab:hover {
-    transform: /*translateY(-1.25px)*/ scale(1.04);
+    transform: /*translateY(-1.25px)*/ scale(1.03);
     z-index: 2 !important;
   }
 
