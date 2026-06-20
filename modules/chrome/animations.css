@@ -25,8 +25,8 @@ tooltip {
   }
 
   .tabbrowser-tab:hover {
-    transform: /*translateY(-1.25px)*/ scale(1.05);
-    z-index: 2;
+    transform: /*translateY(-1.25px)*/ scale(1.04);
+    z-index: 2 !important;
   }
 
   /* Fade inactive tabs with breathing effect */
