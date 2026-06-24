@@ -88,6 +88,7 @@
     content: "";
     position: absolute;
     inset: 0;
+    margin-block-start: 1px;
     margin-block-end: 7px;
     margin-inline-start: 2px;
     margin-inline-end: 2px;
