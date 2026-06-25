@@ -1,4 +1,7 @@
 /* ------------------------- PINNED EXTENSIONS ------------------------- */
+.unified-extensions-item stack{
+  background: none !important;
+}
 
 @media not (-moz-pref("arc-pinned-extensions-mod")) {
   #zen-overflow-extensions-list toolbaritem {
