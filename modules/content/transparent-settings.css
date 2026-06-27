@@ -1,118 +1,107 @@
-:root {
+:root{
   --zen-colors-tertiary: transparent !important;
   --zen-settings-secondary-background: transparent !important;
 }
 
-#preferences-root {
+#preferences-root, #search-container{
   background-color: transparent !important;
 }
 
-.sticky-container {
-  width: calc(
-    var(--page-main-content-width) + var(--main-margin-start) +
-      var(--main-margin-start)
-  ) !important;
+.sticky-container{
+  width: calc(var(--page-main-content-width) + var(--main-margin-start) + var(--main-margin-start)) !important;
   border-radius: 0 0 1em 1em !important;
 }
 
-html:has([data-l10n-id]) {
+html:has([data-l10n-id]){
   background-color: transparent !important;
 }
 
-.KEYJUMP_hint {
+.KEYJUMP_hint{
   border-radius: 100px !important;
-  background-color: #49fcbb !important;
+  background-color: #49FCBB !important;
   color: #000 !important;
-  font-family: "Product Sans", Sans, sans-serif !important;
+  font-family: 'Product Sans', Sans !important;
   font-weight: bold !important;
   box-shadow: #0008 0 0 10px !important;
   border: #0008 1px solid !important;
   transition: all 0.3s ease-in-out !important;
 }
 
-@-moz-document url("about:config"), url("about:support") {
-  html,
-  #toolbar {
+@-moz-document url(about:config), url(about:support){
+  html, #toolbar{
     background-color: transparent !important;
   }
-
-  tr,
-  table {
+  tr, table{
     background-color: transparent !important;
     border: none !important;
   }
-
-  tr {
-    outline: solid 1px #8882 !important;
+  tr{
+    outline: solid 1px #88888822 !important;
   }
 }
 
-groupbox {
-  /*   background: var(--zen-colors-tertiary) !important; */
-  /*   background: var(--zen-colors-border-contrast) !important; */
+groupbox{
+/*   background: var(--zen-colors-tertiary) !important; */
+/*   background: var(--zen-colors-border-contrast) !important; */
   border: none;
 }
 
-@-moz-document url("about:home"), url("about:newtab"), url("about:privatebrowsing") {
-  body,
-  .App {
-    background-color: #0000 !important;
+@-moz-document url(about:home), url(about:newtab), url(about:privatebrowsing) {
+  body, .App{
+    background-color: #00000000 !important;
   }
 
-  .top-sites-list,
-  .personalizeButtonWrapper {
+  .top-sites-list, .personalizeButtonWrapper{
     opacity: 0 !important;
     transition: opacity 0.3s ease-in-out;
 
-    &:hover {
+    &:hover{
       opacity: 1 !important;
     }
   }
-
-  .App > div:nth-child(2),
-  .wallpaper {
+  
+  .App > div:nth-child(2), .wallpaper{
     display: none !important;
   }
-
-  /*  no private hint  */
-  .info-border > .info {
+  
+/*  no private hint  */
+  .info-border > .info{
     display: none !important;
   }
-
-  /*  rounded search  */
-  #search-handoff-button {
+  
+/*  rounded search  */
+  #search-handoff-button{
     border-radius: 2em !important;
   }
-
-  /*  no zen text  */
-  .wordmark {
+  
+/*  no zen text  */
+  .wordmark{
     display: none !important;
   }
 }
 
-@-moz-document url("addons.mozilla.org") {
+@-moz-document url(addons.mozilla.org) {
   /* transparency */
-  html,
-  body,
-  nav,
-  header {
-    background: none !important;
-    border: none !important;
-    box-shadow: none !important;
-  }
-
-  /* darkreader */
-  :root {
-    --darkreader-background-ffffff: transparent !important;
-  }
-
-  /* no footer */
-  footer {
-    display: none !important;
-  }
+html, body, nav, header{
+  background-color: transparent !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
-/* transparency */
+/* darkreader */
+:root{
+  --darkreader-background-ffffff: transparent !important;
+}
+
+/* no footer */
+footer{
+  display: none !important;
+}
+}
+
+
+ /* transparency */
 /* .pdfViewer, body:has(.pdfViewer){
   background-color: transparent !important;
   background: none !important;
@@ -120,6 +109,7 @@ groupbox {
   box-shadow: none !important;
 } */
 
-body:has(#viewer.pdfViewer, #json-scrolling-panel) {
+
+body:has(#viewer.pdfViewer, #json-scrolling-panel){
   background-color: transparent !important;
 }
