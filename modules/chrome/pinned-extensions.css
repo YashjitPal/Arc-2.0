@@ -73,8 +73,8 @@
       flex-grow: 1 !important;
       order: -1 !important;
       background-color: light-dark(
-        rgb(0 0 0 / 10%),
-        rgb(225 225 225 / 15%)
+        rgb(0 0 0 / 7.5%),
+        rgb(225 225 225 / 7.5%)
       ) !important;
       box-shadow: 0 0 3px light-dark(rgb(0 0 0 / 15%), rgb(255 255 255 / 10%)) !important;
       border-radius: calc(var(--arc-border-radius, 12px) - 0.5px) !important;
@@ -109,8 +109,8 @@
     > toolbarbutton:not([id="tabs-newtab-button"]),
     > toolbaritem {
       background-color: light-dark(
-        rgb(0 0 0 / 10%),
-        rgb(255 255 255 / 15%)
+        rgb(0 0 0 / 7.5%),
+        rgb(255 255 255 / 7.5%)
       ) !important;
       box-shadow: 0 0 3px light-dark(rgb(0 0 0 / 15%), rgb(255 255 255 / 10%)) !important;
       border-radius: calc(var(--arc-border-radius, 12px) + 1px) !important;
