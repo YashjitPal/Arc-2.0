@@ -386,6 +386,11 @@
     background-color: transparent !important;
 }
 
+#downloads-button stack{
+  border-radius: var(--arc-border-radius, 12px) !important;
+  background: var(--toolbarbutton-hover-background) !important;
+}
+
 /* Animation triggers */
 #preferences-button:hover .toolbarbutton-icon {
   animation: spin-once 0.5s cubic-bezier(0.35, 0.15, 0.12, 1) forwards !important;
