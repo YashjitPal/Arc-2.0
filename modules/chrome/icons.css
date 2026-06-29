@@ -388,7 +388,7 @@
 
 #downloads-button stack{
   border-radius: var(--arc-border-radius, 12px) !important;
-  background: var(--toolbarbutton-hover-background) !important;
+  background: transparent !important;
 }
 
 /* Animation triggers */
