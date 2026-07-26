@@ -351,6 +351,7 @@
 #new-tab-button,
 #zen-create-new-button,
 #bookmarks-menu-button,
+#zen-library-button .toolbarbutton-icon,
 #privatebrowsing-button .toolbarbutton-icon {
   border-radius: var(--arc-border-radius, 12px) !important;
 }
