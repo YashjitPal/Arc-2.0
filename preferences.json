@@ -212,27 +212,8 @@
   },
   {
     "property": "arc-urlbar-hide-results",
-    "label": "Choose what to hide of *Search Suggestions* when opening URL Bar (~enable pref above to make this work~).",
-    "defaultValue": 0,
-    "type": "dropdown",
-    "options": [
-      {
-        "label": "Disable",
-        "value": 0
-      },
-      {
-        "label": "Hide All Suggestions",
-        "value": 1
-      },
-      {
-        "label": "Hide Only Top Site Suggestions",
-        "value": 2
-      },
-      {
-        "label": "Hide Only Non-Pinned Tabs Suggestions",
-        "value": 3
-      }
-    ]
+    "label": "*Hide* Search Suggestions on pressing Ctrl+T.",
+    "type": "checkbox"
   },
   {
     "type": "dropdown",
