@@ -63,26 +63,23 @@
 */
 
 /* Search Suggestions Hiding */
-@media not (-moz-pref("arc-urlbar-hide-results", 0)) {
-  #urlbar {
-    @media (-moz-pref("arc-urlbar-hide-results", 1)) {
-      &:not([usertyping]) > .urlbarView {
-        display: none !important;
-      }
-    }
-
-    #urlbar-results div.urlbarView-row[row-selectable][type="top_site"] {
-      @media (-moz-pref("arc-urlbar-hide-results", 1)),
-      (-moz-pref("arc-urlbar-hide-results", 2)) {
-        display: none !important;
-      }
-      @media (-moz-pref("arc-urlbar-hide-results", 3)) {
-        &:not([pinned]) {
-          display: none !important;
-        }
-      }
-    }
+@media (-moz-pref("arc-urlbar-hide-results")) {
+  #urlbar > .urlbar-input-container {
+    order: 1 !important;
   }
+    /* Hide urlbar results */
+  .urlbarView-row>.urlbarView-row-inner .urlbarView-type-icon {
+    margin: 0px !important;
+    position: absolute !important;
+    right: 15px !important;
+  }
+  /* urlbar search result */
+  .urlbarView-body-inner {
+    display: none !important;
+  }
+  .urlbarView-body-inner:has(.urlbarView-row[selected]) {
+    display: list-item !important;
+  } 
 }
 
 /* ------------------ URLBAR Styling ------------------ */
