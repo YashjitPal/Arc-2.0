@@ -417,14 +417,14 @@
     "defaultValue": 2,
     "options": [
       { "label": "No animation", "value": 0 },
-      { "label": "Bounce", "value": 1 },
-      { "label": "Bouncier", "value": 2 },
-      { "label": "More bounce", "value": 3 },
+      { "label": "Default Zen Animation", "value": 1 },
+      { "label": "Smooth Bounce", "value": 2 },
+      { "label": "Bounce Up", "value": 3 },
       {
         "label": "Smooth crossfade (scroll in split-mode might not work)",
         "value": 4
       },
-      { "label": "Zoom out effect", "value": 5 }
+      { "label": "Zoom out", "value": 5 }
     ]
   },
   {
