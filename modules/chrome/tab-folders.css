@@ -1,6 +1,12 @@
 /* ---------------------- Zen Folders Styling ---------------------- */
 
-
+#zen-dragover-background {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  border-radius: var(--arc-border-radius, 12px) !important;
+  width: 97% !important;
+  margin-left: 6px !important;
+  margin-bottom: 3px !important;
+}
 
 /* Default group background 
 */
