@@ -1,4 +1,3 @@
-/* Windows 10 Transparency Fix with DWMGlassBlur*/
 #sidebar-box,
 #bookmarksPanel.sidebar-panel,
 #sidebar-header,
@@ -7,6 +6,10 @@
 #header {
   border: none !important;
   box-shadow: none !important;
+}
+
+#tabs-newtab-button .toolbarbutton-icon {
+  border-radius: var(--arc-border-radius, 12px) !important;
 }
 
 /* Radius */
