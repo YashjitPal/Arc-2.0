@@ -927,12 +927,12 @@ slot:nth-child(1) {
 
 /*----------------------SIDEBAR MEDIA PLAYER--------------------------*/
 /* Media Player */
-#zen-media-mute-button,
-#zen-media-focus-button,
-#zen-media-nexttrack-button,
-#zen-media-playpause-button,
-#zen-media-previoustrack-button,
-#zen-media-close-button {
+.zen-media-mute-button,
+.zen-media-focus-button,
+.zen-media-nexttrack-button,
+.zen-media-playpause-button,
+.zen-media-previoustrack-button,
+.zen-media-close-button {
   border-radius: var(--arc-border-radius, 12px) !important;
   overflow: hidden;
 }
@@ -944,7 +944,7 @@ slot:nth-child(1) {
     }
 
     #zen-media-controls-toolbar:hover + #zen-sidebar-foot-buttons {
-      transform: translateY(-35px);
+      transform: translateY(-25px);
       transition: transform 0.2s ease-in-out !important;
     }
   }
@@ -960,11 +960,11 @@ slot:nth-child(1) {
 
   /* Smooth Anim for the hover Music controls */
   #zen-media-controls-toolbar{
-    transition:height 0.2s ease-in-out !important;
+    transition:height 0.25s ease-in-out !important;
   }
   
   /* Non Aligned Logo Fix*/
-  #zen-media-focus-button{
+  .zen-media-focus-button{
     align-self: auto !important;
   }
 
@@ -985,9 +985,9 @@ slot:nth-child(1) {
   }
 
   /* Media buttons hover effect */
-  #zen-media-buttons-hbox > toolbarbutton {
+  .zen-media-buttons-hbox > toolbarbutton {
     opacity: 0 !important;
-    transition: opacity 0.4s ease-in-out !important;
+    transition: opacity 0.25s ease-in-out !important;
 
     &:hover {
       opacity: 1 !important;
@@ -996,17 +996,17 @@ slot:nth-child(1) {
 
   /* Media controls hover expansion */
   #zen-media-controls-toolbar {
-    #zen-media-controls-hbox {
+    .zen-media-controls-hbox {
       order: 0 !important;
       height: 0 !important;
       opacity: 0;
-      transition:all 0.2s !important;
+      transition:all 0.25s !important;
       pointer-events: none;
 /*       overflow: hidden !important; */
     }
 
     &:hover {
-      #zen-media-controls-hbox {
+      .zen-media-controls-hbox {
         height: fit-content !important;
         opacity: 1 !important;
         pointer-events: all;
@@ -1014,7 +1014,7 @@ slot:nth-child(1) {
     }
   }
 
-  #zen-media-main-vbox > vbox {
+  .zen-media-main-vbox > vbox {
     order: 1 !important;
   }
 
@@ -1032,7 +1032,7 @@ slot:nth-child(1) {
       transform: scale(0.9) translateZ(0);
       filter: blur(var(--arc-mediaplayer-blur, 20px));
       opacity: 0 !important;
-      transition: all 0.3s ease-in-out !important;
+      transition: all 0.25s ease-in-out !important;
 /*       background: linear-gradient( 
         135deg,
         color-mix(in srgb, var(--zen-primary-color) 10%, rgb(0 0 0 / 20%)), 
@@ -1075,7 +1075,7 @@ slot:nth-child(1) {
   }
 
   /* Background Line Fix */
-  #zen-media-info-vbox::before {
+  .zen-media-info-vbox::before {
     display: none;
   }
   
@@ -1088,10 +1088,10 @@ slot:nth-child(1) {
   }
 
   /* Playing media styling */
-  #zen-media-controls-toolbar.playing {
-    padding: 16px 24px;
+  #zen-media-controls-toolbar:has(.zen-media-card.playing) {
+    padding: 18px 24px;
     position: relative;
-    border-radius: 8px;
+    border-radius: var(--arc-border-radius), 12px;
     box-shadow: 0 0 0 1px rgb(0 0 0 / 1%);
 
     &::after {
@@ -1100,9 +1100,9 @@ slot:nth-child(1) {
       /* animation: animate-glow 3s cubic-bezier(.04,.32,.5,.28) infinite; */
     }
 
-    /**/ &:hover::after {
+    /* &:hover::after {
       height: 100%;
-    } 
+    } */
   }
 
   /* Glow animation keyframes */
@@ -1120,3 +1120,4 @@ slot:nth-child(1) {
     margin-bottom: 5px !important;
   }
 }
+
