@@ -86,7 +86,7 @@ toolbarbutton.zen-workspaces-actions {
     container-type: initial !important;
     width: auto !important;
     padding: 3px !important;
-    border-radius: calc(var(--arc-border-radius, 12px) - 2px) !important;
+    border-radius: var(--arc-border-radius, 12px) !important;
     background-color: light-dark(
       rgb(25 25 25 / 15%),
       rgb(255 255 255 / 8%)
@@ -107,7 +107,7 @@ toolbarbutton.zen-workspaces-actions {
 
   /* Default subview button styling */
   #zen-workspaces-button .subviewbutton {
-    border-radius: calc(var(--arc-border-radius, 12px) - 4.5px) !important;
+    border-radius: var(--arc-border-radius, 12px) !important;
     font-size: 16px !important;
     opacity: 0.75 !important;
     filter: grayscale(var(--arc-workspace-grayscale, 100%)) !important;
@@ -171,7 +171,7 @@ toolbarbutton.zen-workspaces-actions {
       position: relative !important;
       overflow: visible !important;
       z-index: 1;
-      border-radius: calc(var(--arc-border-radius, 12px) - 2px) !important;
+      border-radius: var(--arc-border-radius, 12px) !important;
       background-color: transparent !important;
       box-shadow: 0 2px 12px rgb(255 255 255 / 0%) !important;
       transition:
@@ -289,7 +289,7 @@ toolbarbutton.zen-workspaces-actions {
       position: relative !important;
       overflow: visible !important;
       z-index: 1;
-      border-radius: calc(var(--arc-border-radius, 12px) - 2px) !important;
+      border-radius: var(--arc-border-radius, 12px) !important;
       background-color: light-dark(
         rgb(0 0 0 / 15%),
         rgb(255 255 255 / 5%)
@@ -323,7 +323,7 @@ toolbarbutton.zen-workspaces-actions {
       align-items: center !important;
       justify-content: center !important;
       height: 32px !important;
-      border-radius: var(--arc-border-radius) !important;
+      border-radius: var(--arc-border-radius, 12px) !important;
       font-size: 1.25em !important;
       transform: scale(1) !important;
       transform-origin: bottom center !important;
