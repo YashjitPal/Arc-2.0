@@ -1091,7 +1091,7 @@ slot:nth-child(1) {
   #zen-media-controls-toolbar:has(.zen-media-card.playing) {
     padding: 18px 24px;
     position: relative;
-    border-radius: var(--arc-border-radius), 12px;
+    border-radius: var(--arc-border-radius, 12px) !important;
     box-shadow: 0 0 0 1px rgb(0 0 0 / 1%);
 
     &::after {
