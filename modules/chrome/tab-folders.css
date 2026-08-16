@@ -247,13 +247,12 @@
 
     border-radius: var(--arc-border-radius) !important;
     margin: 2px;
-    transition: max-height 0.75s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden !important;
 
     & .tab-group-label-container {
       flex: 0 0 auto !important;
-      position: sticky !important;
-      top: 0 !important;
+
+      position: relative !important;
       z-index: 1000 !important;
 
       --tab-group-color-pale: transparent !important;
@@ -346,7 +345,12 @@
 
     & tab:not([zen-glance-tab]) {
       margin-left: 18px !important;
-      overflow: visible !important;
+
+      overflow: visible clip !important;
+      max-height: var(--tab-height-with-margin-padding, 45px);
+      transition:
+        max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.2s ease-out;
 
       &:active {
         transition: scale 0.03s !important;
@@ -393,8 +397,19 @@
     }
 
     &[collapsed] {
-      max-height: 36px !important;
-      transition: max-height 0.3s cubic-bezier(0, 1, 0, 1.07);
+      & .tab-group-container {
+        margin-block: 0 !important;
+      }
+
+      & .tab-group-container > *,
+      & > tab {
+        max-height: 0 !important;
+        min-height: 0 !important;
+
+        padding-block: 0 !important;
+        margin-block: 0 !important;
+        overflow-y: clip !important;
+      }
 
       & tab {
         transform: translateY(-30px) !important;
@@ -464,13 +479,6 @@
       }
     }
 
-    /* Expand when NOT collapsed */
-    &:not([collapsed]) {
-      max-height: 500px !important;
-      overflow: scroll !important;
-      scrollbar-width: none !important;
-    }
-
     tab-group:has(tab[hidden]) {
       display: none !important;
     }
@@ -481,7 +489,8 @@
       tab[style=""] {
         transition:
           transform 0.3s ease-out,
-          opacity 0.25s ease-out !important;
+          opacity 0.25s ease-out,
+          max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
       }
     }
   }
