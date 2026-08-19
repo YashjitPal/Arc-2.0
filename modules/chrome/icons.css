@@ -123,7 +123,7 @@
 }
 
 * {
-  font-family: var(--arc-font), sans-serif;
+  font-family: var(--arc-font), sans-serif !important;
 }
 
 #zen-current-workspace-indicator #zen-current-workspace-indicator-icon {
@@ -434,11 +434,16 @@
 }
   
 :is(#PanelUI-menu-button):hover {
-  transform: scale(1.25);
+  transform: scale(1.15);
   transition-duration: 0.5s !important;
 }
   
 :is(#zen-toggle-compact-mode > toolbarbutton:nth-child(1)):hover {
+  transform: scale(1.15);
+  transition-duration: 0.5s !important;
+}
+
+#zen-library-button:hover {
   transform: scale(1.25);
   transition-duration: 0.5s !important;
 }
