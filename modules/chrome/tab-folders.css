@@ -94,7 +94,6 @@
     content: "";
     position: absolute;
     inset: 0;
-    margin-block-start: 1px;
     margin-block-end: 7px;
     margin-inline-start: 2px;
     margin-inline-end: 2px;
@@ -252,7 +251,8 @@
     & .tab-group-label-container {
       flex: 0 0 auto !important;
 
-      position: relative !important;
+      position: sticky !important;
+      top: 0 !important;
       z-index: 1000 !important;
 
       --tab-group-color-pale: transparent !important;
@@ -312,7 +312,7 @@
           left: 8px !important;
         }
 
-        top: 25% !important;
+        top: 21% !important;
         width: 20px !important;
         height: 20px !important;
         @media (-moz-pref("tab.groups.theme-folders")) {
@@ -430,7 +430,6 @@
           left: 8px !important;
         }
 
-        top: 21% !important;
         width: 20px !important;
         height: 20px !important;
         @media (not (-moz-pref("tab.groups.fill-folders"))) {
@@ -475,6 +474,47 @@
             width: 13px !important;
             height: 13px !important;
           }
+        }
+      }
+    }
+
+    /* Expand when NOT collapsed */
+    &:not([collapsed]) {
+      max-height: 500px !important;
+      overflow: scroll !important;
+      scrollbar-width: none !important;
+
+      /* At 5% the sticky label is see-through; its own opacity does the occluding. */
+      & > .tab-group-label-container {
+        background-color: light-dark(
+          rgb(250 250 250 / 80%),
+          rgb(22 22 24 / 80%)
+        ) !important;
+        backdrop-filter: blur(12px) saturate(180%) !important;
+
+        /* Keep Arc's hover feedback readable over the denser base. */
+        &:hover {
+          background-color: light-dark(
+            rgb(255 255 255 / 92%),
+            rgb(44 44 48 / 92%)
+          ) !important;
+        }
+
+        /* Fade tail below the label; the base rule sets this pseudo to display: none. */
+        &::after {
+          content: "" !important;
+          display: block !important;
+          position: absolute !important;
+          inset: 100% 0 auto !important;
+          height: 16px !important;
+          padding: 0 !important;
+          pointer-events: none !important;
+          background-color: light-dark(
+            rgb(250 250 250 / 70%),
+            rgb(22 22 24 / 70%)
+          ) !important;
+          backdrop-filter: blur(8px) !important;
+          mask-image: linear-gradient(to bottom, black, transparent) !important;
         }
       }
     }
@@ -635,5 +675,10 @@
 
   tab-group:not([split-view-group]) .tab-group-label-container > label {
     margin-top: 2.8px !important;
+  }
+
+  /* Firefox pads this container when expanded (tabs.css), lifting the text while the icon stays. */
+  tab-group:not([split-view-group]) > .tab-group-label-container {
+    padding-block-end: 0 !important;
   }
 }

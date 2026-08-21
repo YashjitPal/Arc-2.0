@@ -350,8 +350,8 @@
 #panic-button,
 #new-tab-button,
 #zen-create-new-button,
+#zen-library-button,
 #bookmarks-menu-button,
-#zen-library-button .toolbarbutton-icon,
 #privatebrowsing-button .toolbarbutton-icon {
   border-radius: var(--arc-border-radius, 12px) !important;
 }
@@ -366,6 +366,7 @@
 #panic-button:hover,
 #new-tab-button:hover,
 #zen-create-new-button:hover,
+#zen-library-button:hover,
 #bookmarks-menu-button:hover {
   background-color: var(--toolbarbutton-hover-background) !important;
 }
@@ -380,6 +381,7 @@
     #panic-button,
     #new-tab-button,
     #zen-create-new-button,
+    #zen-library-button,
     #bookmarks-menu-button
   ):hover
   .toolbarbutton-icon,
