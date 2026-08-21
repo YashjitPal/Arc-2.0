@@ -123,7 +123,7 @@
 }
 
 * {
-  font-family: var(--arc-font), sans-serif !important;
+  font-family: var(--arc-font), sans-serif;
 }
 
 #zen-current-workspace-indicator #zen-current-workspace-indicator-icon {
