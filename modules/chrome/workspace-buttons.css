@@ -20,21 +20,43 @@
   }
 
   @media not -moz-pref("arc-pinned-extensions-mod") {
-
-    /*Condition-1: Margin for Workspace Indicator only when Essentials are there*/
+    /* Condition-1: Margin for Workspace Indicator only when Essentials are there */
     :root:has(
-      #zen-essentials:not([collapsed="true"]):not([hidden="true"]):not([style*="display: none"]),
-      .zen-essentials-container:not([collapsed="true"]):not([hidden="true"]):not([style*="display: none"])
-    ) .zen-current-workspace-indicator {
-      margin-top: 0px !important;
+        #zen-essentials:not(
+          [collapsed="true"],
+          [hidden="true"],
+          [style*="display: none"]
+        ),
+        .zen-essentials-container:not(
+          [collapsed="true"],
+          [hidden="true"],
+          [style*="display: none"]
+        )
+      )
+      .zen-current-workspace-indicator {
+      margin-top: 0 !important;
       margin-bottom: 3px !important;
     }
 
-    /*Condition-2: Margin for Workspace Indicator when Essentials are NOT there*/
-    :root:not(:has(
-      #zen-essentials .tabbrowser-tab:not([collapsed="true"]):not([hidden="true"]):not([style*="display: none"]),
-      .zen-workspace-tabs-section .zen-essentials-container .tabbrowser-tab:not([collapsed="true"]):not([hidden="true"]):not([style*="display: none"])
-    )) .zen-current-workspace-indicator {
+    /* Condition-2: Margin for Workspace Indicator when Essentials are NOT there */
+    :root:not(
+        :has(
+          #zen-essentials
+            .tabbrowser-tab:not(
+              [collapsed="true"],
+              [hidden="true"],
+              [style*="display: none"]
+            ),
+          .zen-workspace-tabs-section
+            .zen-essentials-container
+            .tabbrowser-tab:not(
+              [collapsed="true"],
+              [hidden="true"],
+              [style*="display: none"]
+            )
+        )
+      )
+      .zen-current-workspace-indicator {
       margin-top: 2px !important;
       margin-bottom: 2px !important;
     }
@@ -49,23 +71,25 @@
 }
 
 toolbarbutton.zen-workspaces-actions {
-    border-radius: var(--arc-border-radius, 12px);
-    overflow: hidden;
+  border-radius: var(--arc-border-radius, 12px);
+  overflow: hidden;
 }
 
-.zen-current-workspace-indicator::before{
-  background-color: light-dark(rgba(0, 0, 0, 5%), rgba(255, 255, 255, 5%)) !important;
+.zen-current-workspace-indicator::before {
+  background-color: light-dark(
+    rgb(0 0 0 / 5%),
+    rgb(255 255 255 / 5%)
+  ) !important;
   border-radius: var(--arc-border-radius, 12px) !important;
 }
 
-.zen-current-workspace-indicator:hover::before{
-  background: light-dark(rgba(0, 0, 0, 10%), rgba(255, 255, 255, 10%)) !important;
+.zen-current-workspace-indicator:hover::before {
+  background: light-dark(rgb(0 0 0 / 10%), rgb(255 255 255 / 10%)) !important;
   border-radius: var(--arc-border-radius, 12px) !important;
   z-index: -1 !important;
 }
 
 @media not -moz-pref("arc-workspace-style", 3) {
-  
   /* Common animations */
   @keyframes emoji-pulse {
     0% {
@@ -251,7 +275,10 @@ toolbarbutton.zen-workspaces-actions {
       opacity: 0.9 !important;
     }
 
-    #zen-workspaces-button .subviewbutton:hover + .subviewbutton + .subviewbutton,
+    #zen-workspaces-button
+      .subviewbutton:hover
+      + .subviewbutton
+      + .subviewbutton,
     #zen-workspaces-button
       .subviewbutton:has(+ .subviewbutton + .subviewbutton:hover) {
       transform: scale(1) !important;
@@ -375,7 +402,10 @@ toolbarbutton.zen-workspaces-actions {
       opacity: 0.9 !important;
     }
 
-    #zen-workspaces-button .subviewbutton:hover + .subviewbutton + .subviewbutton,
+    #zen-workspaces-button
+      .subviewbutton:hover
+      + .subviewbutton
+      + .subviewbutton,
     #zen-workspaces-button
       .subviewbutton:has(+ .subviewbutton + .subviewbutton:hover) {
       transform: scale(1) !important;
@@ -383,7 +413,7 @@ toolbarbutton.zen-workspaces-actions {
       opacity: 0.85 !important;
     }
 
-  /* Indicator dot */
+    /* Indicator dot */
     #zen-workspaces-button .subviewbutton::before {
       content: "•";
       position: absolute;
@@ -404,7 +434,6 @@ toolbarbutton.zen-workspaces-actions {
   }
 }
 
-
 /* ------------------------------ Configuration Options ------------------------------ */
 
 /* Option to remove workspace name */
@@ -412,7 +441,7 @@ toolbarbutton.zen-workspaces-actions {
   .zen-current-workspace-indicator {
     display: none !important;
   }
-  
+
   #zen-tabs-wrapper {
     padding-top: 4px; /* Add missing padding */
   }

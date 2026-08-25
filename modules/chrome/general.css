@@ -33,10 +33,12 @@ browser {
 @media (-moz-pref("arc-menu-opacity")) {
   .menupopup-arrowscrollbox {
     box-shadow: none !important;
-    background-color: var(--arc-menu-opacity-value, light-dark(rgb(255 255 255 / 0%), rgb(0 0 0 / 0%))) !important;
+    background-color: var(
+      --arc-menu-opacity-value,
+      light-dark(rgb(255 255 255 / 0%), rgb(0 0 0 / 0%))
+    ) !important;
   }
 }
-
 
 /* Config for blur rendering */
 @media (-moz-pref("arc.force-blur-rendering")) {
@@ -45,7 +47,7 @@ browser {
   }
 }
 
-/*---------------------- MENU AND POPUPS STYLINGS ----------------------*/
+/* ---------------------- MENU AND POPUPS STYLINGS ---------------------- */
 /* Tidy Popup Styles - Only active when mod.forkedtidypopup.usetidypopup is true */
 @media not -moz-pref("mod.forkedtidypopup.disabletidypopup") {
   /* These are for the popups */
@@ -75,7 +77,7 @@ browser {
         1px
       ) !important;
       overflow: clip !important;
-      scrollbar-color: transparent !important;
+      scrollbar-color: transparent transparent !important;
     }
   }
 
@@ -83,15 +85,14 @@ browser {
   /* When keepdividers is TRUE */
   @media not -moz-pref("mod.forkedtidypopup.removedividers") {
     panel toolbarseparator {
-      margin: 4px 4px !important;
+      margin: 4px !important;
     }
 
     #appMenu-zoom-controls {
-      margin: 4px 4px -4px 4px !important;
-      padding: 1px 0px 0px 0px !important;
+      margin: 4px 4px -4px !important;
+      padding: 1px 0 0 !important;
     }
   }
-
 
   @media -moz-pref("mod.forkedtidypopup.removedividers") {
     panel toolbarseparator {
@@ -106,8 +107,8 @@ browser {
 
     #appMenu-zoom-controls {
       border-top: none !important;
-      margin: 4px 0 0 0 !important;
-      padding: 0px !important;
+      margin: 4px 0 0 !important;
+      padding: 0 !important;
     }
 
     #appMenu-zoom-controls > #appMenu-fullscreen-button2::before {
@@ -117,8 +118,8 @@ browser {
   }
 
   #appMenu-zoomReset-button2 {
-    margin: 2px 0px !important;
-    padding: 0px 5px !important;
+    margin: 2px 0 !important;
+    padding: 0 5px !important;
   }
 
   #appMenu-zoom-controls label {
@@ -127,20 +128,26 @@ browser {
 
   /* Apply styling to ALL items (including disabled) */
   :is(
-      panelview .toolbarbutton-1,
-      toolbarbutton.subviewbutton,
-      .widget-overflow-list .toolbarbutton-1,
-      .toolbaritem-combined-buttons:is(
-          :not([cui-areatype="toolbar"]),
-          [overflowedItem="true"]
-        )
-        > toolbarbutton
-    ):not(.all-tabs-button):not(.remote-tabs-close-button):not(#zen-sidebar-foot-buttons *):not(#zen-sidebar-foot-buttons):not(#zen-site-data-new-addon-button) {
+    panelview .toolbarbutton-1,
+    toolbarbutton.subviewbutton,
+    .widget-overflow-list .toolbarbutton-1,
+    .toolbaritem-combined-buttons:is(
+        :not([cui-areatype="toolbar"]),
+        [overflowedItem="true"]
+      )
+      > toolbarbutton
+  ):not(
+    .all-tabs-button,
+    .remote-tabs-close-button,
+    #zen-sidebar-foot-buttons *,
+    #zen-sidebar-foot-buttons,
+    #zen-site-data-new-addon-button
+  ) {
     border-radius: var(--arc-border-radius, 12px) !important;
     padding: 8px 16px !important;
     margin: var(--arrowpanel-menuitem-margin) !important;
   }
-  
+
   .remote-tabs-close-button {
     border-radius: var(--arc-border-radius, 12px) !important;
     padding: 5px !important;
@@ -204,18 +211,19 @@ browser {
   }
 
   .all-tabs-button.subviewbutton.subviewbutton-iconic {
-    padding: 5px 10px 5px calc(10px + var(--uc-arrowpanel-menuicon-margin-inline)) !important;
+    padding: 5px 10px 5px
+      calc(10px + var(--uc-arrowpanel-menuicon-margin-inline)) !important;
     border-radius: var(--arc-border-radius, 12px) !important;
   }
 
   /* Tidy Up Extenstion */
   @media not -moz-pref("mod.forkedtidypopup.disabletidyextension") {
     #unified-extensions-messages-container {
-      margin: 0px !important;
+      margin: 0 !important;
     }
 
     #unified-extensions-area toolbaritem {
-      margin: 0px !important;
+      margin: 0 !important;
     }
 
     #unified-extensions-area
@@ -241,7 +249,7 @@ browser {
       toolbaritem
       box
       toolbarbutton.unified-extensions-item-menu-button {
-      margin-left: 0px !important;
+      margin-left: 0 !important;
     }
 
     #unified-extensions-area
@@ -249,7 +257,7 @@ browser {
       box
       toolbarbutton.unified-extensions-item-menu-button
       image {
-      padding: 0px !important;
+      padding: 0 !important;
     }
   }
 
@@ -269,11 +277,11 @@ browser {
     :root {
       --mod-forkedtidypopup-hovercolor-light-final: var(
         --zen-primary-color,
-        var(--mod-forkedtidypopup-hovercolor-light, rgba(243, 202, 176, 255))
+        var(--mod-forkedtidypopup-hovercolor-light, rgb(243 202 176 / 25500%))
       );
       --mod-forkedtidypopup-hovercolor-dark-final: var(
         --zen-primary-color,
-        var(--mod-forkedtidypopup-hovercolor-dark, rgba(87, 65, 50, 255))
+        var(--mod-forkedtidypopup-hovercolor-dark, rgb(87 65 50 / 25500%))
       );
     }
   }
@@ -283,11 +291,11 @@ browser {
     :root {
       --mod-forkedtidypopup-hovercolor-light-final: var(
         --mod-forkedtidypopup-hovercolor-light,
-        rgba(243, 202, 176, 255)
+        rgb(243 202 176 / 25500%)
       );
       --mod-forkedtidypopup-hovercolor-dark-final: var(
         --mod-forkedtidypopup-hovercolor-dark,
-        rgba(87, 65, 50, 255)
+        rgb(87 65 50 / 25500%)
       );
     }
   }
@@ -298,19 +306,19 @@ browser {
     menuitem,
     menucaption,
     :is(
-        panelview .toolbarbutton-1,
-        toolbarbutton.subviewbutton,
-        .widget-overflow-list .toolbarbutton-1,
-        .toolbaritem-combined-buttons:is(
-            :not([cui-areatype="toolbar"]),
-            [overflowedItem="true"]
-          )
-          > toolbarbutton
-      ) {
+      panelview .toolbarbutton-1,
+      toolbarbutton.subviewbutton,
+      .widget-overflow-list .toolbarbutton-1,
+      .toolbaritem-combined-buttons:is(
+          :not([cui-areatype="toolbar"]),
+          [overflowedItem="true"]
+        )
+        > toolbarbutton
+    ) {
       &:hover {
         background-color: var(
           --mod-forkedtidypopup-hovercolor-light-final,
-          rgba(243, 202, 176, 255)
+          rgb(243 202 176 / 25500%)
         ) !important;
       }
     }
@@ -322,19 +330,19 @@ browser {
     menuitem,
     menucaption,
     :is(
-        panelview .toolbarbutton-1,
-        toolbarbutton.subviewbutton,
-        .widget-overflow-list .toolbarbutton-1,
-        .toolbaritem-combined-buttons:is(
-            :not([cui-areatype="toolbar"]),
-            [overflowedItem="true"]
-          )
-          > toolbarbutton
-      ) {
+      panelview .toolbarbutton-1,
+      toolbarbutton.subviewbutton,
+      .widget-overflow-list .toolbarbutton-1,
+      .toolbaritem-combined-buttons:is(
+          :not([cui-areatype="toolbar"]),
+          [overflowedItem="true"]
+        )
+        > toolbarbutton
+    ) {
       &:hover {
         background-color: var(
           --mod-forkedtidypopup-hovercolor-dark-final,
-          rgba(87, 65, 50, 255)
+          rgb(87 65 50 / 25500%)
         ) !important;
       }
     }
@@ -372,7 +380,9 @@ browser {
       }
 
       @media (not (-moz-pref("zen.view.shift-down-site-on-hover"))) and (not ((-moz-pref("zen.view.experimental-no-window-controls")) or (not (-moz-pref("zen.view.hide-window-controls"))))) and (-moz-pref("zen.view.use-single-toolbar")) {
-        .browserSidebarContainer:is(.deck-selected, [zen-split="true"]):not(.zen-glance-overlay)
+        .browserSidebarContainer:is(.deck-selected, [zen-split="true"]):not(
+            .zen-glance-overlay
+          )
           .browserContainer {
           #tabbrowser-tabpanels[has-toolbar-hovered] & {
             margin-top: -34px !important;
@@ -404,7 +414,9 @@ browser {
         }
 
         @media (not (-moz-pref("zen.view.shift-down-site-on-hover"))) and (not ((-moz-pref("zen.view.experimental-no-window-controls")) or (not (-moz-pref("zen.view.hide-window-controls"))))) and (not (-moz-pref("zen.view.use-single-toolbar"))) {
-          .browserSidebarContainer:is(.deck-selected, [zen-split="true"]):not(.zen-glance-overlay)
+          .browserSidebarContainer:is(.deck-selected, [zen-split="true"]):not(
+              .zen-glance-overlay
+            )
             .browserContainer {
             #tabbrowser-tabpanels[has-toolbar-hovered] & {
               margin-top: calc(
@@ -498,7 +510,9 @@ browser {
       }
 
       @media (not (-moz-pref("zen.view.shift-down-site-on-hover"))) and (not ((-moz-pref("zen.view.experimental-no-window-controls")) or (not (-moz-pref("zen.view.hide-window-controls"))))) and (-moz-pref("zen.view.use-single-toolbar")) {
-        .browserSidebarContainer:is(.deck-selected, [zen-split="true"]):not(.zen-glance-overlay)
+        .browserSidebarContainer:is(.deck-selected, [zen-split="true"]):not(
+            .zen-glance-overlay
+          )
           .browserContainer {
           #tabbrowser-tabpanels[has-toolbar-hovered] & {
             margin-top: -34px !important;
@@ -520,7 +534,9 @@ browser {
         }
 
         @media (not (-moz-pref("zen.view.shift-down-site-on-hover"))) and (not ((-moz-pref("zen.view.experimental-no-window-controls")) or (not (-moz-pref("zen.view.hide-window-controls"))))) and (not (-moz-pref("zen.view.use-single-toolbar"))) {
-          .browserSidebarContainer:is(.deck-selected, [zen-split="true"]):not(.zen-glance-overlay)
+          .browserSidebarContainer:is(.deck-selected, [zen-split="true"]):not(
+              .zen-glance-overlay
+            )
             .browserContainer {
             #tabbrowser-tabpanels[has-toolbar-hovered] & {
               margin-top: calc(

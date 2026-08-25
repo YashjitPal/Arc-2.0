@@ -1,26 +1,23 @@
 /* ------------------------- PINNED EXTENSIONS ------------------------- */
-.unified-extensions-item stack{
+.unified-extensions-item stack {
   background: none !important;
 }
 
 @media not (-moz-pref("arc-pinned-extensions-mod")) {
   #zen-overflow-extensions-list toolbaritem {
-    border-radius: var(--arc-border-radius, 12px);
     margin-top: -2px;
     margin-bottom: -2px;
     background-color: light-dark(
-        rgb(0 0 0 / 0.5%),
-        rgb(225 225 225 / 0.5%)
-      ) !important;
+      rgb(0 0 0 / 0.5%),
+      rgb(225 225 225 / 0.5%)
+    ) !important;
     box-shadow: 0 0 3px light-dark(rgb(0 0 0 / 0.5%), rgb(255 255 255 / 0.5%)) !important;
-      border-radius: calc(var(--arc-border-radius, 12px) - 0.5px) !important;
-      transition:
-        background-color 0.3s ease,
-        box-shadow 0.3s ease !important;
+    border-radius: calc(var(--arc-border-radius, 12px) - 0.5px) !important;
+    transition:
+      background-color 0.3s ease,
+      box-shadow 0.3s ease !important;
   }
 }
- 
-
 
 @media (-moz-pref("arc-pinned-extensions-mod")) {
   /* Zen >1.12.6b Fix */

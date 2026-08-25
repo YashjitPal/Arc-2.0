@@ -196,8 +196,7 @@
 #share-tab-button:active,
 #privatebrowsing-button:active,
 #alltabs-button:active,
-#home-button:active
-{
+#home-button:active {
   opacity: 0.5;
   transform: scale(0.95);
 }
@@ -333,8 +332,6 @@
   }
 }
 
-
-
 /* Base styling */
 #preferences-button,
 #PanelUI-menu-button .toolbarbutton-badge-stack,
@@ -385,11 +382,11 @@
     #bookmarks-menu-button
   ):hover
   .toolbarbutton-icon,
-  #downloads-button:hover .toolbarbutton-badge-stack {
-    background-color: transparent !important;
+#downloads-button:hover .toolbarbutton-badge-stack {
+  background-color: transparent !important;
 }
 
-#downloads-button stack{
+#downloads-button stack {
   border-radius: var(--arc-border-radius, 12px) !important;
   background: transparent !important;
 }
@@ -421,25 +418,25 @@
 
 :is(#downloads-button, #bookmarks-menu-button):hover
   :is(.toolbarbutton-badge-stack, .toolbarbutton-icon) {
-    animation: bounce-down 0.5s ease-out;
- }
+  animation: bounce-down 0.5s ease-out;
+}
 
-/*:is(#new-tab-button, #zen-create-new-button) .toolbarbutton-icon {
+/* :is(#new-tab-button, #zen-create-new-button) .toolbarbutton-icon {
   transition: transform 1s ease-in-out;
   transform-origin: center;
-}*/
+} */
 
 :is(#zen-create-new-button):hover {
   animation: spin-once 0.25s ease-out;
   transform-origin: center;
   transform: scale(1.05);
 }
-  
+
 :is(#PanelUI-menu-button):hover {
   transform: scale(1.15);
   transition-duration: 0.5s !important;
 }
-  
+
 :is(#zen-toggle-compact-mode > toolbarbutton:nth-child(1)):hover {
   transform: scale(1.15);
   transition-duration: 0.5s !important;
@@ -505,24 +502,15 @@
 /* Button border radius */
 #zen-sidebar-bottom-buttons
   .toolbarbutton-1
-  > :is(
-    .toolbarbutton-icon,
-    .toolbarbutton-text,
-    .toolbarbutton-badge-stack
-  ) {
+  > :is(.toolbarbutton-icon, .toolbarbutton-text, .toolbarbutton-badge-stack) {
   border-radius: var(--arc-border-radius, 12px) !important;
 }
 
 #zen-sidebar-top-buttons-customization-target
   .toolbarbutton-1
-  > :is(
-    .toolbarbutton-icon,
-    .toolbarbutton-text,
-    .toolbarbutton-badge-stack
-  ) {
+  > :is(.toolbarbutton-icon, .toolbarbutton-text, .toolbarbutton-badge-stack) {
   border-radius: var(--arc-border-radius, 12px) !important;
 }
-
 
 /* ------------------------- WINDOWS BUTTONS ------------------------- */
 

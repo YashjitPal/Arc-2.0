@@ -8,17 +8,18 @@ tab[label$=".pdf"] img.tab-icon-image {
   width: 30px !important;
 }
 
-/*Tab Unload Style*/
+/* Tab Unload Style */
 @media -moz-pref("browser.tabs.fadeOutUnloadedTabs") {
-  .tabbrowser-tab[pending=true] {
+  .tabbrowser-tab[pending="true"] {
     @media -moz-pref("arc-grayscale-unloaded-tabs") {
       filter: grayscale(1);
-  }
+    }
+
     opacity: 0.69;
   }
 }
 
-/*ESSENTIALS */
+/* ESSENTIALS */
 @media -moz-pref("zen.view.use-single-toolbar") {
   @media -moz-pref("arc-pinned-extensions-mod") and -moz-pref("arc-remove-workspace-indicator") {
     .zen-essentials-container {
@@ -50,7 +51,6 @@ tab[label$=".pdf"] img.tab-icon-image {
     .zen-essentials-container {
       margin-top: -1px;
     }
-   
   }
 }
 
@@ -66,12 +66,18 @@ tab[label$=".pdf"] img.tab-icon-image {
 
 /* --- ZEN ESSENTIALS UNHOVERED & HOVERED STATES --- */
 #zen-essentials .tab-background {
-  background-color: light-dark(rgba(0,0,0,0.05), rgba(255,255,255,0.05)) !important;
+  background-color: light-dark(
+    rgb(0 0 0 / 5%),
+    rgb(255 255 255 / 5%)
+  ) !important;
 }
 
 /* Trigger background change when an essential tab element is hovered */
 #zen-essentials .tabbrowser-tab:hover .tab-background {
-  background-color: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.1)) !important;
+  background-color: light-dark(
+    rgb(0 0 0 / 10%),
+    rgb(255 255 255 / 10%)
+  ) !important;
 }
 
 #zen-essentials-container .tabbrowser-tab {
@@ -283,7 +289,7 @@ tab[pending="true"]:hover {
     0 4px 10px light-dark(rgb(0 0 0 / 50%), rgb(0 0 0 / 50%)) !important;
 }
 
-/*ESSENTIALS*/
+/* ESSENTIALS */
 
 @media (-moz-pref("arc-essentials-unload-button")) {
   .tabbrowser-tab[zen-essential="true"]:not([pending], [glance-id]):hover

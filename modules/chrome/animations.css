@@ -20,8 +20,9 @@ tooltip {
     transition:
       box-shadow 0.1s ease-out,
       transform 0.1s ease-out !important;
-    box-shadow: 0 6px 12px -6px light-dark(rgb(255 255 255 / 10%), rgb(0 0 0 / 10%)) !important;
-    /*box-shadow: none !important;*/
+    box-shadow: 0 6px 12px -6px
+      light-dark(rgb(255 255 255 / 10%), rgb(0 0 0 / 10%)) !important;
+    /* box-shadow: none !important; */
   }
 
   .tabbrowser-tab:hover {
@@ -33,7 +34,7 @@ tooltip {
   .tabbrowser-tab:not([selected]) {
     opacity: 0.99;
   }
-  
+
   /* Enhanced tab opening animation */
   .tabbrowser-tab[fadein] {
     animation: tab-bounce-in 0.25s ease-out;
@@ -42,19 +43,19 @@ tooltip {
   @keyframes tab-bounce-in {
     0% {
       opacity: 0;
-      transform: scale(0) translateY(0px) rotateX(0);
+      transform: scale(0) translateY(0) rotateX(0);
     }
 
     25% {
       opacity: 0.25;
       transform: scale(0.25) translateY(-0.25px);
     }
-    
+
     50% {
       opacity: 0.5;
       transform: scale(0.75) translateY(-0.75px);
     }
-    
+
     75% {
       opacity: 0.75;
       transform: scale(1.05) translateY(-1.05px);
@@ -76,7 +77,7 @@ tooltip {
       opacity: 1;
       transform: scale(1);
     }
-    
+
     25% {
       opacity: 0.75;
       transform: scale(0.75);
@@ -86,7 +87,7 @@ tooltip {
       opacity: 0.5;
       transform: scale(0.5);
     }
-    
+
     75% {
       opacity: 0.25;
       transform: scale(0.25);
@@ -98,7 +99,6 @@ tooltip {
     }
   }
 
- 
   @keyframes pinned-pulse {
     0%,
     100% {
@@ -264,15 +264,15 @@ tooltip {
 #urlbar {
   transition:
     transform 0.5s ease-out,
-    box-shadow 0.5s ease-out
+    box-shadow 0.5s ease-out;
 }
 
 #urlbar:hover {
   transform: translateY(-2px) !important;
-  box-shadow: 0 12px 12px -12px light-dark(rgb(255 255 255 / 10%), rgb(0 0 0 / 10%));
+  box-shadow: 0 12px 12px -12px
+    light-dark(rgb(255 255 255 / 10%), rgb(0 0 0 / 10%));
   transition-duration: 0.5s !important;
 }
-
 
 /* Typing indicator animation 
 #urlbar[focused="true"]::after {
@@ -400,7 +400,6 @@ tooltip {
     }
   }
 }
-
 
 /* === NOTIFICATION ANIMATIONS === */
 /* Download notification */
@@ -925,7 +924,7 @@ slot:nth-child(1) {
 }
 */
 
-/*----------------------SIDEBAR MEDIA PLAYER--------------------------*/
+/* ----------------------SIDEBAR MEDIA PLAYER-------------------------- */
 /* Media Player */
 .zen-media-mute-button,
 .zen-media-focus-button,
@@ -949,7 +948,7 @@ slot:nth-child(1) {
     }
   }
 
-  @media not (-moz-pref("arc.media-controls-toolbar-bottom")){
+  @media not (-moz-pref("arc.media-controls-toolbar-bottom")) {
     #zen-media-controls-toolbar {
       &:hover {
         height: 120px !important;
@@ -959,12 +958,12 @@ slot:nth-child(1) {
   }
 
   /* Smooth Anim for the hover Music controls */
-  #zen-media-controls-toolbar{
-    transition:height 0.25s ease-in-out !important;
+  #zen-media-controls-toolbar {
+    transition: height 0.25s ease-in-out !important;
   }
-  
-  /* Non Aligned Logo Fix*/
-  .zen-media-focus-button{
+
+  /* Non Aligned Logo Fix */
+  .zen-media-focus-button {
     align-self: auto !important;
   }
 
@@ -1000,9 +999,9 @@ slot:nth-child(1) {
       order: 0 !important;
       height: 0 !important;
       opacity: 0;
-      transition:all 0.25s !important;
+      transition: all 0.25s !important;
       pointer-events: none;
-/*       overflow: hidden !important; */
+      /*       overflow: hidden !important; */
     }
 
     &:hover {
@@ -1018,7 +1017,7 @@ slot:nth-child(1) {
     order: 1 !important;
   }
 
-    /* Media controls glow effect */
+  /* Media controls glow effect */
   @media not (-moz-pref("arc-disable-player-glow-effect")) {
     #zen-media-controls-toolbar::after {
       position: absolute;
@@ -1026,14 +1025,14 @@ slot:nth-child(1) {
       bottom: 0;
       left: 0;
       right: 0;
-      z-index: -1;  
+      z-index: -1;
       height: 100%;
       width: 100%;
       transform: scale(0.9) translateZ(0);
       filter: blur(var(--arc-mediaplayer-blur, 20px));
       opacity: 0 !important;
       transition: all 0.25s ease-in-out !important;
-/*       background: linear-gradient( 
+      /*       background: linear-gradient( 
         135deg,
         color-mix(in srgb, var(--zen-primary-color) 10%, rgb(0 0 0 / 20%)), 
         var(--zen-primary-color), 
@@ -1055,21 +1054,20 @@ slot:nth-child(1) {
         color-mix(in srgb, var(--zen-primary-color) 10%, rgb(0 0 0 / 20%)), 
         light-dark(#fffd, rgb(0 0 0 / 50%)) 
       ); */
-      
+
       background-image: repeating-linear-gradient(
         132deg,
-        rgba(0, 0, 0, 0) 20px,
-        rgba(0, 0, 0, 0) 55px,
+        rgb(0 0 0 / 0%) 20px,
+        rgb(0 0 0 / 0%) 55px,
         var(--zen-primary-color) 60px,
         var(--zen-primary-color) 90px,
-        light-dark(rgba(0, 0, 0, 1), rgba(255,255,255,1)) 52.5px,
-        light-dark(rgba(0, 0, 0, 1), rgba(255,255,255,1)) 105px,
+        light-dark(rgb(0 0 0 / 100%), rgb(255 255 255 / 100%)) 52.5px,
+        light-dark(rgb(0 0 0 / 100%), rgb(255 255 255 / 100%)) 105px,
         var(--zen-primary-color) 100px,
         var(--zen-primary-color) 150px,
-        rgba(0, 0, 0, 0) 130px,
-        rgba(0, 0, 0, 0) 200px
-        );
-      
+        rgb(0 0 0 / 0%) 130px,
+        rgb(0 0 0 / 0%) 200px
+      );
       background-size: 200% 100%;
     }
   }
@@ -1078,13 +1076,12 @@ slot:nth-child(1) {
   .zen-media-info-vbox::before {
     display: none;
   }
-  
 
   #zen-media-controls-toolbar toolbaritem {
-    background-color: var(--arc-mediaplayer-opacity, light-dark(
-      rgb(255 255 255 / 20%),
-      rgb(0 0 0 / 20%)
-    )) !important;
+    background-color: var(
+      --arc-mediaplayer-opacity,
+      light-dark(rgb(255 255 255 / 20%), rgb(0 0 0 / 20%))
+    ) !important;
   }
 
   /* Playing media styling */
@@ -1120,4 +1117,3 @@ slot:nth-child(1) {
     margin-bottom: 5px !important;
   }
 }
-

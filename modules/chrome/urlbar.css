@@ -27,16 +27,12 @@
   border-radius: var(--arc-border-radius, 12px) !important;
 }
 
-
-
 #urlbar-results,
 #PopupAutoCompleteRichResult,
 .autocomplete-richlistbox {
   padding-right: 5px !important;
   padding-left: 4px !important;
-  
 }
-
 
 /* Smooth dropdown appearance */
 #urlbar-results {
@@ -45,7 +41,6 @@
   border-radius: var(--arc-border-radius, 12px) !important;
   /* border: 1px solid rgb(255 255 255 / 0.1); */
 }
-
 
 /* Simple suggestion hover */
 .urlbarView-row:hover {
@@ -67,9 +62,9 @@
   #urlbar > .urlbar-input-container {
     order: 1 !important;
   }
-    /* Hide urlbar results */
-  .urlbarView-row>.urlbarView-row-inner .urlbarView-type-icon {
-    margin: 0px !important;
+  /* Hide urlbar results */
+  .urlbarView-row > .urlbarView-row-inner .urlbarView-type-icon {
+    margin: 0 !important;
     position: absolute !important;
     right: 15px !important;
   }
@@ -77,9 +72,10 @@
   .urlbarView-body-inner {
     display: none !important;
   }
+
   .urlbarView-body-inner:has(.urlbarView-row[selected]) {
     display: list-item !important;
-  } 
+  }
 }
 
 /* ------------------ URLBAR Styling ------------------ */
@@ -107,7 +103,6 @@
     border-radius: var(--arc-border-radius, 12px) !important;
   }
 
-  
   @media not (-moz-pref("arc-urlbar-animation", 0)) {
     /* stretch animation */
     @media (-moz-pref("arc-urlbar-animation", 1)) {
@@ -144,7 +139,6 @@
   }
 }
 
-
 /* ------------------ URL Bar BG ------------------ */
 /* Blur Zoom Animation on opening URLBar */
 @media not (-moz-pref("arc.urlbar.background")) {
@@ -159,18 +153,27 @@
 
 /* --- URL BAR HOVER & ACTIVE STATS --- */
 #urlbar .urlbar-background {
-  background-color: light-dark(rgba(0,0,0,0.05), rgba(255,255,255,0.05)) !important;
+  background-color: light-dark(
+    rgb(0 0 0 / 5%),
+    rgb(255 255 255 / 5%)
+  ) !important;
 }
 
 /* Trigger when the main URL bar is hovered */
 #urlbar:hover .urlbar-background {
-  background-color: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.1)) !important;
+  background-color: light-dark(
+    rgb(0 0 0 / 10%),
+    rgb(255 255 255 / 10%)
+  ) !important;
 }
 
 /* Trigger when the URL bar is focused or clicked */
 #urlbar[focused="true"] .urlbar-background,
 #urlbar:active .urlbar-background {
-  background-color: light-dark(rgba(0,0,0,0.125), rgba(255,255,255,0.125)) !important;
+  background-color: light-dark(
+    rgb(0 0 0 / 12.5%),
+    rgb(255 255 255 / 12.5%)
+  ) !important;
 }
 
 /* TRANSPARENCY */
