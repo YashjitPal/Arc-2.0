@@ -1,0 +1,99 @@
+/* Screenshot capture panel (Save full page / Save visible) */
+screenshots-buttons {
+  /* Firefox anchors this at -8px to overlap the chrome; 10px matches its inline end */
+  top: 10px !important;
+  padding: 6px !important;
+  background-color: light-dark(
+    rgb(255 255 255 / 25%),
+    rgb(0 0 0 / 25%)
+  ) !important;
+  backdrop-filter: blur(25px) saturate(140%) !important;
+  border: 1px solid light-dark(rgb(0 0 0 / 10%), rgb(255 255 255 / 10%)) !important;
+  border-radius: var(--arc-border-radius, 12px) !important;
+  box-shadow: 0 4px 14px rgb(0 0 0 / 40%) !important;
+
+  /* Inherited through the shadow root, where the two buttons live */
+  --button-background-color: transparent;
+  --button-background-color-hover: color-mix(
+    in srgb,
+    currentcolor 14%,
+    transparent
+  );
+  --button-background-color-active: color-mix(
+    in srgb,
+    currentcolor 14%,
+    transparent
+  );
+  /* Save full page is the .primary one; aliased so both buttons stay identical */
+  --button-background-color-primary: var(--button-background-color);
+  --button-background-color-primary-hover: var(--button-background-color-hover);
+  --button-background-color-primary-active: var(
+    --button-background-color-active
+  );
+  --button-text-color-primary: var(--button-text-color);
+  --button-text-color-primary-hover: var(--button-text-color-hover);
+  --button-text-color-primary-active: var(--button-text-color-active);
+  --button-border: none;
+  --button-border-radius: var(--arc-border-radius, 12px);
+}
+
+/* the overlay is a vbox, so its main axis is the one the dialog was top-aligned on */
+.dialogOverlay:has(> .dialogBox[sizeto="available"]) {
+  justify-content: center !important;
+}
+
+/* margin drops the -5px Firefox uses to overlap the chrome above */
+.dialogOverlay > .dialogBox[sizeto="available"] {
+  margin-top: 0 !important;
+  background-color: light-dark(
+    rgb(255 255 255 / 25%),
+    rgb(0 0 0 / 25%)
+  ) !important;
+  /* brightness cancels the 30% scrim the overlay paints behind the box */
+  backdrop-filter: blur(40px) saturate(140%) brightness(1.4) !important;
+}
+
+/* the dialog's own canvas would otherwise paint over the glass above */
+:root:has(screenshots-preview) {
+  background-color: transparent !important;
+}
+
+/* room for the focus ring, which the top of the dialog was clipping */
+.image-view > .preview-buttons {
+  padding-top: 10px !important;
+}
+
+/* the frame is sized to the whole content area, so centre the shot inside it */
+.image-view > #preview-image-container {
+  display: flex !important;
+}
+
+.image-view #preview-image {
+  margin: auto !important;
+}
+
+/* Preview dialog buttons; the tokens reach its moz-buttons through both shadow roots */
+screenshots-preview {
+  --button-padding: 6px 10px;
+  --button-background-color: transparent;
+  --button-background-color-hover: color-mix(
+    in srgb,
+    currentcolor 14%,
+    transparent
+  );
+  --button-background-color-active: color-mix(
+    in srgb,
+    currentcolor 24%,
+    transparent
+  );
+  --button-background-color-primary: var(--button-background-color);
+  --button-background-color-primary-hover: var(--button-background-color-hover);
+  --button-background-color-primary-active: var(
+    --button-background-color-active
+  );
+  --button-text-color-primary: var(--button-text-color);
+  --button-text-color-primary-hover: var(--button-text-color-hover);
+  --button-text-color-primary-active: var(--button-text-color-active);
+  --button-border: none;
+  --button-border-radius: var(--arc-border-radius, 12px);
+}
