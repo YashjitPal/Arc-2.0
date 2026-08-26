@@ -1,0 +1,46 @@
+/* Screenshot region bar (Copy / Download), injected into the page by the overlay */
+#screenshots-component #buttons-container {
+  padding: 6px !important;
+  background-color: light-dark(
+    rgb(255 255 255 / 8%),
+    rgb(0 0 0 / 8%)
+  ) !important;
+  /* brightness cancels the 50% dim the overlay paints behind the bar */
+  backdrop-filter: blur(15px) saturate(140%) brightness(1.8) !important;
+  border: 1px solid light-dark(rgb(0 0 0 / 10%), rgb(255 255 255 / 10%)) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 14px rgb(0 0 0 / 40%) !important;
+}
+
+#screenshots-component #buttons-container .screenshots-button {
+  /* stretch, so the icon-only Cancel matches the two labelled buttons */
+  align-self: stretch !important;
+  padding: 6px 10px !important;
+  background-color: transparent !important;
+  color: inherit !important;
+  border: none !important;
+  border-radius: 10px !important;
+  outline: none !important;
+}
+
+/* keyboard focus only, on the same accent token the pre-capture panel rings with */
+#screenshots-component #buttons-container .screenshots-button:focus-visible {
+  outline: var(--focus-outline-width, 2px) solid var(--color-accent-primary) !important;
+  outline-offset: var(--focus-outline-offset, 2px) !important;
+}
+
+#screenshots-component #buttons-container .screenshots-button:hover {
+  background-color: color-mix(
+    in srgb,
+    currentcolor 14%,
+    transparent
+  ) !important;
+}
+
+#screenshots-component #buttons-container .screenshots-button:hover:active {
+  background-color: color-mix(
+    in srgb,
+    currentcolor 24%,
+    transparent
+  ) !important;
+}

@@ -48,6 +48,8 @@ export default {
           "panelview",
           "menucaption",
           "deck",
+          "screenshots-buttons",
+          "screenshots-preview",
         ],
       },
     ],
