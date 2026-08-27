@@ -301,8 +301,11 @@
         display: flex !important;
         place-content: flex-start flex-start !important;
         padding-left: 34.5px !important;
-        font-size: 12px !important;
-        margin-top: 6px !important;
+        /* Inherit the tab label's size, and center on the row height so any font lines up with the icon. */
+        font-size: inherit !important;
+        height: 100% !important;
+        min-height: 0 !important;
+        line-height: 36px !important;
         @media (not (-moz-pref("zen.view.sidebar-expanded"))) {
           color: transparent !important;
         }
@@ -459,7 +462,8 @@
           & > label::after {
             content: "" !important;
             position: relative !important;
-            top: 40% !important;
+            /* Center on the label row, which is now full height. */
+            top: 50% !important;
             transform: translateY(-50%) rotate(180deg) !important;
             width: 13px !important;
             height: 13px !important;
@@ -673,10 +677,6 @@
     .tab-label-container {
       padding: 0 !important;
     }
-  }
-
-  tab-group:not([split-view-group]) .tab-group-label-container > label {
-    margin-top: 2.8px !important;
   }
 
   /* Firefox pads this container when expanded (tabs.css), lifting the text while the icon stays. */
