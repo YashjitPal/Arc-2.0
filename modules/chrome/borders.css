@@ -2,9 +2,7 @@
 
 /* SQUIRCLES FIX */
 :root {
-  --zen-squircle-value: 1 !important;
-
-  corner-shape: round;
+  --zen-squircle-value: var(--arc-squircle, 1) !important;
 }
 
 /* === OUTER BROWSER BORDER FIX === 
