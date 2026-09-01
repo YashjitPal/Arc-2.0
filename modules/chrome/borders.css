@@ -1,5 +1,11 @@
 /* === BORDER === */
 
+/*SQUIRCLES FIX*/
+:root {
+  --zen-squircle-value: 1 !important;;
+  corner-shape: round;
+}
+
 /* === OUTER BROWSER BORDER FIX === 
 
 :root,
