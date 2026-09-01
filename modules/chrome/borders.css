@@ -3,7 +3,6 @@
 /* SQUIRCLES FIX */
 :root {
   --zen-squircle-value: 1 !important;
-
   corner-shape: round;
 }
 
