@@ -59,6 +59,19 @@
   },
   {
     "type": "string",
+    "property": "arc-squircle",
+    "defaultValue": "1.1",
+    "placeholder": "1.1",
+    "label": "Custom roundness for *Squircles* (~enter value between 0.8 and 2, lower the value, more the roundness~)"
+  },
+  {
+    "type": "checkbox",
+    "property": "layout.css.corner-shape.enabled",
+    "label": "*Squircles* toggle (disable to enter custom border radius in `px` below)",
+    "defaultValue": false
+  },
+  {
+    "type": "string",
     "label": "Custom *border radius* for various elements in Arc (~enter value between 0px and 25px~).",
     "property": "arc-border-radius",
     "defaultValue": "12px",
@@ -346,7 +359,7 @@
   {
     "type": "string",
     "property": "arc-essentials-opacity",
-    "label": "Custom favicon gradient opacity on Essentials",
+    "label": "Custom favicon gradient *opacity* on Essentials",
     "defaultValue": "0.6",
     "placeholder": 0.6
   },
