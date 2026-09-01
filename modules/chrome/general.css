@@ -58,7 +58,7 @@ browser {
       box-sizing: border-box !important;
       padding: 6px !important;
       color: var(--panel-color) !important;
-      border-radius: 15px !important;
+      border-radius: var(--arc-border-radius, 12px) !important;
       border: 2px solid
         color-mix(in hsl, var(--panel-border-color), transparent 70%) !important;
       width: var(--panel-width) !important;
