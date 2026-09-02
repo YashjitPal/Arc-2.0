@@ -567,11 +567,32 @@
     "label": "Disable *Glow Effects* on Sidebar Media Player."
   },
   {
+    "type": "dropdown",
+    "value": "number",
+    "property": "arc-media-player-background",
+    "label": "Choose *Sidebar Media Player background* style.",
+    "defaultValue": 1,
+    "options": [
+      {
+        "label": "Media Cover Art",
+        "value": 1
+      },
+      {
+        "label": "Infinite Animation Glow",
+        "value": 2
+      },
+      {
+        "label": "None / Transparent",
+        "value": 0
+      }
+    ]
+  },
+  {
     "type": "string",
-    "property": "arc-sidebarmediaplayer-opacity",
-    "label": "*Background Color* for Sidebar Media Player. (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.2), rgba(0,0,0,0.2))`]~)",
-    "defaultValue": "light-dark(rgba(255,255,255,0.8), rgba(0,0,0,0.8))",
-    "placeholder": "light-dark(rgba(255,255,255,0.8), rgba(0,0,0,0.8))"
+    "property": "arc-mediaplayer-bgcolor",
+    "label": "*Background Color* for Infinite Animation Glow (~enter CSS color value in HEX or RGBA~).",
+    "defaultValue": "light-dark(rgba(255,255,255,0.8), rgba(255,255,255,0.8))",
+    "placeholder": "light-dark(rgba(255,255,255,0.8), rgba(255,255,255,0.8))"
   },
   {
     "type": "string",
@@ -579,6 +600,41 @@
     "label": "Blur Effects on Glow Animation Effects for Media Player (~Set between 20px to 30px~).",
     "defaultValue": "20px",
     "placeholder": "20px"
+  },
+  {
+    "type": "string",
+    "property": "arc-mediaplayer-opacity",
+    "label": "Edit *opacity* for Media Cover Art background (~e.g. `1` or `0.85`~).",
+    "defaultValue": "1",
+    "placeholder": "1"
+  },
+  {
+    "type": "string",
+    "property": "arc-mediaplayer-cover-blur",
+    "label": "Edit *blur* for Media Cover Art background (~e.g. `20px`~).",
+    "defaultValue": "20px",
+    "placeholder": "20px"
+  },
+  {
+    "type": "string",
+    "property": "arc-mediaplayer-brightness",
+    "label": "Edit *brightness* for Media Cover Art background (~e.g. `0.75` or `75%`~).",
+    "defaultValue": "0.75",
+    "placeholder": "0.75"
+  },
+  {
+    "type": "string",
+    "property": "arc-mediaplayer-contrast",
+    "label": "Edit *contrast* for Media Cover Art background (~e.g. `1.1` or `110%`~).",
+    "defaultValue": "1.1",
+    "placeholder": "1.1"
+  },
+  {
+    "type": "string",
+    "property": "arc-mediaplayer-saturation",
+    "label": "Edit *saturation* for Media Cover Art background (~e.g. `1.3` or `130%`~).",
+    "defaultValue": "1.3",
+    "placeholder": "1.3"
   },
   {
     "type": "separator",
