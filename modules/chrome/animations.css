@@ -931,7 +931,8 @@ slot:nth-child(1) {
 .zen-media-nexttrack-button,
 .zen-media-playpause-button,
 .zen-media-previoustrack-button,
-.zen-media-close-button {
+.zen-media-close-button,
+.zen-media-pip-button {
   border-radius: var(--arc-border-radius, 12px) !important;
   overflow: hidden;
 }
@@ -943,7 +944,7 @@ slot:nth-child(1) {
     }
 
     #zen-media-controls-toolbar:hover + #zen-sidebar-foot-buttons {
-      transform: translateY(-25px);
+      transform: translateY(-36px);
       transition: transform 0.2s ease-in-out !important;
     }
   }
@@ -1020,41 +1021,25 @@ slot:nth-child(1) {
   /* Media controls glow effect */
   @media not (-moz-pref("arc-disable-player-glow-effect")) {
     #zen-media-controls-toolbar::after {
-      position: absolute;
+      content: none;
+    }
+    #zen-media-controls-toolbar .zen-media-card.playing:not([hidden]) {
+      position: relative;
+      border-radius: var(--arc-border-radius, 12px) !important;
+      box-shadow: 0 0 0 1px rgb(0 0 0 / 1%);
+      background-color: var(
+      --arc-sidebarmediaplayer-opacity,
+      light-dark(rgb(255 255 255 / 80%), rgb(0 0 0 / 80%))
+    ) !important;
+    }
+    #zen-media-controls-toolbar .zen-media-card.playing:not([hidden])::before {
       content: "";
-      bottom: 0;
-      left: 0;
-      right: 0;
+      position: absolute;
+      inset: 0;
       z-index: -1;
-      height: 100%;
-      width: 100%;
+      pointer-events: none;
       transform: scale(0.9) translateZ(0);
       filter: blur(var(--arc-mediaplayer-blur, 20px));
-      opacity: 0 !important;
-      transition: all 0.25s ease-in-out !important;
-      /*       background: linear-gradient( 
-        135deg,
-        color-mix(in srgb, var(--zen-primary-color) 10%, rgb(0 0 0 / 20%)), 
-        var(--zen-primary-color), 
-        color-mix(in srgb, var(--zen-primary-color) 25%, white), 
-        var(--zen-primary-color), 
-        light-dark(#fffd, rgb(0 0 0 / 50%)), 
-        light-dark(#fffd, rgb(0 0 0 / 50%)), 
-        var(--zen-primary-color), 
-        color-mix(in srgb, var(--zen-primary-color) 50%, white), 
-        color-mix(in srgb, var(--zen-primary-color) 25%, white), 
-        var(--zen-primary-color), 
-        color-mix(in srgb, var(--zen-primary-color) 25%, rgb(0 0 0 / 20%)), 
-        light-dark(#fffd, rgb(0 0 0 / 50%)), 
-        color-mix(in srgb, var(--zen-primary-color) 10%, rgb(0 0 0 / 20%)), 
-        light-dark(#fffd, rgb(0 0 0 / 50%)), 
-        color-mix(in srgb, var(--zen-primary-color) 75%, rgb(0 0 0 / 20%)), 
-        color-mix(in srgb, var(--zen-primary-color) 50%, rgb(0 0 0 / 20%)), 
-        color-mix(in srgb, var(--zen-primary-color) 25%, rgb(0 0 0 / 20%)), 
-        color-mix(in srgb, var(--zen-primary-color) 10%, rgb(0 0 0 / 20%)), 
-        light-dark(#fffd, rgb(0 0 0 / 50%)) 
-      ); */
-
       background-image: repeating-linear-gradient(
         132deg,
         rgb(0 0 0 / 0%) 20px,
@@ -1069,32 +1054,11 @@ slot:nth-child(1) {
         rgb(0 0 0 / 0%) 200px
       );
       background-size: 200% 100%;
-    }
-  }
-
-  /* Background Line Fix */
-  .zen-media-info-vbox::before {
-    display: none;
-  }
-
-  #zen-media-controls-toolbar toolbaritem {
-    background-color: var(
-      --arc-mediaplayer-opacity,
-      light-dark(rgb(255 255 255 / 20%), rgb(0 0 0 / 20%))
-    ) !important;
-  }
-
-  /* Playing media styling */
-  #zen-media-controls-toolbar:has(.zen-media-card.playing) {
-    padding: 18px 24px;
-    position: relative;
-    border-radius: var(--arc-border-radius, 12px) !important;
-    box-shadow: 0 0 0 1px rgb(0 0 0 / 1%);
-
-    &::after {
-      opacity: 1 !important;
       animation: animate-glow 4.25s cubic-bezier(0.1, 0.7, 0.5, 0.1) infinite;
-      /* animation: animate-glow 3s cubic-bezier(.04,.32,.5,.28) infinite; */
+      background-color: var(
+      --arc-sidebarmediaplayer-opacity,
+      light-dark(rgb(255 255 255 / 80%), rgb(0 0 0 / 80%))
+    ) !important;
     }
 
     /* &:hover::after {
