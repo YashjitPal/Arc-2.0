@@ -12,6 +12,9 @@
   "scripts": {
     "arc-group-scroll.uc.js": {
       "include": ["chrome://browser/content/browser.xhtml"]
+    },
+    "arc-media-cover.uc.js": {
+      "include": ["chrome://browser/content/browser.xhtml"]
     }
   },
   "preferences": "preferences.json",
