@@ -196,7 +196,7 @@ Edit the natsumi-config.css file instead.
 }
 
 html[mozdisallowselectionprint] {
-  &:has(head link:nth-of-type(1)[href^="resource://pdf.js"]) {
+  &:has(head link[href*="pdf.js"], #viewerContainer) {
     --natsumi-colors-border: color-mix(
       in srgb,
       var(--natsumi-colors-secondary) 80%,
