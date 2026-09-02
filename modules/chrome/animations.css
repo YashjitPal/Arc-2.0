@@ -1023,15 +1023,17 @@ slot:nth-child(1) {
     #zen-media-controls-toolbar::after {
       content: none;
     }
+
     #zen-media-controls-toolbar .zen-media-card.playing:not([hidden]) {
       position: relative;
       border-radius: var(--arc-border-radius, 12px) !important;
       box-shadow: 0 0 0 1px rgb(0 0 0 / 1%);
       background-color: var(
-      --arc-sidebarmediaplayer-opacity,
-      light-dark(rgb(255 255 255 / 80%), rgb(0 0 0 / 80%))
-    ) !important;
+        --arc-sidebarmediaplayer-opacity,
+        light-dark(rgb(255 255 255 / 80%), rgb(0 0 0 / 80%))
+      ) !important;
     }
+
     #zen-media-controls-toolbar .zen-media-card.playing:not([hidden])::before {
       content: "";
       position: absolute;
@@ -1056,9 +1058,9 @@ slot:nth-child(1) {
       background-size: 200% 100%;
       animation: animate-glow 4.25s cubic-bezier(0.1, 0.7, 0.5, 0.1) infinite;
       background-color: var(
-      --arc-sidebarmediaplayer-opacity,
-      light-dark(rgb(255 255 255 / 80%), rgb(0 0 0 / 80%))
-    ) !important;
+        --arc-sidebarmediaplayer-opacity,
+        light-dark(rgb(255 255 255 / 80%), rgb(0 0 0 / 80%))
+      ) !important;
     }
 
     /* &:hover::after {
