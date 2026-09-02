@@ -69,7 +69,7 @@ their author(s) have been provided above the used code.
 
 @media not (-moz-pref("natsumi.pdfjs.disabled")) {
   html[mozdisallowselectionprint] {
-    &:has(head link:nth-of-type(1)[href^="resource://pdf.js"]) {
+    &:has(head link[href*="pdf.js"], #viewerContainer) {
       --natsumi-colors-border: color-mix(
         in srgb,
         var(--natsumi-colors-secondary) 80%,
