@@ -677,18 +677,7 @@ browser {
       black 96%,
       black 100%
     ) !important;
-    mask-image: linear-gradient(
-      to right,
-      black 0%,
-      black 4%,
-      transparent 7%,
-      transparent 93.5%,
-      black 96%,
-      black 100%
-    ) !important;
     mask-repeat: no-repeat !important;
-    mask-repeat: no-repeat !important;
-    mask-size: 100% 100% !important;
     mask-size: 100% 100% !important;
   }
 
