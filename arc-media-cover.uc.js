@@ -16,11 +16,7 @@
     // 1. Try MediaSession metadata artwork
     try {
       const meta = mediaController?.getMetadata?.();
-      if (
-        meta?.artwork &&
-        Array.isArray(meta.artwork) &&
-        meta.artwork.length > 0
-      ) {
+      if (meta?.artwork && Array.isArray(meta.artwork) && meta.artwork.length > 0) {
         // Find best artwork by size or pick the last one (typically highest resolution)
         const best = meta.artwork.reduce((prev, curr) => {
           const prevSize = parseInt(prev?.sizes) || 0;
@@ -35,7 +31,7 @@
     try {
       const url = browser?.currentURI?.spec || "";
       const ytMatch = url.match(
-        /(?:youtube\.com\/(?:watch\?.*v=|shorts\/)|youtu\.be\/|music\.youtube\.com\/(?:watch\?.*v=))([a-zA-Z0-9_-]{11})/,
+        /(?:youtube\.com\/(?:watch\?.*v=|shorts\/)|youtu\.be\/|music\.youtube\.com\/(?:watch\?.*v=))([a-zA-Z0-9_-]{11})/
       );
       if (ytMatch && ytMatch[1]) {
         return "https://i.ytimg.com/vi/" + ytMatch[1] + "/hqdefault.jpg";
@@ -44,12 +40,10 @@
 
     // 3. Tab favicon / page icon fallback
     try {
-      const tab =
-        browser && window.gBrowser
-          ? window.gBrowser.getTabForBrowser(browser)
-          : null;
+      const tab = browser && window.gBrowser ? window.gBrowser.getTabForBrowser(browser) : null;
       const icon =
-        browser?.mIconURL || (tab ? window.gBrowser.getIcon(tab) : null);
+        browser?.mIconURL ||
+        (tab ? window.gBrowser.getIcon(tab) : null);
       if (icon && !icon.includes("default-favicon")) {
         return icon;
       }
@@ -64,10 +58,7 @@
   function applyCoverToCard(card, coverUrl) {
     if (!card) return;
     if (coverUrl) {
-      card.style.setProperty(
-        "--arc-media-cover-url",
-        'url("' + coverUrl + '")',
-      );
+      card.style.setProperty("--arc-media-cover-url", 'url("' + coverUrl + '")');
       card.setAttribute("has-cover", "true");
     } else {
       card.style.removeProperty("--arc-media-cover-url");
@@ -87,17 +78,14 @@
 
     // Search active media tabs
     const tabsWithMedia = Array.from(window.gBrowser?.tabs || []).filter(
-      (tab) =>
-        tab.hasAttribute("soundplaying") ||
-        tab.linkedBrowser?.browsingContext?.mediaController?.isActive,
+      tab => tab.hasAttribute("soundplaying") || tab.linkedBrowser?.browsingContext?.mediaController?.isActive
     );
 
     cards.forEach((card, index) => {
-      const cardTitle =
-        card.querySelector(".zen-media-title")?.textContent?.trim() || "";
+      const cardTitle = card.querySelector(".zen-media-title")?.textContent?.trim() || "";
 
       // Try matching by track title or tab label
-      let matchedTab = tabsWithMedia.find((tab) => {
+      let matchedTab = tabsWithMedia.find(tab => {
         const controller = tab.linkedBrowser?.browsingContext?.mediaController;
         const meta = controller?.getMetadata?.();
         return (
@@ -119,10 +107,7 @@
         const cover = extractCoverUrl(controller, browser);
         applyCoverToCard(card, cover);
         if (cover) {
-          toolbar.style.setProperty(
-            "--arc-media-cover-url",
-            'url("' + cover + '")',
-          );
+          toolbar.style.setProperty("--arc-media-cover-url", 'url("' + cover + '")');
         }
       }
     });
@@ -136,16 +121,10 @@
 
     const origActivate = window.gZenMediaController.activateMediaControls;
     if (origActivate && !origActivate._arcHooked) {
-      window.gZenMediaController.activateMediaControls = function (
-        mediaController,
-        browser,
-      ) {
+      window.gZenMediaController.activateMediaControls = function (mediaController, browser) {
         origActivate.apply(this, arguments);
 
-        if (
-          mediaController &&
-          typeof mediaController.addEventListener === "function"
-        ) {
+        if (mediaController && typeof mediaController.addEventListener === "function") {
           const onMetaChange = () => {
             requestAnimationFrame(() => syncAllCards());
           };
@@ -174,7 +153,7 @@
     // Observe toolbar DOM mutations (cards added/removed/shown)
     const toolbar = document.getElementById(MEDIA_TOOLBAR_ID);
     if (toolbar) {
-      const observer = new MutationObserver((mutations) => {
+      const observer = new MutationObserver(mutations => {
         for (const mutation of mutations) {
           if (
             mutation.type === "childList" ||
@@ -198,7 +177,7 @@
     }
 
     // Listen to tab audio events
-    window.addEventListener("TabAttrModified", (event) => {
+    window.addEventListener("TabAttrModified", event => {
       if (event.detail?.changed?.includes("soundplaying")) {
         setTimeout(syncAllCards, 200);
       }
@@ -211,6 +190,28 @@
     // Initial check
     syncAllCards();
   }
+
+  // Auto-link userContent.css for PDF.js viewer and in-content styling
+  (async function ensureUserContent() {
+    try {
+      const chromeDir = Services.dirsvc.get("UChrm", Ci.nsIFile).path;
+      const userContentPath = PathUtils.join(chromeDir, "userContent.css");
+      const importRule = '@import "sine-mods/Arc-2.0/userContent.css";\n';
+
+      let content = "";
+      if (await IOUtils.exists(userContentPath)) {
+        content = await IOUtils.readUTF8(userContentPath);
+      }
+      if (!content.includes("sine-mods/Arc-2.0/userContent.css")) {
+        await IOUtils.writeUTF8(
+          userContentPath,
+          (content ? content.trimEnd() + "\n\n" : "") + importRule
+        );
+      }
+    } catch (e) {
+      console.warn("[Arc-2.0] Failed to auto-link userContent.css:", e);
+    }
+  })();
 
   if (document.readyState === "complete") {
     init();
