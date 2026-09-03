@@ -668,7 +668,7 @@ browser {
   .zen-glance-background .browserContainer,
   .zen-glance-background .browserStack,
   .zen-glance-background > vbox {
-    -webkit-mask-image: linear-gradient(
+    mask-image: linear-gradient(
       to right,
       black 0%,
       black 4%,
@@ -686,9 +686,9 @@ browser {
       black 96%,
       black 100%
     ) !important;
-    -webkit-mask-repeat: no-repeat !important;
     mask-repeat: no-repeat !important;
-    -webkit-mask-size: 100% 100% !important;
+    mask-repeat: no-repeat !important;
+    mask-size: 100% 100% !important;
     mask-size: 100% 100% !important;
   }
 
@@ -698,7 +698,6 @@ browser {
   .browserSidebarContainer.zen-glance-overlay browser,
   .zen-glance-overlay > vbox {
     background: transparent !important;
-    background-color: transparent !important;
   }
 
   .browserSidebarContainer.zen-glance-overlay .browserContainer,
