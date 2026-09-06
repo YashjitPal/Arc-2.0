@@ -1,4 +1,5 @@
 /* Content styles */
+@import url("modules/content/fonts.css");
 @import url("modules/content/pdf/pdfjs.css");
 @import url("modules/content/pdf/preload.css");
 @import url("modules/content/pdf/betterpdf.css");
