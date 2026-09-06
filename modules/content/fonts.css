@@ -1,0 +1,141 @@
+/* ==========================================================================
+   ARC 2.0 - Content UI Font Styles
+   Applies custom font preferences to internal browser pages (about:preferences,
+   about:config, about:addons, about:support, about:processes, etc.)
+   ========================================================================== */
+
+/* 1. Font Face Declarations */
+@font-face {
+  font-family: SF-Symbols;
+  src: url("chrome://sine/content/Arc-2.0/fonts/sf-symbols.ttf");
+}
+
+@font-face {
+  font-family: SF-Pro;
+  src: url("chrome://sine/content/Arc-2.0/fonts/sf-pro.ttf");
+}
+
+@font-face {
+  font-family: Nunito;
+  src: url("chrome://sine/content/Arc-2.0/fonts/nunito.ttf");
+}
+
+@font-face {
+  font-family: Nunito-Italic;
+  src: url("chrome://sine/content/Arc-2.0/fonts/nunito-italic.ttf");
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Suse;
+  src: url("chrome://sine/content/Arc-2.0/fonts/suse.ttf");
+}
+
+@font-face {
+  font-family: Suse-Italic;
+  src: url("chrome://sine/content/Arc-2.0/fonts/suse-italic.ttf");
+  font-style: italic;
+}
+
+/* 2. Preference Mapping (Default fallback is Nunito) */
+:root {
+  --arc-font: "Nunito";
+}
+
+@media (-moz-pref("arc-font", "Nunito")) {
+  :root {
+    --arc-font: "Nunito";
+  }
+}
+
+@media (-moz-pref("arc-font", "Nunito-Italic")) {
+  :root {
+    --arc-font: "Nunito-Italic";
+  }
+}
+
+@media (-moz-pref("arc-font", "SF-Symbols")) {
+  :root {
+    --arc-font: "SF-Symbols";
+  }
+}
+
+@media (-moz-pref("arc-font", "SF-Pro")) {
+  :root {
+    --arc-font: "SF-Pro";
+  }
+}
+
+@media (-moz-pref("arc-font", "SUSE")) {
+  :root {
+    --arc-font: "Suse";
+  }
+}
+
+@media (-moz-pref("arc-font", "SUSE-Italic")) {
+  :root {
+    --arc-font: "Suse-Italic";
+  }
+}
+
+/* 3. Apply to Content UI (about: and internal chrome:// pages) */
+@-moz-document url-prefix("about:"),
+               url-prefix("chrome://") {
+  :root,
+  body,
+  *,
+  *::before,
+  *::after {
+    font-family: var(--arc-font), sans-serif !important;
+  }
+
+  /* Form controls and web components inheritance */
+  button,
+  input,
+  select,
+  textarea,
+  menulist,
+  moz-button,
+  moz-toggle,
+  moz-card,
+  moz-page-nav-button {
+    font-family: var(--arc-font), sans-serif !important;
+  }
+
+  /* Preserve monospace for code blocks, key-values, and debug traces */
+  code,
+  kbd,
+  samp,
+  pre,
+  .monospace,
+  [monospace],
+  textarea.monospace,
+  #configDeck table td.cell-value,
+  #aboutSupportPage pre,
+  #aboutSupportPage code,
+  .trace {
+    font-family: monospace, monospace !important;
+  }
+
+  /* Preserve emoji */
+  .emoji,
+  #zen-current-workspace-indicator-icon {
+    font-family: Color-Emoji, sans-serif !important;
+  }
+}
+
+/* 4. PDF Viewer toolbar and sidebar */
+@-moz-document url-prefix("chrome://pdfjs/"),
+               url-prefix("resource://pdf.js/"),
+               url-prefix("chrome://global/content/pdfjs/") {
+  #toolbarContainer *,
+  #sidebarContainer * {
+    font-family: var(--arc-font), sans-serif !important;
+  }
+
+  /* Crucial: preserve PDF textLayer font to prevent selection misalignment */
+  .textLayer,
+  .textLayer * {
+    font-family: initial !important;
+  }
+}
