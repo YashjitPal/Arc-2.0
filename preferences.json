@@ -589,10 +589,10 @@
   },
   {
     "type": "string",
-    "property": "arc-mediaplayer-bgcolor",
+    "property": "arc-mediaplayer-bg-color",
     "label": "*Background Color* for Infinite Animation Glow (~enter CSS color value in HEX or RGBA~).",
-    "defaultValue": "light-dark(rgba(255,255,255,0.8), rgba(255,255,255,0.8))",
-    "placeholder": "light-dark(rgba(255,255,255,0.8), rgba(255,255,255,0.8))"
+    "defaultValue": "light-dark(rgba(255,255,255,0.8), rgba(0,0,0,0.8))",
+    "placeholder": "light-dark(rgba(255,255,255,0.8), rgba(0,0,0,0.8))"
   },
   {
     "type": "string",
@@ -604,35 +604,35 @@
   {
     "type": "string",
     "property": "arc-mediaplayer-opacity",
-    "label": "Edit *opacity* for Media Cover Art background (~e.g. `1` or `0.85`~).",
+    "label": "Edit *opacity* for Media Cover Art background (~Set between 0 to 1~).",
     "defaultValue": "1",
     "placeholder": "1"
   },
   {
     "type": "string",
     "property": "arc-mediaplayer-cover-blur",
-    "label": "Edit *blur* for Media Cover Art background (~e.g. `20px`~).",
+    "label": "Edit *blur* for Media Cover Art background (~Set between 10px to 30px~).",
     "defaultValue": "20px",
     "placeholder": "20px"
   },
   {
     "type": "string",
     "property": "arc-mediaplayer-brightness",
-    "label": "Edit *brightness* for Media Cover Art background (~e.g. `0.75` or `75%`~).",
+    "label": "Edit *brightness* for Media Cover Art background (~Set between 0.5 to 1~).",
     "defaultValue": "0.75",
     "placeholder": "0.75"
   },
   {
     "type": "string",
     "property": "arc-mediaplayer-contrast",
-    "label": "Edit *contrast* for Media Cover Art background (~e.g. `1.1` or `110%`~).",
+    "label": "Edit *contrast* for Media Cover Art background (~Set between 0.75 to 1.25~).",
     "defaultValue": "1.1",
     "placeholder": "1.1"
   },
   {
     "type": "string",
     "property": "arc-mediaplayer-saturation",
-    "label": "Edit *saturation* for Media Cover Art background (~e.g. `1.3` or `130%`~).",
+    "label": "Edit *saturation* for Media Cover Art background (~Set between 0.9 to 1.5~).",
     "defaultValue": "1.3",
     "placeholder": "1.3"
   },
