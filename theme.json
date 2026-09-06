@@ -4,23 +4,22 @@
   "author": "YashjitPal",
   "name": "Arc 2.0",
   "description": "Arc-like Zen Browser theme.",
-  "version": "3.3.3",
+  "version": "3.3.4",
   "style": {
     "chrome": "userChrome.css",
     "content": "userContent.css"
   },
   "scripts": {
-    "arc-group-scroll.uc.js": {
+    "arc.uc.js": {
       "include": ["chrome://browser/content/browser.xhtml"]
     },
-    "arc-media-cover.uc.js": {
-      "include": ["chrome://browser/content/browser.xhtml"]
-    }
+    "invertPDF.sys.mjs": {}
   },
   "preferences": "preferences.json",
   "readme": "https://raw.githubusercontent.com/YashjitPal/Arc-2.0/refs/heads/main/README.md",
   "image": "https://github.com/user-attachments/assets/f9a25afb-2503-421a-bed0-6e94f2ab43db",
   "ai": "partial",
   "tags": ["content", "chrome", "sleek"],
-  "fork": ["zen"]
+  "fork": ["zen"],
+  "origin": "store"
 }
