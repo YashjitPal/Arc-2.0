@@ -50,11 +50,11 @@ export class InvertPDFActorChild extends JSWindowActorChild {
           prefVal = Services.prefs.getStringPref("arc-font", "Nunito");
         } catch (e) {}
         const fontMap = {
-          "Nunito": "Nunito",
+          Nunito: "Nunito",
           "Nunito-Italic": "Nunito-Italic",
           "SF-Symbols": "SF-Symbols",
           "SF-Pro": "SF-Pro",
-          "SUSE": "Suse",
+          SUSE: "Suse",
           "SUSE-Italic": "Suse-Italic",
         };
         const font = fontMap[prefVal] || prefVal || "Nunito";
@@ -66,7 +66,10 @@ export class InvertPDFActorChild extends JSWindowActorChild {
   syncRadius() {
     try {
       let radius = Services.prefs.getStringPref("arc-border-radius", "12px");
-      this.document?.documentElement?.style?.setProperty("--arc-border-radius", radius);
+      this.document?.documentElement?.style?.setProperty(
+        "--arc-border-radius",
+        radius,
+      );
     } catch (e) {}
   }
 
@@ -120,7 +123,7 @@ export class InvertPDFActorChild extends JSWindowActorChild {
     if (message.name === "ArcRadiusChanged") {
       this.document?.documentElement?.style?.setProperty(
         "--arc-border-radius",
-        message.data?.radius || "12px"
+        message.data?.radius || "12px",
       );
     }
 
@@ -135,7 +138,7 @@ export class InvertPDFActorChild extends JSWindowActorChild {
         ) {
           doc.documentElement?.style?.setProperty(
             "--arc-font",
-            `"${message.data?.font || "Nunito"}"`
+            `"${message.data?.font || "Nunito"}"`,
           );
         }
       }
@@ -153,7 +156,9 @@ export class InvertPDFActorParent extends JSWindowActorParent {
 if (Services.appinfo.processType === Services.appinfo.PROCESS_TYPE_DEFAULT) {
   try {
     let radius = Services.prefs.getStringPref("arc-border-radius", "12px");
-    Services.prefs.getDefaultBranch("").setStringPref("arc-border-radius", radius);
+    Services.prefs
+      .getDefaultBranch("")
+      .setStringPref("arc-border-radius", radius);
   } catch (e) {}
 
   try {

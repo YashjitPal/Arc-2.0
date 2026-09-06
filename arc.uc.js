@@ -70,7 +70,11 @@
     // 1. Try MediaSession metadata artwork
     try {
       const meta = mediaController?.getMetadata?.();
-      if (meta?.artwork && Array.isArray(meta.artwork) && meta.artwork.length > 0) {
+      if (
+        meta?.artwork &&
+        Array.isArray(meta.artwork) &&
+        meta.artwork.length > 0
+      ) {
         const best = meta.artwork.reduce((prev, curr) => {
           const prevSize = parseInt(prev?.sizes) || 0;
           const currSize = parseInt(curr?.sizes) || 0;
@@ -84,7 +88,7 @@
     try {
       const url = browser?.currentURI?.spec || "";
       const ytMatch = url.match(
-        /(?:youtube\.com\/(?:watch\?.*v=|shorts\/)|youtu\.be\/|music\.youtube\.com\/(?:watch\?.*v=))([a-zA-Z0-9_-]{11})/
+        /(?:youtube\.com\/(?:watch\?.*v=|shorts\/)|youtu\.be\/|music\.youtube\.com\/(?:watch\?.*v=))([a-zA-Z0-9_-]{11})/,
       );
       if (ytMatch && ytMatch[1]) {
         return "https://i.ytimg.com/vi/" + ytMatch[1] + "/hqdefault.jpg";
@@ -93,10 +97,12 @@
 
     // 3. Tab favicon / page icon fallback
     try {
-      const tab = browser && window.gBrowser ? window.gBrowser.getTabForBrowser(browser) : null;
+      const tab =
+        browser && window.gBrowser
+          ? window.gBrowser.getTabForBrowser(browser)
+          : null;
       const icon =
-        browser?.mIconURL ||
-        (tab ? window.gBrowser.getIcon(tab) : null);
+        browser?.mIconURL || (tab ? window.gBrowser.getIcon(tab) : null);
       if (icon && !icon.includes("default-favicon")) {
         return icon;
       }
@@ -111,7 +117,10 @@
   function applyCoverToCard(card, coverUrl) {
     if (!card) return;
     if (coverUrl) {
-      card.style.setProperty("--arc-media-cover-url", 'url("' + coverUrl + '")');
+      card.style.setProperty(
+        "--arc-media-cover-url",
+        'url("' + coverUrl + '")',
+      );
       card.setAttribute("has-cover", "true");
     } else {
       card.style.removeProperty("--arc-media-cover-url");
@@ -131,11 +140,14 @@
 
     // Search active media tabs
     const tabsWithMedia = Array.from(window.gBrowser?.tabs || []).filter(
-      (tab) => tab.hasAttribute("soundplaying") || tab.linkedBrowser?.browsingContext?.mediaController?.isActive
+      (tab) =>
+        tab.hasAttribute("soundplaying") ||
+        tab.linkedBrowser?.browsingContext?.mediaController?.isActive,
     );
 
     cards.forEach((card, index) => {
-      const cardTitle = card.querySelector(".zen-media-title")?.textContent?.trim() || "";
+      const cardTitle =
+        card.querySelector(".zen-media-title")?.textContent?.trim() || "";
 
       // Try matching by track title or tab label
       let matchedTab = tabsWithMedia.find((tab) => {
@@ -160,7 +172,10 @@
         const cover = extractCoverUrl(controller, browser);
         applyCoverToCard(card, cover);
         if (cover) {
-          toolbar.style.setProperty("--arc-media-cover-url", 'url("' + cover + '")');
+          toolbar.style.setProperty(
+            "--arc-media-cover-url",
+            'url("' + cover + '")',
+          );
         }
       }
     });
@@ -174,10 +189,16 @@
 
     const origActivate = window.gZenMediaController.activateMediaControls;
     if (origActivate && !origActivate._arcHooked) {
-      window.gZenMediaController.activateMediaControls = function (mediaController, browser) {
+      window.gZenMediaController.activateMediaControls = function (
+        mediaController,
+        browser,
+      ) {
         origActivate.apply(this, arguments);
 
-        if (mediaController && typeof mediaController.addEventListener === "function") {
+        if (
+          mediaController &&
+          typeof mediaController.addEventListener === "function"
+        ) {
           const onMetaChange = () => {
             requestAnimationFrame(() => syncAllCards());
           };
@@ -270,10 +291,14 @@
 
   // 1. Ensure InvertPDFActor background module is imported and actor registered
   try {
-    ChromeUtils.importESModule("chrome://userscripts/content/services/invertPDF.sys.mjs");
+    ChromeUtils.importESModule(
+      "chrome://userscripts/content/services/invertPDF.sys.mjs",
+    );
   } catch (e) {
     try {
-      ChromeUtils.importESModule("chrome://sine/content/Arc-2.0/invertPDF.sys.mjs");
+      ChromeUtils.importESModule(
+        "chrome://sine/content/Arc-2.0/invertPDF.sys.mjs",
+      );
     } catch (err) {
       console.warn("[Arc-2.0] Failed to import invertPDF.sys.mjs:", err);
     }
@@ -289,7 +314,10 @@
 
     // A. Try toggling via the InvertPDFActor in the content tab (PDF documents)
     try {
-      const actor = browser.browsingContext?.currentWindowGlobal?.getActor("InvertPDFActor");
+      const actor =
+        browser.browsingContext?.currentWindowGlobal?.getActor(
+          "InvertPDFActor",
+        );
       if (actor) {
         const reply = await actor.sendQuery("ToggleInvert");
         if (reply && reply.handled) {
@@ -343,7 +371,8 @@
 
   // Native XUL key shortcut registration in mainKeyset
   try {
-    const keyset = document.getElementById("mainKeyset") || document.querySelector("keyset");
+    const keyset =
+      document.getElementById("mainKeyset") || document.querySelector("keyset");
     if (keyset && !document.getElementById("key_arcInvertColors")) {
       const key = document.createXULElement
         ? document.createXULElement("key")
@@ -376,14 +405,22 @@
   try {
     const syncRadiusToTabs = () => {
       try {
-        const radius = Services.prefs.getStringPref("arc-border-radius", "12px");
+        const radius = Services.prefs.getStringPref(
+          "arc-border-radius",
+          "12px",
+        );
         try {
-          Services.prefs.getDefaultBranch("").setStringPref("arc-border-radius", radius);
+          Services.prefs
+            .getDefaultBranch("")
+            .setStringPref("arc-border-radius", radius);
         } catch (err) {}
 
         for (const tab of window.gBrowser?.tabs || []) {
           try {
-            const actor = tab.linkedBrowser?.browsingContext?.currentWindowGlobal?.getActor("InvertPDFActor");
+            const actor =
+              tab.linkedBrowser?.browsingContext?.currentWindowGlobal?.getActor(
+                "InvertPDFActor",
+              );
             actor?.sendAsyncMessage("ArcRadiusChanged", { radius });
           } catch (err) {}
         }
@@ -417,15 +454,26 @@
         const fontName = resolveFontName(fontPref);
 
         try {
-          Services.prefs.getDefaultBranch("").setStringPref("arc-font", fontPref);
+          Services.prefs
+            .getDefaultBranch("")
+            .setStringPref("arc-font", fontPref);
         } catch (err) {}
 
-        document.documentElement.style.setProperty("--arc-font", `"${fontName}"`);
+        document.documentElement.style.setProperty(
+          "--arc-font",
+          `"${fontName}"`,
+        );
 
         for (const tab of window.gBrowser?.tabs || []) {
           try {
-            const actor = tab.linkedBrowser?.browsingContext?.currentWindowGlobal?.getActor("InvertPDFActor");
-            actor?.sendAsyncMessage("ArcFontChanged", { font: fontName, pref: fontPref });
+            const actor =
+              tab.linkedBrowser?.browsingContext?.currentWindowGlobal?.getActor(
+                "InvertPDFActor",
+              );
+            actor?.sendAsyncMessage("ArcFontChanged", {
+              font: fontName,
+              pref: fontPref,
+            });
           } catch (err) {}
         }
       } catch (e) {}
@@ -452,9 +500,11 @@
           window.removeEventListener("keydown", onKeyDown, { capture: true });
         } catch (e) {}
       },
-      { once: true }
+      { once: true },
     );
   } catch (e) {}
 
-  console.log("[Arc-2.0] All-in-one arc.uc.js with Invert Hotkey (Ctrl+Alt+Shift+-) initialized successfully");
+  console.log(
+    "[Arc-2.0] All-in-one arc.uc.js with Invert Hotkey (Ctrl+Alt+Shift+-) initialized successfully",
+  );
 })();
