@@ -2,7 +2,7 @@
 // @name                 Arc 2.0
 // @description          All-in-one JavaScript enhancements for Arc 2.0 theme
 // @author               Arc-2.0
-// @version              3.3.5
+// @version              3.4
 // ==/UserScript==
 
 /* ==========================================================================
