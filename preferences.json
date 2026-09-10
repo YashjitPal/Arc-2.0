@@ -674,7 +674,6 @@
     "type": "dropdown",
     "property": "arc-font",
     "label": "Select the *font* for browser (~restart for chosen font to take effect on browser pages~).",
-    "restart": true,
     "defaultValue": "Nunito",
     "options": [
       { "label": "Nunito (defaultValue)", "value": "Nunito" },
