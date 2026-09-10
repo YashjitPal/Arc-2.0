@@ -25,12 +25,13 @@ It’s the skin I personally use, made public due to demand for the CSS. Inspire
 
 > **Note:** Arc 2.0 is _not_ a standalone browser.
 
-**Tested on:** `Zen Browser 1.20t` (Windows & Linux)
+**Tested on:** `Zen Browser 1.23t` (Windows & Linux)
 
-**[NOTE: If you intend to use Transparent Webspages in whatever manner, increase Compact Sidebar Opacity in Arc2.0 Mod Settings (Sine) or in `about:config` to have a readable Sidebar.
+**[NOTE: If you're using Zen BETA and intend to use Transparent Webspages in whatever manner, increase Compact Sidebar Opacity in Arc2.0 Mod Settings (Sine) or in `about:config` to have a readable Sidebar.
 But if you're using Opaque Webpages, then you can decrease opacity as per your liking as Compact Sidebar will be blurred.
 Also, Browser Pages like Settings (about:preferences) will be kept Transparent, so please use don't use Compact Sidebar mode at that time.
-Before 1.19.9b everything was fine and sorted out, so blame Firefox 150 update for such breaking changes...]**
+Before 1.19.9b everything was fine and sorted out, so blame Firefox 150 update for such breaking changes...
+No such problem for Zen TWILIGHT users.]**
 
 **Recommended Mode:** All modes are working properly except **Collapsed Sidebar**.
 Also, in **Sidebar & Top Toolbar** mode, if you're choosing to keep Bookmarks under URL Bar while not having compact toolbar on, a small part of compact sidebar's pseduo bg might appear above compact sidebar's actual size. So for good looks, either at least turn on compact mode for toolbar, or remove Bookmarks, or switch to **Only Sidebar** mode.
