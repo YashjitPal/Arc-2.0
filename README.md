@@ -175,8 +175,8 @@ Descriptions are provided in the original instructions above.
   ![image](https://github.com/user-attachments/assets/c4c8e9a1-8ef4-4c06-9335-df7f839814d4)
 
 - **Better looking Tab Groups**  
-  ![image](https://github.com/user-attachments/assets/177eebf8-1c43-49d7-8509-90dc1161b4dd)
-  ![image](https://github.com/user-attachments/assets/b0314a00-1726-4364-922f-04297bf9ecfd)
+  <img width="235" height="87" alt="image" src="https://github.com/user-attachments/assets/db6a63d0-f6cb-4e8c-abc8-b0898c21724c" />
+  <img width="237" height="215" alt="image" src="https://github.com/user-attachments/assets/172e8eb5-b4e1-4a97-a0a0-a4ab0d5b965c" />
 
 - **Floating URL Bar with Blur Background**  
   ![image](https://github.com/user-attachments/assets/03a63255-9520-46c6-8468-f0579d97ad10)
@@ -190,13 +190,21 @@ Descriptions are provided in the original instructions above.
 - **Transparent Websites (with Zen Internet) [NOTE: Increase Compact Sidebar Opacity in Arc2.0 Mod Settings (Sine) or in `about:config` to have a readable Sidebar.]**  
   ![image](https://github.com/user-attachments/assets/34f1d947-33b0-4370-a717-fc354d4f9830)
 
-- **Enhanced PDF Viewer & PiP**  
-  ![image](https://github.com/user-attachments/assets/d8c85853-6c49-4d66-8a36-01fbe60b88f8)
+- **Enhanced PDF Viewer (Press `Ctrl`+`Alt`+`Shift`+`-` to invert color) & PiP**  
+  <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/6283e8ea-cf8f-43fa-862f-afa5e08d7aa2" />
+ <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/73fbbd33-ea36-4e3f-8646-40fcb5206b89" />
+
   ![image](https://github.com/user-attachments/assets/8e7303c0-4a1a-4ff5-8497-c34c5b06440b)
 
-- **Media Mini Player Improvements**  
+
+- **Sidebar Media Player Improvements (1&2: Infinite Animation Glow; 3&4: Media Cover Art)**  
   ![image](https://github.com/user-attachments/assets/70579c46-311f-48c5-9ae2-c5e86ba46332)
   ![image](https://github.com/user-attachments/assets/d7e281b3-2652-47e3-b515-dcbde7fad547)
+  
+  <img width="236" height="126" alt="image" src="https://github.com/user-attachments/assets/4ce92dde-7598-4610-8394-2b95b393b2ab" />
+  <img width="234" height="161" alt="image" src="https://github.com/user-attachments/assets/9d6877bb-4e4c-49ee-b634-b8092bb3b27c" />
+
+
 
 ---
 
