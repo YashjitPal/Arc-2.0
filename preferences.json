@@ -355,27 +355,27 @@
     "type": "checkbox",
     "property": "arc-tab-auto-unload-pinned",
     "defaultValue": false,
-    "label": "Enable Auto-*Unload* for **Pinned & Essential** tabs."
+    "label": "Enable Auto-Unload for **Pinned & Essential** tabs."
   },
   {
     "type": "string",
     "property": "arc-tab-auto-unload",
     "defaultValue": "0",
-    "placeholder": "e.g. 30m, 1h, 1d (0 to disable)",
-    "label": "Auto-*Unload* inactive tabs (~enter duration like `30m`, `1h`, `1d`; `0` to disable~)."
+    "placeholder": "5m/1h/1d(0 to disable)",
+    "label": "Auto-Unload inactive tabs (~enter duration like `30m`, `1h`, `1d`; `0` to disable~)."
   },
   {
     "type": "checkbox",
     "property": "arc-tab-auto-clean-pinned",
     "defaultValue": false,
-    "label": "Enable Auto-*Clean* for **Pinned & Essential** tabs."
+    "label": "Enable Auto-Clean for **Pinned & Essential** unloaded tabs."
   },
   {
     "type": "string",
     "property": "arc-tab-auto-clean",
     "defaultValue": "0",
-    "placeholder": "e.g. 1h, 12h, 1d (0 to disable)",
-    "label": "Auto-*Clean* (close) unloaded tabs (~enter duration like `1h`, `1d`; `0` to disable; only unloaded tabs are cleaned~)."
+    "placeholder": "1h/12h/1d(0 to disable)",
+    "label": "Auto-Clean (close) unloaded tabs (~enter duration like `1h`, `1d`; `0` to disable; only unloaded tabs are cleaned~)."
   },
   {
     "type": "checkbox",
