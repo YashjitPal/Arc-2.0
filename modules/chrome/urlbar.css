@@ -18,6 +18,9 @@
     position: relative;
   }
 }
+.urlbar-input-container > * {
+  text-align: left;
+}
 
 /* Simple focus animation */
 #urlbar[focused="true"] {
