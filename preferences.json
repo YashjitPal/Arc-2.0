@@ -768,8 +768,7 @@
   {
     "type": "dropdown",
     "property": "arc-font",
-    "label": "Select the *font* for browser (~restart for chosen font to take effect on browser pages~).",
-    "restart": true,
+    "label": "Select the *font* for browser's chrome and `about:` pages (use `Boost` to make font work on every webpage as well - will need font to be installed).",
     "defaultValue": "Nunito",
     "options": [
       {
