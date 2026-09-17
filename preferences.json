@@ -341,7 +341,7 @@
   },
   {
     "type": "checkbox",
-    "label": "Enable *Unloaded* Tabs to be *faded*.",
+    "label": "Enable Unloaded Tabs to be *faded*.",
     "property": "browser.tabs.fadeOutUnloadedTabs",
     "defaultValue": true
   },
