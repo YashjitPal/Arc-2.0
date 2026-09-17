@@ -409,10 +409,6 @@ tab-group[split-view-group] {
     display: none !important;
   }
 
-  .zen-essentials-container .tab-icon-overlay {
-    pointer-events: none !important;
-  }
-
   .tabbrowser-tab img {
     transition: opacity 0.3s ease-in-out;
   }
@@ -440,12 +436,6 @@ tab-group[split-view-group] {
       mask-size: 10px 10px !important;
       mask-repeat: no-repeat !important;
       mask-position: center !important;
-    }
-
-    @media (prefers-color-scheme: light) {
-      &:is([soundplaying], [muted], [activemedia-blocked]) {
-        filter: invert(1);
-      }
     }
 
     &:is([activemedia-blocked]) {
