@@ -389,7 +389,7 @@
 
   const INVERT_FILTER = "invert(98%) hue-rotate(176.4deg)";
 
-  // 2. Toggle Invert function (PDFs ONLY — URL must end with .pdf)
+  // 2. Toggle Invert function (PDFs ONLY - URL must end with .pdf)
   async function toggleCurrentTabInvert() {
     const tab = window.gBrowser?.selectedTab;
     const browser = tab?.linkedBrowser || window.gBrowser?.selectedBrowser;
