@@ -365,8 +365,15 @@
 #zen-create-new-button,
 #zen-library-button,
 #bookmarks-menu-button,
-#privatebrowsing-button .toolbarbutton-icon {
+#privatebrowsing-button .toolbarbutton-icon,
+.zen-library-tab:before
+{
   border-radius: var(--arc-border-radius, 12px) !important;
+}
+
+#taskbar-tabs-button,.toolbarbutton-1 image
+{
+  border-radius: 8px !important;
 }
 
 /* Hover background */
