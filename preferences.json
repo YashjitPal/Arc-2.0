@@ -99,7 +99,7 @@
     "value": "number",
     "label": "Choose mode for *No Gaps* (~*margin width* set above would be overriden by whatever mode is chosen~).",
     "property": "arc-no-gap.mode-select",
-    "defaultValue": 0,
+    "defaultValue": 1,
     "options": [
       {
         "label": "Disable",
