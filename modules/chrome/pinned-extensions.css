@@ -31,19 +31,41 @@
   }
 
   :root[zen-single-toolbar="true"] #nav-bar {
-    margin-bottom: 10px !important; /* Adjust gap between urlbar and extensions */
+    margin-bottom: 10px !important;  /* Adjust gap between urlbar and extensions */
   }
 
   /* Pinned extensions */
   #TabsToolbar-customization-target {
     display: flex !important;
+    flex-flow: row wrap !important;
     gap: calc(var(--zen-toolbox-padding) - 3px) !important;
-  
+
+    /* Sidebar media player exclusion from row wrap*/
+    > #zen-media-controls-toolbar {
+      position: absolute !important;
+      bottom: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+    }
+
+    --arc-pinned-extensions-gap: 2px !important;  /*Adjust gap between extensions and essentials*/
+
+    align-content: flex-start !important;
+
     #tabbrowser-tabs {
       min-width: 100% !important;
-      height: calc(100% - 37px) !important;
+      margin-top: var(--arc-pinned-extensions-gap) !important;
+      height: calc(100% - 37px - var(--arc-pinned-extensions-gap)) !important;
     }
-    
+
+    &:has(> #zen-media-controls-toolbar:not([hidden])) #tabbrowser-tabs {
+      height: calc(
+        100% - 37px - var(--arc-pinned-extensions-gap) -
+          var(--zen-media-collapsed-height, 2.5rem) - var(--zen-media-stack-gap, 6px)
+      ) !important;
+    }
+
     #zen-tabs-wrapper {
       max-height: 700px;
     }
@@ -82,7 +104,7 @@
     }
 
     > toolbarbutton:not([id="tabs-newtab-button"], #sort-button, #clear-button),
-    > toolbaritem:not(#sort-button, #clear-button) {
+    > toolbaritem:not(#sort-button, #clear-button, #zen-media-controls-toolbar) {
       height: 32px !important;
       width: 32px !important;
       flex-grow: 1 !important;
@@ -96,7 +118,7 @@
     }
 
     > toolbarbutton:not([id="tabs-newtab-button"]),
-    > toolbaritem {
+    > toolbaritem:not(#zen-media-controls-toolbar) {
       background-color: light-dark(
         rgb(0 0 0 / 7.5%),
         rgb(255 255 255 / 7.5%)
@@ -112,7 +134,7 @@
     }
 
     > toolbarbutton:not([id="tabs-newtab-button"]):hover,
-    > toolbaritem:hover {
+    > toolbaritem:not(#zen-media-controls-toolbar):hover {
       background-color: light-dark(
         rgb(0 0 0 / 10%),
         rgb(255 255 255 / 10%)
