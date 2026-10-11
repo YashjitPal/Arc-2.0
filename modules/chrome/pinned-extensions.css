@@ -37,21 +37,13 @@
   /* Pinned extensions */
   #TabsToolbar-customization-target {
     display: flex !important;
-    flex-flow: row wrap !important;
     gap: calc(var(--zen-toolbox-padding) - 3px) !important;
-
+  
     #tabbrowser-tabs {
       min-width: 100% !important;
       height: calc(100% - 37px) !important;
     }
-
-    /* Zen 1.19.11b uses #zen-tabs-wrapper; #Zen-tabs-wrapper no longer matches.
-     *
-     * #Zen-tabs-wrapper {
-     *   max-height: 700px;
-     * }
-     */
-
+    
     #zen-tabs-wrapper {
       max-height: 700px;
     }
