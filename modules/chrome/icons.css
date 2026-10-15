@@ -22,10 +22,6 @@
 
 @media (-moz-pref("arc-menu-icon")) {
   #PanelUI-menu-button image {
-    /* Zen now ignores context-fill/context-stroke inside data: URI SVGs (only chrome://
-       images may use -moz-context-properties), which left this icon permanently black.
-       Render the icon as a mask instead and paint it with the theme icon colour, so it
-       follows light/dark mode like the other toolbar icons. */
     list-style-image: none !important;
     width: 20px !important;
     height: 15px !important;
