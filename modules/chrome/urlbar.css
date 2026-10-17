@@ -30,13 +30,6 @@
   border-radius: var(--arc-border-radius, 12px) !important;
 }
 
-#urlbar-results,
-#PopupAutoCompleteRichResult,
-.autocomplete-richlistbox {
-  padding-right: 5px !important;
-  padding-left: 4px !important;
-}
-
 /* Smooth dropdown appearance */
 #urlbar-results {
   animation: fade-in 0.2s ease;
