@@ -12,10 +12,19 @@ export class InvertPDFActorChild extends JSWindowActorChild {
       pink: "hsl(300, 70%, 85%)",
       red: "hsl(350, 80%, 85%)",
     },
+    fontMap: {
+      Nunito: "Nunito",
+      "Nunito-Italic": "Nunito-Italic",
+      "SF-Symbols": "SF-Symbols",
+      "SF-Pro": "SF-Pro",
+      SUSE: "Suse",
+      "SUSE-Italic": "Suse-Italic",
+    },
   };
 
   handleEvent(event) {
     if (event.type === "DOMContentLoaded" || event.type === "pageshow") {
+      if (!this.isInternalOrPdf()) return;
       this.initStyles();
       this.syncRadius();
       this.syncFont();
@@ -35,41 +44,38 @@ export class InvertPDFActorChild extends JSWindowActorChild {
     );
   }
 
+  isInternalOrPdf() {
+    const doc = this.document;
+    if (!doc) return false;
+    const uri = (doc.documentURI || doc.location?.href || "").toLowerCase();
+    return (
+      uri.startsWith("about:") ||
+      uri.startsWith("chrome://") ||
+      uri.startsWith("resource://pdf.js") ||
+      this.isPdf()
+    );
+  }
+
   syncFont() {
     try {
       const doc = this.document;
-      if (!doc) return;
-      const uri = (doc.documentURI || doc.location?.href || "").toLowerCase();
-      if (
-        uri.startsWith("about:") ||
-        uri.startsWith("chrome://") ||
-        uri.startsWith("resource://pdf.js")
-      ) {
-        let prefVal = "Nunito";
-        try {
-          prefVal = Services.prefs.getStringPref("arc-font", "Nunito");
-        } catch (e) {}
-        const fontMap = {
-          Nunito: "Nunito",
-          "Nunito-Italic": "Nunito-Italic",
-          "SF-Symbols": "SF-Symbols",
-          "SF-Pro": "SF-Pro",
-          SUSE: "Suse",
-          "SUSE-Italic": "Suse-Italic",
-        };
-        const font = fontMap[prefVal] || prefVal || "Nunito";
-        doc.documentElement?.style?.setProperty("--arc-font", `"${font}"`);
-      }
+      if (!doc || !this.isInternalOrPdf()) return;
+      let prefVal = "Nunito";
+      try {
+        prefVal = Services.prefs.getStringPref("arc-font", "Nunito");
+      } catch (e) {}
+      const font =
+        InvertPDFActorChild.config.fontMap[prefVal] || prefVal || "Nunito";
+      doc.documentElement?.style?.setProperty("--arc-font", `"${font}"`);
     } catch (e) {}
   }
 
   syncRadius() {
     try {
-      let radius = Services.prefs.getStringPref("arc-border-radius", "12px");
-      this.document?.documentElement?.style?.setProperty(
-        "--arc-border-radius",
-        radius,
-      );
+      const doc = this.document;
+      if (!doc || !this.isInternalOrPdf()) return;
+      const radius = Services.prefs.getStringPref("arc-border-radius", "12px");
+      doc.documentElement?.style?.setProperty("--arc-border-radius", radius);
     } catch (e) {}
   }
 
@@ -121,26 +127,20 @@ export class InvertPDFActorChild extends JSWindowActorChild {
     }
 
     if (message.name === "ArcRadiusChanged") {
-      this.document?.documentElement?.style?.setProperty(
-        "--arc-border-radius",
-        message.data?.radius || "12px",
-      );
+      if (this.isInternalOrPdf()) {
+        this.document?.documentElement?.style?.setProperty(
+          "--arc-border-radius",
+          message.data?.radius || "12px",
+        );
+      }
     }
 
     if (message.name === "ArcFontChanged") {
-      const doc = this.document;
-      if (doc) {
-        const uri = (doc.documentURI || doc.location?.href || "").toLowerCase();
-        if (
-          uri.startsWith("about:") ||
-          uri.startsWith("chrome://") ||
-          uri.startsWith("resource://pdf.js")
-        ) {
-          doc.documentElement?.style?.setProperty(
-            "--arc-font",
-            `"${message.data?.font || "Nunito"}"`,
-          );
-        }
+      if (this.isInternalOrPdf()) {
+        this.document?.documentElement?.style?.setProperty(
+          "--arc-font",
+          `"${message.data?.font || "Nunito"}"`,
+        );
       }
     }
     return null;

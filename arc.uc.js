@@ -117,15 +117,23 @@
 
   /**
    * Apply or clear the cover art CSS variable on a media card element.
+   * Skips DOM mutations if the cover URL has not changed.
    */
   function applyCoverToCard(card, coverUrl) {
     if (!card) return;
+    const normalized = coverUrl || "";
+    if (card._arcLastCoverUrl === normalized) return;
+    card._arcLastCoverUrl = normalized;
+
     const toolbar = document.getElementById(MEDIA_TOOLBAR_ID);
-    if (coverUrl) {
-      const cssVal = 'url("' + coverUrl + '")';
+    if (normalized) {
+      const cssVal = 'url("' + normalized + '")';
       card.style.setProperty("--arc-media-cover-url", cssVal);
-      card.setAttribute("has-cover", "true");
-      if (toolbar) {
+      if (!card.hasAttribute("has-cover")) {
+        card.setAttribute("has-cover", "true");
+      }
+      if (toolbar && toolbar._arcLastCoverUrl !== normalized) {
+        toolbar._arcLastCoverUrl = normalized;
         toolbar.style.setProperty("--arc-media-cover-url", cssVal);
       }
     } else {
@@ -159,42 +167,58 @@
     const cards = toolbar.querySelectorAll(".zen-media-card:not([hidden])");
     if (!cards.length) return;
 
-    const tabsWithMedia = Array.from(window.gBrowser?.tabs || []).filter(
-      (tab) =>
-        tab.hasAttribute("soundplaying") ||
-        tab.linkedBrowser?.browsingContext?.mediaController?.isActive,
-    );
+    let tabsWithMedia = null;
 
     cards.forEach((cardEl, index) => {
-      // 1. Check if card element has direct references attached
+      // 1. Check if card element has direct valid references attached
       let browser = cardEl._arcBrowser;
       let controller = cardEl._arcController;
+      if (browser && !browser.isConnected) {
+        browser = null;
+        controller = null;
+        cardEl._arcBrowser = null;
+        cardEl._arcController = null;
+      }
 
-      // 2. If not directly attached, match against active media tabs
-      if (!browser && tabsWithMedia.length > 0) {
-        const cardTitle =
-          cardEl.querySelector(".zen-media-title")?.textContent?.trim() || "";
-
-        let matchedTab = tabsWithMedia.find((tab) => {
-          const c = tab.linkedBrowser?.browsingContext?.mediaController;
-          const meta = c?.getMetadata?.();
-          return (
-            (meta?.title && meta.title.trim() === cardTitle) ||
-            (tab.label && tab.label.trim() === cardTitle)
+      // 2. Lazily query active media tabs only when a card lacks a direct reference
+      if (!browser) {
+        if (!tabsWithMedia) {
+          const allTabs =
+            window.gZenWorkspaces?.allStoredTabs ||
+            window.gBrowser?.tabs ||
+            [];
+          tabsWithMedia = Array.from(allTabs).filter(
+            (tab) =>
+              tab.hasAttribute("soundplaying") ||
+              tab.linkedBrowser?.browsingContext?.mediaController?.isActive,
           );
-        });
-
-        if (!matchedTab && tabsWithMedia[index]) {
-          matchedTab = tabsWithMedia[index];
-        } else if (!matchedTab && tabsWithMedia.length === 1) {
-          matchedTab = tabsWithMedia[0];
         }
 
-        if (matchedTab) {
-          browser = matchedTab.linkedBrowser;
-          controller = browser?.browsingContext?.mediaController;
-          cardEl._arcBrowser = browser;
-          cardEl._arcController = controller;
+        if (tabsWithMedia.length > 0) {
+          const cardTitle =
+            cardEl.querySelector(".zen-media-title")?.textContent?.trim() || "";
+
+          let matchedTab = tabsWithMedia.find((tab) => {
+            const c = tab.linkedBrowser?.browsingContext?.mediaController;
+            const meta = c?.getMetadata?.();
+            return (
+              (meta?.title && meta.title.trim() === cardTitle) ||
+              (tab.label && tab.label.trim() === cardTitle)
+            );
+          });
+
+          if (!matchedTab && tabsWithMedia[index]) {
+            matchedTab = tabsWithMedia[index];
+          } else if (!matchedTab && tabsWithMedia.length === 1) {
+            matchedTab = tabsWithMedia[0];
+          }
+
+          if (matchedTab) {
+            browser = matchedTab.linkedBrowser;
+            controller = browser?.browsingContext?.mediaController;
+            cardEl._arcBrowser = browser;
+            cardEl._arcController = controller;
+          }
         }
       }
 
@@ -261,23 +285,22 @@
         // Try hooking card prototype as soon as first card is created
         tryHookCardPrototype();
 
-        // Attach direct listeners on the mediaController for real-time changes
+        // Attach direct listeners on the mediaController once per controller instance
         if (
           mediaController &&
+          !mediaController._arcEventsHooked &&
           typeof mediaController.addEventListener === "function"
         ) {
+          mediaController._arcEventsHooked = true;
           const onMediaEvent = () => {
             tryHookCardPrototype();
             syncAllCards();
-            requestAnimationFrame(() => syncAllCards());
           };
           mediaController.addEventListener("metadatachange", onMediaEvent);
           mediaController.addEventListener("playbackstatechange", onMediaEvent);
-          mediaController.addEventListener("positionstatechange", onMediaEvent);
         }
 
         setTimeout(syncAllCards, 50);
-        setTimeout(syncAllCards, 300);
       };
       window.gZenMediaController.activateMediaControls._arcHooked = true;
     }
@@ -295,9 +318,10 @@
     }
 
     // Observe toolbar DOM mutations (cards added/removed/shown, AND title/artist text changes)
+    let observer = null;
     const toolbar = document.getElementById(MEDIA_TOOLBAR_ID);
     if (toolbar) {
-      const observer = new MutationObserver((mutations) => {
+      observer = new MutationObserver((mutations) => {
         for (const mutation of mutations) {
           if (
             mutation.type === "childList" ||
@@ -324,28 +348,29 @@
     }
 
     // Listen to tab audio events
-    window.addEventListener("TabAttrModified", (event) => {
+    const onTabAttrModified = (event) => {
       if (event.detail?.changed?.includes("soundplaying")) {
         tryHookCardPrototype();
         setTimeout(syncAllCards, 150);
       }
-    });
-
-    window.addEventListener("TabSelect", () => {
+    };
+    const onTabSelect = () => {
       tryHookCardPrototype();
       setTimeout(syncAllCards, 200);
-    });
+    };
 
-    // Periodic heartbeat sync (every 2.5s) while media is actively playing
-    setInterval(() => {
-      const playingCard = document.querySelector(
-        `#${MEDIA_TOOLBAR_ID} .zen-media-card.playing:not([hidden])`,
-      );
-      if (playingCard) {
-        tryHookCardPrototype();
-        syncAllCards();
-      }
-    }, 2500);
+    window.addEventListener("TabAttrModified", onTabAttrModified);
+    window.addEventListener("TabSelect", onTabSelect);
+
+    window.addEventListener(
+      "unload",
+      () => {
+        observer?.disconnect();
+        window.removeEventListener("TabAttrModified", onTabAttrModified);
+        window.removeEventListener("TabSelect", onTabSelect);
+      },
+      { once: true },
+    );
 
     // Initial check
     syncAllCards();
@@ -484,22 +509,30 @@
   } catch (e) {}
 
   // Preserve per-tab invert state when switching tabs
-  window.addEventListener("TabSelect", () => {
+  const onInvertTabSelect = () => {
     const tab = window.gBrowser?.selectedTab;
     const browser = tab?.linkedBrowser;
     if (!browser) return;
 
     if (tab._arcInverted) {
-      browser.style.filter = INVERT_FILTER;
-      browser.setAttribute("arc-inverted", "true");
-    } else {
+      if (browser.style.filter !== INVERT_FILTER) {
+        browser.style.filter = INVERT_FILTER;
+      }
+      if (!browser.hasAttribute("arc-inverted")) {
+        browser.setAttribute("arc-inverted", "true");
+      }
+    } else if (browser.hasAttribute("arc-inverted") || browser.style.filter) {
       browser.style.filter = "";
       browser.removeAttribute("arc-inverted");
     }
-  });
+  };
+  window.addEventListener("TabSelect", onInvertTabSelect);
 
   // 4. Observe changes to "arc-border-radius" in about:config and broadcast to tabs
   try {
+    const getAllTabsAcrossSpaces = () =>
+      window.gZenWorkspaces?.allStoredTabs || window.gBrowser?.tabs || [];
+
     const syncRadiusToTabs = () => {
       try {
         const radius = Services.prefs.getStringPref(
@@ -507,7 +540,7 @@
           "12px",
         );
 
-        for (const tab of window.gBrowser?.tabs || []) {
+        for (const tab of getAllTabsAcrossSpaces()) {
           try {
             const actor =
               tab.linkedBrowser?.browsingContext?.currentWindowGlobal?.getActor(
@@ -528,17 +561,16 @@
     };
     Services.prefs.addObserver("arc-border-radius", radiusObserver);
 
-    const resolveFontName = (val) => {
-      const map = {
-        Nunito: "Nunito",
-        "Nunito-Italic": "Nunito-Italic",
-        "SF-Symbols": "SF-Symbols",
-        "SF-Pro": "SF-Pro",
-        SUSE: "Suse",
-        "SUSE-Italic": "Suse-Italic",
-      };
-      return map[val] || val || "Nunito";
+    const FONT_MAP = {
+      Nunito: "Nunito",
+      "Nunito-Italic": "Nunito-Italic",
+      "SF-Symbols": "SF-Symbols",
+      "SF-Pro": "SF-Pro",
+      SUSE: "Suse",
+      "SUSE-Italic": "Suse-Italic",
     };
+
+    const resolveFontName = (val) => FONT_MAP[val] || val || "Nunito";
 
     const syncFontToTabs = () => {
       try {
@@ -550,7 +582,7 @@
           `"${fontName}"`,
         );
 
-        for (const tab of window.gBrowser?.tabs || []) {
+        for (const tab of getAllTabsAcrossSpaces()) {
           try {
             const actor =
               tab.linkedBrowser?.browsingContext?.currentWindowGlobal?.getActor(
@@ -584,6 +616,7 @@
           Services.prefs.removeObserver("arc-border-radius", radiusObserver);
           Services.prefs.removeObserver("arc-font", fontObserver);
           window.removeEventListener("keydown", onKeyDown, { capture: true });
+          window.removeEventListener("TabSelect", onInvertTabSelect);
         } catch (e) {}
       },
       { once: true },
@@ -644,7 +677,7 @@
       );
     }
 
-        // Ensure fadeOutUnloadedTabs is true by default unless user explicitly changed it
+    // Ensure fadeOutUnloadedTabs is true by default unless user explicitly changed it
     if (!Services.prefs.prefHasUserValue("browser.tabs.fadeOutUnloadedTabs")) {
       Services.prefs.setBoolPref("browser.tabs.fadeOutUnloadedTabs", true);
     }
@@ -750,9 +783,9 @@
       - Countdown starts when the user activates/updates the clean duration pref
         or when the tab is unloaded (no instant retroactive closing).
    3. Real-Time Scheduler: Calculates the exact millisecond wakeup time so tabs
-      unload and clean instantly at the exact second they expire.
-   4. Exclusions: Active/selected tab, playing media, WebRTC sharing, PiP, and
-      Zen empty placeholder tabs are strictly protected.
+      unload and clean at the exact second they expire with zero polling overhead.
+   4. Exclusions: Active/selected tabs, Split-View / multi-selected tabs, playing
+      media, WebRTC sharing, PiP, and Zen empty placeholder tabs are protected.
    5. Setting duration to 0 disables that feature with zero background overhead.
    ========================================================================== */
 (function () {
@@ -763,24 +796,36 @@
   const PREF_AUTO_UNLOAD_PINNED = "arc-tab-auto-unload-pinned";
   const PREF_AUTO_CLEAN_PINNED = "arc-tab-auto-clean-pinned";
   const SESSION_STORE_KEY = "arcUnloadedAt";
+  const MAX_TIMEOUT_MS = 2147483647; // Max 32-bit signed int for setTimeout
+  const DURATION_REGEX = /^([0-9]+(?:\.[0-9]+)?)\s*([a-z]+)?$/;
 
   let gSchedulerTimer = null;
+  let gCachedSessionStore = null;
+
+  // Cached preference states (updated reactively via Services.prefs observer)
+  let gUnloadMs = 0;
+  let gCleanMs = 0;
+  let gAllowUnloadPinned = false;
+  let gAllowCleanPinned = false;
 
   // Activation timestamps to prevent instant retroactive unload/clean when user inputs duration
   let gUnloadPrefActivatedAt = Date.now();
   let gCleanPrefActivatedAt = Date.now();
-  let gLastUnloadMs = -1;
-  let gLastCleanMs = -1;
 
   /**
-   * Helper to resolve SessionStore safely.
+   * Helper to resolve and cache SessionStore safely.
    */
   function getSessionStore() {
-    if (window.SessionStore) return window.SessionStore;
+    if (gCachedSessionStore) return gCachedSessionStore;
+    if (window.SessionStore) {
+      gCachedSessionStore = window.SessionStore;
+      return gCachedSessionStore;
+    }
     try {
-      return ChromeUtils.importESModule(
+      gCachedSessionStore = ChromeUtils.importESModule(
         "resource:///modules/sessionstore/SessionStore.sys.mjs",
       ).SessionStore;
+      return gCachedSessionStore;
     } catch (e) {
       return null;
     }
@@ -800,7 +845,7 @@
     const trimmed = prefValue.trim().toLowerCase();
     if (!trimmed || trimmed === "0" || trimmed === "false") return 0;
 
-    const match = trimmed.match(/^([0-9]+(?:\.[0-9]+)?)\s*([a-z]+)?$/);
+    const match = trimmed.match(DURATION_REGEX);
     if (!match) return 0;
 
     const num = parseFloat(match[1]);
@@ -845,17 +890,31 @@
   function getPrefDurationMs(prefName) {
     try {
       const type = Services.prefs.getPrefType(prefName);
-      if (type === 32) {
-        // String
+      if (type === Services.prefs.PREF_STRING) {
         return parseDurationToMs(Services.prefs.getStringPref(prefName));
-      } else if (type === 64) {
-        // Integer
+      } else if (type === Services.prefs.PREF_INT) {
         return parseDurationToMs(Services.prefs.getIntPref(prefName));
       }
       return 0;
     } catch (e) {
       return 0;
     }
+  }
+
+  /**
+   * Refresh cached preferences from Services.prefs.
+   */
+  function refreshCachedPrefs() {
+    gUnloadMs = getPrefDurationMs(PREF_AUTO_UNLOAD);
+    gCleanMs = getPrefDurationMs(PREF_AUTO_CLEAN);
+    gAllowUnloadPinned = Services.prefs.getBoolPref(
+      PREF_AUTO_UNLOAD_PINNED,
+      false,
+    );
+    gAllowCleanPinned = Services.prefs.getBoolPref(
+      PREF_AUTO_CLEAN_PINNED,
+      false,
+    );
   }
 
   /**
@@ -876,27 +935,81 @@
     return (
       tab.pinned ||
       tab.hasAttribute("pinned") ||
-      tab.hasAttribute("zen-essential") ||
-      tab.getAttribute("zen-essential") === "true"
+      tab.hasAttribute("zen-essential")
     );
   }
 
   /**
+   * Retrieve all tabs across all Zen Spaces/Workspaces (including Essentials,
+   * Pinned tabs, Normal tabs, and tabs inside Folders/Groups in every Space).
+   * Note: `window.gBrowser.tabs` only returns tabs in the currently active Space!
+   */
+  function getAllTabsAcrossSpaces() {
+    const zenTabs = window.gZenWorkspaces?.allStoredTabs;
+    if (zenTabs && zenTabs.length) {
+      return zenTabs;
+    }
+    return window.gBrowser?.tabs || [];
+  }
+
+  /**
+   * Check if a tab belongs to the currently active Zen Space (or is an Essential tab).
+   */
+  function isTabInActiveSpace(tab) {
+    if (!tab) return false;
+    if (tab.hasAttribute("zen-essential")) return true;
+    const activeWorkspaceId = window.gZenWorkspaces?.activeWorkspace;
+    if (!activeWorkspaceId) return true;
+    const tabWorkspaceId = tab.getAttribute("zen-workspace-id");
+    return !tabWorkspaceId || tabWorkspaceId === activeWorkspaceId;
+  }
+
+  /**
    * Universal protection check.
-   * Strictly protects active tabs, playing media, WebRTC sharing, PiP, empty tabs, busy, crashed.
+   * Strictly protects active/split-view/multiselected tabs in the active Space,
+   * playing media, WebRTC sharing, PiP, empty tabs, busy, crashed.
    */
   function isProtectedTab(tab) {
     if (!tab || tab.closing || !tab.isConnected) return true;
 
-    // 1. Never touch active/selected tab in the window
-    if (tab.selected || tab === window.gBrowser?.selectedTab) return true;
-
-    // 2. Never touch Zen Glance or placeholder empty tabs
-    if (tab.hasAttribute("zen-glance-tab") || tab.hasAttribute("zen-empty-tab")) {
+    // 1. Never touch the currently active tab
+    if (tab.selected || tab === window.gBrowser?.selectedTab) {
       return true;
     }
 
-    // 3. Never touch tabs playing audio or active media sessions
+    // 2. For tabs in the currently active Space, also protect visible Split-View panes
+    //    and multi-selected tabs. (Tabs in inactive Spaces can retain stale
+    //    `visuallyselected`, `multiselected`, or `splitView` properties after Space switch,
+    //    so we only treat those as active protection if the tab is in the current Space.)
+    if (isTabInActiveSpace(tab)) {
+      if (
+        tab.visuallySelected ||
+        tab.multiselected ||
+        tab.hasAttribute("visuallyselected") ||
+        tab.hasAttribute("multiselected")
+      ) {
+        return true;
+      }
+      if (
+        tab.splitView &&
+        window.gZenViewSplitter?.currentView >= 0 &&
+        window.gZenViewSplitter?._data?.[
+          window.gZenViewSplitter.currentView
+        ]?.tabs?.includes(tab)
+      ) {
+        return true;
+      }
+    }
+
+    // 3. Never touch Zen Glance or placeholder empty tabs
+    if (
+      tab.hasAttribute("zen-glance-tab") ||
+      tab.hasAttribute("zen-empty-tab")
+    ) {
+      return true;
+    }
+
+    // 4. Never touch tabs playing audio or active media sessions
     if (
       tab.hasAttribute("soundplaying") ||
       tab.soundPlaying ||
@@ -905,13 +1018,13 @@
       return true;
     }
 
-    // 4. Never touch WebRTC sharing tabs (camera, microphone, screen sharing)
+    // 5. Never touch WebRTC sharing tabs (camera, microphone, screen sharing)
     if (tab.hasAttribute("sharing")) return true;
 
-    // 5. Never touch Picture-in-Picture tabs
+    // 6. Never touch Picture-in-Picture tabs
     if (tab.hasAttribute("pictureinpicture")) return true;
 
-    // 6. Never touch busy/loading or crashed tabs
+    // 7. Never touch busy/loading or crashed tabs
     if (tab.hasAttribute("busy") || tab.hasAttribute("crashed")) return true;
 
     return false;
@@ -943,14 +1056,18 @@
 
   /**
    * Record or clear the timestamp when a tab was unloaded.
+   * Avoids redundant SessionStore writes if value is already in sync.
    */
   function setTabUnloadedAt(tab, timestamp) {
-    tab._arcUnloadedAt = timestamp || null;
+    const nextVal = timestamp || null;
+    if (tab._arcUnloadedAt === nextVal) return;
+    tab._arcUnloadedAt = nextVal;
+
     const ss = getSessionStore();
     if (ss) {
       try {
-        if (timestamp) {
-          ss.setCustomTabValue(tab, SESSION_STORE_KEY, String(timestamp));
+        if (nextVal) {
+          ss.setCustomTabValue(tab, SESSION_STORE_KEY, String(nextVal));
         } else {
           ss.deleteCustomTabValue(tab, SESSION_STORE_KEY);
         }
@@ -960,20 +1077,21 @@
 
   /**
    * Core lifecycle processor.
-   * Evaluates all tabs, performs due actions, and schedules the exact next wakeup.
+   * Evaluates all tabs across all Spaces, performs due actions, and schedules the exact next wakeup.
    */
   function checkTabsLifecycle() {
-    if (!window.gBrowser?.tabs) return;
-
     if (gSchedulerTimer) {
       clearTimeout(gSchedulerTimer);
       gSchedulerTimer = null;
     }
 
-    const unloadMs = getPrefDurationMs(PREF_AUTO_UNLOAD);
-    const cleanMs = getPrefDurationMs(PREF_AUTO_CLEAN);
-    const allowUnloadPinned = Services.prefs.getBoolPref(PREF_AUTO_UNLOAD_PINNED, false);
-    const allowCleanPinned = Services.prefs.getBoolPref(PREF_AUTO_CLEAN_PINNED, false);
+    const tabs = getAllTabsAcrossSpaces();
+    if (!tabs || !tabs.length) return;
+
+    const unloadMs = gUnloadMs;
+    const cleanMs = gCleanMs;
+    const allowUnloadPinned = gAllowUnloadPinned;
+    const allowCleanPinned = gAllowCleanPinned;
 
     // If both features are disabled, nothing to process or schedule
     if (unloadMs <= 0 && cleanMs <= 0) return;
@@ -981,9 +1099,19 @@
     const now = Date.now();
     let nextWakeupMs = Infinity;
 
-    const allTabs = Array.from(window.gBrowser.tabs);
+    // Count real (non-empty placeholder) tabs across all Spaces so we never close the last real tab
+    let realTabCount = 0;
+    for (let i = 0; i < tabs.length; i++) {
+      if (!tabs[i].hasAttribute("zen-empty-tab") && !tabs[i].closing) {
+        realTabCount++;
+      }
+    }
 
-    for (const tab of allTabs) {
+    // Iterate over a snapshot if Auto-Clean might remove tabs during iteration
+    const tabList = cleanMs > 0 ? Array.from(tabs) : tabs;
+
+    for (let i = 0; i < tabList.length; i++) {
+      const tab = tabList[i];
       if (isProtectedTab(tab)) continue;
 
       const pinnedOrEssential = isPinnedOrEssential(tab);
@@ -994,7 +1122,6 @@
         // UNLOADED TAB: Target for Auto-Clean
         // ====================================================================
         if (cleanMs > 0) {
-          // If pinned/essential, only clean if user explicitly enabled it
           if (pinnedOrEssential && !allowCleanPinned) {
             continue;
           }
@@ -1007,27 +1134,48 @@
 
           // Inactivity starts from when tab became unloaded, but NOT earlier
           // than when the user activated/changed the Auto-Clean duration pref.
-          const effectiveUnloadedStart = Math.max(unloadedAt, gCleanPrefActivatedAt);
+          const effectiveUnloadedStart = Math.max(
+            unloadedAt,
+            gCleanPrefActivatedAt,
+          );
           const timeSinceUnloaded = now - effectiveUnloadedStart;
 
           if (timeSinceUnloaded >= cleanMs) {
-            // Safety: Never close the only remaining tab in the browser
-            if (window.gBrowser.tabs.length > 1 && !tab.hasAttribute("zen-empty-tab")) {
+            // Safety: Never close the only remaining real tab in the browser
+            if (realTabCount > 1) {
               try {
                 const kind = pinnedOrEssential ? "pinned/essential" : "regular";
                 console.log(
                   `[Arc-2.0] Auto-cleaning unloaded ${kind} tab: "${tab.label}" (unloaded for ${Math.round(timeSinceUnloaded / 1000)}s)`,
                 );
                 setTabUnloadedAt(tab, null);
-                window.gBrowser.removeTab(tab, { animate: true });
-                continue; // Tab closed
+
+                // If this tab was remembered as the last selected tab in another Space,
+                // clear that reference so Zen selects a valid remaining tab when switching back.
+                const wsId = tab.getAttribute("zen-workspace-id");
+                if (
+                  wsId &&
+                  window.gZenWorkspaces?.lastSelectedWorkspaceTabs?.[wsId] ===
+                    tab
+                ) {
+                  delete window.gZenWorkspaces.lastSelectedWorkspaceTabs[wsId];
+                }
+
+                window.gBrowser.removeTab(tab, {
+                  animate: isTabInActiveSpace(tab),
+                  closeWindowWithLastTab: false,
+                });
+                realTabCount--;
+                continue;
               } catch (e) {
                 console.warn("[Arc-2.0] Auto-clean error:", e);
               }
             }
           } else {
             const remainingClean = cleanMs - timeSinceUnloaded;
-            nextWakeupMs = Math.min(nextWakeupMs, remainingClean);
+            if (remainingClean < nextWakeupMs) {
+              nextWakeupMs = remainingClean;
+            }
           }
         }
       } else {
@@ -1035,16 +1183,19 @@
         // LOADED TAB: Skipped by Auto-Clean, Target for Auto-Unload
         // ====================================================================
         if (unloadMs > 0) {
-          // If pinned/essential, only unload if user explicitly enabled it
           if (pinnedOrEssential && !allowUnloadPinned) {
             continue;
           }
 
-          const lastAccessed = tab.lastAccessed || now;
+          const lastActive =
+            Math.max(tab.lastAccessed || 0, tab._arcLastActiveAt || 0) || now;
 
           // Inactivity starts from when tab became inactive, but NOT earlier
           // than when the user activated/changed the Auto-Unload duration pref.
-          const effectiveInactiveStart = Math.max(lastAccessed, gUnloadPrefActivatedAt);
+          const effectiveInactiveStart = Math.max(
+            lastActive,
+            gUnloadPrefActivatedAt,
+          );
           const inactiveDuration = now - effectiveInactiveStart;
 
           if (inactiveDuration >= unloadMs) {
@@ -1053,28 +1204,33 @@
               console.log(
                 `[Arc-2.0] Auto-unloading inactive ${kind} tab: "${tab.label}" (inactive for ${Math.round(inactiveDuration / 1000)}s)`,
               );
-              setTabUnloadedAt(tab, now);
-              window.gBrowser.discardBrowser(tab, true);
+              const didDiscard = window.gBrowser.discardBrowser(tab, true);
+              if (didDiscard !== false) {
+                setTabUnloadedAt(tab, now);
 
-              // Now that it is unloaded, if Auto-Clean is active, schedule for cleanMs
-              if (cleanMs > 0 && (!pinnedOrEssential || allowCleanPinned)) {
-                nextWakeupMs = Math.min(nextWakeupMs, cleanMs);
+                // Now that it is unloaded, if Auto-Clean is active, schedule for cleanMs
+                if (cleanMs > 0 && (!pinnedOrEssential || allowCleanPinned)) {
+                  if (cleanMs < nextWakeupMs) {
+                    nextWakeupMs = cleanMs;
+                  }
+                }
               }
             } catch (e) {
               console.warn("[Arc-2.0] Auto-unload error:", e);
             }
           } else {
             const remainingUnload = unloadMs - inactiveDuration;
-            nextWakeupMs = Math.min(nextWakeupMs, remainingUnload);
+            if (remainingUnload < nextWakeupMs) {
+              nextWakeupMs = remainingUnload;
+            }
           }
         }
       }
     }
 
-    // Schedule the next real-time wakeup if there are pending actions
+    // Schedule the exact next wakeup without periodic polling
     if (nextWakeupMs !== Infinity) {
-      // Clamp between 250ms (responsive) and 5000ms (heartbeat max)
-      const sleepTime = Math.max(250, Math.min(nextWakeupMs, 5000));
+      const sleepTime = Math.max(250, Math.min(nextWakeupMs, MAX_TIMEOUT_MS));
       gSchedulerTimer = setTimeout(checkTabsLifecycle, sleepTime);
     }
   }
@@ -1083,6 +1239,13 @@
    * Request an immediate check (debounced).
    */
   function scheduleImmediateCheck(delayMs = 150) {
+    if (gUnloadMs <= 0 && gCleanMs <= 0) {
+      if (gSchedulerTimer) {
+        clearTimeout(gSchedulerTimer);
+        gSchedulerTimer = null;
+      }
+      return;
+    }
     if (gSchedulerTimer) {
       clearTimeout(gSchedulerTimer);
       gSchedulerTimer = null;
@@ -1091,49 +1254,117 @@
   }
 
   function init() {
-    // Record initial preference values
-    gLastUnloadMs = getPrefDurationMs(PREF_AUTO_UNLOAD);
-    gLastCleanMs = getPrefDurationMs(PREF_AUTO_CLEAN);
+    refreshCachedPrefs();
     gUnloadPrefActivatedAt = Date.now();
     gCleanPrefActivatedAt = Date.now();
 
+    // Track the currently selected tab so when switching Tabs or Spaces,
+    // the outgoing tab's inactivity timer starts from the exact moment you leave it.
+    let lastKnownSelectedTab = window.gBrowser?.selectedTab || null;
+    if (lastKnownSelectedTab) {
+      lastKnownSelectedTab._arcLastActiveAt = Date.now();
+    }
+
     // 1. Listen for tab unload events to record exact unloaded timestamps
-    window.addEventListener("TabBrowserDiscarded", (event) => {
+    const onTabDiscarded = (event) => {
       const tab = event.target;
       if (tab) {
         setTabUnloadedAt(tab, Date.now());
       }
       scheduleImmediateCheck(200);
-    });
+    };
 
-    // 2. Listen for tab selection: clear unloaded timestamp when tab is restored
-    window.addEventListener("TabSelect", (event) => {
-      const tab = event.target;
+    // 2. Listen for tab selection (including across Space switches):
+    //    record outgoing tab's last active time & clear incoming tab's unloaded timestamp.
+    const onTabSelect = (event) => {
+      const now = Date.now();
+      const prevTab = event.detail?.previousTab || lastKnownSelectedTab;
+      if (prevTab && prevTab !== event.target) {
+        prevTab._arcLastActiveAt = now;
+      }
+
+      const tab = event.target || window.gBrowser?.selectedTab;
       if (tab) {
-        setTabUnloadedAt(tab, null);
+        lastKnownSelectedTab = tab;
+        tab._arcLastActiveAt = now;
+        if (tab._arcUnloadedAt !== null && tab._arcUnloadedAt !== undefined) {
+          setTabUnloadedAt(tab, null);
+        }
       }
       scheduleImmediateCheck(200);
-    });
+    };
 
-    // 3. Tab open / close events
-    window.addEventListener("TabOpen", () => scheduleImmediateCheck(300));
-    window.addEventListener("TabClose", () => scheduleImmediateCheck(300));
+    // 3. Reset inactivity timestamp when a tab finishes playing audio, sharing, PiP, or loading
+    const onTabAttrModified = (event) => {
+      const changed = event.detail?.changed;
+      if (!changed) return;
+      if (
+        changed.includes("soundplaying") ||
+        changed.includes("sharing") ||
+        changed.includes("pictureinpicture") ||
+        changed.includes("busy") ||
+        changed.includes("visuallyselected")
+      ) {
+        const tab = event.target;
+        if (tab) {
+          tab._arcLastActiveAt = Date.now();
+        }
+        scheduleImmediateCheck(250);
+      }
+    };
+
+    const onTabOpen = (event) => {
+      if (event.target) {
+        event.target._arcLastActiveAt = Date.now();
+      }
+      scheduleImmediateCheck(300);
+    };
+
+    const onTabClose = () => scheduleImmediateCheck(300);
+    const onWorkspaceSessionRestore = () => scheduleImmediateCheck(500);
+
+    window.addEventListener("TabBrowserDiscarded", onTabDiscarded);
+    window.addEventListener("TabSelect", onTabSelect);
+    window.addEventListener("TabAttrModified", onTabAttrModified);
+    window.addEventListener("TabOpen", onTabOpen);
+    window.addEventListener("TabClose", onTabClose);
+    window.addEventListener(
+      "AfterWorkspacesSessionRestore",
+      onWorkspaceSessionRestore,
+    );
+
+    // Hook Zen Space switching listener if available so Space switches always trigger a lifecycle check
+    const onZenWorkspaceChange = () => {
+      const now = Date.now();
+      const currentSelected = window.gBrowser?.selectedTab;
+      if (lastKnownSelectedTab && lastKnownSelectedTab !== currentSelected) {
+        lastKnownSelectedTab._arcLastActiveAt = now;
+      }
+      if (currentSelected) {
+        lastKnownSelectedTab = currentSelected;
+        currentSelected._arcLastActiveAt = now;
+      }
+      scheduleImmediateCheck(250);
+    };
+    try {
+      window.gZenWorkspaces?.addChangeListeners?.(onZenWorkspaceChange);
+    } catch (e) {}
 
     // 4. Observe preference changes for immediate real-time response
     const prefObserver = {
       observe(subject, topic, data) {
         if (data === PREF_AUTO_UNLOAD || data === PREF_AUTO_UNLOAD_PINNED) {
-          const newUnloadMs = getPrefDurationMs(PREF_AUTO_UNLOAD);
-          if (newUnloadMs !== gLastUnloadMs || data === PREF_AUTO_UNLOAD_PINNED) {
-            gLastUnloadMs = newUnloadMs;
+          const prevUnloadMs = gUnloadMs;
+          refreshCachedPrefs();
+          if (gUnloadMs !== prevUnloadMs || data === PREF_AUTO_UNLOAD_PINNED) {
             // Reset activation timestamp so existing tabs are not unloaded instantly retroactively
             gUnloadPrefActivatedAt = Date.now();
           }
           scheduleImmediateCheck(50);
         } else if (data === PREF_AUTO_CLEAN || data === PREF_AUTO_CLEAN_PINNED) {
-          const newCleanMs = getPrefDurationMs(PREF_AUTO_CLEAN);
-          if (newCleanMs !== gLastCleanMs || data === PREF_AUTO_CLEAN_PINNED) {
-            gLastCleanMs = newCleanMs;
+          const prevCleanMs = gCleanMs;
+          refreshCachedPrefs();
+          if (gCleanMs !== prevCleanMs || data === PREF_AUTO_CLEAN_PINNED) {
             // Reset activation timestamp so existing unloaded tabs are not cleaned instantly retroactively
             gCleanPrefActivatedAt = Date.now();
           }
@@ -1147,6 +1378,35 @@
       Services.prefs.addObserver(PREF_AUTO_UNLOAD_PINNED, prefObserver);
       Services.prefs.addObserver(PREF_AUTO_CLEAN_PINNED, prefObserver);
     } catch (e) {}
+
+    window.addEventListener(
+      "unload",
+      () => {
+        if (gSchedulerTimer) {
+          clearTimeout(gSchedulerTimer);
+          gSchedulerTimer = null;
+        }
+        window.removeEventListener("TabBrowserDiscarded", onTabDiscarded);
+        window.removeEventListener("TabSelect", onTabSelect);
+        window.removeEventListener("TabAttrModified", onTabAttrModified);
+        window.removeEventListener("TabOpen", onTabOpen);
+        window.removeEventListener("TabClose", onTabClose);
+        window.removeEventListener(
+          "AfterWorkspacesSessionRestore",
+          onWorkspaceSessionRestore,
+        );
+        try {
+          window.gZenWorkspaces?.removeChangeListeners?.(onZenWorkspaceChange);
+        } catch (e) {}
+        try {
+          Services.prefs.removeObserver(PREF_AUTO_UNLOAD, prefObserver);
+          Services.prefs.removeObserver(PREF_AUTO_CLEAN, prefObserver);
+          Services.prefs.removeObserver(PREF_AUTO_UNLOAD_PINNED, prefObserver);
+          Services.prefs.removeObserver(PREF_AUTO_CLEAN_PINNED, prefObserver);
+        } catch (e) {}
+      },
+      { once: true },
+    );
 
     // 5. Initial check
     scheduleImmediateCheck(1000);
