@@ -42,7 +42,6 @@
         var(--arc-primary-color) 30%,
         rgb(255 255 255 / 80%)
       );
-      --arc-mat-hz-blur-radius: 100px;
 
       @media (prefers-color-scheme: dark) {
         --arc-mat-hz-background: rgb(0 0 0 / 80%);
@@ -142,15 +141,15 @@
         opacity: 0 !important;
         top: 0 !important;
         filter: blur(5px);
-        border-radius: 6px !important;
+        border-radius: var(--arc-border-radius, 12px) !important;
         transition:
           opacity 0.3s ease,
           top 0.3s ease,
           filter 0.3s ease,
           background-color 0.2s ease !important;
-        backdrop-filter: saturate(var(--arc-mat-hz-saturation))
-          contrast(var(--arc-mat-hz-contrast))
-          blur(var(--arc-mat-hz-blur-radius)) !important;
+        backdrop-filter: blur(var(--arc-compact-sidebar-blur, 25px))
+          contrast(var(--arc-compact-sidebar-contrast, 1))
+          saturate(var(--arc-compact-sidebar-saturate, 1)) !important;
         background-image: none !important;
         background-color: var(--arc-mat-hz-background) !important;
         box-shadow: 0 0 6px rgb(0 0 0 / 50%) !important;
@@ -205,15 +204,16 @@
         opacity: 0 !important;
         bottom: -5px !important;
         background-color: var(--arc-mat-hz-background) !important;
-        border-radius: 10px !important;
+        border-radius: var(--arc-border-radius, 12px) !important;
         padding: 10px 15px !important;
         margin: 0 5px !important;
         margin-bottom: 5px !important;
         width: min(calc(100% - 10px), 700px) !important;
         box-sizing: border-box !important;
         box-shadow: 0 0 6px rgb(0 0 0 / 50%) !important;
-        backdrop-filter: saturate(3) contrast(2)
-          blur(var(--arc-mat-hz-blur-radius)) !important;
+        backdrop-filter: blur(var(--arc-compact-sidebar-blur, 25px))
+          contrast(var(--arc-compact-sidebar-contrast, 1))
+          saturate(var(--arc-compact-sidebar-saturate, 1)) !important;
         filter: blur(10px);
         transition:
           opacity 0.3s ease,
@@ -300,7 +300,7 @@
           background-size: 16px !important;
           width: 28px !important;
           height: 28px !important;
-          border-radius: 6px !important;
+          border-radius: var(--arc-border-radius, 12px) !important;
           transition: background-color 0.2s ease !important;
           -moz-context-properties: fill;
           fill: light-dark(black, white) !important;
@@ -453,7 +453,10 @@
         /* noinspection CssInvalidFunction */
         & > .panel-fieldset {
           background-color: var(--arc-mat-ga-background) !important;
-          backdrop-filter: blur(15px);
+          border-radius: var(--arc-border-radius, 12px) !important;
+          backdrop-filter: blur(var(--arc-compact-sidebar-blur, 25px))
+            contrast(var(--arc-compact-sidebar-contrast, 1))
+            saturate(var(--arc-compact-sidebar-saturate, 1)) !important;
           filter: blur(0);
           transition:
             backdrop-filter 0.3s ease,
