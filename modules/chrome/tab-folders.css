@@ -183,15 +183,24 @@
 
   /* Hover state */
   zen-folder .tabbrowser-tab[pinned]:hover .tab-background {
-    background-color: var(--arc-color-hover) !important;
-    box-shadow: 0 0 3px var(--arc-color-shadow) !important;
+    background-color: var(
+      --arc-color-hover,
+      var(--tab-background-color-hover)
+    ) !important;
+    box-shadow: 0 0 3px var(--arc-color-shadow, transparent) !important;
   }
 
   /* Selected state */
-  zen-folder .tabbrowser-tab[pinned][selected="true"] .tab-background,
-  zen-folder .tabbrowser-tab[pinned][visuallyselected="true"] .tab-background {
-    background-color: var(--arc-color-selected) !important;
-    box-shadow: 0 0 3px var(--arc-color-shadow) !important;
+  zen-folder .tabbrowser-tab[pinned]:is([selected], [visuallyselected])
+    .tab-background {
+    background-color: var(
+      --arc-color-selected,
+      var(--tab-background-color-selected)
+    ) !important;
+    box-shadow: var(
+      --tab-box-shadow-selected,
+      0 0 3px var(--arc-color-shadow, transparent)
+    ) !important;
   }
 
   /* Config: remove background/shadow for pinned tabs */
@@ -222,7 +231,10 @@
   zen-folder:has([selected="true"]) .tab-group-label-container:hover::before,
   zen-folder:has([folder-active="true"])
     .tab-group-label-container:hover::before {
-    background-color: var(--arc-color-hover) !important;
+    background-color: var(
+      --arc-color-hover,
+      var(--tab-background-color-hover)
+    ) !important;
   }
 }
 

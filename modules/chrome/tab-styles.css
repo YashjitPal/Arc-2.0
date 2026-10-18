@@ -129,6 +129,12 @@ tab[label$=".pdf"] img.tab-icon-image {
 
   --border-radius-medium: var(--arc-border-radius, 12px) !important;
   --tab-border-radius: var(--arc-border-radius, 12px) !important;
+
+  .tabbrowser-tab[pinned]:not([zen-essential]):hover
+    > .tab-stack
+    > .tab-background:not([selected], [visuallyselected], [multiselected]) {
+    background-color: var(--tab-background-color-hover) !important;
+  }
 }
 
 /* ======== containers ======= */
