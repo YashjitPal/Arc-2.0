@@ -65,12 +65,11 @@
     right: 15px !important;
   }
   /* urlbar search result */
-  .urlbarView-body-inner {
+  .urlbarView:not(:has(.urlbarView-row[selected])),
+  #urlbar-results:not(:has(.urlbarView-row[selected])),
+  .urlbarView-results:not(:has(.urlbarView-row[selected])),
+  .urlbarView-body-inner:not(:has(.urlbarView-row[selected])) {
     display: none !important;
-  }
-
-  .urlbarView-body-inner:has(.urlbarView-row[selected]) {
-    display: list-item !important;
   }
 }
 
@@ -81,14 +80,15 @@
   /* pulls the content below up by 4px */
 }
 
-@media not (-moz-pref("arcline.url.bar", 1)) {
-  :root[zen-single-toolbar="true"] #urlbar:not([open]) {
-    height: 39px !important;
-  }
+:root[zen-single-toolbar="true"] #urlbar:not([open]) {
+  height: 39px !important;
+}
 
-  #identity-icon-box {
-    background: none !important;
-  }
+#identity-icon-box {
+  background: none !important;
+}
+
+@media not (-moz-pref("arcline.url.bar", 1)) {
 
   .urlbarView-row-inner[selected] .urlbarView-favicon {
     background: none !important;
@@ -567,6 +567,8 @@
   /* Make borders more visible */
   /* noinspection CssInvalidFunction */
   .urlbarView-body-inner,
+  .urlbarView-results,
+  #urlbar-results,
   .search-one-offs {
     border-top: 0 solid light-dark(rgb(20 20 20 / 20%), rgb(235 235 235 / 20%)) !important;
   }
@@ -675,28 +677,6 @@
         }
       }
     }
-
-    .urlbar-background {
-      /*         background: rgba(105, 100, 110, 0.000000000000000000000000023) !important; */
-      background: light-dark(
-        rgb(255 255 255 / var(--arc-urlbar-opacity)),
-        rgb(0 0 0 / var(--arc-urlbar-opacity))
-      ) !important;
-      /* Transparency fine-tuned */
-      box-shadow:
-        8px 5px 125px 0 rgb(0 0 0 / 50%),
-        0 30px 50px #00000069 !important;
-      backdrop-filter: var(--arc-backdrop-underlay)
-        blur(var(--arc-urlbar-blur, 5rem))
-        saturate(var(--arc-urlbar-saturate, 1))
-        contrast(var(--arc-urlbar-contrast, 1)) !important;
-      padding: 0.5em 0 !important;
-      border-radius: 18px !important;
-      transition:
-        backdrop-filter 0.5s ease,
-        background 0.5s ease;
-      border: 0 solid light-dark(rgb(255 255 255 / 90%), rgb(235 235 235 / 25%)) !important;
-    }
   }
 
   @media (-moz-pref("zen.view.use-single-toolbar")) {
@@ -724,7 +704,9 @@
     right: 15px !important;
   }
 
-  .urlbarView-body-inner:has(.urlbarView-row[type="top_site"]) {
+  .urlbarView-body-inner:has(.urlbarView-row[type="top_site"]),
+  .urlbarView-results:has(.urlbarView-row[type="top_site"]),
+  #urlbar-results:has(.urlbarView-row[type="top_site"]) {
     display: none !important;
   }
 

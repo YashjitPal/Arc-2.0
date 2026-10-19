@@ -42,6 +42,15 @@
     align-self: auto !important;
   }
 
+  /* Remove vertical line/fade at the beginning of media title and artist text */
+  .zen-media-info-vbox {
+    mask-image: none !important;
+    &::before {
+      content: none !important;
+      display: none !important;
+    }
+  }
+
   /* Media player expanded layout */
   #zen-media-controls-toolbar {
     & .show-on-hover {
