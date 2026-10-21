@@ -20,13 +20,20 @@ export class InvertPDFActorChild extends JSWindowActorChild {
       SUSE: "Suse",
       "SUSE-Italic": "Suse-Italic",
     },
+    prefVars: {
+      "arc-border-radius": "12px",
+      "arc-findbar-bg": "light-dark(rgba(255,255,255,0.5), rgba(0,0,0,0.5))",
+      "arc-findbar-blur": "10px",
+      "arc-findbar-saturate": "1",
+      "arc-findbar-contrast": "1",
+    },
   };
 
   handleEvent(event) {
     if (event.type === "DOMContentLoaded" || event.type === "pageshow") {
       if (!this.isInternalOrPdf()) return;
       this.initStyles();
-      this.syncRadius();
+      this.syncPrefs();
       this.syncFont();
     }
   }
@@ -56,27 +63,53 @@ export class InvertPDFActorChild extends JSWindowActorChild {
     );
   }
 
+  readPrefValue(prefName, fallback) {
+    try {
+      const type = Services.prefs.getPrefType(prefName);
+      if (type === Services.prefs.PREF_STRING) {
+        return Services.prefs.getStringPref(prefName, String(fallback));
+      }
+      if (type === Services.prefs.PREF_INT) {
+        return String(Services.prefs.getIntPref(prefName, Number(fallback) || 0));
+      }
+      if (type === Services.prefs.PREF_BOOL) {
+        return String(Services.prefs.getBoolPref(prefName, Boolean(fallback)));
+      }
+    } catch (e) {}
+    return String(fallback);
+  }
+
   syncFont() {
     try {
       const doc = this.document;
       if (!doc || !this.isInternalOrPdf()) return;
-      let prefVal = "Nunito";
-      try {
-        prefVal = Services.prefs.getStringPref("arc-font", "Nunito");
-      } catch (e) {}
+      const prefVal = this.readPrefValue("arc-font", "Nunito");
       const font =
         InvertPDFActorChild.config.fontMap[prefVal] || prefVal || "Nunito";
-      doc.documentElement?.style?.setProperty("--arc-font", `"${font}"`);
+      doc.documentElement?.style?.setProperty("--arc-font", `"${font}"`, "important");
+    } catch (e) {}
+  }
+
+  syncPrefs() {
+    try {
+      const doc = this.document;
+      if (!doc || !this.isInternalOrPdf()) return;
+      const style = doc.documentElement?.style;
+      if (!style) return;
+
+      for (const [prefName, fallback] of Object.entries(
+        InvertPDFActorChild.config.prefVars,
+      )) {
+        const val = this.readPrefValue(prefName, fallback);
+        if (val) {
+          style.setProperty(`--${prefName}`, val, "important");
+        }
+      }
     } catch (e) {}
   }
 
   syncRadius() {
-    try {
-      const doc = this.document;
-      if (!doc || !this.isInternalOrPdf()) return;
-      const radius = Services.prefs.getStringPref("arc-border-radius", "12px");
-      doc.documentElement?.style?.setProperty("--arc-border-radius", radius);
-    } catch (e) {}
+    this.syncPrefs();
   }
 
   initStyles() {
@@ -131,7 +164,24 @@ export class InvertPDFActorChild extends JSWindowActorChild {
         this.document?.documentElement?.style?.setProperty(
           "--arc-border-radius",
           message.data?.radius || "12px",
+          "important",
         );
+      }
+    }
+
+    if (message.name === "ArcPrefsChanged") {
+      if (this.isInternalOrPdf()) {
+        const style = this.document?.documentElement?.style;
+        const prefs = message.data?.prefs;
+        if (style && prefs && typeof prefs === "object") {
+          for (const [k, v] of Object.entries(prefs)) {
+            if (v !== undefined && v !== null && v !== "") {
+              style.setProperty(`--${k}`, String(v), "important");
+            }
+          }
+        } else {
+          this.syncPrefs();
+        }
       }
     }
 
@@ -140,6 +190,7 @@ export class InvertPDFActorChild extends JSWindowActorChild {
         this.document?.documentElement?.style?.setProperty(
           "--arc-font",
           `"${message.data?.font || "Nunito"}"`,
+          "important",
         );
       }
     }
@@ -162,6 +213,7 @@ if (Services.appinfo.processType === Services.appinfo.PROCESS_TYPE_DEFAULT) {
       parent: { esModuleURI },
       allFrames: true,
       messageManagerGroups: ["browsers"],
+      safeForUntrustedWebProcess: true,
     });
   } catch (e) {}
 }

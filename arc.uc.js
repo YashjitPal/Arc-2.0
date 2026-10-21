@@ -528,38 +528,18 @@
   };
   window.addEventListener("TabSelect", onInvertTabSelect);
 
-  // 4. Observe changes to "arc-border-radius" in about:config and broadcast to tabs
+  // 4. Observe changes to Arc PDF/Content preferences in about:config and broadcast to tabs
   try {
     const getAllTabsAcrossSpaces = () =>
       window.gZenWorkspaces?.allStoredTabs || window.gBrowser?.tabs || [];
 
-    const syncRadiusToTabs = () => {
-      try {
-        const radius = Services.prefs.getStringPref(
-          "arc-border-radius",
-          "12px",
-        );
-
-        for (const tab of getAllTabsAcrossSpaces()) {
-          try {
-            const actor =
-              tab.linkedBrowser?.browsingContext?.currentWindowGlobal?.getActor(
-                "InvertPDFActor",
-              );
-            actor?.sendAsyncMessage("ArcRadiusChanged", { radius });
-          } catch (err) {}
-        }
-      } catch (e) {}
+    const SYNCED_CONTENT_PREFS = {
+      "arc-border-radius": "12px",
+      "arc-findbar-bg": "light-dark(rgba(255,255,255,0.5), rgba(0,0,0,0.5))",
+      "arc-findbar-blur": "10px",
+      "arc-findbar-saturate": "1",
+      "arc-findbar-contrast": "1",
     };
-
-    const radiusObserver = {
-      observe(subject, topic, data) {
-        if (data === "arc-border-radius") {
-          syncRadiusToTabs();
-        }
-      },
-    };
-    Services.prefs.addObserver("arc-border-radius", radiusObserver);
 
     const FONT_MAP = {
       Nunito: "Nunito",
@@ -572,6 +552,96 @@
 
     const resolveFontName = (val) => FONT_MAP[val] || val || "Nunito";
 
+    const readPrefAsString = (prefName, fallback) => {
+      try {
+        const type = Services.prefs.getPrefType(prefName);
+        if (type === Services.prefs.PREF_STRING) {
+          return Services.prefs.getStringPref(prefName, String(fallback));
+        }
+        if (type === Services.prefs.PREF_INT) {
+          return String(
+            Services.prefs.getIntPref(prefName, Number(fallback) || 0),
+          );
+        }
+        if (type === Services.prefs.PREF_BOOL) {
+          return String(
+            Services.prefs.getBoolPref(prefName, Boolean(fallback)),
+          );
+        }
+      } catch (e) {}
+      return String(fallback);
+    };
+
+    const collectContentPrefs = () => {
+      const prefs = {};
+      for (const [k, fallback] of Object.entries(SYNCED_CONTENT_PREFS)) {
+        prefs[k] = readPrefAsString(k, fallback);
+      }
+      return prefs;
+    };
+
+    let currentVarsSheetURI = null;
+    const updateDynamicContentVariablesSheet = (prefsObj) => {
+      try {
+        const sss = Cc["@mozilla.org/content/style-sheet-service;1"].getService(
+          Ci.nsIStyleSheetService,
+        );
+        const prefs = prefsObj || collectContentPrefs();
+        const fontPref = readPrefAsString("arc-font", "Nunito");
+        const fontName = resolveFontName(fontPref);
+
+        let css = ":root {\n";
+        for (const [k, v] of Object.entries(prefs)) {
+          if (v !== undefined && v !== null && v !== "") {
+            css += `  --${k}: ${v} !important;\n`;
+          }
+        }
+        css += `  --arc-font: "${fontName}" !important;\n`;
+        css += "}\n";
+
+        const uri = Services.io.newURI(
+          "data:text/css;charset=utf-8," + encodeURIComponent(css),
+        );
+
+        if (
+          currentVarsSheetURI &&
+          sss.sheetRegistered(currentVarsSheetURI, sss.USER_SHEET)
+        ) {
+          sss.unregisterSheet(currentVarsSheetURI, sss.USER_SHEET);
+        }
+        sss.loadAndRegisterSheet(uri, sss.USER_SHEET);
+        currentVarsSheetURI = uri;
+      } catch (e) {}
+    };
+
+    const syncContentPrefsToTabs = () => {
+      try {
+        const prefs = collectContentPrefs();
+        updateDynamicContentVariablesSheet(prefs);
+
+        for (const tab of getAllTabsAcrossSpaces()) {
+          try {
+            const actor =
+              tab.linkedBrowser?.browsingContext?.currentWindowGlobal?.getActor(
+                "InvertPDFActor",
+              );
+            actor?.sendAsyncMessage("ArcPrefsChanged", { prefs });
+          } catch (err) {}
+        }
+      } catch (e) {}
+    };
+
+    const contentPrefsObserver = {
+      observe(subject, topic, data) {
+        if (data && Object.hasOwn(SYNCED_CONTENT_PREFS, data)) {
+          syncContentPrefsToTabs();
+        }
+      },
+    };
+    for (const prefName of Object.keys(SYNCED_CONTENT_PREFS)) {
+      Services.prefs.addObserver(prefName, contentPrefsObserver);
+    }
+
     const syncFontToTabs = () => {
       try {
         const fontPref = Services.prefs.getStringPref("arc-font", "Nunito");
@@ -581,6 +651,8 @@
           "--arc-font",
           `"${fontName}"`,
         );
+
+        updateDynamicContentVariablesSheet();
 
         for (const tab of getAllTabsAcrossSpaces()) {
           try {
@@ -606,14 +678,17 @@
     };
     Services.prefs.addObserver("arc-font", fontObserver);
 
-    // Initial font sync
+    // Initial sync of content variables & fonts
+    syncContentPrefsToTabs();
     syncFontToTabs();
 
     window.addEventListener(
       "unload",
       () => {
         try {
-          Services.prefs.removeObserver("arc-border-radius", radiusObserver);
+          for (const prefName of Object.keys(SYNCED_CONTENT_PREFS)) {
+            Services.prefs.removeObserver(prefName, contentPrefsObserver);
+          }
           Services.prefs.removeObserver("arc-font", fontObserver);
           window.removeEventListener("keydown", onKeyDown, { capture: true });
           window.removeEventListener("TabSelect", onInvertTabSelect);

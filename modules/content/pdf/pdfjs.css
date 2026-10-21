@@ -125,8 +125,13 @@ their author(s) have been provided above the used code.
 
       #toolbarContainer,
       #sidebarContainer {
-        background: var(--natsumi-glass-background) !important;
-        backdrop-filter: blur(10px);
+        background: var(
+          --arc-findbar-bg,
+          light-dark(rgb(255 255 255 / 50%), rgb(0 0 0 / 50%))
+        ) !important;
+        backdrop-filter: blur(var(--arc-findbar-blur, 10px))
+          saturate(var(--arc-findbar-saturate, 1))
+          contrast(var(--arc-findbar-contrast, 1)) !important;
         border-radius: var(--arc-border-radius, 12px) !important;
       }
 
@@ -135,7 +140,7 @@ their author(s) have been provided above the used code.
         top: 5px !important;
         left: 50% !important;
         transform: translate(-50%, 0);
-        width: 90% !important;
+        width: 99% !important;
         /* max-width: min(var(--natsumi-pdfjs-topbar-max-width), calc(100% - 10px)) !important; */
         border-radius: var(--arc-border-radius, 12px) !important;
         padding-top: 5px !important;
@@ -164,9 +169,14 @@ their author(s) have been provided above the used code.
           padding: 5px !important;
           top: 40px !important;
           right: -7px !important;
-          background: var(--natsumi-glass-background) !important;
-          backdrop-filter: blur(10px);
-          border-radius: 10px !important;
+          background: var(
+            --arc-findbar-bg,
+            light-dark(rgb(255 255 255 / 50%), rgb(0 0 0 / 50%))
+          ) !important;
+          backdrop-filter: blur(var(--arc-findbar-blur, 10px))
+            saturate(var(--arc-findbar-saturate, 1))
+            contrast(var(--arc-findbar-contrast, 1)) !important;
+          border-radius: var(--arc-border-radius, 12px) !important;
           border: 1px solid rgb(20 20 20 / 20%) !important;
           box-shadow: 0 0 var(--natsumi-glass-shadow-size)
             var(--natsumi-glass-shadow-color) !important;
@@ -306,11 +316,17 @@ their author(s) have been provided above the used code.
 
       #viewsManager,
       .menuContainer.sidebar {
-        background: var(--natsumi-glass-background) !important;
-        backdrop-filter: blur(10px) !important;
+        background: var(
+          --arc-findbar-bg,
+          light-dark(rgb(255 255 255 / 50%), rgb(0 0 0 / 50%))
+        ) !important;
+        backdrop-filter: blur(var(--arc-findbar-blur, 10px))
+          saturate(var(--arc-findbar-saturate, 1))
+          contrast(var(--arc-findbar-contrast, 1)) !important;
         border: 1px solid rgb(20 20 20 / 20%) !important;
         box-shadow: 0 0 var(--natsumi-glass-shadow-size)
           var(--natsumi-glass-shadow-color) !important;
+        --sidebar-border-radius: var(--arc-border-radius, 12px) !important;
         border-radius: var(--arc-border-radius, 12px) !important;
         overflow: hidden !important;
         height: calc(100vh - var(--toolbar-height) - 45px) !important;
@@ -354,9 +370,14 @@ their author(s) have been provided above the used code.
       }
 
       #editorCommentsSidebar {
-        background: var(--natsumi-glass-background) !important;
-        backdrop-filter: blur(10px) !important;
-        border-radius: 10px !important;
+        background: var(
+          --arc-findbar-bg,
+          light-dark(rgb(255 255 255 / 50%), rgb(0 0 0 / 50%))
+        ) !important;
+        backdrop-filter: blur(var(--arc-findbar-blur, 10px))
+          saturate(var(--arc-findbar-saturate, 1))
+          contrast(var(--arc-findbar-contrast, 1)) !important;
+        border-radius: var(--arc-border-radius, 12px) !important;
         border: 1px solid rgb(20 20 20 / 20%) !important;
         box-shadow: 0 0 var(--natsumi-glass-shadow-size)
           var(--natsumi-glass-shadow-color) !important;
@@ -456,9 +477,14 @@ their author(s) have been provided above the used code.
       /* Document properties */
 
       #documentPropertiesDialog {
-        background: var(--natsumi-glass-background) !important;
-        backdrop-filter: blur(10px);
-        border-radius: 10px !important;
+        background: var(
+          --arc-findbar-bg,
+          light-dark(rgb(255 255 255 / 50%), rgb(0 0 0 / 50%))
+        ) !important;
+        backdrop-filter: blur(var(--arc-findbar-blur, 10px))
+          saturate(var(--arc-findbar-saturate, 1))
+          contrast(var(--arc-findbar-contrast, 1)) !important;
+        border-radius: var(--arc-border-radius, 12px) !important;
         border: 1px solid rgb(20 20 20 / 20%) !important;
         box-shadow: 0 0 var(--natsumi-glass-shadow-size)
           var(--natsumi-glass-shadow-color) !important;

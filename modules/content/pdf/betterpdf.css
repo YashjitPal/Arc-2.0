@@ -262,7 +262,9 @@ html[mozdisallowselectionprint] {
         --arc-findbar-bg,
         light-dark(rgb(255 255 255 / 50%), rgb(0 0 0 / 50%))
       ) !important;
-      backdrop-filter: blur(var(--arc-findbar-blur, 10px)) !important;
+      backdrop-filter: blur(var(--arc-findbar-blur, 10px))
+        saturate(var(--arc-findbar-saturate, 1))
+        contrast(var(--arc-findbar-contrast, 1)) !important;
       border-radius: var(--arc-border-radius, 12px) !important;
     }
 
@@ -302,8 +304,13 @@ html[mozdisallowselectionprint] {
         padding: 5px !important;
         top: 40px !important;
         right: -7px !important;
-        background: var(--natsumi-glass-background) !important;
-        backdrop-filter: blur(var(--arc-findbar-blur, 10px));
+        background: var(
+          --arc-findbar-bg,
+          light-dark(rgb(255 255 255 / 50%), rgb(0 0 0 / 50%))
+        ) !important;
+        backdrop-filter: blur(var(--arc-findbar-blur, 10px))
+          saturate(var(--arc-findbar-saturate, 1))
+          contrast(var(--arc-findbar-contrast, 1)) !important;
         border-radius: var(--arc-border-radius, 12px) !important;
         border: 1px solid rgb(20 20 20 / 20%) !important;
         box-shadow: 0 0 var(--natsumi-glass-shadow-size)
@@ -449,10 +456,13 @@ html[mozdisallowselectionprint] {
         --arc-findbar-bg,
         light-dark(rgb(255 255 255 / 50%), rgb(0 0 0 / 50%))
       ) !important;
-      backdrop-filter: blur(var(--arc-findbar-blur, 10px)) !important;
+      backdrop-filter: blur(var(--arc-findbar-blur, 10px))
+        saturate(var(--arc-findbar-saturate, 1))
+        contrast(var(--arc-findbar-contrast, 1)) !important;
       border: 1px solid rgb(20 20 20 / 20%) !important;
       box-shadow: 0 0 var(--natsumi-glass-shadow-size)
         var(--natsumi-glass-shadow-color) !important;
+      --sidebar-border-radius: var(--arc-border-radius, 12px) !important;
       border-radius: var(--arc-border-radius, 12px) !important;
       overflow: hidden !important;
       height: calc(100vh - var(--toolbar-height) - 45px) !important;
@@ -500,7 +510,9 @@ html[mozdisallowselectionprint] {
         --arc-findbar-bg,
         light-dark(rgb(255 255 255 / 50%), rgb(0 0 0 / 50%))
       ) !important;
-      backdrop-filter: blur(var(--arc-findbar-blur, 10px)) !important;
+      backdrop-filter: blur(var(--arc-findbar-blur, 10px))
+        saturate(var(--arc-findbar-saturate, 1))
+        contrast(var(--arc-findbar-contrast, 1)) !important;
       border-radius: var(--arc-border-radius, 12px) !important;
       border: 1px solid rgb(20 20 20 / 20%) !important;
       box-shadow: 0 0 var(--natsumi-glass-shadow-size)
@@ -600,8 +612,13 @@ html[mozdisallowselectionprint] {
     /* Document properties */
 
     #documentPropertiesDialog {
-      background: var(--natsumi-glass-background) !important;
-      backdrop-filter: blur(var(--arc-findbar-blur, 10px));
+      background: var(
+        --arc-findbar-bg,
+        light-dark(rgb(255 255 255 / 50%), rgb(0 0 0 / 50%))
+      ) !important;
+      backdrop-filter: blur(var(--arc-findbar-blur, 10px))
+        saturate(var(--arc-findbar-saturate, 1))
+        contrast(var(--arc-findbar-contrast, 1)) !important;
       border-radius: var(--arc-border-radius, 12px) !important;
       border: 1px solid rgb(20 20 20 / 20%) !important;
       box-shadow: 0 0 var(--natsumi-glass-shadow-size)
