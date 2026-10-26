@@ -670,28 +670,51 @@ browser {
   }
 }
 
-/* Transparent glance styling */
+/* Opaque glance (default): restore Zen's solid Glance background, which the global
+   `browser { background: var(--arc-website-tint) }` rule would otherwise override. */
+@media not (-moz-pref("arc-transparent-glance")) {
+  :is(.browserSidebarContainer.zen-glance-overlay, #zen-glance-detached) .browserContainer browser {
+    background: light-dark(rgb(255, 255, 255), rgb(17, 17, 17)) !important;
+  }
+}
+
+/* Transparent glance: mask the parent tab behind the Glance tab */
 @media (-moz-pref("arc-transparent-glance")) {
   .browserSidebarContainer.zen-glance-background,
   .zen-glance-background .browserContainer,
   .zen-glance-background .browserStack,
-  .zen-glance-background > vbox {
+  .zen-glance-background browser,
+  .zen-glance-background > vbox,
+  :root:has(#zen-glance-detached:not([fade-out="true"])) #tabbrowser-tabpanels > .browserSidebarContainer.deck-selected:not(.zen-glance-overlay),
+  :root:has(#zen-glance-detached:not([fade-out="true"])) #tabbrowser-tabpanels > .browserSidebarContainer.deck-selected:not(.zen-glance-overlay) .browserContainer,
+  :root:has(#zen-glance-detached:not([fade-out="true"])) #tabbrowser-tabpanels > .browserSidebarContainer.deck-selected:not(.zen-glance-overlay) .browserStack,
+  :root:has(#zen-glance-detached:not([fade-out="true"])) #tabbrowser-tabpanels > .browserSidebarContainer.deck-selected:not(.zen-glance-overlay) browser {
+    clip-path: polygon(
+      0% 0%,
+      8.75% 0%,
+      8.75% 100%,
+      91.25% 100%,
+      91.25% 0%,
+      100% 0%,
+      100% 100%,
+      0% 100%
+    ) !important;
     -webkit-mask-image: linear-gradient(
       to right,
       black 0%,
-      black 4%,
-      transparent 7%,
-      transparent 93.5%,
-      black 96%,
+      black 7%,
+      transparent 8.75%,
+      transparent 91.25%,
+      black 93%,
       black 100%
     ) !important;
     mask-image: linear-gradient(
       to right,
       black 0%,
-      black 4%,
-      transparent 7%,
-      transparent 93.5%,
-      black 96%,
+      black 7%,
+      transparent 8.75%,
+      transparent 91.25%,
+      black 93%,
       black 100%
     ) !important;
     -webkit-mask-repeat: no-repeat !important;
@@ -699,18 +722,26 @@ browser {
     -webkit-mask-size: 100% 100% !important;
     mask-size: 100% 100% !important;
   }
+}
 
+/* Transparent glance styling */
+@media (-moz-pref("arc-transparent-glance")) {
   .browserSidebarContainer.zen-glance-overlay,
   .browserSidebarContainer.zen-glance-overlay .browserContainer,
   .browserSidebarContainer.zen-glance-overlay .browserStack,
   .browserSidebarContainer.zen-glance-overlay browser,
-  .zen-glance-overlay > vbox {
+  .zen-glance-overlay > vbox,
+  #zen-glance-detached,
+  #zen-glance-detached .browserContainer,
+  #zen-glance-detached .browserStack,
+  #zen-glance-detached browser {
     background: transparent !important;
     background-color: transparent !important;
   }
 
   .browserSidebarContainer.zen-glance-overlay .browserContainer,
-  .zen-glance-overlay > vbox {
+  .zen-glance-overlay > vbox,
+  #zen-glance-detached .browserContainer {
     margin-top: 0.5% !important;
     margin-bottom: 0.5% !important;
     height: 98% !important;
