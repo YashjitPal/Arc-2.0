@@ -70,6 +70,7 @@ body > hbox {
 /* ABOVE COMMENTED CODE AFFECTS ZEN BROWSER WINDOW BORDER RADIUS */
 
 #zen-site-data-header-bookmark::before,
+#zen-site-data-header-boost::before,
 #zen-site-data-header-screenshot::before,
 #zen-site-data-header-reader-mode::before,
 #zen-site-data-header-share::before,
