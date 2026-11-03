@@ -336,11 +336,6 @@
   },
   {
     "type": "checkbox",
-    "label": "Enable *Tab Groups*",
-    "property": "browser.tabs.groups.enabled"
-  },
-  {
-    "type": "checkbox",
     "label": "Enable Unloaded Tabs to be *faded*.",
     "property": "browser.tabs.fadeOutUnloadedTabs",
     "defaultValue": true
@@ -403,6 +398,11 @@
     "label": "Custom favicon gradient *opacity* on Essentials",
     "defaultValue": "0.6",
     "placeholder": 0.6
+  },
+  {
+    "type": "checkbox",
+    "label": "Enable *Tab Groups*",
+    "property": "browser.tabs.groups.enabled"
   },
   {
     "type": "dropdown",
