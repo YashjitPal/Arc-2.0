@@ -134,6 +134,18 @@ browser {
     margin-left: -5px !important;
   }
 
+  /* Compact zoom controls so the "Zoom" label isn't truncated */
+  #appMenu-zoom-controls > .toolbaritem-combined-buttons > toolbarbutton,
+  #appMenu-zoom-controls > toolbarbutton {
+    padding: 5px 8px !important;
+  }
+
+  #appMenu-zoom-controls > label,
+  #appMenu-zoom-controls > .toolbarbutton-text {
+    flex-shrink: 0 !important;
+    min-width: max-content !important;
+  }
+
   /* Apply styling to ALL items (including disabled) */
   :is(
     panelview .toolbarbutton-1,
@@ -152,7 +164,7 @@ browser {
     #zen-site-data-new-addon-button
   ) {
     border-radius: var(--arc-border-radius, 12px) !important;
-    padding: 8px 16px !important;
+    padding: 5px 16px !important; /* match context menu item height (5px vertical) */
     margin: var(--arrowpanel-menuitem-margin) !important;
   }
 
