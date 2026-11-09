@@ -7,7 +7,7 @@
   },
   {
     "type": "checkbox",
-    "label": "Enable *transparent* browser windows (~browser restart maybe required to take effect~).",
+    "label": "Enable *transparent* browser windows (~browser restart maybe required to take effect; DISABLE before uninstalling theme to avoid unintended effects.~).",
     "property": "browser.tabs.allow_transparent_browser",
     "restart": true
   },
@@ -67,7 +67,7 @@
   {
     "type": "checkbox",
     "property": "layout.css.corner-shape.enabled",
-    "label": "*Squircles* toggle (disable to enter custom border radius in `px` below)",
+    "label": "*Squircles* toggle (disable to enter custom border radius in `px` below); ENABLE before uninstalling theme to avoid unintended effects.",
     "defaultValue": false
   },
   {
