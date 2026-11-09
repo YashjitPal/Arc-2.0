@@ -40,9 +40,7 @@ Also, in **Sidebar & Top Toolbar** mode, if you're choosing to keep Bookmarks un
 
 ### ⚠️ Important Note
 
-> Arc 2.0 is my personal browser skin.  
-> If you don’t like a design choice I made, I’ll likely keep it if I still like it.  
-> Please be respectful and constructive with feedback.
+> Disable Transparency and Enable Squircles in mod preferences before uninstalling theme to avoid unintended effects.
 
 ---
 
