@@ -678,7 +678,8 @@ browser {
     border-radius: var(--arc-border-radius, 12px) !important;
     padding: 3px 10px !important;
     border: 1px solid var(--zen-colors-border) !important;
-    background: rgb(0 0 0 / 75%) !important;
+    background: light-dark(rgb(255 255 255 / 75%), rgb(0 0 0 / 75%)) !important;
+    color: light-dark(rgb(21, 20, 26), rgb(251, 251, 254)) !important;
   }
 }
 
@@ -788,6 +789,17 @@ browser {
     --button-text-color-hover: rgb(21, 20, 26);
     --button-text-color-active: rgb(21, 20, 26);
   }
+}
+
+/* Keep About dialog background and text in sync with the active color-scheme
+   (needed in Auto mode, where the native dialog background can follow the real OS
+   theme while text follows ui.systemUsesDarkTheme / Dynamic Theme) */
+#zen-about-dialog {
+  background-color: light-dark(rgb(249, 249, 251), rgb(28, 27, 34)) !important;
+  color: light-dark(rgb(21, 20, 26), rgb(251, 251, 254)) !important;
+  --button-text-color: light-dark(rgb(21, 20, 26), rgb(251, 251, 254));
+  --button-text-color-hover: light-dark(rgb(21, 20, 26), rgb(251, 251, 254));
+  --button-text-color-active: light-dark(rgb(21, 20, 26), rgb(251, 251, 254));
 }
 
 /* === BETTER CUSTOMIZE TOOLBAR === */
