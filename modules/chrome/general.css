@@ -791,6 +791,49 @@ browser {
   }
 }
 
+/* Autofill / autocomplete popup: paint our own background so it always matches
+   the text color derived from the active color-scheme (Dark, Light and Auto) */
+#PopupAutoComplete {
+  --arc-ac-bg: light-dark(rgb(249, 249, 251), rgb(28, 27, 34));
+  --arc-ac-fg: light-dark(rgb(21, 20, 26), rgb(251, 251, 254));
+  --arc-ac-hover: light-dark(rgb(0 0 0 / 8%), rgb(255 255 255 / 12%));
+  --panel-background: var(--arc-ac-bg) !important;
+  --panel-color: var(--arc-ac-fg) !important;
+  color: var(--arc-ac-fg) !important;
+
+  /* Auto mode: follow the browser chrome's scheme (OS theme, or Dynamic Theme's
+     override) instead of the web page's scheme */
+  @media -moz-pref("zen.view.window.scheme", 2) {
+    @media (prefers-color-scheme: dark) {
+      color-scheme: dark !important;
+    }
+    @media (prefers-color-scheme: light) {
+      color-scheme: light !important;
+    }
+  }
+
+  &::part(content),
+  & richlistbox {
+    background-color: var(--arc-ac-bg) !important;
+    color: var(--arc-ac-fg) !important;
+  }
+
+  & richlistitem,
+  & richlistitem:is(:hover, [selected]),
+  & richlistitem :is(.ac-title, .ac-title-text, .ac-label, .line1-label, label) {
+    color: var(--arc-ac-fg) !important;
+  }
+
+  & richlistitem :is(.ac-secondary-text, .line2-label, .ac-comment) {
+    color: var(--arc-ac-fg) !important;
+    opacity: 0.7;
+  }
+
+  & richlistitem:is(:hover, [selected]) {
+    background-color: var(--arc-ac-hover) !important;
+  }
+}
+
 /* Keep About dialog background and text in sync with the active color-scheme
    (needed in Auto mode, where the native dialog background can follow the real OS
    theme while text follows ui.systemUsesDarkTheme / Dynamic Theme) */
