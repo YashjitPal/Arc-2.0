@@ -771,6 +771,25 @@ browser {
   display: none !important;
 }
 
+/* Ensure About Zen dialog and autocomplete/autofill popups follow Zen's explicit
+   window scheme (zen.view.window.scheme) even if ui.systemUsesDarkTheme differs */
+#zen-about-dialog,
+#PopupAutoComplete {
+  @media -moz-pref("zen.view.window.scheme", 0) {
+    color-scheme: dark !important;
+    --button-text-color: rgb(251, 251, 254);
+    --button-text-color-hover: rgb(251, 251, 254);
+    --button-text-color-active: rgb(251, 251, 254);
+  }
+
+  @media -moz-pref("zen.view.window.scheme", 1) {
+    color-scheme: light !important;
+    --button-text-color: rgb(21, 20, 26);
+    --button-text-color-hover: rgb(21, 20, 26);
+    --button-text-color-active: rgb(21, 20, 26);
+  }
+}
+
 /* === BETTER CUSTOMIZE TOOLBAR === */
 #customization-container {
   position: absolute;
