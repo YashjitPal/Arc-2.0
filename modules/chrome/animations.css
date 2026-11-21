@@ -816,38 +816,89 @@ tabpanels .browserStack browser {
   }
 }
 
-/* ctrl tab visuals and animations */
-#ctrlTab-panel {
-  --panel-background: light-dark(
-    rgb(255 255 255 / 75%),
-    rgb(0 0 0 / 75%)
-  ) !important;
+/* ctrl tab visuals and animations
+   Rendered as an in-window overlay matching URL Bar bg, blur, saturation,
+   contrast, border-radius, and 10px tab labels */
+#ctrlTab-panel[hidden] {
+  display: none !important;
+}
 
-  /*  transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.1) 0.2s !important; */
-  border-radius: var(--arc-border-radius, 12px);
-  scale: 0.7;
+#ctrlTab-panel {
+  position: fixed !important;
+  inset: 0 !important;
+  margin: auto !important;
+  width: fit-content !important;
+  height: fit-content !important;
+  max-width: 92vw !important;
+  padding: 14px 10px 10px !important;
+  z-index: 2147483647 !important;
+  scale: none !important;
+
+  background-color: var(
+    --arc-urlbar-bg,
+    light-dark(rgb(255 255 255 / 25%), rgb(0 0 0 / 25%))
+  ) !important;
+  backdrop-filter: var(--arc-backdrop-underlay)
+    blur(var(--arc-urlbar-blur, 25px))
+    saturate(var(--arc-urlbar-saturate, 1))
+    contrast(var(--arc-urlbar-contrast, 1)) !important;
+  border-radius: var(--arc-border-radius, 12px) !important;
+  border: 1px solid light-dark(rgb(0 0 0 / 10%), rgb(255 255 255 / 10%)) !important;
+  box-shadow: 0 20px 40px rgb(0 0 0 / 50%) !important;
+  overflow: hidden !important;
+
+  color: light-dark(rgb(21, 20, 26), rgb(251, 251, 254)) !important;
+
+  @media -moz-pref("zen.view.window.scheme", 0) {
+    color-scheme: dark !important;
+  }
+  @media -moz-pref("zen.view.window.scheme", 1) {
+    color-scheme: light !important;
+  }
+  @media -moz-pref("zen.view.window.scheme", 2) {
+    @media (prefers-color-scheme: dark) {
+      color-scheme: dark !important;
+    }
+    @media (prefers-color-scheme: light) {
+      color-scheme: light !important;
+    }
+  }
 }
 
 #ctrlTab-panel:has(.ctrlTab-preview:not([hidden="true"])) {
-  scale: 0.7 !important;
+  scale: none !important;
   border-radius: var(--arc-border-radius, 12px) !important;
 }
 
-slot:nth-child(1) {
-  padding: 0 !important;
+#ctrlTab-showAll {
+  border-radius: var(--arc-border-radius, 12px) !important;
+}
+
+/* Firefox adds a dark text-shadow meant for its grey panel; drop it */
+#ctrlTab-panel :is(.ctrlTab-preview, #ctrlTab-showAll) {
+  text-shadow: none !important;
+  color: inherit !important;
+}
+
+/* Tab names: 10px */
+#ctrlTab-panel .ctrlTab-label,
+#ctrlTab-panel .ctrlTab-label * {
+  font-size: 10px !important;
 }
 
 .ctrlTab-preview-inner {
-  /* 	padding: 0 !important; */
   margin: 0 !important;
+  border-radius: var(--arc-border-radius, 12px) !important;
   transition: all 0.2s ease-in-out;
 
   .ctrlTab-canvas {
     border-radius: var(--arc-border-radius, 12px) !important;
-    overflow: hidden;
+    overflow: hidden !important;
 
-    img {
+    img,
+    canvas {
       background-color: #000 !important;
+      border-radius: var(--arc-border-radius, 12px) !important;
     }
   }
 
@@ -855,24 +906,30 @@ slot:nth-child(1) {
     justify-content: center !important;
     transition: all 0.5s ease-in-out;
 
+    .ctrlTab-favicon[src],
     image {
+      width: 30px !important;
+      height: 30px !important;
+      margin-top: -31px !important;
+      padding: 4px !important;
       border-radius: 50% !important;
       transition: all 0.5s ease-in-out !important;
-      /* 			scale: 1.25 !important; */
     }
   }
 
   .ctrlTab-label {
     margin-top: 1.5em !important;
+    font-size: 10px !important;
   }
 }
 
-.ctrlTab-preview:focus > .ctrlTab-preview-inner {
+.ctrlTab-preview:is(:focus, :hover) > .ctrlTab-preview-inner {
   outline: none !important;
-  /* border: none !important;   */
-  background-color: var(--sidebar-background-color) !important;
+  background-color: light-dark(
+    rgb(0 0 0 / 10%),
+    rgb(255 255 255 / 12%)
+  ) !important;
   border-radius: var(--arc-border-radius, 12px) !important;
-  /* scale: 1.03 !important; */
 
   .ctrlTab-favicon-container {
     image {

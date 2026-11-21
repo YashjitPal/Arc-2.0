@@ -859,9 +859,12 @@
         or when the tab is unloaded (no instant retroactive closing).
    3. Real-Time Scheduler: Calculates the exact millisecond wakeup time so tabs
       unload and clean at the exact second they expire with zero polling overhead.
-   4. Exclusions: Active/selected tabs, Split-View / multi-selected tabs, playing
-      media, WebRTC sharing, PiP, and Zen empty placeholder tabs are protected.
-   5. Setting duration to 0 disables that feature with zero background overhead.
+   4. Exclusions: Active/selected tabs, the visible Split-View, multi-selected tabs,
+      playing media, WebRTC sharing, PiP, and Zen empty placeholder tabs are protected.
+   5. Glance & Split-View units: a Glance tab + its parent, and all panes of a
+      Split-View, share one inactivity timer. They unload together and are only
+      cleaned once every member is unloaded (Glance tabs are detached cleanly).
+   6. Setting duration to 0 disables that feature with zero background overhead.
    ========================================================================== */
 (function () {
   "use strict";
@@ -1021,10 +1024,82 @@
    */
   function getAllTabsAcrossSpaces() {
     const zenTabs = window.gZenWorkspaces?.allStoredTabs;
-    if (zenTabs && zenTabs.length) {
-      return zenTabs;
+    const base =
+      zenTabs && zenTabs.length ? zenTabs : window.gBrowser?.tabs || [];
+    // Glance tabs live nested inside their parent tab's `.tab-content`, so make
+    // sure they are always included even if the stored-tab list skips them.
+    const glanceTabs = document.querySelectorAll(
+      ".tabbrowser-tab[zen-glance-tab]",
+    );
+    if (!glanceTabs.length) return base;
+    const set = new Set(base);
+    for (const g of glanceTabs) set.add(g);
+    return Array.from(set);
+  }
+
+  /**
+   * Split-View peers of a tab (all panes of its split group), or null.
+   */
+  function getSplitPeers(tab) {
+    if (!tab?.splitView) return null;
+    const group = window.gZenViewSplitter?._data?.find((d) =>
+      d?.tabs?.includes(tab),
+    );
+    return group?.tabs?.length > 1 ? group.tabs : null;
+  }
+
+  /**
+   * Glance peers of a tab (Glance child + its parent tab share `glance-id`), or null.
+   */
+  function getGlancePeers(tab) {
+    const id = tab?.getAttribute?.("glance-id");
+    if (!id) return null;
+    const peers = Array.from(
+      document.querySelectorAll(".tabbrowser-tab[glance-id]"),
+    ).filter((t) => t.getAttribute("glance-id") === id);
+    return peers.length > 1 ? peers : null;
+  }
+
+  /**
+   * A "unit" is a set of tabs that must be treated together: a tab, its
+   * Split-View panes, and any Glance parent/child of those tabs.
+   */
+  function getUnitTabs(tab) {
+    const unit = new Set([tab]);
+    const split = getSplitPeers(tab);
+    if (split) for (const t of split) unit.add(t);
+    for (const t of Array.from(unit)) {
+      const glance = getGlancePeers(t);
+      if (glance) for (const g of glance) unit.add(g);
     }
-    return window.gBrowser?.tabs || [];
+    return Array.from(unit);
+  }
+
+  /**
+   * Mark every tab of a unit as just-active (used when the user leaves it).
+   */
+  function touchUnit(tab, now = Date.now()) {
+    if (!tab) return;
+    for (const t of getUnitTabs(tab)) t._arcLastActiveAt = now;
+  }
+
+  /**
+   * Remove a Glance tab cleanly (mirrors Zen's own glance finalize logic) so that
+   * Zen's glance manager does not intercept the close.
+   */
+  function removeGlanceTab(glanceTab) {
+    const id = glanceTab.getAttribute("glance-id");
+    glanceTab.removeAttribute("zen-glance-tab");
+    glanceTab.removeAttribute("glance-id");
+    if (id) {
+      for (const t of document.querySelectorAll(".tabbrowser-tab[glance-id]")) {
+        if (t.getAttribute("glance-id") === id) t.removeAttribute("glance-id");
+      }
+    }
+    window.gBrowser.removeTab(glanceTab, {
+      animate: false,
+      closeWindowWithLastTab: false,
+    });
   }
 
   /**
@@ -1076,11 +1151,9 @@
       }
     }
 
-    // 3. Never touch Zen Glance or placeholder empty tabs
-    if (
-      tab.hasAttribute("zen-glance-tab") ||
-      tab.hasAttribute("zen-empty-tab")
-    ) {
+    // 3. Never touch Zen placeholder empty tabs (Glance tabs are handled as a
+    //    unit together with their parent tab in checkTabsLifecycle)
+    if (tab.hasAttribute("zen-empty-tab")) {
       return true;
     }
 
@@ -1185,9 +1258,24 @@
     // Iterate over a snapshot if Auto-Clean might remove tabs during iteration
     const tabList = cleanMs > 0 ? Array.from(tabs) : tabs;
 
+    const handled = new Set();
+
     for (let i = 0; i < tabList.length; i++) {
       const tab = tabList[i];
+      if (handled.has(tab)) continue;
       if (isProtectedTab(tab)) continue;
+
+      // Glance parent/child and Split-View panes are handled as one unit
+      const unit = getUnitTabs(tab);
+      const isUnit = unit.length > 1;
+      if (
+        isUnit &&
+        unit.some((t) => t.selected || t === window.gBrowser?.selectedTab)
+      ) {
+        // Unit currently in use (e.g. Glance open over its parent, or a visible split)
+        for (const t of unit) handled.add(t);
+        continue;
+      }
 
       const pinnedOrEssential = isPinnedOrEssential(tab);
       const discarded = isTabDiscarded(tab);
@@ -1197,14 +1285,31 @@
         // UNLOADED TAB: Target for Auto-Clean
         // ====================================================================
         if (cleanMs > 0) {
-          if (pinnedOrEssential && !allowCleanPinned) {
+          if (
+            (pinnedOrEssential || (isUnit && unit.some(isPinnedOrEssential))) &&
+            !allowCleanPinned
+          ) {
             continue;
           }
 
-          let unloadedAt = getTabUnloadedAt(tab);
-          if (!unloadedAt) {
-            unloadedAt = tab.lastAccessed || now;
-            setTabUnloadedAt(tab, unloadedAt);
+          // A unit is only cleaned once every member is unloaded and unprotected
+          if (
+            isUnit &&
+            unit.some(
+              (t) => t !== tab && (isProtectedTab(t) || !isTabDiscarded(t)),
+            )
+          ) {
+            continue;
+          }
+
+          let unloadedAt = 0;
+          for (const t of isUnit ? unit : [tab]) {
+            let ts = getTabUnloadedAt(t);
+            if (!ts) {
+              ts = t.lastAccessed || now;
+              setTabUnloadedAt(t, ts);
+            }
+            if (ts > unloadedAt) unloadedAt = ts;
           }
 
           // Inactivity starts from when tab became unloaded, but NOT earlier
@@ -1216,31 +1321,49 @@
           const timeSinceUnloaded = now - effectiveUnloadedStart;
 
           if (timeSinceUnloaded >= cleanMs) {
-            // Safety: Never close the only remaining real tab in the browser
-            if (realTabCount > 1) {
+            // Safety: Never close the only remaining real tab(s) in the browser
+            const closeTargets = isUnit ? unit : [tab];
+            if (realTabCount > closeTargets.length) {
               try {
                 const kind = pinnedOrEssential ? "pinned/essential" : "regular";
                 console.log(
-                  `[Arc-2.0] Auto-cleaning unloaded ${kind} tab: "${tab.label}" (unloaded for ${Math.round(timeSinceUnloaded / 1000)}s)`,
+                  `[Arc-2.0] Auto-cleaning unloaded ${kind} tab${isUnit ? ` (+${unit.length - 1} glance/split)` : ""}: "${tab.label}" (unloaded for ${Math.round(timeSinceUnloaded / 1000)}s)`,
                 );
-                setTabUnloadedAt(tab, null);
 
-                // If this tab was remembered as the last selected tab in another Space,
-                // clear that reference so Zen selects a valid remaining tab when switching back.
-                const wsId = tab.getAttribute("zen-workspace-id");
-                if (
-                  wsId &&
-                  window.gZenWorkspaces?.lastSelectedWorkspaceTabs?.[wsId] ===
-                    tab
-                ) {
-                  delete window.gZenWorkspaces.lastSelectedWorkspaceTabs[wsId];
+                // Glance tabs first (detached cleanly), then the remaining tabs
+                const ordered = closeTargets
+                  .slice()
+                  .sort(
+                    (a, b) =>
+                      b.hasAttribute("zen-glance-tab") -
+                      a.hasAttribute("zen-glance-tab"),
+                  );
+                for (const t of ordered) {
+                  handled.add(t);
+                  if (t.closing || !t.isConnected) continue;
+                  setTabUnloadedAt(t, null);
+
+                  // If this tab was remembered as the last selected tab in another Space,
+                  // clear that reference so Zen selects a valid remaining tab when switching back.
+                  const wsId = t.getAttribute("zen-workspace-id");
+                  if (
+                    wsId &&
+                    window.gZenWorkspaces?.lastSelectedWorkspaceTabs?.[wsId] ===
+                      t
+                  ) {
+                    delete window.gZenWorkspaces.lastSelectedWorkspaceTabs[wsId];
+                  }
+
+                  if (t.hasAttribute("zen-glance-tab")) {
+                    removeGlanceTab(t);
+                  } else {
+                    window.gBrowser.removeTab(t, {
+                      animate: isTabInActiveSpace(t),
+                      closeWindowWithLastTab: false,
+                    });
+                  }
+                  realTabCount--;
                 }
-
-                window.gBrowser.removeTab(tab, {
-                  animate: isTabInActiveSpace(tab),
-                  closeWindowWithLastTab: false,
-                });
-                realTabCount--;
                 continue;
               } catch (e) {
                 console.warn("[Arc-2.0] Auto-clean error:", e);
@@ -1262,8 +1385,15 @@
             continue;
           }
 
-          const lastActive =
-            Math.max(tab.lastAccessed || 0, tab._arcLastActiveAt || 0) || now;
+          let lastActive = 0;
+          for (const t of isUnit ? unit : [tab]) {
+            lastActive = Math.max(
+              lastActive,
+              t.lastAccessed || 0,
+              t._arcLastActiveAt || 0,
+            );
+          }
+          lastActive = lastActive || now;
 
           // Inactivity starts from when tab became inactive, but NOT earlier
           // than when the user activated/changed the Auto-Unload duration pref.
@@ -1355,7 +1485,8 @@
       const now = Date.now();
       const prevTab = event.detail?.previousTab || lastKnownSelectedTab;
       if (prevTab && prevTab !== event.target) {
-        prevTab._arcLastActiveAt = now;
+        // Leaving a tab also "leaves" its Split-View panes / Glance parent+child
+        touchUnit(prevTab, now);
       }
 
       const tab = event.target || window.gBrowser?.selectedTab;
@@ -1413,7 +1544,7 @@
       const now = Date.now();
       const currentSelected = window.gBrowser?.selectedTab;
       if (lastKnownSelectedTab && lastKnownSelectedTab !== currentSelected) {
-        lastKnownSelectedTab._arcLastActiveAt = now;
+        touchUnit(lastKnownSelectedTab, now);
       }
       if (currentSelected) {
         lastKnownSelectedTab = currentSelected;
@@ -1497,5 +1628,163 @@
       window.addEventListener("DOMContentLoaded", init, { once: true });
       window.addEventListener("load", init, { once: true });
     }
+  }
+})();
+
+/* ==========================================================================
+   MODULE 6: In-Window Ctrl+Tab Switcher
+   --------------------------------------------------------------------------
+   Converts `#ctrlTab-panel` from a separate XUL <panel> OS popup window into
+   an in-window <vbox> overlay inside `#browser` so CSS backdrop-filter can
+   blur web content and chrome using the URL Bar variables (`arc-urlbar-*`).
+   ========================================================================== */
+(function () {
+  "use strict";
+
+  function initCtrlTabOverlay() {
+    const ctrlTabObj = window.ctrlTab;
+    const oldPanel = document.getElementById("ctrlTab-panel");
+    if (!ctrlTabObj || !oldPanel) return;
+
+    if (oldPanel.localName !== "panel") {
+      return;
+    }
+
+    const overlay = document.createXULElement("vbox");
+    overlay.id = "ctrlTab-panel";
+    overlay.setAttribute("hidden", "true");
+    overlay.setAttribute("norestorefocus", "true");
+    overlay.setAttribute("orient", "vertical");
+
+    while (oldPanel.firstChild) {
+      overlay.appendChild(oldPanel.firstChild);
+    }
+    oldPanel.remove();
+
+    const host =
+      document.getElementById("browser") ||
+      document.getElementById("zen-main-app-wrapper") ||
+      document.documentElement;
+    host.appendChild(overlay);
+
+    // XUL popup compatibility shim for tabPreviewPanelHelper and ctrlTab
+    let panelState = "closed";
+    Object.defineProperty(overlay, "state", {
+      configurable: true,
+      get() {
+        return panelState;
+      },
+    });
+
+    function openOverlay() {
+      panelState = "open";
+      overlay.hidden = false;
+      overlay.setAttribute("panelopen", "true");
+      overlay.dispatchEvent(new CustomEvent("popupshowing", { bubbles: false }));
+      // Force synchronous layout so preview buttons have frames before setupGUI() focuses
+      overlay.getBoundingClientRect();
+      overlay.dispatchEvent(new CustomEvent("popupshown", { bubbles: false }));
+    }
+
+    overlay.openPopupAtScreen = openOverlay;
+    overlay.openPopup = openOverlay;
+
+    overlay.hidePopup = function () {
+      if (panelState === "closed") return;
+      panelState = "closed";
+      overlay.removeAttribute("panelopen");
+      overlay.dispatchEvent(new CustomEvent("popuphiding", { bubbles: false }));
+      overlay.hidden = true;
+      overlay.dispatchEvent(new CustomEvent("popuphidden", { bubbles: false }));
+    };
+
+    // Rebind ctrlTab.panel to our in-window overlay
+    delete ctrlTabObj.panel;
+    ctrlTabObj.panel = overlay;
+
+    // Scale canvasWidth by 0.7 in JS so #ctrlTab-panel needs no CSS transform
+    // (a CSS `scale` isolates backdrop-filter and shrinks border-radius).
+    let scaledCanvasWidth =
+      typeof ctrlTabObj.canvasWidth === "number"
+        ? Math.ceil(ctrlTabObj.canvasWidth * 0.7)
+        : 0;
+    Object.defineProperty(ctrlTabObj, "canvasWidth", {
+      configurable: true,
+      get() {
+        return scaledCanvasWidth;
+      },
+      set(val) {
+        scaledCanvasWidth = Math.ceil(Number(val) * 0.7);
+      },
+    });
+
+    // Track last focused preview inside the switcher as fallback if focus leaves
+    let lastFocusedPreview = null;
+    const onFocusIn = (event) => {
+      const target = event.target?.closest?.(".ctrlTab-preview, #ctrlTab-showAll");
+      if (target && overlay.contains(target)) {
+        lastFocusedPreview = target;
+      }
+    };
+    overlay.addEventListener("focusin", onFocusIn, true);
+
+    const origSelectedDesc = Object.getOwnPropertyDescriptor(ctrlTabObj, "selected");
+    if (origSelectedDesc?.get) {
+      Object.defineProperty(ctrlTabObj, "selected", {
+        configurable: true,
+        get() {
+          if (this._selectedIndex < 0) {
+            const active = document.activeElement;
+            if (active && overlay.contains(active)) {
+              return active;
+            }
+            if (lastFocusedPreview && overlay.contains(lastFocusedPreview)) {
+              return lastFocusedPreview;
+            }
+          }
+          return origSelectedDesc.get.call(this);
+        },
+      });
+    }
+
+    // Outside click, Escape key, and window blur dismiss when open
+    const onMouseDown = (event) => {
+      if (overlay.state === "open" && !overlay.contains(event.target)) {
+        ctrlTabObj.close();
+      }
+    };
+    const onKeyDown = (event) => {
+      if (overlay.state === "open" && event.key === "Escape") {
+        event.preventDefault();
+        event.stopPropagation();
+        ctrlTabObj.close();
+      }
+    };
+    const onWindowBlur = () => {
+      if (overlay.state === "open") {
+        ctrlTabObj.close();
+      }
+    };
+
+    window.addEventListener("mousedown", onMouseDown, true);
+    window.addEventListener("keydown", onKeyDown, true);
+    window.addEventListener("blur", onWindowBlur);
+
+    window.addEventListener(
+      "unload",
+      () => {
+        overlay.removeEventListener("focusin", onFocusIn, true);
+        window.removeEventListener("mousedown", onMouseDown, true);
+        window.removeEventListener("keydown", onKeyDown, true);
+        window.removeEventListener("blur", onWindowBlur);
+      },
+      { once: true },
+    );
+  }
+
+  if (document.readyState === "complete") {
+    initCtrlTabOverlay();
+  } else {
+    window.addEventListener("load", initCtrlTabOverlay, { once: true });
   }
 })();
