@@ -865,6 +865,7 @@
       Split-View, share one inactivity timer. They unload together and are only
       cleaned once every member is unloaded (Glance tabs are detached cleanly).
    6. Setting duration to 0 disables that feature with zero background overhead.
+   7. Per-tab halt: tab context menu toggles to exclude a tab (and its Glance/Split unit) from Auto-Unload and/or Auto-Clean; persisted via SessionStore.
    ========================================================================== */
 (function () {
   "use strict";
@@ -874,6 +875,8 @@
   const PREF_AUTO_UNLOAD_PINNED = "arc-tab-auto-unload-pinned";
   const PREF_AUTO_CLEAN_PINNED = "arc-tab-auto-clean-pinned";
   const SESSION_STORE_KEY = "arcUnloadedAt";
+  const HALT_UNLOAD_KEY = "arcHaltUnload";
+  const HALT_CLEAN_KEY = "arcHaltClean";
   const MAX_TIMEOUT_MS = 2147483647; // Max 32-bit signed int for setTimeout
   const DURATION_REGEX = /^([0-9]+(?:\.[0-9]+)?)\s*([a-z]+)?$/;
 
@@ -1223,6 +1226,56 @@
     }
   }
 
+  function syncHaltAttribute(tab, key, halted) {
+    const attr = key === HALT_UNLOAD_KEY ? "arc-halt-unload" : "arc-halt-clean";
+    if (halted) {
+      tab.setAttribute(attr, "true");
+    } else {
+      tab.removeAttribute(attr);
+    }
+  }
+
+  /**
+   * Check whether Auto-Unload or Auto-Clean is halted for this tab.
+   */
+  function isHalted(tab, key) {
+    if (!tab) return false;
+    const cacheProp = "_" + key;
+    if (typeof tab[cacheProp] === "boolean") {
+      return tab[cacheProp];
+    }
+    let halted = false;
+    const ss = getSessionStore();
+    if (ss) {
+      try {
+        halted = ss.getCustomTabValue(tab, key) === "1";
+      } catch (e) {}
+    }
+    tab[cacheProp] = halted;
+    syncHaltAttribute(tab, key, halted);
+    return halted;
+  }
+
+  /**
+   * Persist or clear the per-tab halt state for Auto-Unload or Auto-Clean.
+   */
+  function setHalted(tab, key, value) {
+    if (!tab) return;
+    const halted = Boolean(value);
+    tab["_" + key] = halted;
+    const ss = getSessionStore();
+    if (ss) {
+      try {
+        if (halted) {
+          ss.setCustomTabValue(tab, key, "1");
+        } else {
+          ss.deleteCustomTabValue(tab, key);
+        }
+      } catch (e) {}
+    }
+    syncHaltAttribute(tab, key, halted);
+  }
+
   /**
    * Core lifecycle processor.
    * Evaluates all tabs across all Spaces, performs due actions, and schedules the exact next wakeup.
@@ -1279,6 +1332,7 @@
 
       const pinnedOrEssential = isPinnedOrEssential(tab);
       const discarded = isTabDiscarded(tab);
+      const members = isUnit ? unit : [tab];
 
       if (discarded) {
         // ====================================================================
@@ -1289,6 +1343,9 @@
             (pinnedOrEssential || (isUnit && unit.some(isPinnedOrEssential))) &&
             !allowCleanPinned
           ) {
+            continue;
+          }
+          if (members.some((t) => isHalted(t, HALT_CLEAN_KEY))) {
             continue;
           }
 
@@ -1382,6 +1439,9 @@
         // ====================================================================
         if (unloadMs > 0) {
           if (pinnedOrEssential && !allowUnloadPinned) {
+            continue;
+          }
+          if (members.some((t) => isHalted(t, HALT_UNLOAD_KEY))) {
             continue;
           }
 
@@ -1585,9 +1645,102 @@
       Services.prefs.addObserver(PREF_AUTO_CLEAN_PINNED, prefObserver);
     } catch (e) {}
 
+    /**
+     * Add per-tab Halt Auto-Unload / Auto-Clean checkboxes to the tab context menu.
+     */
+    function initHaltMenu() {
+      const menu = document.getElementById("tabContextMenu");
+      if (!menu || document.getElementById("arc-context-halt-unload")) return null;
+
+      const sep = document.createXULElement("menuseparator");
+      sep.id = "arc-context-halt-separator";
+
+      const unloadItem = document.createXULElement("menuitem");
+      unloadItem.id = "arc-context-halt-unload";
+      unloadItem.setAttribute("type", "checkbox");
+      unloadItem.setAttribute("label", "Halt Auto-Unload for this tab");
+
+      const cleanItem = document.createXULElement("menuitem");
+      cleanItem.id = "arc-context-halt-clean";
+      cleanItem.setAttribute("type", "checkbox");
+      cleanItem.setAttribute("label", "Halt Auto-Clean for this tab");
+
+      const anchor = document.getElementById("context_toggleMuteTab");
+      if (anchor && anchor.parentNode === menu) {
+        const next = anchor.nextSibling;
+        menu.insertBefore(sep, next);
+        menu.insertBefore(unloadItem, next);
+        menu.insertBefore(cleanItem, next);
+      } else {
+        menu.appendChild(sep);
+        menu.appendChild(unloadItem);
+        menu.appendChild(cleanItem);
+      }
+
+      function targets() {
+        const ctx = window.TabContextMenu?.contextTab;
+        if (!ctx) return [];
+        return ctx.multiselected ? window.gBrowser.selectedTabs : [ctx];
+      }
+
+      const onPopupShowing = (event) => {
+        if (event.target !== menu) return;
+        refreshCachedPrefs();
+        unloadItem.hidden = !(gUnloadMs > 0);
+        cleanItem.hidden = !(gCleanMs > 0);
+        sep.hidden = unloadItem.hidden && cleanItem.hidden;
+
+        const list = targets();
+        const unloadChecked =
+          list.length > 0 && list.every((t) => isHalted(t, HALT_UNLOAD_KEY));
+        const cleanChecked =
+          list.length > 0 && list.every((t) => isHalted(t, HALT_CLEAN_KEY));
+
+        if (unloadChecked) {
+          unloadItem.setAttribute("checked", "true");
+        } else {
+          unloadItem.removeAttribute("checked");
+        }
+        if (cleanChecked) {
+          cleanItem.setAttribute("checked", "true");
+        } else {
+          cleanItem.removeAttribute("checked");
+        }
+      };
+
+      const toggleHalt = (key) => {
+        const list = targets();
+        if (!list.length) return;
+        const next = !list.every((t) => isHalted(t, key));
+        const now = Date.now();
+        for (const t of list) {
+          setHalted(t, key, next);
+          if (!next) {
+            if (key === HALT_UNLOAD_KEY) {
+              t._arcLastActiveAt = now;
+            } else if (key === HALT_CLEAN_KEY && isTabDiscarded(t)) {
+              setTabUnloadedAt(t, now);
+            }
+          }
+        }
+        scheduleImmediateCheck(100);
+      };
+
+      menu.addEventListener("popupshowing", onPopupShowing);
+      unloadItem.addEventListener("command", () => toggleHalt(HALT_UNLOAD_KEY));
+      cleanItem.addEventListener("command", () => toggleHalt(HALT_CLEAN_KEY));
+
+      return () => {
+        menu.removeEventListener("popupshowing", onPopupShowing);
+      };
+    }
+
+    const cleanupHaltMenu = initHaltMenu();
+
     window.addEventListener(
       "unload",
       () => {
+        if (cleanupHaltMenu) cleanupHaltMenu();
         if (gSchedulerTimer) {
           clearTimeout(gSchedulerTimer);
           gSchedulerTimer = null;
