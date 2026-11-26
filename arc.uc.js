@@ -384,51 +384,84 @@
 })();
 
 /* ==========================================================================
-   MODULE 3: Invert Colors Hotkey (Ctrl+Alt+Shift+-) & Arc Customizations
+   MODULE 3: Invert Colors Hotkey (Alt+=) & Arc Customizations
    --------------------------------------------------------------------------
-   - Attaches the `Ctrl`+`Alt`+`Shift`+`-` hotkey to toggle color inversion on
+   - Attaches the `Alt`+`=` hotkey to toggle color inversion on
      PDF documents ONLY. Pressing it inverts colors, and pressing it again
      restores the original colors.
    - For PDF documents, inverts PDF pages with color-preserving hue rotation
-     and optimized highlight colors via InvertPDFActor.
+     and optimized highlight colors via InvertPDFActor & USER_SHEET.
    - Non-PDF web pages are unaffected (handled by addons like Dark Reader).
    - Live-syncs --arc-border-radius and --arc-font from about:config to all tabs.
    ========================================================================== */
 (function () {
   "use strict";
 
-  // 1. Ensure InvertPDFActor background module is imported and actor registered
   try {
-    ChromeUtils.importESModule(
-      "chrome://userscripts/content/services/invertPDF.sys.mjs",
-    );
-  } catch (e) {
+    Services.prefs.deleteBranch("arc.debug.invert.");
+  } catch (e) {}
+
+  // 1. Ensure InvertPDFActor background module is imported and up to date
+  const TARGET_ACTOR_VERSION = 5;
+  try {
+    let mod = null;
     try {
-      ChromeUtils.importESModule(
+      mod = ChromeUtils.importESModule(
         "chrome://sine/content/Arc-2.0/invertPDF.sys.mjs",
       );
-    } catch (err) {
-      console.warn("[Arc-2.0] Failed to import invertPDF.sys.mjs:", err);
+    } catch (e) {
+      mod = ChromeUtils.importESModule(
+        "chrome://userscripts/content/services/invertPDF.sys.mjs",
+      );
     }
+    if (mod?.InvertPDFActorChild?.ACTOR_VERSION !== TARGET_ACTOR_VERSION) {
+      try {
+        Services.appinfo.invalidateCachesOnRestart();
+      } catch (e) {}
+    }
+  } catch (err) {
+    console.warn("[Arc-2.0] Failed to import invertPDF.sys.mjs:", err);
   }
 
   const INVERT_FILTER = "invert(98%) hue-rotate(176.4deg)";
 
-  // 2. Toggle Invert function (PDFs ONLY - URL must end with .pdf)
+  // 2. Toggle Invert function (PDFs ONLY)
+  // Both the capture keydown listener and the native <key> may fire for one
+  // press; debounce so a single press toggles exactly once.
+  let lastInvertToggleAt = 0;
   async function toggleCurrentTabInvert() {
-    const tab = window.gBrowser?.selectedTab;
-    const browser = tab?.linkedBrowser || window.gBrowser?.selectedBrowser;
-    if (!browser) return;
+    const nowTs = Date.now();
+    if (nowTs - lastInvertToggleAt < 250) return;
+    lastInvertToggleAt = nowTs;
 
-    // Guard: Only activate on URLs ending with .pdf
+    const activeEl = document.activeElement;
+    const glanceTab = window.gZenGlanceManager?.getCurrentTab?.();
+    let tab = glanceTab || window.gBrowser?.selectedTab;
+    let browser = tab?.linkedBrowser || window.gBrowser?.selectedBrowser;
+    if (activeEl?.localName === "browser") {
+      browser = activeEl;
+      tab = window.gBrowser?.getTabForBrowser?.(activeEl) || tab;
+    }
+    if (!browser || !tab) return;
+
+    // Guard: Only activate on PDFs (via pdf.js principal, contentType, or PDF URL)
+    const principalOrigin =
+      browser.browsingContext?.currentWindowGlobal?.documentPrincipal
+        ?.originNoSuffix ||
+      browser.contentPrincipal?.originNoSuffix ||
+      "";
+    const contentType = (browser.documentContentType || "").toLowerCase();
     const url = (browser.currentURI?.spec || "").toLowerCase();
-    const isPdfUrl =
+    const isPdf =
+      principalOrigin === "resource://pdf.js" ||
+      principalOrigin === "chrome://pdfjs" ||
+      contentType === "application/pdf" ||
       url.endsWith(".pdf") ||
       url.includes(".pdf?") ||
       url.includes(".pdf#") ||
       url.startsWith("resource://pdf.js/") ||
       url.startsWith("chrome://pdfjs/");
-    if (!isPdfUrl) return;
+    if (!isPdf) return;
 
     let contentHandled = false;
 
@@ -440,41 +473,45 @@
         );
       if (actor) {
         const reply = await actor.sendQuery("ToggleInvert");
-        if (reply && reply.handled) {
+        if (
+          reply &&
+          reply.handled &&
+          (!reply.inverted ||
+            (reply.computedFilter && reply.computedFilter !== "none"))
+        ) {
           contentHandled = true;
           tab._arcInverted = reply.inverted;
-          browser.style.filter = "";
+          browser.style.removeProperty("filter");
           browser.removeAttribute("arc-inverted");
         }
       }
     } catch (e) {}
 
-    // B. Fallback: Apply filter directly to the browser element.
-    //    Safe because the URL guard above ensures this only runs on PDF pages.
+    // B. Fallback: Apply filter directly to the browser element with !important.
+    //    Safe because the PDF guard above ensures this only runs on PDF pages.
     if (!contentHandled) {
       tab._arcInverted = !tab._arcInverted;
       if (tab._arcInverted) {
-        browser.style.filter = INVERT_FILTER;
+        browser.style.setProperty("filter", INVERT_FILTER, "important");
         browser.setAttribute("arc-inverted", "true");
       } else {
-        browser.style.filter = "";
+        browser.style.removeProperty("filter");
         browser.removeAttribute("arc-inverted");
       }
     }
   }
 
-  // 3. Hotkey matching function: Ctrl + Alt + Shift + -
+  // 3. Hotkey matching function: Alt + =
   function isMatchingHotkey(e) {
-    if (!e.ctrlKey || !e.altKey || !e.shiftKey) return false;
+    if (!e.altKey || e.ctrlKey || e.shiftKey || e.metaKey) return false;
+    if (e.getModifierState?.("AltGraph")) return false;
 
     return (
-      e.key === "-" ||
-      e.key === "_" ||
-      e.code === "Minus" ||
-      e.code === "NumpadSubtract" ||
-      e.keyCode === 189 ||
-      e.keyCode === 109 ||
-      e.keyCode === 173
+      e.code === "Equal" ||
+      e.code === "NumpadEqual" ||
+      e.key === "=" ||
+      e.keyCode === 61 ||
+      e.keyCode === 187
     );
   }
 
@@ -486,27 +523,75 @@
     }
   }
 
-  // Attach keydown listener in capture phase on window
+  // Attach keydown listener in both system group and normal capture phase
+  window.addEventListener("keydown", onKeyDown, {
+    capture: true,
+    mozSystemGroup: true,
+  });
   window.addEventListener("keydown", onKeyDown, { capture: true });
 
-  // Native XUL key shortcut registration in mainKeyset
-  try {
-    const keyset =
-      document.getElementById("mainKeyset") || document.querySelector("keyset");
-    if (keyset && !document.getElementById("key_arcInvertColors")) {
-      const key = document.createXULElement
-        ? document.createXULElement("key")
-        : document.createElement("key");
-      key.id = "key_arcInvertColors";
-      key.setAttribute("modifiers", "control,alt,shift");
-      key.setAttribute("key", "-");
-      key.addEventListener("command", (e) => {
-        e.stopPropagation();
-        toggleCurrentTabInvert();
-      });
-      keyset.appendChild(key);
-    }
-  } catch (e) {}
+  // Register a dedicated <commandset> + fresh <keyset> on document.body
+  // (appending <key> into an already-bound #mainKeyset does not register in
+  // Gecko's C++ GlobalKeyListener; attaching a new <keyset> triggers BindToTree).
+  function registerInvertKeyset() {
+    try {
+      const rootHost = document.body || document.documentElement;
+      if (!rootHost) return;
+
+      let cmdSet = document.getElementById("arcInvertCommandSet");
+      if (!cmdSet) {
+        cmdSet = document.createXULElement("commandset");
+        cmdSet.id = "arcInvertCommandSet";
+        rootHost.prepend(cmdSet);
+      }
+
+      let cmd = document.getElementById("cmd_arcInvertColors");
+      if (!cmd) {
+        cmd = document.createXULElement("command");
+        cmd.id = "cmd_arcInvertColors";
+        cmd.addEventListener("command", (e) => {
+          e.stopPropagation();
+          toggleCurrentTabInvert();
+        });
+        cmdSet.appendChild(cmd);
+      }
+
+      document.getElementById("key_arcInvertColors")?.remove();
+      document.getElementById("key_arcInvertColorsVK")?.remove();
+      document.getElementById("arcInvertKeySet")?.remove();
+
+      const keySet = document.createXULElement("keyset");
+      keySet.id = "arcInvertKeySet";
+
+      const keyChar = document.createXULElement("key");
+      keyChar.id = "key_arcInvertColors";
+      keyChar.setAttribute("modifiers", "alt");
+      keyChar.setAttribute("key", "=");
+      keyChar.setAttribute("command", "cmd_arcInvertColors");
+      keyChar.setAttribute("zen-website-conflict-default", "zen");
+      keyChar.setAttribute("reserved", "true");
+      keySet.appendChild(keyChar);
+
+      const keyVK = document.createXULElement("key");
+      keyVK.id = "key_arcInvertColorsVK";
+      keyVK.setAttribute("modifiers", "alt");
+      keyVK.setAttribute("keycode", "VK_EQUALS");
+      keyVK.setAttribute("command", "cmd_arcInvertColors");
+      keyVK.setAttribute("zen-website-conflict-default", "zen");
+      keyVK.setAttribute("reserved", "true");
+      keySet.appendChild(keyVK);
+
+      rootHost.appendChild(keySet);
+    } catch (e) {}
+  }
+
+  if (document.body) {
+    registerInvertKeyset();
+  } else {
+    window.addEventListener("DOMContentLoaded", registerInvertKeyset, {
+      once: true,
+    });
+  }
 
   // Preserve per-tab invert state when switching tabs
   const onInvertTabSelect = () => {
@@ -515,14 +600,12 @@
     if (!browser) return;
 
     if (tab._arcInverted) {
-      if (browser.style.filter !== INVERT_FILTER) {
-        browser.style.filter = INVERT_FILTER;
-      }
+      browser.style.setProperty("filter", INVERT_FILTER, "important");
       if (!browser.hasAttribute("arc-inverted")) {
         browser.setAttribute("arc-inverted", "true");
       }
     } else if (browser.hasAttribute("arc-inverted") || browser.style.filter) {
-      browser.style.filter = "";
+      browser.style.removeProperty("filter");
       browser.removeAttribute("arc-inverted");
     }
   };
@@ -598,6 +681,30 @@
         }
         css += `  --arc-font: "${fontName}" !important;\n`;
         css += "}\n";
+        css += `
+@-moz-document url-prefix("resource://pdf.js/"), url-prefix("chrome://pdfjs/") {
+  :root[data-inverted] .pdfViewer,
+  :root[data-inverted] #thumbnailView .thumbnailImage,
+  :root[data-inverted] #thumbnailsView .thumbnailImage,
+  :root[data-inverted] .editToolbar,
+  :root[data-inverted] .freeTextEditor,
+  :root[data-inverted] .inkEditorCanvas {
+    filter: ${INVERT_FILTER} !important;
+  }
+  :root[data-inverted] #viewerContainer #viewer .page,
+  html.pdf-invert-colors #viewerContainer #viewer .page {
+    filter: none !important;
+  }
+  :root[data-inverted] .highlight[fill="#FFFF98"] { fill: hsl(64, 70%, 50%) !important; }
+  :root[data-inverted] .highlight[fill="#53FFBC"] { fill: hsl(156.6, 100%, 66.3%) !important; }
+  :root[data-inverted] .highlight[fill="#80EBFF"] { fill: hsl(189.4, 100%, 75.1%) !important; }
+  :root[data-inverted] .highlight[fill="#FFCBE6"] { fill: hsl(300, 70%, 85%) !important; }
+  :root[data-inverted] .highlight[fill="#FF4F5F"] { fill: hsl(350, 80%, 85%) !important; }
+  :root[data-inverted] .annotationEditorLayer :is(.freeTextEditor, .inkEditor, .stampEditor):is(.selectedEditor::before, > .resizers) {
+    filter: ${INVERT_FILTER} !important;
+  }
+}
+`;
 
         const uri = Services.io.newURI(
           "data:text/css;charset=utf-8," + encodeURIComponent(css),
@@ -690,6 +797,10 @@
             Services.prefs.removeObserver(prefName, contentPrefsObserver);
           }
           Services.prefs.removeObserver("arc-font", fontObserver);
+          window.removeEventListener("keydown", onKeyDown, {
+            capture: true,
+            mozSystemGroup: true,
+          });
           window.removeEventListener("keydown", onKeyDown, { capture: true });
           window.removeEventListener("TabSelect", onInvertTabSelect);
         } catch (e) {}
@@ -699,7 +810,7 @@
   } catch (e) {}
 
   console.log(
-    "[Arc-2.0] All-in-one arc.uc.js with PDF-Only Invert Hotkey (Ctrl+Alt+Shift+-) initialized successfully",
+    "[Arc-2.0] All-in-one arc.uc.js with PDF-Only Invert Hotkey (Alt+=) initialized successfully",
   );
 })();
 

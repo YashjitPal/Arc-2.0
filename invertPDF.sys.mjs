@@ -3,6 +3,8 @@
  */
 
 export class InvertPDFActorChild extends JSWindowActorChild {
+  static ACTOR_VERSION = 5;
+
   static config = {
     filter: "invert(98%) hue-rotate(176.4deg)",
     highlightColors: {
@@ -113,50 +115,83 @@ export class InvertPDFActorChild extends JSWindowActorChild {
   }
 
   initStyles() {
+    if (this._sheetLoaded) return;
     const doc = this.document;
-    if (!doc || !this.isPdf() || doc.getElementById("arcInvertStyles")) return;
+    const win = this.contentWindow;
+    if (!doc || !win || !this.isPdf()) return;
 
     const { highlightColors, filter } = InvertPDFActorChild.config;
-    const style = doc.createElement("style");
-    style.id = "arcInvertStyles";
-    style.textContent = `
-      :root[data-inverted] .pdfViewer,
-      :root[data-inverted] #thumbnailView .thumbnailImage,
-      :root[data-inverted] .editToolbar,
-      :root[data-inverted] .freeTextEditor,
-      :root[data-inverted] .inkEditorCanvas {
-        filter: ${filter} !important;
-      }
-
-      :root[data-inverted] .highlight[fill="#FFFF98"] { fill: ${highlightColors.yellow} !important; }
-      :root[data-inverted] .highlight[fill="#53FFBC"] { fill: ${highlightColors.green} !important; }
-      :root[data-inverted] .highlight[fill="#80EBFF"] { fill: ${highlightColors.blue} !important; }
-      :root[data-inverted] .highlight[fill="#FFCBE6"] { fill: ${highlightColors.pink} !important; }
-      :root[data-inverted] .highlight[fill="#FF4F5F"] { fill: ${highlightColors.red} !important; }
-
-      :root[data-inverted] .annotationEditorLayer :is(.freeTextEditor, .inkEditor, .stampEditor):is(.selectedEditor::before, > .resizers) {
-        filter: ${filter} !important;
+    const css = `
+      @-moz-document url-prefix("resource://pdf.js/"), url-prefix("chrome://pdfjs/") {
+        :root[data-inverted] .pdfViewer,
+        :root[data-inverted] #thumbnailView .thumbnailImage,
+        :root[data-inverted] #thumbnailsView .thumbnailImage,
+        :root[data-inverted] .editToolbar,
+        :root[data-inverted] .freeTextEditor,
+        :root[data-inverted] .inkEditorCanvas {
+          filter: ${filter} !important;
+        }
+        :root[data-inverted] #viewerContainer #viewer .page,
+        html.pdf-invert-colors #viewerContainer #viewer .page {
+          filter: none !important;
+        }
+        :root[data-inverted] .highlight[fill="#FFFF98"] { fill: ${highlightColors.yellow} !important; }
+        :root[data-inverted] .highlight[fill="#53FFBC"] { fill: ${highlightColors.green} !important; }
+        :root[data-inverted] .highlight[fill="#80EBFF"] { fill: ${highlightColors.blue} !important; }
+        :root[data-inverted] .highlight[fill="#FFCBE6"] { fill: ${highlightColors.pink} !important; }
+        :root[data-inverted] .highlight[fill="#FF4F5F"] { fill: ${highlightColors.red} !important; }
+        :root[data-inverted] .annotationEditorLayer :is(.freeTextEditor, .inkEditor, .stampEditor):is(.selectedEditor::before, > .resizers) {
+          filter: ${filter} !important;
+        }
       }
     `;
-    doc.head?.appendChild(style);
+    try {
+      const utils = win.windowUtils;
+      const uri = "data:text/css;charset=utf-8," + encodeURIComponent(css);
+      utils.loadSheetUsingURIString(uri, utils.USER_SHEET);
+      this._sheetLoaded = true;
+    } catch (e) {}
+  }
+
+  toggleInvert() {
+    const nowTs = Date.now();
+    if (this._lastToggleAt && nowTs - this._lastToggleAt < 250) {
+      const doc = this.document;
+      const pdfViewerEl = doc?.querySelector?.(".pdfViewer");
+      const computedFilter = pdfViewerEl
+        ? this.contentWindow.getComputedStyle(pdfViewerEl).filter
+        : "";
+      return {
+        handled: Boolean(doc && this.isPdf()),
+        inverted: Boolean(doc?.documentElement?.hasAttribute("data-inverted")),
+        computedFilter,
+      };
+    }
+    this._lastToggleAt = nowTs;
+
+    const doc = this.document;
+    if (!doc || !this.isPdf()) return { handled: false };
+
+    this.initStyles();
+
+    const isInverted = doc.documentElement.hasAttribute("data-inverted");
+    if (isInverted) {
+      doc.documentElement.removeAttribute("data-inverted");
+      doc.documentElement.classList.remove("pdf-invert-colors");
+    } else {
+      doc.documentElement.setAttribute("data-inverted", "true");
+      doc.documentElement.classList.add("pdf-invert-colors");
+    }
+    const pdfViewerEl = doc.querySelector(".pdfViewer");
+    const computedFilter = pdfViewerEl
+      ? this.contentWindow.getComputedStyle(pdfViewerEl).filter
+      : "";
+    return { handled: true, inverted: !isInverted, computedFilter };
   }
 
   receiveMessage(message) {
     if (message.name === "ToggleInvert") {
-      const doc = this.document;
-      if (!doc || !this.isPdf()) return { handled: false };
-
-      this.initStyles();
-
-      const isInverted = doc.documentElement.hasAttribute("data-inverted");
-      if (isInverted) {
-        doc.documentElement.removeAttribute("data-inverted");
-        doc.documentElement.classList.remove("pdf-invert-colors");
-      } else {
-        doc.documentElement.setAttribute("data-inverted", "true");
-        doc.documentElement.classList.add("pdf-invert-colors");
-      }
-      return { handled: true, inverted: !isInverted };
+      return this.toggleInvert();
     }
 
     if (message.name === "ArcRadiusChanged") {
@@ -208,8 +243,17 @@ if (Services.appinfo.processType === Services.appinfo.PROCESS_TYPE_DEFAULT) {
 
   let esModuleURI = import.meta.url;
   try {
+    ChromeUtils.unregisterWindowActor("InvertPDFActor");
+  } catch (e) {}
+  try {
     ChromeUtils.registerWindowActor("InvertPDFActor", {
-      child: { esModuleURI, events: { DOMContentLoaded: {}, pageshow: {} } },
+      child: {
+        esModuleURI,
+        events: {
+          DOMContentLoaded: {},
+          pageshow: {},
+        },
+      },
       parent: { esModuleURI },
       allFrames: true,
       messageManagerGroups: ["browsers"],

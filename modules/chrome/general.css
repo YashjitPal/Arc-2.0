@@ -18,6 +18,10 @@ browser {
   ) !important;
 }
 
+browser[arc-inverted="true"] {
+  filter: invert(98%) hue-rotate(176.4deg) !important;
+}
+
 /* Hide identity label for Bonjourr */
 #identity-icon-label[value="Extension (Bonjourr · Minimalist Startpage)"] {
   display: none !important;

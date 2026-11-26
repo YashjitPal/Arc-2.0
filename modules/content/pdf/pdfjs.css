@@ -462,16 +462,17 @@ their author(s) have been provided above the used code.
         }
       }
 
-      :root[data-inverted] #viewerContainer #viewer .page,
-      html.pdf-invert-colors #viewerContainer #viewer .page {
-        filter: invert(98%) hue-rotate(176.4deg) !important;
-      }
+      &[data-inverted],
+      &.pdf-invert-colors {
+        #viewerContainer #viewer.pdfViewer,
+        #thumbnailView .thumbnailImage,
+        #thumbnailsView .thumbnailImage {
+          filter: invert(98%) hue-rotate(176.4deg) !important;
+        }
 
-      :root[data-inverted] #thumbnailView .thumbnailImage,
-      :root[data-inverted] #thumbnailsView .thumbnailImage,
-      html.pdf-invert-colors #thumbnailView .thumbnailImage,
-      html.pdf-invert-colors #thumbnailsView .thumbnailImage {
-        filter: invert(98%) hue-rotate(176.4deg) !important;
+        #viewerContainer #viewer .page {
+          filter: none !important;
+        }
       }
 
       /* Document properties */
