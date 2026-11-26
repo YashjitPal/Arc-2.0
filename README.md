@@ -188,7 +188,7 @@ Descriptions are provided in the original instructions above.
 - **Transparent Websites (with Zen Internet) [NOTE: Increase Compact Sidebar Opacity in Arc2.0 Mod Settings (Sine) or in `about:config` to have a readable Sidebar.]**  
   ![image](https://github.com/user-attachments/assets/34f1d947-33b0-4370-a717-fc354d4f9830)
 
-- **Enhanced PDF Viewer (Press `Ctrl`+`Alt`+`Shift`+`-` to invert color) & PiP**  
+- **Enhanced PDF Viewer (Press `Alt`+`=` to invert color) & PiP**  
   <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/6283e8ea-cf8f-43fa-862f-afa5e08d7aa2" />
  <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/73fbbd33-ea36-4e3f-8646-40fcb5206b89" />
 
