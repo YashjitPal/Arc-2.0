@@ -283,15 +283,15 @@
   {
     "type": "string",
     "property": "arc-urlbar-saturate",
-    "defaultValue": 1,
-    "placeholder": 0.75,
+    "defaultValue": "1",
+    "placeholder": "0.75",
     "label": "URL Bar *Saturation* (~enter value between 0 and 2~)."
   },
   {
     "type": "string",
     "property": "arc-urlbar-contrast",
-    "defaultValue": 1,
-    "placeholder": 0.75,
+    "defaultValue": "1",
+    "placeholder": "0.75",
     "label": "URL Bar *Contrast* (~enter value between 0 and 1~)."
   },
   {
@@ -318,15 +318,15 @@
     "type": "string",
     "label": "Compact Sidebar *Saturation* (~enter value between 0 and 2~)",
     "property": "arc-compact-sidebar-saturate",
-    "defaultValue": 1,
-    "placeholder": 0.75
+    "defaultValue": "1",
+    "placeholder": "0.75"
   },
   {
     "type": "string",
     "label": "Compact Sidebar *Contrast* (~enter value between 0 and 1~)",
     "property": "arc-compact-sidebar-contrast",
-    "defaultValue": 1,
-    "placeholder": 0.75
+    "defaultValue": "1",
+    "placeholder": "0.75"
   },
   {
     "type": "separator",
@@ -384,7 +384,7 @@
   },
   {
     "type": "checkbox",
-    "property": "arc.tab.defaultValue-audio-indicator",
+    "property": "arc.tab.default-audio-indicator",
     "label": "Disable *audio playing indicator* in tab playing media."
   },
   {
@@ -397,7 +397,7 @@
     "property": "arc-essentials-opacity",
     "label": "Custom favicon gradient *opacity* on Essentials",
     "defaultValue": "0.6",
-    "placeholder": 0.6
+    "placeholder": "0.6"
   },
   {
     "type": "checkbox",
@@ -625,15 +625,15 @@
     "type": "string",
     "property": "arc-findbar-saturate",
     "label": "Custom *saturation* for FindBar (~enter value between 0 and 2~).",
-    "defaultValue": 1,
-    "placeholder": 0.75
+    "defaultValue": "1",
+    "placeholder": "0.75"
   },
   {
     "type": "string",
     "property": "arc-findbar-contrast",
     "label": "Custom *contrast* for FindBar (~enter value between 0 and 1~).",
-    "defaultValue": 1,
-    "placeholder": 0.75
+    "defaultValue": "1",
+    "placeholder": "0.75"
   },
   {
     "type": "checkbox",
@@ -772,7 +772,7 @@
     "defaultValue": "Nunito",
     "options": [
       {
-        "label": "Nunito (defaultValue)",
+        "label": "Nunito (default)",
         "value": "Nunito"
       },
       {

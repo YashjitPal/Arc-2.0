@@ -863,10 +863,38 @@
       );
     }
 
-    // Ensure fadeOutUnloadedTabs is true by default unless user explicitly changed it
-    if (!Services.prefs.prefHasUserValue("browser.tabs.fadeOutUnloadedTabs")) {
-      Services.prefs.setBoolPref("browser.tabs.fadeOutUnloadedTabs", true);
+    // Migrate string-typed filter prefs from legacy PREF_INT to PREF_STRING so decimal edits persist
+    for (const prefName of [
+      "arc-urlbar-saturate",
+      "arc-urlbar-contrast",
+      "arc-compact-sidebar-saturate",
+      "arc-compact-sidebar-contrast",
+      "arc-findbar-saturate",
+      "arc-findbar-contrast",
+    ]) {
+      try {
+        if (Services.prefs.getPrefType(prefName) === Services.prefs.PREF_INT) {
+          const val = Services.prefs.getIntPref(prefName);
+          Services.prefs.clearUserPref(prefName);
+          Services.prefs.setStringPref(prefName, String(val));
+        }
+      } catch (e) {}
     }
+
+    // Migrate mistyped audio-indicator pref name to match CSS
+    try {
+      const legacyAudioPref = "arc.tab.defaultValue-audio-indicator";
+      const fixedAudioPref = "arc.tab.default-audio-indicator";
+      if (Services.prefs.prefHasUserValue(legacyAudioPref)) {
+        if (!Services.prefs.prefHasUserValue(fixedAudioPref)) {
+          Services.prefs.setBoolPref(
+            fixedAudioPref,
+            Services.prefs.getBoolPref(legacyAudioPref, false),
+          );
+        }
+        Services.prefs.clearUserPref(legacyAudioPref);
+      }
+    } catch (e) {}
 
     const chromeDir = Services.dirsvc.get("UChrm", Ci.nsIFile);
 
