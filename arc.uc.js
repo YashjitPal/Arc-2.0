@@ -402,7 +402,7 @@
   } catch (e) {}
 
   // 1. Ensure InvertPDFActor background module is imported and up to date
-  const TARGET_ACTOR_VERSION = 5;
+  const TARGET_ACTOR_VERSION = 6;
   try {
     let mod = null;
     try {
@@ -424,6 +424,127 @@
   }
 
   const INVERT_FILTER = "invert(98%) hue-rotate(176.4deg)";
+  const SESSION_INVERT_KEY = "arcPdfInverted";
+  const INVERT_TOAST_ID = "arc-pdf-invert-toast";
+  let toastDismissTimer = null;
+
+  function getSessionStore() {
+    try {
+      if (window.SessionStore) return window.SessionStore;
+      const mod = ChromeUtils.importESModule(
+        "resource:///modules/sessionstore/SessionStore.sys.mjs",
+      );
+      return mod?.SessionStore || null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function getPersistedTabInvert(tab) {
+    try {
+      const ss = getSessionStore();
+      return ss?.getCustomTabValue?.(tab, SESSION_INVERT_KEY) === "1";
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function setPersistedTabInvert(tab, inverted) {
+    try {
+      const ss = getSessionStore();
+      if (!ss) return;
+      if (inverted) {
+        ss.setCustomTabValue?.(tab, SESSION_INVERT_KEY, "1");
+      } else {
+        ss.deleteCustomTabValue?.(tab, SESSION_INVERT_KEY);
+      }
+    } catch (e) {}
+  }
+
+  function isPdfBrowser(browser) {
+    if (!browser) return false;
+    const principalOrigin =
+      browser.browsingContext?.currentWindowGlobal?.documentPrincipal
+        ?.originNoSuffix ||
+      browser.contentPrincipal?.originNoSuffix ||
+      "";
+    const contentType = (browser.documentContentType || "").toLowerCase();
+    const url = (browser.currentURI?.spec || "").toLowerCase();
+    return (
+      principalOrigin === "resource://pdf.js" ||
+      principalOrigin === "chrome://pdfjs" ||
+      contentType === "application/pdf" ||
+      url.endsWith(".pdf") ||
+      url.includes(".pdf?") ||
+      url.includes(".pdf#") ||
+      url.startsWith("resource://pdf.js/") ||
+      url.startsWith("chrome://pdfjs/")
+    );
+  }
+
+  function showInvertToast(enabled) {
+    try {
+      const container = document.getElementById("zen-toast-container");
+      if (!container) return;
+
+      if (toastDismissTimer) {
+        clearTimeout(toastDismissTimer);
+        toastDismissTimer = null;
+      }
+
+      const existing = container.querySelector(
+        `[data-zen-toast-id="${INVERT_TOAST_ID}"]`,
+      );
+      if (existing) existing.remove();
+
+      const wrapper = document.createXULElement("hbox");
+      const main = document.createXULElement("vbox");
+      const label = document.createXULElement("label");
+      label.textContent = enabled
+        ? "PDF Invert Colors Enabled"
+        : "PDF Invert Colors Disabled";
+
+      wrapper.classList.add("zen-toast");
+      wrapper.setAttribute("data-zen-toast-id", INVERT_TOAST_ID);
+      main.appendChild(label);
+      wrapper.appendChild(main);
+
+      container.removeAttribute("hidden");
+      container.append(wrapper);
+
+      const motion = window.gZenUIManager?.motion;
+      if (motion?.animate) {
+        try {
+          motion.animate(
+            wrapper,
+            { scale: [0, 1] },
+            { duration: 0.25, type: "spring", bounce: 0.2 },
+          );
+        } catch (e) {}
+      }
+
+      toastDismissTimer = setTimeout(() => {
+        toastDismissTimer = null;
+        const cleanup = () => {
+          try {
+            wrapper.remove();
+            if (container.children.length === 0) {
+              container.setAttribute("hidden", "true");
+            }
+          } catch (e) {}
+        };
+        if (motion?.animate) {
+          try {
+            motion
+              .animate(wrapper, { opacity: 0, scale: 0.9 }, { duration: 0.2 })
+              .then(cleanup, cleanup);
+            return;
+          } catch (e) {}
+        }
+        cleanup();
+      }, 2400);
+    } catch (e) {}
+  }
 
   // 2. Toggle Invert function (PDFs ONLY)
   // Both the capture keydown listener and the native <key> may fire for one
@@ -445,23 +566,7 @@
     if (!browser || !tab) return;
 
     // Guard: Only activate on PDFs (via pdf.js principal, contentType, or PDF URL)
-    const principalOrigin =
-      browser.browsingContext?.currentWindowGlobal?.documentPrincipal
-        ?.originNoSuffix ||
-      browser.contentPrincipal?.originNoSuffix ||
-      "";
-    const contentType = (browser.documentContentType || "").toLowerCase();
-    const url = (browser.currentURI?.spec || "").toLowerCase();
-    const isPdf =
-      principalOrigin === "resource://pdf.js" ||
-      principalOrigin === "chrome://pdfjs" ||
-      contentType === "application/pdf" ||
-      url.endsWith(".pdf") ||
-      url.includes(".pdf?") ||
-      url.includes(".pdf#") ||
-      url.startsWith("resource://pdf.js/") ||
-      url.startsWith("chrome://pdfjs/");
-    if (!isPdf) return;
+    if (!isPdfBrowser(browser)) return;
 
     let contentHandled = false;
 
@@ -480,7 +585,8 @@
             (reply.computedFilter && reply.computedFilter !== "none"))
         ) {
           contentHandled = true;
-          tab._arcInverted = reply.inverted;
+          tab._arcInverted = Boolean(reply.inverted);
+          tab._arcInvertMode = "actor";
           browser.style.removeProperty("filter");
           browser.removeAttribute("arc-inverted");
         }
@@ -492,13 +598,18 @@
     if (!contentHandled) {
       tab._arcInverted = !tab._arcInverted;
       if (tab._arcInverted) {
+        tab._arcInvertMode = "browser";
         browser.style.setProperty("filter", INVERT_FILTER, "important");
         browser.setAttribute("arc-inverted", "true");
       } else {
+        tab._arcInvertMode = "actor";
         browser.style.removeProperty("filter");
         browser.removeAttribute("arc-inverted");
       }
     }
+
+    setPersistedTabInvert(tab, Boolean(tab._arcInverted));
+    showInvertToast(Boolean(tab._arcInverted));
   }
 
   // 3. Hotkey matching function: Alt + =
@@ -593,23 +704,73 @@
     });
   }
 
-  // Preserve per-tab invert state when switching tabs
-  const onInvertTabSelect = () => {
-    const tab = window.gBrowser?.selectedTab;
+  // Preserve per-tab invert state when switching tabs or Zen Spaces
+  const applyTabInvertState = async (tab) => {
     const browser = tab?.linkedBrowser;
     if (!browser) return;
 
-    if (tab._arcInverted) {
+    if (typeof tab._arcInverted !== "boolean" && getPersistedTabInvert(tab)) {
+      tab._arcInverted = true;
+    }
+
+    if (!tab._arcInverted || !isPdfBrowser(browser)) {
+      if (browser.hasAttribute("arc-inverted") || browser.style.filter) {
+        browser.style.removeProperty("filter");
+        browser.removeAttribute("arc-inverted");
+      }
+      return;
+    }
+
+    if (tab._arcInvertMode === "browser") {
       browser.style.setProperty("filter", INVERT_FILTER, "important");
       if (!browser.hasAttribute("arc-inverted")) {
         browser.setAttribute("arc-inverted", "true");
       }
-    } else if (browser.hasAttribute("arc-inverted") || browser.style.filter) {
+      return;
+    }
+
+    // Actor-managed inversion: ensure outer <browser> has no filter so the PDF
+    // toolbar stays dark and pages are not double-inverted, then re-sync actor.
+    if (browser.hasAttribute("arc-inverted") || browser.style.filter) {
       browser.style.removeProperty("filter");
       browser.removeAttribute("arc-inverted");
     }
+
+    try {
+      const actor =
+        browser.browsingContext?.currentWindowGlobal?.getActor(
+          "InvertPDFActor",
+        );
+      if (actor) {
+        const reply = await actor.sendQuery("SetInvert", { inverted: true });
+        if (window.gBrowser?.selectedTab !== tab || !tab._arcInverted) return;
+        if (
+          reply?.handled &&
+          reply.hasViewer &&
+          (!reply.computedFilter || reply.computedFilter === "none")
+        ) {
+          tab._arcInvertMode = "browser";
+          browser.style.setProperty("filter", INVERT_FILTER, "important");
+          browser.setAttribute("arc-inverted", "true");
+          return;
+        }
+        if (reply?.handled) {
+          tab._arcInvertMode = "actor";
+        }
+      }
+    } catch (e) {}
+  };
+
+  const onInvertTabSelect = () => {
+    const tab = window.gBrowser?.selectedTab;
+    if (tab) {
+      applyTabInvertState(tab);
+    }
   };
   window.addEventListener("TabSelect", onInvertTabSelect);
+  try {
+    window.gZenWorkspaces?.addChangeListeners?.(onInvertTabSelect);
+  } catch (e) {}
 
   // 4. Observe changes to Arc PDF/Content preferences in about:config and broadcast to tabs
   try {
@@ -803,6 +964,11 @@
           });
           window.removeEventListener("keydown", onKeyDown, { capture: true });
           window.removeEventListener("TabSelect", onInvertTabSelect);
+          window.gZenWorkspaces?.removeChangeListeners?.(onInvertTabSelect);
+          if (toastDismissTimer) {
+            clearTimeout(toastDismissTimer);
+            toastDismissTimer = null;
+          }
         } catch (e) {}
       },
       { once: true },

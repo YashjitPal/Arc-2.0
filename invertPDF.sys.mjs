@@ -3,7 +3,7 @@
  */
 
 export class InvertPDFActorChild extends JSWindowActorChild {
-  static ACTOR_VERSION = 5;
+  static ACTOR_VERSION = 6;
 
   static config = {
     filter: "invert(98%) hue-rotate(176.4deg)",
@@ -31,12 +31,21 @@ export class InvertPDFActorChild extends JSWindowActorChild {
     },
   };
 
-  handleEvent(event) {
+  async handleEvent(event) {
     if (event.type === "DOMContentLoaded" || event.type === "pageshow") {
       if (!this.isInternalOrPdf()) return;
       this.initStyles();
       this.syncPrefs();
       this.syncFont();
+
+      if (this.isPdf()) {
+        try {
+          const state = await this.sendQuery("GetTabInvertState");
+          if (state?.inverted) {
+            this.setInvert(true);
+          }
+        } catch (e) {}
+      }
     }
   }
 
@@ -153,45 +162,67 @@ export class InvertPDFActorChild extends JSWindowActorChild {
     } catch (e) {}
   }
 
-  toggleInvert() {
-    const nowTs = Date.now();
-    if (this._lastToggleAt && nowTs - this._lastToggleAt < 250) {
-      const doc = this.document;
-      const pdfViewerEl = doc?.querySelector?.(".pdfViewer");
-      const computedFilter = pdfViewerEl
-        ? this.contentWindow.getComputedStyle(pdfViewerEl).filter
-        : "";
-      return {
-        handled: Boolean(doc && this.isPdf()),
-        inverted: Boolean(doc?.documentElement?.hasAttribute("data-inverted")),
-        computedFilter,
-      };
-    }
-    this._lastToggleAt = nowTs;
+  getPdfFilterInfo(doc) {
+    const pdfViewerEl = doc?.querySelector?.(".pdfViewer");
+    const computedFilter = pdfViewerEl
+      ? this.contentWindow.getComputedStyle(pdfViewerEl).filter
+      : "";
+    return {
+      hasViewer: Boolean(pdfViewerEl),
+      computedFilter,
+    };
+  }
 
+  setInvert(shouldInvert) {
     const doc = this.document;
     if (!doc || !this.isPdf()) return { handled: false };
 
     this.initStyles();
 
-    const isInverted = doc.documentElement.hasAttribute("data-inverted");
-    if (isInverted) {
-      doc.documentElement.removeAttribute("data-inverted");
-      doc.documentElement.classList.remove("pdf-invert-colors");
-    } else {
+    const enable = Boolean(shouldInvert);
+    if (enable) {
       doc.documentElement.setAttribute("data-inverted", "true");
       doc.documentElement.classList.add("pdf-invert-colors");
+    } else {
+      doc.documentElement.removeAttribute("data-inverted");
+      doc.documentElement.classList.remove("pdf-invert-colors");
     }
-    const pdfViewerEl = doc.querySelector(".pdfViewer");
-    const computedFilter = pdfViewerEl
-      ? this.contentWindow.getComputedStyle(pdfViewerEl).filter
-      : "";
-    return { handled: true, inverted: !isInverted, computedFilter };
+
+    const { hasViewer, computedFilter } = this.getPdfFilterInfo(doc);
+    return {
+      handled: true,
+      inverted: enable,
+      hasViewer,
+      computedFilter,
+    };
+  }
+
+  toggleInvert() {
+    const doc = this.document;
+    const nowTs = Date.now();
+    if (this._lastToggleAt && nowTs - this._lastToggleAt < 250) {
+      const { hasViewer, computedFilter } = this.getPdfFilterInfo(doc);
+      return {
+        handled: Boolean(doc && this.isPdf()),
+        inverted: Boolean(doc?.documentElement?.hasAttribute("data-inverted")),
+        hasViewer,
+        computedFilter,
+      };
+    }
+    this._lastToggleAt = nowTs;
+
+    if (!doc || !this.isPdf()) return { handled: false };
+    const isInverted = doc.documentElement.hasAttribute("data-inverted");
+    return this.setInvert(!isInverted);
   }
 
   receiveMessage(message) {
     if (message.name === "ToggleInvert") {
       return this.toggleInvert();
+    }
+
+    if (message.name === "SetInvert") {
+      return this.setInvert(Boolean(message.data?.inverted));
     }
 
     if (message.name === "ArcRadiusChanged") {
@@ -234,7 +265,28 @@ export class InvertPDFActorChild extends JSWindowActorChild {
 }
 
 export class InvertPDFActorParent extends JSWindowActorParent {
-  receiveMessage() {
+  receiveMessage(message) {
+    if (message.name === "GetTabInvertState") {
+      try {
+        const browser = this.browsingContext?.top?.embedderElement;
+        const win = browser?.ownerGlobal;
+        const tab = win?.gBrowser?.getTabForBrowser?.(browser);
+        if (!tab) return { inverted: false };
+        let inverted =
+          typeof tab._arcInverted === "boolean" ? tab._arcInverted : null;
+        if (inverted === null) {
+          const ss =
+            win.SessionStore ||
+            ChromeUtils.importESModule(
+              "resource:///modules/sessionstore/SessionStore.sys.mjs",
+            ).SessionStore;
+          inverted = ss?.getCustomTabValue?.(tab, "arcPdfInverted") === "1";
+        }
+        return { inverted: Boolean(inverted) };
+      } catch (e) {
+        return { inverted: false };
+      }
+    }
     return null;
   }
 }
