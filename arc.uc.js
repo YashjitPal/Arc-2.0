@@ -1372,6 +1372,17 @@
     } else {
       tab.removeAttribute(attr);
     }
+    if (key === HALT_UNLOAD_KEY) {
+      try {
+        tab.undiscardable = halted;
+      } catch (e) {
+        if (halted) {
+          tab.setAttribute("undiscardable", "true");
+        } else {
+          tab.removeAttribute("undiscardable");
+        }
+      }
+    }
   }
 
   /**
@@ -1413,6 +1424,27 @@
       } catch (e) {}
     }
     syncHaltAttribute(tab, key, halted);
+  }
+
+  /**
+   * Check whether Auto-Unload is halted for a tab or any peer in its Glance/Split unit.
+   */
+  function isTabOrUnitUnloadHalted(tab) {
+    if (!tab) return false;
+    return getUnitTabs(tab).some((t) => isHalted(t, HALT_UNLOAD_KEY));
+  }
+
+  /**
+   * Sync persisted SessionStore halt flags and native `undiscardable` state
+   * onto all existing tabs across all workspaces.
+   */
+  function syncAllHaltedTabs() {
+    const tabs = getAllTabsAcrossSpaces();
+    if (!tabs) return;
+    for (let i = 0; i < tabs.length; i++) {
+      isHalted(tabs[i], HALT_UNLOAD_KEY);
+      isHalted(tabs[i], HALT_CLEAN_KEY);
+    }
   }
 
   /**
@@ -1700,9 +1732,20 @@
     };
 
     // 3. Reset inactivity timestamp when a tab finishes playing audio, sharing, PiP, or loading
+    //    and re-assert `undiscardable` if an external caller strips it from a halted tab.
     const onTabAttrModified = (event) => {
       const changed = event.detail?.changed;
       if (!changed) return;
+      const tab = event.target;
+      if (changed.includes("undiscardable") && tab) {
+        if (isHalted(tab, HALT_UNLOAD_KEY) && !tab.undiscardable) {
+          try {
+            tab.undiscardable = true;
+          } catch (e) {
+            tab.setAttribute("undiscardable", "true");
+          }
+        }
+      }
       if (
         changed.includes("soundplaying") ||
         changed.includes("sharing") ||
@@ -1710,7 +1753,6 @@
         changed.includes("busy") ||
         changed.includes("visuallyselected")
       ) {
-        const tab = event.target;
         if (tab) {
           tab._arcLastActiveAt = Date.now();
         }
@@ -1721,17 +1763,33 @@
     const onTabOpen = (event) => {
       if (event.target) {
         event.target._arcLastActiveAt = Date.now();
+        isHalted(event.target, HALT_UNLOAD_KEY);
+      }
+      scheduleImmediateCheck(300);
+    };
+
+    const onTabRestored = (event) => {
+      const tab = event.target;
+      if (tab) {
+        delete tab["_" + HALT_UNLOAD_KEY];
+        delete tab["_" + HALT_CLEAN_KEY];
+        isHalted(tab, HALT_UNLOAD_KEY);
+        isHalted(tab, HALT_CLEAN_KEY);
       }
       scheduleImmediateCheck(300);
     };
 
     const onTabClose = () => scheduleImmediateCheck(300);
-    const onWorkspaceSessionRestore = () => scheduleImmediateCheck(500);
+    const onWorkspaceSessionRestore = () => {
+      syncAllHaltedTabs();
+      scheduleImmediateCheck(500);
+    };
 
     window.addEventListener("TabBrowserDiscarded", onTabDiscarded);
     window.addEventListener("TabSelect", onTabSelect);
     window.addEventListener("TabAttrModified", onTabAttrModified);
     window.addEventListener("TabOpen", onTabOpen);
+    window.addEventListener("SSTabRestored", onTabRestored);
     window.addEventListener("TabClose", onTabClose);
     window.addEventListener(
       "AfterWorkspacesSessionRestore",
@@ -1825,11 +1883,14 @@
       const onPopupShowing = (event) => {
         if (event.target !== menu) return;
         refreshCachedPrefs();
-        unloadItem.hidden = !(gUnloadMs > 0);
-        cleanItem.hidden = !(gCleanMs > 0);
+        const list = targets();
+        const anyUnloadHalted = list.some((t) => isHalted(t, HALT_UNLOAD_KEY));
+        const anyCleanHalted = list.some((t) => isHalted(t, HALT_CLEAN_KEY));
+
+        unloadItem.hidden = !(gUnloadMs > 0 || anyUnloadHalted);
+        cleanItem.hidden = !(gCleanMs > 0 || anyCleanHalted);
         sep.hidden = unloadItem.hidden && cleanItem.hidden;
 
-        const list = targets();
         const unloadChecked =
           list.length > 0 && list.every((t) => isHalted(t, HALT_UNLOAD_KEY));
         const cleanChecked =
@@ -1874,12 +1935,83 @@
       };
     }
 
+    /**
+     * Protect halted tabs from any browser, Zen, extension, or mod unload calls
+     * (TabUnloader, ZenSpaceManager, ZenPinnedTabManager, ZenViewSplitter, etc.).
+     */
+    function hookBrowserDiscardProtection() {
+      const gb = window.gBrowser;
+      if (!gb) return null;
+
+      const origDiscard =
+        typeof gb.discardBrowser === "function" ? gb.discardBrowser : null;
+      const origPrepare =
+        typeof gb.prepareDiscardBrowser === "function"
+          ? gb.prepareDiscardBrowser
+          : null;
+      const origExplicit =
+        typeof gb.explicitUnloadTabs === "function"
+          ? gb.explicitUnloadTabs
+          : null;
+
+      if (origDiscard && !origDiscard._arcProtected) {
+        const wrappedDiscard = function (aTab, ...rest) {
+          if (isTabOrUnitUnloadHalted(aTab)) {
+            return false;
+          }
+          return origDiscard.call(this, aTab, ...rest);
+        };
+        wrappedDiscard._arcProtected = true;
+        gb.discardBrowser = wrappedDiscard;
+      }
+
+      if (origPrepare && !origPrepare._arcProtected) {
+        const wrappedPrepare = function (aTab, ...rest) {
+          if (isTabOrUnitUnloadHalted(aTab)) {
+            return Promise.resolve();
+          }
+          return origPrepare.call(this, aTab, ...rest);
+        };
+        wrappedPrepare._arcProtected = true;
+        gb.prepareDiscardBrowser = wrappedPrepare;
+      }
+
+      if (origExplicit && !origExplicit._arcProtected) {
+        const wrappedExplicit = function (tabs, ...rest) {
+          const allowed = Array.isArray(tabs)
+            ? tabs.filter((t) => !isTabOrUnitUnloadHalted(t))
+            : tabs;
+          if (Array.isArray(allowed) && allowed.length === 0) {
+            return Promise.resolve(false);
+          }
+          return origExplicit.call(this, allowed, ...rest);
+        };
+        wrappedExplicit._arcProtected = true;
+        gb.explicitUnloadTabs = wrappedExplicit;
+      }
+
+      return () => {
+        if (origDiscard && gb.discardBrowser?._arcProtected) {
+          gb.discardBrowser = origDiscard;
+        }
+        if (origPrepare && gb.prepareDiscardBrowser?._arcProtected) {
+          gb.prepareDiscardBrowser = origPrepare;
+        }
+        if (origExplicit && gb.explicitUnloadTabs?._arcProtected) {
+          gb.explicitUnloadTabs = origExplicit;
+        }
+      };
+    }
+
+    syncAllHaltedTabs();
+    const cleanupDiscardProtection = hookBrowserDiscardProtection();
     const cleanupHaltMenu = initHaltMenu();
 
     window.addEventListener(
       "unload",
       () => {
         if (cleanupHaltMenu) cleanupHaltMenu();
+        if (cleanupDiscardProtection) cleanupDiscardProtection();
         if (gSchedulerTimer) {
           clearTimeout(gSchedulerTimer);
           gSchedulerTimer = null;
@@ -1888,6 +2020,7 @@
         window.removeEventListener("TabSelect", onTabSelect);
         window.removeEventListener("TabAttrModified", onTabAttrModified);
         window.removeEventListener("TabOpen", onTabOpen);
+        window.removeEventListener("SSTabRestored", onTabRestored);
         window.removeEventListener("TabClose", onTabClose);
         window.removeEventListener(
           "AfterWorkspacesSessionRestore",
